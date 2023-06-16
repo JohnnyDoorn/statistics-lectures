@@ -1,13 +1,13 @@
 ---
-title: "SSR 2022-2023"
-author: "Klinkenberg"
+title: "SSR 2023-2024"
+author: "Sharon Kinkenberg & Johnny van Doorn"
 date: today
 ---
 
-On this site you can find my statistics lectures for SSR.
+On this site you can find the statistics lectures for SSR. These slides were originally created by SH and tweaked by JvD.
 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
-course.path = "courses/SSR/2022-2023/"
+course.path = "courses/SSR/2023-2024/"
 
 files <- list.files(full.names = F, pattern = "\\.qmd", recursive = T)
 

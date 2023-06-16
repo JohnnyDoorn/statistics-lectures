@@ -1,0 +1,18 @@
+---
+title: "Null Hypothesis Significance Testing"
+author: "Klinkenberg"
+date: "15 sep 2022"
+footer: "Scientific & Statistical Reasoning"
+format: 
+  html: default
+  revealjs: 
+    output-ext: slide.html
+---
+
+```{r child="../../../../topics/nhst/NHST_2.qmd", eval=TRUE}
+```
+
+<!-- Footer insert below -->
+
+```{r child="../../../../footer.md"}
+```
