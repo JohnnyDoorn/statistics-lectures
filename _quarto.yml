@@ -4,7 +4,6 @@ project:
   render:
     - index.qmd
     - courses/SSR/2022-2023/SSR.qmd
-    - courses/WSR_PB/2022-2023/WSR_PB.qmd
     
 format:
   html:
@@ -29,7 +28,6 @@ website:
       - text: Courses
         menu:
           - sidebar:SSR
-          - sidebar:WSR
 
     right:
       - icon: github
@@ -45,12 +43,5 @@ website:
       collapse-level: 2
       contents:
         - courses/SSR/2022-2023/SSR.qmd
-    - id: WSR
-      title: "Wetenschapsfilosofie & Statistisch Redeneren"
-      style: "docked"
-      background: light
-      collapse-level: 2
-      contents:
-        - courses/WSR_PB/2022-2023/WSR_PB.qmd
 # 
 # freeze: false

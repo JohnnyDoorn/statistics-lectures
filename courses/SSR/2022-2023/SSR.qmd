@@ -7,9 +7,9 @@ date: today
 On this site you can find the statistics lectures for SSR. These slides were originally created by SH and tweaked by JvD.
 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
-course.path = "courses/SSR/2023-2024/"
+course.path = setwd("~/GitHubStuff/statistics-lectures/courses/SSR/2023-2024/")
 
-files <- list.files(full.names = F, pattern = "\\.qmd", recursive = T)
+files <- list.files(full.names = F, pattern = "\\.qmd", recursive = T, path = course.path)
 
 files <- files[grep("SSR.qmd", files, invert = TRUE)]
 

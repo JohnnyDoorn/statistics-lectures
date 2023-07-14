@@ -53,7 +53,7 @@ names(data) <- c('IQ.next.to.you', 'IQ.you')
 
 
 ```{r, echo=TRUE}
-gender = sample(c("male", "female"), dim(data)[1], replace = TRUE)
+expCondition = sample(c("exp", "control"), dim(data)[1], replace = TRUE)
 ```
 
 ## The data
@@ -64,14 +64,14 @@ data$gender = gender
 # Write data for use in SPSS
 write.table(data, "IQ.csv", row.names=FALSE, col.names=TRUE, dec=',')
 
-datatable(data[,c('gender', 'IQ.you')], options = list(searching = FALSE, scrollY = 415, paging = F, info = F))
+datatable(data[,c('expCondition', 'IQ.you')], options = list(searching = FALSE, scrollY = 415, paging = F, info = F))
 ```
 
 ## Calculate means {.subsection}
 
 ```{r, echo=TRUE}
 IQ.you.male   = subset(data, gender == "male",   select = IQ.you)$IQ.you
-IQ.you.female = subset(data, gender == "female", select = IQ.you)$IQ.you
+IQ.you.control = subset(data, gender == "control", select = IQ.you)$IQ.you
 
 IQ.you.male.mean   = mean(IQ.you.male,   na.rm = T)
 IQ.you.female.mean = mean(IQ.you.female, na.rm = T)
