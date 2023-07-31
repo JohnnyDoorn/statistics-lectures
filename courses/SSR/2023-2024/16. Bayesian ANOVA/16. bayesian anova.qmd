@@ -1,0 +1,26 @@
+---
+title: "16. Bayesian ANOVA"
+subtitle: "Parameter estimation & hypothesis testing"
+author: "Johnny van Doorn"
+date: "17 oct 2023"
+footer: "Scientific & Statistical Reasoning"
+format: 
+  html: default
+  revealjs: 
+    output-ext: slide.html
+    chalkboard: true
+---
+
+```{r child="../../../../topics/bayes/bayes_theorem.qmd"}
+```
+
+```{r child="../../../../topics/bayes/bayesian_parameter_estimation.qmd"}
+```
+
+```{r child="../../../../topics/bayes/bayesian_hypothesis_testing.qmd"}
+```
+
+<!-- Footer insert below -->
+
+```{r child="../../../../footer.qmd"}
+```

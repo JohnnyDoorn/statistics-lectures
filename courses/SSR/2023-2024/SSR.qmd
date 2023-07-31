@@ -16,6 +16,9 @@ files <- files[grep("SSR.qmd", files, invert = TRUE)]
 lectures = data.frame()
 n = length(files)
 
+files <- files[order(as.numeric(gsub("\\..*", "", files)))]
+
+
 for (i in 1:n) {
 
   lectures[i ,'url'] <- data.frame(url = paste0(course.path, files[i]))
@@ -38,11 +41,12 @@ data.frame(Date    = lectures$date,
 library("lubridate")
 library("dplyr")
 
-lecture.list$Date <- lubridate::dmy(lecture.list$Date)
+# lecture.list$Date <- lubridate::dmy(lecture.list$Date)
+# lubridate::mdy(lecture.list$Date)
 
 library('kableExtra')
 
 # Print table with kable as set in YAML
-knitr::kable(dplyr::arrange(lecture.list, desc(Date)), escape = F ) %>%
+knitr::kable(dplyr::arrange(lecture.list), escape = F ) %>%
   kable_styling(full_width = T)
 ```

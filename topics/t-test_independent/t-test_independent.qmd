@@ -39,7 +39,7 @@ Specificly for independent sample $t$-test.
 
 ## Example
 
-We are going to use the IQ estimates we collected last week again. You had to gues the IQ of the one sitting next to you and your own IQ. But we are going to add gender to the data set. We did not register this so we are going to simulate some genders.
+We are going to use the IQ estimates we collected last week again. You had to guess the IQ of the one sitting next to you and your own IQ. But we are going to add class position to the data set. We did not register this so we are going to simulate some positions.
 
 ```{r, warning=FALSE, echo=FALSE, message=FALSE}
 if(!'gsheet' %in% installed.packages()) { install.packages('gsheet') }
@@ -53,42 +53,42 @@ names(data) <- c('IQ.next.to.you', 'IQ.you')
 
 
 ```{r, echo=TRUE}
-expCondition = sample(c("exp", "control"), dim(data)[1], replace = TRUE)
+classPosition = sample(c("front", "back"), dim(data)[1], replace = TRUE)
 ```
 
 ## The data
 
 ```{r, echo=FALSE}
-data$gender = gender
+data$classPosition = classPosition
 
 # Write data for use in SPSS
 write.table(data, "IQ.csv", row.names=FALSE, col.names=TRUE, dec=',')
 
-datatable(data[,c('expCondition', 'IQ.you')], options = list(searching = FALSE, scrollY = 415, paging = F, info = F))
+datatable(data[,c('classPosition', 'IQ.you')], options = list(searching = FALSE, scrollY = 415, paging = F, info = F))
 ```
 
 ## Calculate means {.subsection}
 
 ```{r, echo=TRUE}
-IQ.you.male   = subset(data, gender == "male",   select = IQ.you)$IQ.you
-IQ.you.control = subset(data, gender == "control", select = IQ.you)$IQ.you
+IQ.you.front   = subset(data, classPosition == "front",   select = IQ.you)$IQ.you
+IQ.you.back = subset(data, classPosition == "back", select = IQ.you)$IQ.you
 
-IQ.you.male.mean   = mean(IQ.you.male,   na.rm = T)
-IQ.you.female.mean = mean(IQ.you.female, na.rm = T)
+IQ.you.front.mean   = mean(IQ.you.front,   na.rm = T)
+IQ.you.back.mean = mean(IQ.you.back, na.rm = T)
 
-rbind(IQ.you.male.mean, IQ.you.female.mean)
+rbind(IQ.you.front.mean, IQ.you.back.mean)
 ```
 
 ## Calculate variance {.smaller .subsection}
 
 ```{r, echo=TRUE}
-IQ.you.male.var   = var(IQ.you.male,   na.rm = T)
-IQ.you.female.var = var(IQ.you.female, na.rm = T)
-rbind(IQ.you.male.var, IQ.you.female.var)
+IQ.you.front.var   = var(IQ.you.front,   na.rm = T)
+IQ.you.back.var = var(IQ.you.back, na.rm = T)
+rbind(IQ.you.front.var, IQ.you.back.var)
 
-IQ.you.male.n   = length(IQ.you.male)   - 1
-IQ.you.female.n = length(IQ.you.female) - 1
-rbind(IQ.you.male.n, IQ.you.female.n)
+IQ.you.front.n   = length(IQ.you.front)   - 1
+IQ.you.back.n = length(IQ.you.back) - 1
+rbind(IQ.you.front.n, IQ.you.back.n)
 ```
 
 ## Calculate t-value {.smaller}
@@ -110,9 +110,9 @@ Where $s^2$ is the variance and $n$ the sample size.
 $$S^2_p = \frac{(n_1-1)s^2_1+(n_2-1)s^2_2}{n_1+n_2-2}$$
 
 ```{r, echo=TRUE}
-df = IQ.you.male.n + IQ.you.female.n - 2
+df = IQ.you.front.n + IQ.you.back.n - 2
 
-s2.p = ( (IQ.you.male.n-1)*IQ.you.male.var + (IQ.you.female.n-1)*IQ.you.female.var ) / df
+s2.p = ( (IQ.you.front.n-1)*IQ.you.front.var + (IQ.you.back.n-1)*IQ.you.back.var ) / df
 
 df
 s2.p
@@ -123,7 +123,7 @@ s2.p
 $$ {SE}_p = \sqrt{\frac{S^2_p}{n_1}+\frac{S^2_p}{n_2}} $$
 
 ```{r, echo=TRUE}
-se.p = sqrt( ((s2.p/IQ.you.male.n) + (s2.p/IQ.you.female.n)) )
+se.p = sqrt( ((s2.p/IQ.you.front.n) + (s2.p/IQ.you.back.n)) )
 se.p
 ```
 
@@ -132,7 +132,7 @@ se.p
 $$t_{n_1 + n_2 -2} = \frac{(\bar{X}_1 - \bar{X}_2) - \mu}{{SE}_p}$$
 
 ```{r, echo=TRUE}
-t = ( IQ.you.male.mean - IQ.you.female.mean ) / se.p
+t = ( IQ.you.front.mean - IQ.you.back.mean ) / se.p
 
 t
 ```
@@ -147,7 +147,7 @@ Two tailed
 if(!"visualize" %in% installed.packages()) { install.packages("visualize") }
 library("visualize")
 
-visualize.t(c(-t,t), df, section="tails")
+visualize.t(c(-round(t, 2), round(t, 2)), df, section="tails")
 ```
 
 ## Effect-size
