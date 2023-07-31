@@ -2,7 +2,7 @@
 
 For the last few years I've been using Rstudio to create HTML5 presentations in Rmarkdown's IOslides. This works great except that I have to change mij source files every new year if there are changes in the curriculum.
 
-So now I've thought of a setup where I create seperate .rmd files for every topic I teach and generate IOslides using a template where I specify which topics should be added.
+So now I've thought of a setup where I create separate .rmd files for every topic I teach and generate IOslides using a template where I specify which topics should be added.
 
 ## Template
 
@@ -14,15 +14,8 @@ This folder contains all topics covered in my teaching. New topics can be added 
 
 ## Courses
 
-In this folder courses are added and in each course, lectures are available. I plan to copy the current course for the next year and change course content where nessesary.
+In this folder courses are added and in each course, lectures are available. I plan to copy the current course for the next year and change course content where necessary.
 
-## View content
-
-* [Lectures WSR PB 2021-2022](http://shklinkenberg.github.io/statistics-lectures/2021-2022_WSR-PB.html)
-* [Lectures SSR 2021-2022](http://shklinkenberg.github.io/statistics-lectures/2021-2022_SSR.html)
-* [Lectures WSR PB 2020-2021](http://shklinkenberg.github.io/statistics-lectures/2020-2021_WSR-PB.html)
-* [Lectures SSR 2020-2021](http://shklinkenberg.github.io/statistics-lectures/2020-2021_SSR.html)
-* [Lectures SSR 2019-2020](http://shklinkenberg.github.io/statistics-lectures/2019-2020_SSRt.html)
 
 Shield: [![CC BY-NC-SA 4.0][cc-by-nc-sa-shield]][cc-by-nc-sa]
 

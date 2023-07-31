@@ -21,7 +21,7 @@ format:
 
 ```{r child="../../../../topics/t-test_independent/t-test_independent.qmd"}
 ```
-<!-- Footer insert below -->
 
-```{r child="../../../../footer.md"}
+
+```{r child="../../../../footer.qmd"}
 ```

@@ -76,8 +76,8 @@ datatable(data,
           extensions = 'Buttons',
           options = list(searching = FALSE, 
                          scrollY = 415, 
-                         paging = F, 
-                         info = F,
+                         paging = FALSE, 
+                         info = FALSE,
                          dom = 'Bfrtip',
                          buttons   = c('csv'))
         )

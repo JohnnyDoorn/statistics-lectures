@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.340">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Sharon Kinkenberg &amp; Johnny van Doorn">
+<meta name="dcterms.date" content="2023-11-10">
+
+<title>24. Mediation</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="24. mediation_files/libs/clipboard/clipboard.min.js"></script>
+<script src="24. mediation_files/libs/quarto-html/quarto.js"></script>
+<script src="24. mediation_files/libs/quarto-html/popper.min.js"></script>
+<script src="24. mediation_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="24. mediation_files/libs/quarto-html/anchor.min.js"></script>
+<link href="24. mediation_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="24. mediation_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="24. mediation_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="24. mediation_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="24. mediation_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+<script src="24. mediation_files/libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
+<link href="24. mediation_files/libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+<script src="24. mediation_files/libs/datatables-binding-0.27/datatables.js"></script>
+<script src="24. mediation_files/libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<link href="24. mediation_files/libs/dt-core-1.12.1/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="24. mediation_files/libs/dt-core-1.12.1/css/jquery.dataTables.extra.css" rel="stylesheet">
+<script src="24. mediation_files/libs/dt-core-1.12.1/js/jquery.dataTables.min.js"></script>
+<link href="24. mediation_files/libs/dt-ext-buttons-1.12.1/css/buttons.dataTables.min.css" rel="stylesheet">
+<script src="24. mediation_files/libs/dt-ext-buttons-1.12.1/js/dataTables.buttons.min.js"></script>
+<script src="24. mediation_files/libs/dt-ext-buttons-1.12.1/js/buttons.html5.min.js"></script>
+<script src="24. mediation_files/libs/dt-ext-buttons-1.12.1/js/buttons.colVis.min.js"></script>
+<script src="24. mediation_files/libs/dt-ext-buttons-1.12.1/js/buttons.print.min.js"></script>
+<link href="24. mediation_files/libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
+<script src="24. mediation_files/libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body>
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article toc-left">
+<div id="quarto-sidebar-toc-left" class="sidebar toc-left">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul class="collapse">
+  <li><a href="#mediation" id="toc-mediation" class="nav-link active" data-scroll-target="#mediation">Mediation</a>
+  <ul class="collapse">
+  <li><a href="#mediation-1" id="toc-mediation-1" class="nav-link" data-scroll-target="#mediation-1">Mediation</a></li>
+  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example">Example</a></li>
+  <li><a href="#mediaton-paths" id="toc-mediaton-paths" class="nav-link" data-scroll-target="#mediaton-paths">Mediaton paths</a></li>
+  <li><a href="#simulate-data" id="toc-simulate-data" class="nav-link" data-scroll-target="#simulate-data">Simulate data</a></li>
+  <li><a href="#mediator" id="toc-mediator" class="nav-link" data-scroll-target="#mediator">Mediator</a></li>
+  <li><a href="#specify-model" id="toc-specify-model" class="nav-link" data-scroll-target="#specify-model">Specify model</a></li>
+  <li><a href="#the-data" id="toc-the-data" class="nav-link" data-scroll-target="#the-data">The data</a></li>
+  <li><a href="#apply-3-models" id="toc-apply-3-models" class="nav-link" data-scroll-target="#apply-3-models">Apply 3 models</a></li>
+  <li><a href="#extract-beta-coëfficients" id="toc-extract-beta-coëfficients" class="nav-link" data-scroll-target="#extract-beta-coëfficients">Extract beta coëfficients</a></li>
+  <li><a href="#view-beta-coëfficients" id="toc-view-beta-coëfficients" class="nav-link" data-scroll-target="#view-beta-coëfficients">View beta coëfficients</a></li>
+  <li><a href="#view-beta-coëfficients-1" id="toc-view-beta-coëfficients-1" class="nav-link" data-scroll-target="#view-beta-coëfficients-1">View beta coëfficients</a></li>
+  <li><a href="#visual" id="toc-visual" class="nav-link" data-scroll-target="#visual">Visual</a></li>
+  <li><a href="#calculate-indirect-effect" id="toc-calculate-indirect-effect" class="nav-link" data-scroll-target="#calculate-indirect-effect">Calculate indirect effect</a></li>
+  <li><a href="#calculate-indirect-effect-partially-standardized" id="toc-calculate-indirect-effect-partially-standardized" class="nav-link" data-scroll-target="#calculate-indirect-effect-partially-standardized">Calculate indirect effect (partially standardized)</a></li>
+  <li><a href="#calculate-indirect-effect-standardized" id="toc-calculate-indirect-effect-standardized" class="nav-link" data-scroll-target="#calculate-indirect-effect-standardized">Calculate indirect effect (standardized)</a></li>
+  <li><a href="#calculate-p_m" id="toc-calculate-p_m" class="nav-link" data-scroll-target="#calculate-p_m">Calculate <span class="math inline">\(P_M\)</span></a></li>
+  <li><a href="#calculate-r_m" id="toc-calculate-r_m" class="nav-link" data-scroll-target="#calculate-r_m">Calculate <span class="math inline">\(R_M\)</span></a></li>
+  <li><a href="#calculate-r2_m" id="toc-calculate-r2_m" class="nav-link" data-scroll-target="#calculate-r2_m">Calculate <span class="math inline">\(R^2_M\)</span></a></li>
+  </ul></li>
+  <li><a href="#end" id="toc-end" class="nav-link" data-scroll-target="#end">End</a>
+  <ul class="collapse">
+  <li><a href="#contact" id="toc-contact" class="nav-link" data-scroll-target="#contact">Contact</a></li>
+  </ul></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="24. mediation.slide.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
+</div>
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">24. Mediation</h1>
+</div>
+
+
+<div class="quarto-title-meta-author">
+  <div class="quarto-title-meta-heading">Author</div>
+  <div class="quarto-title-meta-heading">Affiliation</div>
+  
+    <div class="quarto-title-meta-contents">
+    <p class="author">Sharon Kinkenberg &amp; Johnny van Doorn </p>
+  </div>
+    <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            University of Amsterdam
+          </p>
+      </div>
+    </div>
+
+<div class="quarto-title-meta">
+
+      
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">November 10, 2023</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="mediation" class="level1 section">
+<h1 class="section">Mediation</h1>
+<section id="mediation-1" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="mediation-1">Mediation</h2>
+<div class="columns">
+<div class="column">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/4/4d/Mediation.jpg" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Mediation</figcaption>
+</figure>
+</div>
+</div><div class="column">
+<p>In statistics, a mediation model is one that seeks to identify and explain the mechanism or process that underlies an observed relationship between an independent variable and a dependent variable via the inclusion of a third hypothetical variable, known as a mediator variable (also a mediating variable, intermediary variable, or intervening variable).</p>
+<p>Source: <a href="https://en.wikipedia.org/wiki/Mediation_(statistics)">WIKIPEDIA</a></p>
+</div>
+</div>
+</section>
+<section id="example" class="level2">
+<h2 class="anchored" data-anchor-id="example">Example</h2>
+<p>Does the speed of recovery after sickness improve with the use of alternative medicine or is this effect mediated by a healthy lifestyle?</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../../../topics/mediation/green-purple-flower-163186.jpg" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption"><a style="font-size:50%;" href="https://www.pexels.com/photo/green-purple-flower-163186/" target="_blank">Photo by Pixabay from Pexels</a></figcaption>
+</figure>
+</div>
+</section>
+<section id="mediaton-paths" class="level2 flexbox vcenter">
+<h2 class="flexbox vcenter anchored" data-anchor-id="mediaton-paths">Mediaton paths</h2>
+<!-- 1. $\widehat{\text{Outcome}} = b_0 + b_c \text{Predictor}_i$ -->
+<!-- 2. $\widehat{\text{Mediator}} = b_0 + b_a \text{Predictor}_i$ -->
+<!-- 3. $\widehat{\text{Outcome}} = b_0 + b_{c`} \text{Predictor}_i + b_b \text{Mediator}_i$ -->
+<!-- ![Mediation Path](../../../topics/mediation/mediation.jpeg) -->
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../../../topics/mediation/mediation_regressions_relation.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Mediation Path</figcaption>
+</figure>
+</div>
+</section>
+<section id="simulate-data" class="level2 subsection">
+<h2 class="subsection anchored" data-anchor-id="simulate-data">Simulate data</h2>
+<p>Create predictor variable</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1976</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Set parameters for simulation</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>n     <span class="ot">=</span> <span class="dv">100</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>mu    <span class="ot">=</span> <span class="dv">10</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>sigma <span class="ot">=</span> <span class="dv">2</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="do">## Predictor</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>use.homeopathic.remedies <span class="ot">=</span> <span class="fu">rnorm</span>(n, mu, sigma)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="mediator" class="level2">
+<h2 class="anchored" data-anchor-id="mediator">Mediator</h2>
+<p>Create mediator</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>b0    <span class="ot">=</span> <span class="dv">2</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>b1    <span class="ot">=</span> <span class="fl">1.2</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>error <span class="ot">=</span> <span class="fu">rnorm</span>(n,<span class="dv">0</span>,.<span class="dv">7</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>healthy.lifestyle <span class="ot">=</span> b0 <span class="sc">+</span> b1<span class="sc">*</span>use.homeopathic.remedies <span class="sc">+</span> error</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="specify-model" class="level2">
+<h2 class="anchored" data-anchor-id="specify-model">Specify model</h2>
+<p>Create outcome variable</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>b0    <span class="ot">=</span> <span class="dv">6</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>b1    <span class="ot">=</span> <span class="fl">1.2</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>b2    <span class="ot">=</span> <span class="dv">3</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>error <span class="ot">=</span> <span class="fu">rnorm</span>(n,<span class="dv">0</span>,<span class="fl">1.4</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>speed.of.healing <span class="ot">=</span> b0 <span class="sc">+</span> b1<span class="sc">*</span>use.homeopathic.remedies <span class="sc">+</span> b2<span class="sc">*</span>healthy.lifestyle <span class="sc">+</span> error</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(use.homeopathic.remedies, </span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>                   healthy.lifestyle, </span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>                   speed.of.healing)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">round</span>(data, <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="the-data" class="level2 subsection smaller">
+<h2 class="subsection smaller anchored" data-anchor-id="the-data">The data</h2>
+<div class="cell">
+<div class="cell-output-display">
+
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-e7b8244d3db081293e3a" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-e7b8244d3db081293e3a">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"data":[[11.8474,6.4263,7.4717,11.1266,9.86,10.2019,8.0348,8.9638,7.5647,12.8471,11.99,12.6076,10.8439,10.3023,12.7552,10.9376,8.5109,7.4004,10.6501,10.0805,9.3925,10.1325,9.2196,7.4472,11.3594,9.3028,6.2763,12.078,9.5563,11.7054,11.7785,7.1043,9.1099,13.7946,11.4151,9.9574,8.6585,13.5017,9.0803,11.4784,11.2515,10.5131,5.6602,9.7018,10.5397,6.3475,10.7253,8.4131,9.7929,9.4457,8.9815,7.8622,10.6445,10.1699,6.9542,9.2677,8.7233,7.686,10.3955,7.4764,9.0897,9.5115,13.4701,5.2542,9.4347,10.2578,9.0331,9.5735,9.3789,10.8885,8.157,9.1316,9.283,8.4447,10.5093,10.2845,9.7524,5.9595,11.1775,10.786,9.4131,9.3722,12.3221,11.8339,10.4746,11.9134,7.5316,10.5186,8.5318,11.3955,9.922,7.9537,9.9557,12.0687,9.2233,7.5946,10.4293,11.9833,12.9626,10.6507],[16.3304,10.4394,11.7643,15.3475,14.5618,14.626,11.9731,12.6817,10.485,17.045,15.6676,17.4511,14.3683,14.2515,18.6447,14.7237,13.4596,10.5652,14.5804,14.5012,14.2209,12.6914,13.0773,10.2063,15.0053,12.6764,9.3566,15.5792,13.0889,16.5209,15.3581,8.2079,12.9978,19.3933,14.9907,14.4688,12.1072,17.6477,11.7644,16.0794,14.9509,15.5746,9.755,13.9733,13.4469,9.2737,15.3137,11.8272,12.3491,13.7822,12.6547,10.8958,14.5203,14.5175,10.6169,12.587,12.8182,10.6266,13.8144,11.3535,12.5224,13.6882,19.2062,8.3331,13.7782,14.3075,12.6535,11.8794,12.3221,14.3673,11.6649,14.2996,13.0261,12.253,14.3979,13.9259,14.2635,8.7591,15.5939,15.177,13.1464,13.7812,15.9824,17.0656,14.3907,16.2779,10.7753,16.2336,12.6898,15.2741,14.2241,11.3255,14.7644,16.6256,13.5728,11.5884,14.4852,16.8364,16.764,15.5488],[69.3519,44.9527,50.7425,68.1927,63.0681,61.0033,52.0447,54.3619,48.1224,72.3886,66.6546,71.2596,64.142,62.0623,77.3158,62.1031,57.5801,44.7114,62.9374,59.5998,60.9451,57.9066,54.3968,45.2432,63.1269,56.4444,43.1157,64.6443,57.3161,70.8817,65.9983,35.7528,56.7666,80.444,68.3003,63.0894,51.0225,73.0574,53.2738,69.033,62.691,65.5603,42.7107,61.1791,62.0132,41.9418,65.9039,54.1264,54.4662,60.9221,55.4002,47.4064,64.4503,59.6444,46.9652,55.6664,56.1471,46.4187,60.5386,51.555,53.6851,58.4634,79.3108,37.8876,57.9632,62.6647,52.8635,54.5103,55.0045,61.9681,48.0814,56.8378,55.7173,54.1581,63.3711,62.2044,62.5443,42.5087,66.9214,66.4652,57.8645,55.0473,68.043,67.2844,61.0206,69.2497,48.3663,65.6681,55.244,66.2037,62.0483,49.0581,62.552,70.9918,59.5652,47.7064,59.1111,72.413,74.3685,64.491]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>use.homeopathic.remedies<\/th>\n      <th>healthy.lifestyle<\/th>\n      <th>speed.of.healing<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"searching":false,"scrollY":300,"paging":false,"info":false,"dom":"Bfrtip","buttons":["csv"],"columnDefs":[{"className":"dt-right","targets":[0,1,2]}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+<section id="apply-3-models" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="apply-3-models">Apply 3 models</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>m.<span class="fl">1.</span>out.pre     <span class="ot">&lt;-</span> <span class="fu">lm</span>(speed.of.healing  <span class="sc">~</span> use.homeopathic.remedies)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>m.<span class="fl">2.</span>med.pre     <span class="ot">&lt;-</span> <span class="fu">lm</span>(healthy.lifestyle <span class="sc">~</span> use.homeopathic.remedies)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>m.<span class="fl">3.</span>out.pre.med <span class="ot">&lt;-</span> <span class="fu">lm</span>(speed.of.healing  <span class="sc">~</span> use.homeopathic.remedies <span class="sc">+</span> healthy.lifestyle)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="extract-beta-coëfficients" class="level2">
+<h2 class="anchored" data-anchor-id="extract-beta-coëfficients">Extract beta coëfficients</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>b.a        <span class="ot">=</span> m.<span class="fl">2.</span>med.pre<span class="sc">$</span>coefficients[<span class="dv">2</span>]</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>b.b        <span class="ot">=</span> m.<span class="fl">3.</span>out.pre.med<span class="sc">$</span>coefficients[<span class="dv">3</span>]</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>b.c        <span class="ot">=</span> m.<span class="fl">1.</span>out.pre<span class="sc">$</span>coefficients[<span class="dv">2</span>]</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>b.c.accent <span class="ot">=</span> m.<span class="fl">3.</span>out.pre.med<span class="sc">$</span>coefficients[<span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="view-beta-coëfficients" class="level2 subsection">
+<h2 class="subsection anchored" data-anchor-id="view-beta-coëfficients">View beta coëfficients</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>b.a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>use.homeopathic.remedies 
+                1.210308 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>b.b</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>healthy.lifestyle 
+         2.859761 </code></pre>
+</div>
+</div>
+</section>
+<section id="view-beta-coëfficients-1" class="level2">
+<h2 class="anchored" data-anchor-id="view-beta-coëfficients-1">View beta coëfficients</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>b.c</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>use.homeopathic.remedies 
+                4.762102 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>b.c.accent</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>use.homeopathic.remedies 
+                 1.30091 </code></pre>
+</div>
+</div>
+</section>
+<section id="visual" class="level2 subsection">
+<h2 class="subsection anchored" data-anchor-id="visual">Visual</h2>
+<div class="cell" data-layout-align="center" data-fig.asp="1">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(data<span class="sc">$</span>use.homeopathic.remedies, data<span class="sc">$</span>speed.of.healing, <span class="at">col =</span> <span class="st">'red'</span>, <span class="at">xlab=</span><span class="st">"alter"</span>, <span class="at">ylab=</span><span class="st">"rocov"</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>fit<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">lm</span>(speed.of.healing <span class="sc">~</span> use.homeopathic.remedies, data)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(fit<span class="fl">.1</span>, <span class="at">col =</span> <span class="st">'green'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="24.-mediation_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
+<!-- ## 3D Visual -->
+<!-- ```{r, echo=FALSE, warning=FALSE} -->
+<!-- ## 3d plot package rgl -->
+<!-- ## install.packages('rgl') -->
+<!-- library("rgl") -->
+<!-- library(knitr) -->
+<!-- knit_hooks$set(webgl = hook_webgl) -->
+<!-- min.var <- apply(data, 2, min) -->
+<!-- max.var <- apply(data, 2, max) -->
+<!-- #1 #D scatter  -->
+<!-- plot3d(data$use.homeopathic.remedies, data$healthy.lifestyle, data$speed.of.healing, -->
+<!--        col  = "red", -->
+<!--        xlab = "Homeopathic",  -->
+<!--        ylab = "Lifestyle", -->
+<!--        zlab = "Healing", -->
+<!--        size = 8) -->
+<!-- #2 Add use.homeopathic.remedies value planes  -->
+<!-- quantiles <- as.vector(quantile(data$use.homeopathic.remedies, seq(.1,.9,.1))) -->
+<!-- sds       <- c(mean(data$healthy.lifestyle)+(sd(data$healthy.lifestyle)*c(-1,0,1))) -->
+<!-- # sds       <- 1:4 -->
+<!-- planes3d(a = 0, -->
+<!--          b = 1, -->
+<!--          c = 0, -->
+<!--          #d = c(1,2,3,4), -->
+<!--          d = -sds, -->
+<!--          alpha=0.1, -->
+<!--          color = c("blue")) -->
+<!-- #3 Add regression model surface -->
+<!-- ## Fit model -->
+<!-- fit <- lm(speed.of.healing ~ use.homeopathic.remedies + healthy.lifestyle, data) -->
+<!-- ## Create xyz coordinates -->
+<!-- regeq <- function(predictor, mediator) {  -->
+<!--     fit$coefficients[1] +  -->
+<!--     fit$coefficients[2]*predictor +  -->
+<!--     fit$coefficients[3]*mediator -->
+<!-- } -->
+<!-- x.pre <- seq(min.var[1], max.var[1], length.out=30) -->
+<!-- y.med <- seq(min.var[2], max.var[2], length.out=30) -->
+<!-- z.pre <- outer(x.pre, y.med, FUN='regeq') -->
+<!-- # z.pre[z.pre > 4] = 4 -->
+<!-- # z.pre[z.pre < 1] = 1 -->
+<!-- ## Add 3D regression plane to scatter plot  -->
+<!-- surface3d(x.pre, y.med, z.pre, color = c("green")) -->
+<!-- aspect3d(1,1,1) -->
+<!-- # view3d(theta = 5) -->
+<!-- # view3d(theta = -10, phi = -90) -->
+<!-- # play3d(spin3d(axis = c(0, 0, 1), rpm = 30), duration = 5) -->
+<!-- rglwidget() -->
+<!-- ``` -->
+<p>Interactive, give it a spin.</p>
+</section>
+<section id="calculate-indirect-effect" class="level2 subsection">
+<h2 class="subsection anchored" data-anchor-id="calculate-indirect-effect">Calculate indirect effect</h2>
+<p><span class="math inline">\(a \times b = b_a \times b_b\)</span></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>b.a<span class="sc">*</span>b.b</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>use.homeopathic.remedies 
+                3.461192 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>b.c <span class="sc">-</span> b.c.accent</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>use.homeopathic.remedies 
+                3.461192 </code></pre>
+</div>
+</div>
+</section>
+<section id="calculate-indirect-effect-partially-standardized" class="level2 subsection">
+<h2 class="subsection anchored" data-anchor-id="calculate-indirect-effect-partially-standardized">Calculate indirect effect (partially standardized)</h2>
+<p><span class="math inline">\(\frac{ab}{s_{Outcome}} = \frac{b_a b_b}{s_{Outcome}}\)</span></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>b.a<span class="sc">*</span>b.b<span class="sc">/</span><span class="fu">sd</span>(speed.of.healing)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>use.homeopathic.remedies 
+               0.3833868 </code></pre>
+</div>
+</div>
+</section>
+<section id="calculate-indirect-effect-standardized" class="level2 subsection">
+<h2 class="subsection anchored" data-anchor-id="calculate-indirect-effect-standardized">Calculate indirect effect (standardized)</h2>
+<p><span class="math inline">\(\frac{ab}{s_{Outcome}} \times s_{Predictor} = \frac{b_a b_b}{s_{Outcome}} \times s_{Predictor}\)</span></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>b.a<span class="sc">*</span>b.b<span class="sc">/</span><span class="fu">sd</span>(speed.of.healing)<span class="sc">*</span><span class="fu">sd</span>(use.homeopathic.remedies)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>use.homeopathic.remedies 
+               0.6979258 </code></pre>
+</div>
+</div>
+</section>
+<section id="calculate-p_m" class="level2 subsection">
+<h2 class="subsection anchored" data-anchor-id="calculate-p_m">Calculate <span class="math inline">\(P_M\)</span></h2>
+<p><span class="math inline">\(\frac{ab}{c} = \frac{b_a b_b}{b_c}\)</span></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>b.a<span class="sc">*</span>b.b<span class="sc">/</span>b.c</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>use.homeopathic.remedies 
+               0.7268202 </code></pre>
+</div>
+</div>
+</section>
+<section id="calculate-r_m" class="level2 subsection">
+<h2 class="subsection anchored" data-anchor-id="calculate-r_m">Calculate <span class="math inline">\(R_M\)</span></h2>
+<p><span class="math inline">\(\frac{ab}{c`} = \frac{b_a b_b}{b_{c`}}\)</span></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>b.a<span class="sc">*</span>b.b<span class="sc">/</span>b.c.accent</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>use.homeopathic.remedies 
+                2.660593 </code></pre>
+</div>
+</div>
+</section>
+<section id="calculate-r2_m" class="level2 smaller subsection">
+<h2 class="smaller subsection anchored" data-anchor-id="calculate-r2_m">Calculate <span class="math inline">\(R^2_M\)</span></h2>
+<p><span class="math inline">\(R^2_{out,med} − (R^2_{out,pre \times med} − R^2_{out,pre})\)</span></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>m.<span class="fl">4.</span>out.med <span class="ot">&lt;-</span> <span class="fu">lm</span>(speed.of.healing <span class="sc">~</span> healthy.lifestyle)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>R2_out.med     <span class="ot">=</span> <span class="fu">cor</span>(m.<span class="fl">4.</span>out.med<span class="sc">$</span>fitted.values, speed.of.healing)<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>R2_out.pre.med <span class="ot">=</span> <span class="fu">cor</span>(m.<span class="fl">3.</span>out.pre.med<span class="sc">$</span>fitted.values, speed.of.healing)<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>R2_out.pre     <span class="ot">=</span> <span class="fu">cor</span>(m.<span class="fl">1.</span>out.pre<span class="sc">$</span>fitted.values, speed.of.healing)<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>R2_out.med <span class="sc">-</span> (R2_out.pre.med <span class="sc">-</span> R2_out.pre)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.9161054</code></pre>
+</div>
+</div>
+<!-- Footer insert below -->
+</section>
+</section>
+<section id="end" class="level1">
+<h1>End</h1>
+<section id="contact" class="level2">
+<h2 class="anchored" data-anchor-id="contact">Contact</h2>
+<script src="https://use.fontawesome.com/23c1d38eea.js"></script>
+<li>
+<i class="fa-li fa fa-envelope-o"></i> <a style="unicode-bidi:bidi-override; direction: rtl; color:black" href="javascript:window.location.href = 'mailto:' + ['j.b.vandoorn','uva.nl'].join('@')">ln.AvU@nrooDnav.B.J</a>
+</li>
+<li>
+<i class="fa-li fa fa-github"></i> <a href="https://github.com/JohnnyDoorn" target="_blank" style="color:black; border-bottom:none;">JohnnyDoorn</a>
+</li>
+
+<p><small style="text-align:left;"></small></p><small style="text-align:left;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png" class="img-fluid figure-img"></a></p>
+<figcaption class="figure-caption">CC BY-NC-SA 4.0</figcaption>
+</figure>
+</div>
+</small><p><small style="text-align:left;"></small></p>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

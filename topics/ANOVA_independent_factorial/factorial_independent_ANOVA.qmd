@@ -112,7 +112,8 @@ datatable(data.frame(data$speed,
                      data$alcohol, 
                      accidents = round(accidents,2), 
                      grand.mean = round(mean(accidents),2), 
-                     group.mean = round(exp.accidents,2)), options = list(searching = FALSE, scrollY = 415, paging = F, info = F))
+                     group.mean = round(exp.accidents,2)), 
+          options = list(searching = FALSE, scrollY = 415, paging = FALSE, info = FALSE))
 ```
 
 ##
@@ -311,7 +312,7 @@ n.k.alcohol   <- aggregate(accidents ~ alcohol, data, length)
 names(means.alcohol)[2] <- "means.alcohol"
 # means.alcohol
 
-data <- merge(data,means.alcohol,by="alcohol",all.x=TRUE)
+data <- merge(data,means.alcohol,by="alcohol", all.x=TRUE)
 data <- data[order(data$subjects),]
 ```
 
@@ -400,24 +401,24 @@ F_{Alcohol \times Speed} &= \frac{{MS}_{Alcohol \times Speed}}{{MS}_{error}} \\
 $$F_{Alcohol \times Speed}$$
 
 ```{r, echo=TRUE}
-N          = length(accidents)
-k.speed    = 3
-k.alcohol  = 3
-k.model    = 9
-df.speed   = k.speed   - 1
-df.alcohol = k.alcohol - 1
-df.speed.alcohol = df.speed * df.alcohol
+N          <- length(accidents)
+k.speed    <- 3
+k.alcohol  <- 3
+k.model    <- 9
+df.speed   <- k.speed   - 1
+df.alcohol <- k.alcohol - 1
+df.speed.alcohol <- df.speed * df.alcohol
 
-ms.speed.alcohol = ss.speed.alcohol / df.speed.alcohol
+ms.speed.alcohol <- ss.speed.alcohol / df.speed.alcohol
 
-df.error = N - k.model
-ms.error = ss.error / df.error
+df.error <- N - k.model
+ms.error <- ss.error / df.error
 ```
 
 ## $P$-value
 
 ```{r, echo=TRUE}
-F.speed.alcohol = ms.speed.alcohol / ms.error
+F.speed.alcohol <- ms.speed.alcohol / ms.error
 F.speed.alcohol
 
 library(visualize)

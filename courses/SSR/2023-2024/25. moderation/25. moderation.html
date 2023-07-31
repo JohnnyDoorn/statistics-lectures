@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.340">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Sharon Kinkenberg &amp; Johnny van Doorn">
+<meta name="dcterms.date" content="2023-11-14">
+
+<title>25. Moderation</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="25. moderation_files/libs/clipboard/clipboard.min.js"></script>
+<script src="25. moderation_files/libs/quarto-html/quarto.js"></script>
+<script src="25. moderation_files/libs/quarto-html/popper.min.js"></script>
+<script src="25. moderation_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="25. moderation_files/libs/quarto-html/anchor.min.js"></script>
+<link href="25. moderation_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="25. moderation_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="25. moderation_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="25. moderation_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="25. moderation_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+<script src="25. moderation_files/libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
+<link href="25. moderation_files/libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+<script src="25. moderation_files/libs/datatables-binding-0.27/datatables.js"></script>
+<script src="25. moderation_files/libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<link href="25. moderation_files/libs/dt-core-1.12.1/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="25. moderation_files/libs/dt-core-1.12.1/css/jquery.dataTables.extra.css" rel="stylesheet">
+<script src="25. moderation_files/libs/dt-core-1.12.1/js/jquery.dataTables.min.js"></script>
+<link href="25. moderation_files/libs/dt-ext-buttons-1.12.1/css/buttons.dataTables.min.css" rel="stylesheet">
+<script src="25. moderation_files/libs/dt-ext-buttons-1.12.1/js/dataTables.buttons.min.js"></script>
+<script src="25. moderation_files/libs/dt-ext-buttons-1.12.1/js/buttons.html5.min.js"></script>
+<script src="25. moderation_files/libs/dt-ext-buttons-1.12.1/js/buttons.colVis.min.js"></script>
+<script src="25. moderation_files/libs/dt-ext-buttons-1.12.1/js/buttons.print.min.js"></script>
+<link href="25. moderation_files/libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
+<script src="25. moderation_files/libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body>
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article toc-left">
+<div id="quarto-sidebar-toc-left" class="sidebar toc-left">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul class="collapse">
+  <li><a href="#moderation" id="toc-moderation" class="nav-link active" data-scroll-target="#moderation">Moderation</a>
+  <ul class="collapse">
+  <li><a href="#moderation-1" id="toc-moderation-1" class="nav-link" data-scroll-target="#moderation-1">Moderation</a></li>
+  <li><a href="#model" id="toc-model" class="nav-link" data-scroll-target="#model">Model</a></li>
+  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example">Example</a></li>
+  <li><a href="#simulate-data" id="toc-simulate-data" class="nav-link" data-scroll-target="#simulate-data">Simulate data</a></li>
+  <li><a href="#mean-un-centring" id="toc-mean-un-centring" class="nav-link" data-scroll-target="#mean-un-centring">Mean un centring</a></li>
+  <li><a href="#view-data" id="toc-view-data" class="nav-link" data-scroll-target="#view-data">View data</a></li>
+  <li><a href="#correlations" id="toc-correlations" class="nav-link" data-scroll-target="#correlations">Correlations</a></li>
+  <li><a href="#scatterplots" id="toc-scatterplots" class="nav-link" data-scroll-target="#scatterplots">Scatterplots</a></li>
+  <li><a href="#d-plot" id="toc-d-plot" class="nav-link" data-scroll-target="#d-plot">3D plot</a></li>
+  <li><a href="#sd-planes" id="toc-sd-planes" class="nav-link" data-scroll-target="#sd-planes">1 SD planes</a></li>
+  <li><a href="#fit-model" id="toc-fit-model" class="nav-link" data-scroll-target="#fit-model">Fit model</a></li>
+  <li><a href="#regression-equation" id="toc-regression-equation" class="nav-link" data-scroll-target="#regression-equation">Regression equation</a></li>
+  <li><a href="#expected-surface" id="toc-expected-surface" class="nav-link" data-scroll-target="#expected-surface">Expected surface</a></li>
+  <li><a href="#expected-values" id="toc-expected-values" class="nav-link" data-scroll-target="#expected-values">Expected values</a></li>
+  <li><a href="#explained-variance" id="toc-explained-variance" class="nav-link" data-scroll-target="#explained-variance">Explained variance</a></li>
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a></li>
+  </ul></li>
+  <li><a href="#end" id="toc-end" class="nav-link" data-scroll-target="#end">End</a>
+  <ul class="collapse">
+  <li><a href="#contact" id="toc-contact" class="nav-link" data-scroll-target="#contact">Contact</a></li>
+  </ul></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="25. moderation.slide.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
+</div>
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">25. Moderation</h1>
+</div>
+
+
+<div class="quarto-title-meta-author">
+  <div class="quarto-title-meta-heading">Author</div>
+  <div class="quarto-title-meta-heading">Affiliation</div>
+  
+    <div class="quarto-title-meta-contents">
+    <p class="author">Sharon Kinkenberg &amp; Johnny van Doorn </p>
+  </div>
+    <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            University of Amsterdam
+          </p>
+      </div>
+    </div>
+
+<div class="quarto-title-meta">
+
+      
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">November 14, 2023</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="moderation" class="level1 section">
+<h1 class="section">Moderation</h1>
+<!-- Allow color highlighting in mathjax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({ TeX: { extensions: ["color.js"] }});
+</script>
+<section id="moderation-1" class="level2">
+<h2 class="anchored" data-anchor-id="moderation-1">Moderation</h2>
+<p>In statistics and regression analysis, moderation occurs when the relationship between two variables depends on a third variable. The third variable is referred to as the moderator variable or simply the moderator. The effect of a moderating variable is characterized statistically as an interaction.</p>
+<p>Source <a href="https://en.wikipedia.org/wiki/Moderation_(statistics)">WIKIPEDIA</a></p>
+</section>
+<section id="model" class="level2 subsection flexbox vcenter">
+<h2 class="subsection flexbox vcenter anchored" data-anchor-id="model">Model</h2>
+<p><span class="math inline">\(\definecolor{red}{RGB}{255,0,0} \definecolor{black}{RGB}{0,0,0} \color{black}Out_i = b_0 + b_1 Pred_i + b_2 Mod_i + \color{red}b_3 Pred_i \times Mod_i \color{black}+ \epsilon_i\)</span></p>
+<p><img src="../../../../../topics/moderation/moderation.png" class="img-fluid"></p>
+</section>
+<section id="example" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="example">Example</h2>
+<p>Video games are among the favourite online activities for young people: two-thirds of 5–16-year-olds have their own video games console, and 88% of boys aged 8–15 own at least one games console. Although playing violent video games can enhance visuospatial acuity, visual memory, probabilistic inference, and mental rotation, compared to games such as Tetris, these games have also been linked to increased aggression in youths Another predictor of aggression and conduct problems is callous-unemotional traits such as lack of guilt, lack of empathy, and callous use of others for personal gain.</p>
+<p>Imagine a scientist wanted to look at the relationship between playing violent video games such as Grand Theft Auto, MadWorld and Manhunt and aggression. She gathered data from 442 youths. She measured their aggressive behaviour, callous unemotional traits, and the number of hours per week they play video games.</p>
+<p>Source: Field 11.3.1</p>
+</section>
+<section id="simulate-data" class="level2">
+<h2 class="anchored" data-anchor-id="simulate-data">Simulate data</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">283</span>) <span class="do">## Mooie seed :-)</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>predictor <span class="ot">&lt;-</span>             <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">3</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>moderator <span class="ot">&lt;-</span> predictor <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">3</span>) <span class="do">## multicollineariteit</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>error     <span class="ot">&lt;-</span>             <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">3</span>) <span class="do">## error</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>intercept <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>outcome   <span class="ot">&lt;-</span> intercept <span class="sc">+</span> .<span class="dv">5</span><span class="sc">*</span>predictor <span class="sc">+</span> </span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>                        <span class="sc">-</span>.<span class="dv">4</span><span class="sc">*</span>moderator <span class="sc">+</span> </span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>                         .<span class="dv">4</span><span class="sc">*</span>predictor<span class="sc">*</span>moderator <span class="sc">+</span> </span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>                         error</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="mean-un-centring" class="level2">
+<h2 class="anchored" data-anchor-id="mean-un-centring">Mean un centring</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>predictor <span class="ot">&lt;-</span> predictor <span class="sc">+</span> <span class="dv">15</span> </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>moderator <span class="ot">&lt;-</span> moderator <span class="sc">+</span> <span class="dv">7</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(predictor, moderator, outcome)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  predictor moderator   outcome
+1  18.02061  7.746939  9.797006
+2  15.60117  5.937336  8.638962
+3  14.02281  6.477516  8.336367
+4  16.47405  9.520816  5.396567
+5  11.99709  5.404452  8.246535
+6  13.00026  2.415985 11.893936</code></pre>
+</div>
+</div>
+</section>
+<section id="view-data" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="view-data">View data</h2>
+<div class="cell">
+<div class="cell-output-display">
+
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-c804f96c51686a1489e8" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-c804f96c51686a1489e8">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"data":[[18.02,15.6,14.02,16.47,12,13,21.11,18.52,18.64,20.28,15.65,18.02,12.08,17.99,16.37,13.66,11.46,17.3,15.78,11.29,11.27,14.82,9.46,11.98,19.71,13.18,16.75,17.31,9.61,18.53,16.77,11.58,14.24,15.64,14.48,13.78,13.38,12.63,12.13,18.18,11.04,18.4,18.67,17.54,16.73,16.34,15.99,16.1,15.63,14.87,13.77,16.65,12.3,14.98,17.53,16.33,11.28,14.38,19.24,17.73,14.96,19.42,13.02,16.41,16.37,20.2,15.84,18.48,15.09,16.95,15.14,12.17,16.48,15.22,11.61,10.97,20.63,16.21,10.65,14,15.67,17.21,10.59,11.56,15.46,13.6,18.8,12.2,17.41,11.43,10.54,21.48,18.97,17.15,14.16,18.14,13.87,13.51,18.27,21.04],[7.75,5.94,6.48,9.52,5.4,2.42,11.74,12.61,13.08,8.45,5.83,13.82,1.47,14.84,4.65,7.58,3.16,9.89,9.21,1.51,0.29,-0.19,3.48,8.13,13.15,3.57,6.73,14.74,0.22,13.86,7.81,4.46,4.98,11.5,7.54,10.21,3.87,7.09,3.73,10.81,4.69,14.57,7.22,8.51,7.96,11.96,9.91,0.26,10.19,5.43,1.95,12.03,4.5,7.89,10.41,14.24,3.88,3.37,9.67,12.36,2.71,7.99,4.29,8.23,12.92,18.2,10,9.22,7.32,4.08,12.1,4.12,8.08,5.74,8.74,6.27,12.05,7.78,0.89,5.37,12.43,11.54,1.55,7.77,7.51,8.06,6.54,4.94,7.97,4.5,-0.7,15.78,12.53,10.52,9.08,11.02,11.85,5.16,11.55,12.72],[9.8,8.64,8.34,5.4,8.25,11.89,19.31,11.3,9.57,11.78,0.17,9.65,12.79,13.77,5.37,1.56,8.49,7.13,7.56,15.61,14.33,10.74,10.6,-0.7,17.07,9.82,4.61,11.17,14.79,11.99,8.8,7.6,6.31,1.85,10.17,1.68,8.55,5.31,6.88,7.59,10.69,16.17,3.04,12.31,3.73,6.4,4.09,6.42,6.89,6.3,12.29,9.77,17.75,8.07,3.82,9.18,9.87,4.67,8.37,11.24,11.78,5.71,7.19,4.07,10.2,29.33,4.34,1.69,-1.49,8.2,4.15,6.25,3.54,8.33,6.8,0.86,17.52,4.68,10.25,1.02,3.53,11.61,16.82,4.3,7.31,2.18,9.04,9.05,7.94,3.67,23.03,24.82,11.7,9.34,-1.29,12,3.65,0.38,9.21,15.47]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>predictor<\/th>\n      <th>moderator<\/th>\n      <th>outcome<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"searching":false,"scrollY":350,"paging":false,"info":false,"dom":"Bfrtip","buttons":["csv"],"columnDefs":[{"className":"dt-right","targets":[0,1,2]}],"order":[],"autoWidth":false,"orderClasses":false},"selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+<section id="correlations" class="level2">
+<h2 class="anchored" data-anchor-id="correlations">Correlations</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          predictor moderator   outcome
+predictor 1.0000000 0.7220140 0.2151668
+moderator 0.7220140 1.0000000 0.1094856
+outcome   0.2151668 0.1094856 1.0000000</code></pre>
+</div>
+</div>
+</section>
+<section id="scatterplots" class="level2 subsection">
+<h2 class="subsection anchored" data-anchor-id="scatterplots">Scatterplots</h2>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="25.-moderation_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked _by_ .GlobalEnv:
+
+    moderator, outcome, predictor</code></pre>
+</div>
+</div>
+</section>
+<section id="d-plot" class="level2">
+<h2 class="anchored" data-anchor-id="d-plot">3D plot</h2>
+<p>Take it for a spin (does not work on tablet)</p>
+</section>
+<section id="sd-planes" class="level2">
+<h2 class="anchored" data-anchor-id="sd-planes">1 SD planes</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>quantiles <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(<span class="fu">quantile</span>(moderator,<span class="fu">seq</span>(.<span class="dv">1</span>,.<span class="dv">9</span>,.<span class="dv">1</span>)))</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>sds       <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">mean</span>(moderator)<span class="sc">+</span>(<span class="fu">sd</span>(moderator)<span class="sc">*</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<!-- ##  -->
+<!-- ```{r, eval=TRUE, echo=FALSE, warning=FALSE, message=FALSE, rgl.useNULL=TRUE} -->
+<!-- my.plot -->
+<!-- par3d(mouseMode = "zAxis") -->
+<!-- planes3d(a = 0,  -->
+<!--          b = 1,  -->
+<!--          c = 0, -->
+<!--          d = -sds, -->
+<!--          #d = -quantiles, -->
+<!--          alpha=0.7, -->
+<!--          color = c("blue")) -->
+<!-- # rglwidget() -->
+<!-- M <- r3dDefaults$userMatrix -->
+<!-- fn <- par3dinterp(time = (0:2)*0.75, userMatrix = list(M, rotate3d(M, pi/2, 0, 0, 1), -->
+<!--                                                           rotate3d(M, pi/2, 0, 0, 1)) ) -->
+<!-- rglwidget()  -->
+<!-- # %>% -->
+<!-- # playwidget(par3dinterpControl(fn, 0, 3, steps=15), -->
+<!-- #        step = 0.01, loop = TRUE, rate = 0.5) -->
+<!-- ``` -->
+</section>
+<section id="fit-model" class="level2 smaller subsection">
+<h2 class="smaller subsection anchored" data-anchor-id="fit-model">Fit model</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#fit2 &lt;- lm(outcome ~ predictor + moderator)</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(outcome <span class="sc">~</span> predictor <span class="sc">+</span> moderator <span class="sc">+</span> predictor<span class="sc">*</span>moderator); <span class="fu">summary</span>(fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = outcome ~ predictor + moderator + predictor * moderator)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-7.1725 -2.0186  0.2975  2.2995 10.0602 
+
+Coefficients:
+                    Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)         40.70870    3.38786  12.016  &lt; 2e-16 ***
+predictor           -2.18586    0.24825  -8.805 5.47e-14 ***
+moderator           -5.91087    0.42821 -13.804  &lt; 2e-16 ***
+predictor:moderator  0.37000    0.02649  13.967  &lt; 2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 3.086 on 96 degrees of freedom
+Multiple R-squared:  0.6869,    Adjusted R-squared:  0.6771 
+F-statistic:  70.2 on 3 and 96 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+</section>
+<section id="regression-equation" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="regression-equation">Regression equation</h2>
+<p><span class="math inline">\(\definecolor{red}{RGB}{255,0,0} \definecolor{black}{RGB}{0,0,0} \color{black}\widehat{Out_i} = b_0 + b_1 Pred_i + b_2 Mod_i + \color{red}b_3 Pred_i \times Mod_i \color{black}\)</span></p>
+<p><span class="math inline">\(\definecolor{red}{RGB}{255,0,0} \definecolor{black}{RGB}{0,0,0} \color{black}\widehat{Out_i} = 40.71 + -2.19 \times Pred_i + -5.91 \times Mod_i + \color{red} 0.37 \times Pred_i \times Mod_i \color{black}\)</span></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>regeq <span class="ot">&lt;-</span> <span class="cf">function</span>(model, predictor, moderator) { </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    fit<span class="sc">$</span>coefficients[<span class="dv">1</span>] <span class="sc">+</span> </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    fit<span class="sc">$</span>coefficients[<span class="dv">2</span>]<span class="sc">*</span>predictor <span class="sc">+</span> </span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    fit<span class="sc">$</span>coefficients[<span class="dv">3</span>]<span class="sc">*</span>moderator <span class="sc">+</span> </span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    fit<span class="sc">$</span>coefficients[<span class="dv">4</span>]<span class="sc">*</span>predictor<span class="sc">*</span>moderator</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>x.pre <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">10</span>,<span class="dv">21</span>,<span class="at">length.out=</span><span class="dv">30</span>)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>y.mod <span class="ot">&lt;-</span> <span class="fu">seq</span>( <span class="dv">0</span>,<span class="dv">16</span>,<span class="at">length.out=</span><span class="dv">30</span>)</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>z.pre <span class="ot">&lt;-</span> <span class="fu">outer</span>(x.pre, y.mod, <span class="at">FUN=</span><span class="st">'regeq'</span>, <span class="at">model=</span>fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="expected-surface" class="level2">
+<h2 class="anchored" data-anchor-id="expected-surface">Expected surface</h2>
+</section>
+<section id="expected-values" class="level2 subsection">
+<h2 class="subsection anchored" data-anchor-id="expected-values">Expected values</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>exp <span class="ot">&lt;-</span> fit<span class="sc">$</span>fitted.values</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="explained-variance" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="explained-variance">Explained variance</h2>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="25.-moderation_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="section" class="level2">
+<h2 class="anchored" data-anchor-id="section"></h2>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="25.-moderation_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<!-- Footer insert below -->
+</section>
+</section>
+<section id="end" class="level1">
+<h1>End</h1>
+<section id="contact" class="level2">
+<h2 class="anchored" data-anchor-id="contact">Contact</h2>
+<script src="https://use.fontawesome.com/23c1d38eea.js"></script>
+<li>
+<i class="fa-li fa fa-envelope-o"></i> <a style="unicode-bidi:bidi-override; direction: rtl; color:black" href="javascript:window.location.href = 'mailto:' + ['j.b.vandoorn','uva.nl'].join('@')">ln.AvU@nrooDnav.B.J</a>
+</li>
+<li>
+<i class="fa-li fa fa-github"></i> <a href="https://github.com/JohnnyDoorn" target="_blank" style="color:black; border-bottom:none;">JohnnyDoorn</a>
+</li>
+
+<p><small style="text-align:left;"></small></p><small style="text-align:left;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png" class="img-fluid figure-img"></a></p>
+<figcaption class="figure-caption">CC BY-NC-SA 4.0</figcaption>
+</figure>
+</div>
+</small><p><small style="text-align:left;"></small></p>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

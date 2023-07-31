@@ -6,7 +6,7 @@ footer: "Scientific & Statistical Reasoning"
 format: 
   html: default
   revealjs: 
-    output-ext: slide.html
+    output-file: slide.html
 ---
 
 <!-- Add the required topics below -->

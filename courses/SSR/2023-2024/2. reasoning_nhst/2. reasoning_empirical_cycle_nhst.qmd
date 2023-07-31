@@ -26,4 +26,6 @@ format:
 ```
 
 
+```{r child="../../../../footer.qmd"}
+```
 

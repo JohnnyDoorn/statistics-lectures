@@ -75,7 +75,7 @@ data <- read.csv("ANOVA REP alcohol_speed.csv")
 data <- data[,1:4]
 data <- round(data[, 1:4], 3)
 names(data) <- c('pp', 'none_alc', 'some_alc', 'much_alc')
-datatable(data, rownames = FALSE, options = list(searching = FALSE, scrollY = 415, paging = F, info = F))
+datatable(data, rownames = FALSE, options = list(searching = FALSE, scrollY = 415, paging = FALSE, info = FALSE))
 ```
 
 ## MS total

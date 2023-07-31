@@ -134,8 +134,8 @@ data[, c('z.grade', 'z.IQ')] = scale(data[, c('grade', 'IQ')])
 z.grade      = data$z.grade
 z.IQ         = data$z.IQ
 
-mean.z.grade = mean(z.grade, na.rm=T)
-mean.z.IQ    = mean(z.IQ,      na.rm=T)
+mean.z.grade = mean(z.grade, na.rm=TRUE)
+mean.z.IQ    = mean(z.IQ,      na.rm=TRUE)
 
 plot(z.grade, 
      ylim = summary(c(z.grade, z.IQ))[c('Min.','Max.')], 
@@ -158,8 +158,8 @@ segments(1:N, mean.z.IQ, 1:N, z.IQ, col='blue')
 $${COV}_{xy} = \frac{\sum_{i=1}^N (x_i - \bar{x})(y_i - \bar{y})}{N-1}$$
 
 ```{r, echo=TRUE}
-mean.grade = mean(grade, na.rm=T)
-mean.IQ    = mean(IQ, na.rm=T)
+mean.grade = mean(grade, na.rm=TRUE)
+mean.IQ    = mean(IQ, na.rm=TRUE)
 
 delta.grade = grade - mean.grade
 delta.IQ    = IQ      - mean.IQ
