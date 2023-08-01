@@ -54,7 +54,7 @@ For multiple regressin
 ::: {.columns}
 ::: {.column width="60%"}
 
-To adhere to the multicollinearity assumptien, there must not be a too high linear relation between the predictor variables.
+To adhere to the multicollinearity assumption, there must not be a too high linear relation between the predictor variables.
 
 This can be assessed through:
 
@@ -81,30 +81,30 @@ This can be checked through:
 
 ## Example
 
-> Perdict study outcome based on IQ and motivation.
+> Predict study outcome based on IQ and motivation.
 
 ## Read data {.smaller}
 
 ```{r, echo=FALSE, eval=FALSE, warning=FALSE, message=FALSE}
 set.seed(273645)
-n = 89
+n <- 89
 
-latent.variable = rnorm(n, 0, 1) # Brain speed?
+latent.variable <- rnorm(n, 0, 1) # Brain speed?
 
-IQ        = 120 + ( latent.variable * 15 ) + rnorm(n)
-motivation = 15 + ( latent.variable * 2  ) + rnorm(n)
+IQ         <- 120 + ( latent.variable * 15 ) + rnorm(n)
+motivation <- 15  + ( latent.variable * 2  ) + rnorm(n)
 
-b_0 = -100
-b_1 = 1 # Beta for IQ̧
-b_2 = 1 # Beta for Motivation
+b_0 <- -100
+b_1 <- 1 # Beta for IQ̧
+b_2 <- 1 # Beta for Motivation
 
-error = rnorm(n, 0, 5)
+error <- rnorm(n, 0, 5)
 
-study.outcome = b_0 + b_1 * IQ + b_2 * motivation + error
+study.outcome <- b_0 + b_1 * IQ + b_2 * motivation + error
 
-data = data.frame(study.outcome, motivation, IQ)
+data <- data.frame(study.outcome, motivation, IQ)
 
-fit = lm(study.outcome ~ motivation + IQ, data)
+fit <- lm(study.outcome ~ motivation + IQ, data)
 summary(fit)
 
 head(data, 10)
@@ -116,9 +116,9 @@ data <- read.csv('IQ.csv', header=T)
 
 head(data)
 
-IQ            = data$IQ
-study.outcome = data$Studieprestatie
-motivation    = data$Motivatie
+IQ            <- data$IQ
+study.outcome <- data$Studieprestatie
+motivation    <- data$Motivatie
 ```
 
 ## Regression model in R 
@@ -134,9 +134,9 @@ fit <- lm(study.outcome ~ IQ + motivation)
 ```{r, echo=TRUE}
 fit$coefficients
 
-b.0 = round(fit$coefficients[1], 2) ## Intercept
-b.1 = round(fit$coefficients[2], 2) ## Beta coefficient for IQ
-b.2 = round(fit$coefficients[3], 2) ## Beta coefficient for motivation
+b.0 <- round(fit$coefficients[1], 2) ## Intercept
+b.1 <- round(fit$coefficients[2], 2) ## Beta coefficient for IQ
+b.2 <- round(fit$coefficients[3], 2) ## Beta coefficient for motivation
 ```
 
 De beta coëfficients are: 
@@ -150,33 +150,33 @@ De beta coëfficients are:
 ```{r, echo=FALSE, warning=FALSE, class.source='rglChunk', webgl=TRUE}
 ## 3d plot package rgl
 ## install.packages('rgl')
-if(!"rgl" %in% installed.packages()) { install.packages("rgl") };
-library("rgl")
-
-library(knitr)
-knit_hooks$set(webgl = hook_webgl)
+# if(!"rgl" %in% installed.packages()) { install.packages("rgl") };
+# library("rgl")
+# 
+# library(knitr)
+# knit_hooks$set(webgl = hook_webgl)
 
 
 
 #1 #D scatter 
 
-plot3d(IQ, motivation, study.outcome,
-       col  = "red",
-       size = 8)
-
-#2 Add IQ value planes 
-
-quantiles <- as.vector(quantile(IQ,seq(.1,.9,.1)))
-sds       <- c(mean(motivation)+(sd(motivation)*c(-1,0,1)))  
-sds       <- 1:4
-
-planes3d(a = 0,
-         b = 1,
-         c = 0,
-         #d = c(1,2,3,4),
-         d = -sds,
-         alpha=0.1,
-         color = c("blue"))
+# plot3d(IQ, motivation, study.outcome,
+#        col  = "red",
+#        size = 8)
+# 
+# #2 Add IQ value planes 
+# 
+# quantiles <- as.vector(quantile(IQ,seq(.1,.9,.1)))
+# sds       <- c(mean(motivation)+(sd(motivation)*c(-1,0,1)))  
+# sds       <- 1:4
+# 
+# planes3d(a = 0,
+#          b = 1,
+#          c = 0,
+#          #d = c(1,2,3,4),
+#          d = -sds,
+#          alpha=0.1,
+#          color = c("blue"))
 
 #3 Add regression model surface
 
@@ -201,9 +201,9 @@ z.pre <- outer(x.pre, y.mod, FUN='regeq')
 
 
 ## Add 3D regression plane to scatter plot 
-surface3d(x.pre, y.mod, z.pre, color = c("green"))
+# surface3d(x.pre, y.mod, z.pre, color = c("green"))
 
-aspect3d(1,1,1)
+# aspect3d(1,1,1)
 # view3d(theta = 5)
 # view3d(theta = -10, phi = -90)
 # play3d(spin3d(axis = c(0, 0, 1), rpm = 30), duration = 5)
@@ -215,9 +215,9 @@ aspect3d(1,1,1)
 $\widehat{\text{studie prestatie}} = b_0 + b_1 \text{IQ} + b_2 \text{motivation}$
 
 ```{r, echo=TRUE}
-exp.stu.prest = b.0 + b.1 * IQ + b.2 * motivation
+exp.stu.prest <- b.0 + b.1 * IQ + b.2 * motivation
 
-model = exp.stu.prest
+model <- exp.stu.prest
 ```
 
 $\text{model} = \widehat{\text{studie prestatie}}$
@@ -236,7 +236,7 @@ $\widehat{\text{model}} = `r b.0` + `r b.1` \times \text{IQ} + `r b.2` \times \t
 ## How far are we off?
 
 ```{r, echo=TRUE}
-error = study.outcome - model
+error <- study.outcome - model
 
 cbind(model, study.outcome, error)[1:5,]
 ```
@@ -256,8 +256,8 @@ study.outcome == model + error
 ```{r, echo=FALSE}
 plot(study.outcome, xlab='personen', ylab='study.outcome')
 
-n = length(study.outcome)
-gemiddelde.study.outcome = mean(study.outcome)
+n <- length(study.outcome)
+gemiddelde.study.outcome <- mean(study.outcome)
 
 ## Voeg het gemiddelde toe
 lines(c(1, n), rep(gemiddelde.study.outcome, 2))
@@ -285,6 +285,6 @@ We also call this: $r^2$ of $R^2$.
 Why?
 
 ```{r, echo=TRUE}
-r = cor(study.outcome, model)
+r <- cor(study.outcome, model)
 r^2
 ```

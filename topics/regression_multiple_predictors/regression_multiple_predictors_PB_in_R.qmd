@@ -181,7 +181,7 @@ head(data, 10)
 ```{r, warning=FALSE, message=FALSE, echo=TRUE, eval=TRUE}
 
 # data <- read.csv('IQ.csv', header=T)
-data <- read.csv('http://shklinkenberg.github.io/statistics-lectures/topics/regression_multiple_predictors/IQ.csv', header=TRUE)
+data <- read.csv('IQ.csv', header=TRUE)
 
 head(data)
 
@@ -203,9 +203,9 @@ fit <- lm(study.outcome ~ IQ + motivation)
 ```{r, echo=TRUE}
 fit$coefficients
 
-b.0 = round(fit$coefficients[1], 2) ## Intercept
-b.1 = round(fit$coefficients[2], 2) ## Beta coefficient for IQ
-b.2 = round(fit$coefficients[3], 2) ## Beta coefficient for motivation
+b.0 <- round(fit$coefficients[1], 2) ## Intercept
+b.1 <- round(fit$coefficients[2], 2) ## Beta coefficient for IQ
+b.2 <- round(fit$coefficients[3], 2) ## Beta coefficient for motivation
 ```
 
 De beta coëfficients are:
@@ -225,19 +225,19 @@ summary(fit)
 ```{r, echo=FALSE, warning=FALSE}
 ## 3d plot package rgl
 ## install.packages('rgl')
-if(!"rgl" %in% installed.packages()) { install.packages("rgl") };
-library("rgl")
-
-library(knitr)
-knit_hooks$set(webgl = hook_webgl)
+# if(!"rgl" %in% installed.packages()) { install.packages("rgl") };
+# library("rgl")
+# 
+# library(knitr)
+# knit_hooks$set(webgl = hook_webgl)
 
 
 
 #1 #D scatter 
 
-plot3d(IQ, motivation, study.outcome,
-       col  = "red",
-       size = 8)
+# plot3d(IQ, motivation, study.outcome,
+#        col  = "red",
+#        size = 8)
 
 #2 Add IQ value planes 
 
@@ -245,13 +245,13 @@ quantiles <- as.vector(quantile(IQ,seq(.1,.9,.1)))
 sds       <- c(mean(motivation)+(sd(motivation)*c(-1,0,1)))  
 sds       <- 1:4
 
-planes3d(a = 0,
-         b = 1,
-         c = 0,
-         #d = c(1,2,3,4),
-         d = -sds,
-         alpha=0.1,
-         color = c("blue"))
+# planes3d(a = 0,
+#          b = 1,
+#          c = 0,
+#          #d = c(1,2,3,4),
+#          d = -sds,
+#          alpha=0.1,
+#          color = c("blue"))
 
 #3 Add regression model surface
 
@@ -276,47 +276,38 @@ z.pre <- outer(x.pre, y.mod, FUN='regeq')
 
 
 ## Add 3D regression plane to scatter plot 
-surface3d(x.pre, y.mod, z.pre, color = c("green"))
-
-aspect3d(1,1,1)
-# view3d(theta = 5)
-# view3d(theta = -10, phi = -90)
-# play3d(spin3d(axis = c(0, 0, 1), rpm = 30), duration = 5)
-
-subid <- currentSubscene3d()
-rglwidget(elementId="plot3drgl2")
+# surface3d(x.pre, y.mod, z.pre, color = c("green"))
+# 
+# aspect3d(1,1,1)
+# # view3d(theta = 5)
+# # view3d(theta = -10, phi = -90)
+# # play3d(spin3d(axis = c(0, 0, 1), rpm = 30), duration = 5)
+# 
+# subid <- currentSubscene3d()
+# rglwidget(elementId="plot3drgl2")
 
 ```
 
-```{=html}
-<script type="text/javascript">
-var rotate = function(angle) {
-  var rgl = document.getElementById("plot3drgl2").rglinstance;
-  rgl.getObj(`r subid`).par3d.userMatrix.rotate(angle, 0,1,0);
-  rgl.drawScene();
-};
-</script>
-```
-<button type="button" onclick="rotate(-10)">
 
-Lef
 
-</button>
+<!-- Lef -->
 
-<button type="button" onclick="rotate(10)">
+<!-- </button> -->
 
-Right
+<!-- <button type="button" onclick="rotate(10)"> -->
 
-</button>
+<!-- Right -->
+
+<!-- </button> -->
 
 ## What are the expected values based on this model
 
 $$\widehat{\text{studie prestatie}} = b_0 + b_1 \text{IQ} + b_2 \text{motivation}$$
 
 ```{r, echo=TRUE}
-exp.stu.prest = b.0 + b.1 * IQ + b.2 * motivation
+exp.stu.prest <- b.0 + b.1 * IQ + b.2 * motivation
 
-model = exp.stu.prest
+model <- exp.stu.prest
 ```
 
 $$\text{model} = \widehat{\text{studie prestatie}}$$
@@ -334,7 +325,7 @@ $$\widehat{\text{model}} = `r b.0` + `r b.1` \times \text{IQ} + `r b.2` \times \
 ## How far are we off?
 
 ```{r, echo=TRUE}
-error = study.outcome - model
+error <- study.outcome - model
 
 cbind(model, study.outcome, error)[1:5,]
 ```
@@ -356,8 +347,8 @@ study.outcome == model + error
 
 plot(study.outcome, xlab='personen', ylab='study.outcome')
 
-n = length(study.outcome)
-gemiddelde.study.outcome = mean(study.outcome)
+n <- length(study.outcome)
+gemiddelde.study.outcome <- mean(study.outcome)
 
 ## Voeg het gemiddelde toe
 lines(c(1, n), rep(gemiddelde.study.outcome, 2))
@@ -383,7 +374,7 @@ $$\frac{{SS}_{model}}{{SS}_{total}}$$
 We also call this: $r^2$ of $R^2$.
 
 ```{r, echo=TRUE}
-r = cor(study.outcome, model)
+r <- cor(study.outcome, model)
 r^2
 ```
 

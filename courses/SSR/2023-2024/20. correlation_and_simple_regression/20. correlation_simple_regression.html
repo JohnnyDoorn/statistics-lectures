@@ -301,8 +301,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>z.grade      <span class="ot">=</span> data<span class="sc">$</span>z.grade</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>z.IQ         <span class="ot">=</span> data<span class="sc">$</span>z.IQ</span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>mean.z.grade <span class="ot">=</span> <span class="fu">mean</span>(z.grade, <span class="at">na.rm=</span>T)</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>mean.z.IQ    <span class="ot">=</span> <span class="fu">mean</span>(z.IQ,      <span class="at">na.rm=</span>T)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>mean.z.grade <span class="ot">=</span> <span class="fu">mean</span>(z.grade, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>mean.z.IQ    <span class="ot">=</span> <span class="fu">mean</span>(z.IQ,      <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(z.grade, </span>
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylim =</span> <span class="fu">summary</span>(<span class="fu">c</span>(z.grade, z.IQ))[<span class="fu">c</span>(<span class="st">'Min.'</span>,<span class="st">'Max.'</span>)], </span>
@@ -327,8 +327,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="subsection anchored" data-anchor-id="covariance">Covariance</h2>
 <p><span class="math display">\[{COV}_{xy} = \frac{\sum_{i=1}^N (x_i - \bar{x})(y_i - \bar{y})}{N-1}\]</span></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>mean.grade <span class="ot">=</span> <span class="fu">mean</span>(grade, <span class="at">na.rm=</span>T)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>mean.IQ    <span class="ot">=</span> <span class="fu">mean</span>(IQ, <span class="at">na.rm=</span>T)</span>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>mean.grade <span class="ot">=</span> <span class="fu">mean</span>(grade, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>mean.IQ    <span class="ot">=</span> <span class="fu">mean</span>(IQ, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>delta.grade <span class="ot">=</span> grade <span class="sc">-</span> mean.grade</span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>delta.IQ    <span class="ot">=</span> IQ      <span class="sc">-</span> mean.IQ</span>
@@ -888,16 +888,10 @@ SS_model  48.4740000
 <script src="https://use.fontawesome.com/23c1d38eea.js"></script>
 <ul class="fa-ul" style="color:black; list-style:none;">
 <li>
-<i class="fa-li fa fa-twitter"></i> <a href="https://twitter.com/shklinkenberg" target="_blank" style="color:black; border-bottom:none;"><span class="citation" data-cites="shklinkenberg">@shklinkenberg</span></a>
+<i class="fa-li fa fa-envelope-o"></i> <a style="unicode-bidi:bidi-override; direction: rtl; color:black" href="javascript:window.location.href = 'mailto:' + ['j.b.vandoorn','uva.nl'].join('@')">ln.AvU@nrooDnav.B.J</a>
 </li>
 <li>
-<i class="fa-li fa fa-linkedin-square"></i> <a href="https://www.linkedin.com/in/sharonklinkenberg/" target="_blank" style="color:black; border-bottom:none;">Klinkenberg</a>
-</li>
-<li>
-<i class="fa-li fa fa-envelope-o"></i> <a style="unicode-bidi:bidi-override; direction: rtl; color:black" href="javascript:window.location.href = 'mailto:' + ['s.klinkenberg','uva.nl'].join('@')">ln.AvU@grebneknilK.S</a>
-</li>
-<li>
-<i class="fa-li fa fa-github"></i> <a href="https://github.com/ShKlinkenberg" target="_blank" style="color:black; border-bottom:none;">ShKlinkenberg</a>
+<i class="fa-li fa fa-github"></i> <a href="https://github.com/JohnnyDoorn" target="_blank" style="color:black; border-bottom:none;">JohnnyDoorn</a>
 </li>
 </ul>
 <p><small style="text-align:left;"></small></p><small style="text-align:left;">

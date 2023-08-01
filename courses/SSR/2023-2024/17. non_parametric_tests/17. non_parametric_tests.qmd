@@ -6,7 +6,7 @@ footer: "Scientific & Statistical Reasoning"
 format: 
   html: default
   revealjs: 
-    output-file: slide.html
+    output-ext: slide.html
 ---
 
 ```{r child="../../../../topics/non_parametric_concept/non_parametric_concept.qmd", eval=TRUE}

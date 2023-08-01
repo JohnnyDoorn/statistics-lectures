@@ -7,7 +7,7 @@ footer: "Scientific & Statistical Reasoning"
 format: 
   html: default
   revealjs: 
-    output-file: slide.html
+    output-ext: slide.html
     chalkboard: true
 ---
 
