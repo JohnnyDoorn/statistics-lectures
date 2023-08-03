@@ -15,7 +15,7 @@ $$model_i = b_1 X_{1i} + b_2 X_{2i} + \ldots + b_n X_{ni}$$
 Wrong conclusions about:
 
 - Parameters $b_i$
-- Standaard error and confidence intervals
+- Standard error and confidence intervals
 - Test statistics and $p$-values
 
 means &rarr; SE &rarr; CI
@@ -31,38 +31,38 @@ SE &rarr; test statistics &rarr; $p$-values
 
 ## Example
 
-IQ estimations of males and febecouse. We want to know the differences in the population not the sample. We therefore want to make an inference about the population, hence the name inferential statistics. 
+IQ estimations of people in the front and in the back. We want to know the differences in the population, not the sample. We therefore want to make an inference about the population, hence the name inferential statistics. 
 
 ```{r}
 data = read.table("../../topics/t-test_independent/IQ.csv", sep = ' ', header = T)
-names(data)[3] <- "male"
-data$male <- ifelse(data$male == "male" , 1, 0)
+names(data)[3] <- "front"
+data$front <- ifelse(data$front == "front", 0, 1)
 data[12:15,]
 ```
 
 -----
 
-We can see that fameles are coded as 0 and males as 1. Such coding can be used in a linear regression equation.
+We can see that back is coded as 0 and front as 1. Such coding can be used in a linear regression equation.
 
-$$\text{IQ you}_i = b_0 + b_1 male_i + error_i$$
+$$\text{IQ you}_i = b_0 + b_1 front_i + error_i$$
 
 ```{r}
-means <- aggregate(IQ.you ~ factor(male), data, mean); means
+means <- aggregate(IQ.you ~ factor(front), data, mean); means
 ```
 
 We can now calculate the $b$'s: $b_0 = `r round(means[1,2],2)`$ and $b_1 = `r round(means[2,2] - means[1,2],2)`$
 
 -----
 
-$$\text{IQ you}_i = b_0 + b_1 male_i + error_i$$
+$$\text{IQ you}_i = b_0 + b_1 front_i + error_i$$
 
 If we apply this to the regression model we get:
 
 ```{r, echo=FALSE, warning=FALSE}
-fit <- lm(IQ.you ~ factor(male), data)
+fit <- lm(IQ.you ~ factor(front), data)
 cbind(b.0    = round(fit$coefficients[1], 2),
       b.1    = round(fit$coefficients[2], 2),
-      male  = data$male, 
+      front  = data$front, 
       model  = round(fit$fitted.values, 2),
       IQ.you = data$IQ.you,
       error  = round(fit$residuals, 2)
@@ -95,14 +95,14 @@ Without these outliers the results look a bit different.
 data2 <- subset(data,  IQ.you > 100)
 data2 <- subset(data2, IQ.you < 140)
 
-aggregate(IQ.you ~ factor(male), data2, mean)
+aggregate(IQ.you ~ factor(front), data2, mean)
 
-fit <- lm(IQ.you ~ factor(male), data2)
-cbind(IQ.you = data2$IQ.you, b.0 =fit$coefficients[1], b.1 = fit$coefficients[2], male = data2$male, error = fit$residuals)[12:17,]
+fit <- lm(IQ.you ~ factor(front), data2)
+cbind(IQ.you = data2$IQ.you, b.0 =fit$coefficients[1], b.1 = fit$coefficients[2], front = data2$front, error = fit$residuals)[12:17,]
 ```
 
 ```{r, echo=FALSE}
-boxplot(data2$IQ.you, horizontal = T, col= 'red')
+boxplot(data2$IQ.you, horizontal = TRUE, col= 'red')
 ```
 
 ## Assumptions {.subsection}

@@ -12,15 +12,15 @@
 
 ## Emperical Cycle {.section}
 
--   **Observation** Patiënt is showing post traumatic symptoms
+-   **Observation** Patient is showing post traumatic symptoms
 -   **Induction** Can we diagnose PTSD
--   **Deduction** $H_0$: P: fair coin → C: patiënt is balanced
--   **Deduction** $H_A$: P: Unfair coin → C: patiënt is unbalanced
+-   **Deduction** $H_0$: P: fair coin → C: patient is balanced
+-   **Deduction** $H_A$: P: Unfair coin → C: patient is unbalanced
 -   **Deduction** $H_A$: P: data $\neq$ EV → C: is unbalanced
 -   **Testing** Choose $\alpha$ and Power
 -   **Evaluation** Make a decision
 
-## Null distribution {.subsection}
+## Null Distribution {.subsection}
 
 Let's analyse the null distribution of the results.
 
@@ -67,15 +67,16 @@ barplot(table(factor(data.cleaned$heads, levels=0:10)))
 
 ## Binomial distribution
 
-$$ {n\choose k}p^k(1-p)^{n-k} \\
- {n\choose k} = \frac{n!}{k!(n-k)!} $$
+$$P(k \text{ success out of } n \text{ trials} \mid \text{probability } p) = {n\choose k}p^k(1-p)^{n-k}$$ 
+where 
+$$ {n\choose k} = \frac{n!}{k!(n-k)!} $$
 
 With values:
 
 ```{r, echo=TRUE}
-n = 10   # Sample size
-k = 0:10 # Discrete probability space
-p = .5   # Probability of head
+n <- 10   # Sample size
+k <- 0:10 # Discrete probability space (numbers 0, 1, ..., 9, 10)
+p <- .5   # Probability of head
 ```
 
 ## Probabilities
@@ -99,16 +100,17 @@ p_kp = p_k * permutations # Probability of event times
 # freq_munt = round(p_kp*sample)
 # cbind(k,permutations,p_k,p_kp,freq_munt)
 
-title = "Binomial Null distribution"
+title = "Binomial Null Distribution"
 
 col=c(rep("red",2),rep("white",7),rep("red",2))
 
 barplot( p_kp, 
          main=title, 
          names.arg=0:10, 
-         xlab="number of head", 
+         xlab="# Heads", 
          ylab="P(%)", 
          col='darkgreen',
+         las = 1,
          ylim=c(0,.3) )
 
 text(.6:10.6*1.2,p_kp,round(p_kp,3),pos=3,cex=.5)
@@ -128,29 +130,32 @@ I landed 2 times head. Can we conclude PTSD?
 > -   Based on the null distribution we can see that the expected value (EV is 5.)
 > -   We can now define the $H_0$ hypothesis: $H_0 = 5$
 > -   What is the alternative hypothesis?
-> -   The alternative hypothesis describes a situation where PTSD is pressent.
+> -   The alternative hypothesis describes a situation where PTSD is present.
 > -   We could say that the alternative hypothesis is not 5.
 >     -   $H_A \ne 5$
 > -   We could also formulate our $H_0$ and $H_A$ more abstract:
->     -   $H_0:$ the patient is balenced
->     -   $H_A:$ the patient is unbalenced
-> -   What criterium should we use to conclude that one would be unbalenced?
+>     -   $H_0:$ the patient is balanced
+>     -   $H_A:$ the patient is unbalanced
+> -   What criterion should we use to conclude that one would be unbalanced?
 > -   In the social sciences this $\alpha$ criteria is often 5%.
 > -   I tossed 2 times head. That is more frequent than 5%.
 > -   Therefore, we conclude that our patient is probably healthy but we can never be sure.
-> -   My coin could still be part of the unbalenced population.
+> -   My coin could still be part of the unbalanced population.
 
 </small>
 
-## Null distribution
+## Null Distribution
+
+Observations outside the dashed lines are significant for $\alpha = 0.05$
 
 ```{r, echo=FALSE}
 barplot( p_kp, 
          main=title, 
          names.arg=0:10, 
-         xlab="number of head", 
+         xlab="# Heads", 
          ylab="P(%)", 
          col='darkgreen',
+         las = 1,
          ylim=c(0,.3) )
 
 text(.6:10.6*1.2,p_kp,round(p_kp,3),pos=3,cex=.5)
@@ -175,30 +180,31 @@ p_k2  = p^k  * (1-p)^(n-k)  # Probability of single event
 p_kp2 = p_k2 * permutations # Probability of event times 
                             # the occurrence of that event
 
-title = "Binomial alternative distribution"
+title = "Binomial Alternative Distribution"
 
 col=c(rep("red",2),rep("white",7),rep("red",2))
 
 barplot( p_kp2, 
          main=title, 
          names.arg=0:10, 
-         xlab="number of head", 
+         xlab="# Heads", 
          ylab="P(%)", 
          beside=TRUE,
          col="darkorange",
+         las = 1,
          ylim=c(0,.3) 
          )
 
 text(.6:10.6*1.2,p_kp2,round(p_kp2,3),pos=3,cex=.5)
 
-abline(v = c(2.5,10.9), col="red", lwd=3, lty="dotted")
+abline(v =  c(2.5,10.9), col="red", lwd=3, lty="dotted")
 ```
 
-## $H_0$ and $H_A$ distribution
+## $H_0$ and $H_A$ Distribution
 
 ```{r, echo=FALSE}
 
-title = "Both distributions"
+title = "Both Distributions"
 
 colh0 = 'darkgreen'
 colha = 'darkorange'
@@ -206,16 +212,18 @@ colha = 'darkorange'
 barplot( rbind(p_kp,p_kp2), 
          main=title, 
          names.arg=0:10, 
-         xlab="number of head", 
+         xlab="# Heads", 
          ylab="P(%)", 
+         ylim = c(0, 0.3),
          col = rbind(colh0,colha),
+         las = 1,
          beside=TRUE
          #legend.text = c("H0", "HA")
          )
 
 legend("topright", legend=c("H0","HA"), fill=c("darkgreen","darkorange"))
 
-abline(v = c(6.5,27.5), col="red", lwd=3, lty="dotted")
+abline(v = c(6.5,27.4), col="red", lwd=3, lty="dotted")
 
 ```
 

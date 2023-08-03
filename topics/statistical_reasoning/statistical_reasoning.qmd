@@ -1,13 +1,13 @@
 # Reasoning in statistics {.section}
 
-Source: [ARTIST](https://apps3.cehd.umn.edu/artist/glossary.html)
+Source: [ARTIST](http://web.archive.org/web/20221018074534/http://apps3.cehd.umn.edu/artist/glossary.html)
 
 ## Statistical Literacy {.subsection}
 
 * Knowledge (Basic understanding of concepts)
     * Identify
     * Describe
-* Skils (Ability to work with statistical tools)
+* Skills (Ability to work with statistical tools)
     * Translate
     * Interpret
     * Read
@@ -19,7 +19,7 @@ Source: [ARTIST](https://apps3.cehd.umn.edu/artist/glossary.html)
     * Explain why
     * Explain how
     
-## Statistical thinking {.subsection}
+## Statistical Thinking {.subsection}
 
 * Apply
     * What methods to use in a specific situation

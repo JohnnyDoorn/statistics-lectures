@@ -8,3 +8,6 @@ for (thisFile in files) {
   print(thisFile)
   quarto::quarto_render(thisFile)
 }
+
+
+# quarto::quarto_render(files[10])
