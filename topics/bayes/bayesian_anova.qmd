@@ -1,0 +1,19 @@
+# Bayesian ANOVA {.section}
+
+## Updating belief
+
+> https://johnnydoorn.github.io/BayesBookQuarto/
+
+> Posterior $\propto$ Likelihood $\times$ Prior
+
+## Different Models
+
+
+## Extended Clue Example
+
+
+## Take home message
+
+* Bayesians quantify uncertainty through distributions.
+* The more peaked the distribution, the lower the uncertainty.
+* Incoming information continually updates our knowledge; today’s posterior is tomorrow’s prior.

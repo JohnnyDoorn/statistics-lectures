@@ -11,14 +11,17 @@ format:
     chalkboard: true
 ---
 
-```{r child="../../../../topics/bayes/bayes_theorem.qmd"}
-```
+<!-- ```{r child="../../../../topics/bayes/bayes_theorem.qmd"} -->
+<!-- ``` -->
 
-```{r child="../../../../topics/bayes/bayesian_parameter_estimation.qmd"}
-```
+<!-- ```{r child="../../../../topics/bayes/bayesian_parameter_estimation.qmd"} -->
+<!-- ``` -->
 
-```{r child="../../../../topics/bayes/bayesian_hypothesis_testing.qmd"}
-```
+<!-- ```{r child="../../../../topics/bayes/bayesian_hypothesis_testing.qmd"} -->
+<!-- ``` -->
+
+<!-- ```{r child="../../../../topics/bayes/bayesian_anova.qmd"} -->
+<!-- ``` -->
 
 <!-- Footer insert below -->
 
