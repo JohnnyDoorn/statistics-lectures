@@ -36,8 +36,6 @@
   <link href="16. bayesian anova_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="16. bayesian anova_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="16. bayesian anova_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
-  <link href="16. bayesian anova_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
-  <link href="16. bayesian anova_files/libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
   <link href="16. bayesian anova_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
 
@@ -353,10 +351,36 @@ Johnny van Doorn
 <!-- ``` -->
 <!-- ```{r child="../../../../topics/bayes/bayesian_hypothesis_testing.qmd"} -->
 <!-- ``` -->
-<!-- ```{r child="../../../../topics/bayes/bayesian_anova.qmd"} -->
-<!-- ``` -->
-<!-- Footer insert below -->
 </section>
+<section>
+<section id="bayesian-anova" class="title-slide slide level1 section center">
+<h1>Bayesian ANOVA</h1>
+
+</section>
+<section id="updating-belief" class="slide level2">
+<h2>Updating belief</h2>
+<blockquote>
+<p>https://johnnydoorn.github.io/BayesBookQuarto/</p>
+</blockquote>
+<blockquote>
+<p>Posterior <span class="math inline">\(\propto\)</span> Likelihood <span class="math inline">\(\times\)</span> Prior</p>
+</blockquote>
+</section>
+<section id="different-models" class="slide level2">
+<h2>Different Models</h2>
+</section>
+<section id="extended-clue-example" class="slide level2">
+<h2>Extended Clue Example</h2>
+</section>
+<section id="take-home-message" class="slide level2">
+<h2>Take home message</h2>
+<ul>
+<li>Bayesians quantify uncertainty through distributions.</li>
+<li>The more peaked the distribution, the lower the uncertainty.</li>
+<li>Incoming information continually updates our knowledge; today’s posterior is tomorrow’s prior.</li>
+</ul>
+<!-- Footer insert below -->
+</section></section>
 <section>
 <section id="end" class="title-slide slide level1 center">
 <h1>End</h1>
@@ -396,7 +420,6 @@ Johnny van Doorn
   <script src="16. bayesian anova_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
   <script src="16. bayesian anova_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
   <script src="16. bayesian anova_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
-  <script src="16. bayesian anova_files/libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
   <script src="16. bayesian anova_files/libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
@@ -418,8 +441,7 @@ Johnny van Doorn
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
 'autoAnimateUnmatched': true,
-'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
-'chalkboard': {"buttons":true},
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
 'smaller': false,
  
         // Display controls in the bottom right corner
@@ -590,7 +612,7 @@ Johnny van Doorn
         },
 
         // reveal.js plugins
-        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
 
           RevealMath,
           RevealNotes,

@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Johnny van Doorn">
-<meta name="dcterms.date" content="2023-10-17">
 
-<title>16. Bayesian ANOVA</title>
+<title>bayesian_anova</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -25,98 +23,35 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="16. bayesian anova_files/libs/clipboard/clipboard.min.js"></script>
-<script src="16. bayesian anova_files/libs/quarto-html/quarto.js"></script>
-<script src="16. bayesian anova_files/libs/quarto-html/popper.min.js"></script>
-<script src="16. bayesian anova_files/libs/quarto-html/tippy.umd.min.js"></script>
-<script src="16. bayesian anova_files/libs/quarto-html/anchor.min.js"></script>
-<link href="16. bayesian anova_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="16. bayesian anova_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="16. bayesian anova_files/libs/bootstrap/bootstrap.min.js"></script>
-<link href="16. bayesian anova_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="16. bayesian anova_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="bayesian_anova_files/libs/clipboard/clipboard.min.js"></script>
+<script src="bayesian_anova_files/libs/quarto-html/quarto.js"></script>
+<script src="bayesian_anova_files/libs/quarto-html/popper.min.js"></script>
+<script src="bayesian_anova_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="bayesian_anova_files/libs/quarto-html/anchor.min.js"></script>
+<link href="bayesian_anova_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="bayesian_anova_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="bayesian_anova_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="bayesian_anova_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="bayesian_anova_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
-<body>
+<body class="fullcontent">
 
-<div id="quarto-content" class="page-columns page-rows-contents page-layout-article toc-left">
-<div id="quarto-sidebar-toc-left" class="sidebar toc-left">
-  <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul class="collapse">
-  <li><a href="#bayesian-anova" id="toc-bayesian-anova" class="nav-link active" data-scroll-target="#bayesian-anova">Bayesian ANOVA</a>
-  <ul class="collapse">
-  <li><a href="#updating-belief" id="toc-updating-belief" class="nav-link" data-scroll-target="#updating-belief">Updating belief</a></li>
-  <li><a href="#different-models" id="toc-different-models" class="nav-link" data-scroll-target="#different-models">Different Models</a></li>
-  <li><a href="#extended-clue-example" id="toc-extended-clue-example" class="nav-link" data-scroll-target="#extended-clue-example">Extended Clue Example</a></li>
-  <li><a href="#take-home-message" id="toc-take-home-message" class="nav-link" data-scroll-target="#take-home-message">Take home message</a></li>
-  </ul></li>
-  <li><a href="#end" id="toc-end" class="nav-link" data-scroll-target="#end">End</a>
-  <ul class="collapse">
-  <li><a href="#contact" id="toc-contact" class="nav-link" data-scroll-target="#contact">Contact</a></li>
-  </ul></li>
-  </ul>
-<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="16. bayesian anova.slide.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
-</div>
-<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-</div>
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">16. Bayesian ANOVA</h1>
-<p class="subtitle lead">Parameter estimation &amp; hypothesis testing</p>
-</div>
 
 
-<div class="quarto-title-meta-author">
-  <div class="quarto-title-meta-heading">Author</div>
-  <div class="quarto-title-meta-heading">Affiliation</div>
-  
-    <div class="quarto-title-meta-contents">
-    <p class="author">Johnny van Doorn </p>
-  </div>
-    <div class="quarto-title-meta-contents">
-        <p class="affiliation">
-            University of Amsterdam
-          </p>
-      </div>
-    </div>
-
-<div class="quarto-title-meta">
-
-      
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">October 17, 2023</p>
-    </div>
-  </div>
-  
-    
-  </div>
-  
-
-</header>
-
-<!-- ```{r child="../../../../topics/bayes/bayes_theorem.qmd"} -->
-<!-- ``` -->
-<!-- ```{r child="../../../../topics/bayes/bayesian_parameter_estimation.qmd"} -->
-<!-- ``` -->
-<!-- ```{r child="../../../../topics/bayes/bayesian_hypothesis_testing.qmd"} -->
-<!-- ``` -->
 <section id="bayesian-anova" class="level1 section">
 <h1 class="section">Bayesian ANOVA</h1>
 <section id="updating-belief" class="level2">
 <h2 class="anchored" data-anchor-id="updating-belief">Updating belief</h2>
-<blockquote class="blockquote">
-<p>https://johnnydoorn.github.io/BayesBookQuarto/</p>
-</blockquote>
+<p><a href="https://johnnydoorn.github.io/BayesBookQuarto/">Link to course literature from last year</a></p>
 <blockquote class="blockquote">
 <p>Posterior <span class="math inline">\(\propto\)</span> Likelihood <span class="math inline">\(\times\)</span> Prior</p>
 </blockquote>
@@ -134,30 +69,6 @@ ul.task-list li input[type="checkbox"] {
 <li>The more peaked the distribution, the lower the uncertainty.</li>
 <li>Incoming information continually updates our knowledge; today’s posterior is tomorrow’s prior.</li>
 </ul>
-<!-- Footer insert below -->
-</section>
-</section>
-<section id="end" class="level1">
-<h1>End</h1>
-<section id="contact" class="level2">
-<h2 class="anchored" data-anchor-id="contact">Contact</h2>
-<script src="https://use.fontawesome.com/23c1d38eea.js"></script>
-<ul class="fa-ul" style="color:black; list-style:none;">
-<li>
-<i class="fa-li fa fa-envelope-o"></i> <a style="unicode-bidi:bidi-override; direction: rtl; color:black" href="javascript:window.location.href = 'mailto:' + ['j.b.vandoorn','uva.nl'].join('@')">ln.AvU@nrooDnav.B.J</a>
-</li>
-<li>
-<i class="fa-li fa fa-github"></i> <a href="https://github.com/JohnnyDoorn" target="_blank" style="color:black; border-bottom:none;">JohnnyDoorn</a>
-</li>
-</ul>
-<p><small style="text-align:left;"></small></p><small style="text-align:left;">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png" class="img-fluid figure-img"></a></p>
-<figcaption class="figure-caption">CC BY-NC-SA 4.0</figcaption>
-</figure>
-</div>
-</small><p><small style="text-align:left;"></small></p>
 </section>
 </section>
 

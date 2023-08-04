@@ -8,7 +8,6 @@ format:
   html: default
   revealjs: 
     output-ext: slide.html
-    chalkboard: true
 ---
 
 <!-- ```{r child="../../../../topics/bayes/bayes_theorem.qmd"} -->
@@ -20,8 +19,8 @@ format:
 <!-- ```{r child="../../../../topics/bayes/bayesian_hypothesis_testing.qmd"} -->
 <!-- ``` -->
 
-<!-- ```{r child="../../../../topics/bayes/bayesian_anova.qmd"} -->
-<!-- ``` -->
+```{r child="../../../../topics/bayes/bayesian_anova.qmd"}
+```
 
 <!-- Footer insert below -->
 

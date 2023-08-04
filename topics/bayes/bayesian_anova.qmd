@@ -2,7 +2,7 @@
 
 ## Updating belief
 
-> https://johnnydoorn.github.io/BayesBookQuarto/
+[Link to course literature from last year](https://johnnydoorn.github.io/BayesBookQuarto/)
 
 > Posterior $\propto$ Likelihood $\times$ Prior
 
