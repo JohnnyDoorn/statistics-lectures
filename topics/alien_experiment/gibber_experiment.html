@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Sharon Klinkenberg &amp; Johnny van Doorn">
-<meta name="dcterms.date" content="2023-09-07">
 
-<title>2. Statistical Reasoning</title>
+<title>gibber_experiment</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -59,206 +57,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="2. reasoning_empirical_cycle_nhst_files/libs/clipboard/clipboard.min.js"></script>
-<script src="2. reasoning_empirical_cycle_nhst_files/libs/quarto-html/quarto.js"></script>
-<script src="2. reasoning_empirical_cycle_nhst_files/libs/quarto-html/popper.min.js"></script>
-<script src="2. reasoning_empirical_cycle_nhst_files/libs/quarto-html/tippy.umd.min.js"></script>
-<script src="2. reasoning_empirical_cycle_nhst_files/libs/quarto-html/anchor.min.js"></script>
-<link href="2. reasoning_empirical_cycle_nhst_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="2. reasoning_empirical_cycle_nhst_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="2. reasoning_empirical_cycle_nhst_files/libs/bootstrap/bootstrap.min.js"></script>
-<link href="2. reasoning_empirical_cycle_nhst_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="2. reasoning_empirical_cycle_nhst_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="gibber_experiment_files/libs/clipboard/clipboard.min.js"></script>
+<script src="gibber_experiment_files/libs/quarto-html/quarto.js"></script>
+<script src="gibber_experiment_files/libs/quarto-html/popper.min.js"></script>
+<script src="gibber_experiment_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="gibber_experiment_files/libs/quarto-html/anchor.min.js"></script>
+<link href="gibber_experiment_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="gibber_experiment_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="gibber_experiment_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="gibber_experiment_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="gibber_experiment_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
-<body>
+<body class="fullcontent">
 
-<div id="quarto-content" class="page-columns page-rows-contents page-layout-article toc-left">
-<div id="quarto-sidebar-toc-left" class="sidebar toc-left">
-  <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul class="collapse">
-  <li><a href="#learning" id="toc-learning" class="nav-link active" data-scroll-target="#learning">Learning</a></li>
-  <li><a href="#reasoning-in-statistics" id="toc-reasoning-in-statistics" class="nav-link" data-scroll-target="#reasoning-in-statistics">Reasoning in statistics</a>
-  <ul class="collapse">
-  <li><a href="#statistical-literacy" id="toc-statistical-literacy" class="nav-link" data-scroll-target="#statistical-literacy">Statistical Literacy</a></li>
-  <li><a href="#statistical-reasoning" id="toc-statistical-reasoning" class="nav-link" data-scroll-target="#statistical-reasoning">Statistical Reasoning</a></li>
-  <li><a href="#statistical-thinking" id="toc-statistical-thinking" class="nav-link" data-scroll-target="#statistical-thinking">Statistical Thinking</a></li>
-  </ul></li>
-  <li><a href="#empirical-cycle" id="toc-empirical-cycle" class="nav-link" data-scroll-target="#empirical-cycle">Empirical Cycle</a>
-  <ul class="collapse">
-  <li><a href="#by-adriaan-de-groot" id="toc-by-adriaan-de-groot" class="nav-link" data-scroll-target="#by-adriaan-de-groot">By Adriaan de Groot</a></li>
-  <li><a href="#the-components" id="toc-the-components" class="nav-link" data-scroll-target="#the-components">The components</a></li>
-  <li><a href="#explained-by-annemarie-zandscholten" id="toc-explained-by-annemarie-zandscholten" class="nav-link" data-scroll-target="#explained-by-annemarie-zandscholten">Explained by Annemarie Zandscholten</a></li>
-  </ul></li>
-  <li><a href="#experiment" id="toc-experiment" class="nav-link" data-scroll-target="#experiment">Experiment</a>
-  <ul class="collapse">
-  <li><a href="#test" id="toc-test" class="nav-link" data-scroll-target="#test">Test</a></li>
-  <li><a href="#emperical-cycle" id="toc-emperical-cycle" class="nav-link" data-scroll-target="#emperical-cycle">Emperical Cycle</a></li>
-  <li><a href="#null-distribution" id="toc-null-distribution" class="nav-link" data-scroll-target="#null-distribution">Null Distribution</a></li>
-  <li><a href="#distributions" id="toc-distributions" class="nav-link" data-scroll-target="#distributions">Distributions</a></li>
-  <li><a href="#binomial-distribution" id="toc-binomial-distribution" class="nav-link" data-scroll-target="#binomial-distribution">Binomial distribution</a></li>
-  <li><a href="#probabilities" id="toc-probabilities" class="nav-link" data-scroll-target="#probabilities">Probabilities</a></li>
-  <li><a href="#testing" id="toc-testing" class="nav-link" data-scroll-target="#testing">Testing</a></li>
-  <li><a href="#testing-1" id="toc-testing-1" class="nav-link" data-scroll-target="#testing-1">Testing</a></li>
-  <li><a href="#null-distribution-1" id="toc-null-distribution-1" class="nav-link" data-scroll-target="#null-distribution-1">Null Distribution</a></li>
-  <li><a href="#alternative-distribution" id="toc-alternative-distribution" class="nav-link" data-scroll-target="#alternative-distribution">Alternative Distribution</a></li>
-  <li><a href="#h_0-and-h_a-distribution" id="toc-h_0-and-h_a-distribution" class="nav-link" data-scroll-target="#h_0-and-h_a-distribution"><span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_A\)</span> Distribution</a></li>
-  </ul></li>
-  <li><a href="#end" id="toc-end" class="nav-link" data-scroll-target="#end">End</a>
-  <ul class="collapse">
-  <li><a href="#contact" id="toc-contact" class="nav-link" data-scroll-target="#contact">Contact</a></li>
-  </ul></li>
-  </ul>
-<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="2. reasoning_empirical_cycle_nhst.slide.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
-</div>
-<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-</div>
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">2. Statistical Reasoning</h1>
-<p class="subtitle lead">Null Hypothesis Testing</p>
-</div>
 
 
-<div class="quarto-title-meta-author">
-  <div class="quarto-title-meta-heading">Author</div>
-  <div class="quarto-title-meta-heading">Affiliation</div>
-  
-    <div class="quarto-title-meta-contents">
-    <p class="author">Sharon Klinkenberg &amp; Johnny van Doorn </p>
-  </div>
-    <div class="quarto-title-meta-contents">
-        <p class="affiliation">
-            University of Amsterdam
-          </p>
-      </div>
-    </div>
-
-<div class="quarto-title-meta">
-
-      
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">September 7, 2023</p>
-    </div>
-  </div>
-  
-    
-  </div>
-  
-
-</header>
-
-<section id="learning" class="level2">
-<h2 class="anchored" data-anchor-id="learning">Learning</h2>
-<iframe style="height:400px;  width:100%;" src="https://www.youtube.com/embed/JC82Il2cjqA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">
-</iframe>
-<!-- Add the required topics below -->
-</section>
-<section id="reasoning-in-statistics" class="level1 section">
-<h1 class="section">Reasoning in statistics</h1>
-<p>Source: <a href="http://web.archive.org/web/20221018074534/http://apps3.cehd.umn.edu/artist/glossary.html">ARTIST</a></p>
-<section id="statistical-literacy" class="level2 subsection">
-<h2 class="subsection anchored" data-anchor-id="statistical-literacy">Statistical Literacy</h2>
-<ul>
-<li>Knowledge (Basic understanding of concepts)
-<ul>
-<li>Identify</li>
-<li>Describe</li>
-</ul></li>
-<li>Skills (Ability to work with statistical tools)
-<ul>
-<li>Translate</li>
-<li>Interpret</li>
-<li>Read</li>
-<li>Compute</li>
-</ul></li>
-</ul>
-</section>
-<section id="statistical-reasoning" class="level2 subsection">
-<h2 class="subsection anchored" data-anchor-id="statistical-reasoning">Statistical Reasoning</h2>
-<ul>
-<li>Understanding
-<ul>
-<li>Explain why</li>
-<li>Explain how</li>
-</ul></li>
-</ul>
-</section>
-<section id="statistical-thinking" class="level2 subsection">
-<h2 class="subsection anchored" data-anchor-id="statistical-thinking">Statistical Thinking</h2>
-<ul>
-<li>Apply
-<ul>
-<li>What methods to use in a specific situation</li>
-</ul></li>
-<li>Critique
-<ul>
-<li>Comment and reflect on work of others</li>
-</ul></li>
-<li>Evaluate
-<ul>
-<li>Assigning value to work</li>
-</ul></li>
-<li>Generalize
-<ul>
-<li>What does variation mean in the large scheme of life</li>
-</ul></li>
-</ul>
-</section>
-</section>
-<section id="empirical-cycle" class="level1 section">
-<h1 class="section">Empirical Cycle</h1>
-<section id="by-adriaan-de-groot" class="level2">
-<h2 class="anchored" data-anchor-id="by-adriaan-de-groot">By Adriaan de Groot</h2>
-<iframe style="height:450px; width:100%;" id="iframe_container" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="" src="https://prezi.com/embed/bpjkj8bz_kja/?bgcolor=ffffff&amp;lock_to_path=0&amp;autoplay=0&amp;autohide_ctrls=0&amp;landing_data=bHVZZmNaNDBIWnNjdEVENDRhZDFNZGNIUE43MHdLNWpsdFJLb2ZHanI5a2svK0VieFZlK1cxOTFvS1ZwWVVBNFZRPT0&amp;landing_sign=T515ue0i-w4c7Sok6m5LPjV9-MucmIMETU_ItCafgr8">
-</iframe>
-</section>
-<section id="the-components" class="level2 smaller">
-<h2 class="smaller anchored" data-anchor-id="the-components">The components</h2>
-<p><small></small></p><small>
-<ul>
-<li>Observation
-<ul>
-<li>Idea for hypothesis</li>
-</ul></li>
-<li>Induction
-<ul>
-<li>General rule</li>
-<li>Hypothesis</li>
-</ul></li>
-<li>Deduction
-<ul>
-<li>Expectation / Prediction</li>
-<li>Operationalization</li>
-</ul></li>
-<li>Testing
-<ul>
-<li>Test hypothesis</li>
-<li>Compare data to prediction</li>
-</ul></li>
-<li>Evaluation
-<ul>
-<li>Interpret results in terms of hypothesis</li>
-</ul></li>
-</ul>
-</small><p><small></small></p>
-</section>
-<section id="explained-by-annemarie-zandscholten" class="level2">
-<h2 class="anchored" data-anchor-id="explained-by-annemarie-zandscholten">Explained by Annemarie Zandscholten</h2>
-<iframe style="height:450px; width:100%;" src="https://www.youtube.com/embed/D8N1I-FmMvU?rel=0&amp;controls=1" frameborder="0" allowfullscreen="">
-</iframe>
-</section>
-</section>
 <section id="experiment" class="level1 section">
 <h1 class="section">Experiment</h1>
 <!-- [Video registration](https://webcolleges.uva.nl/Mediasite/Play/ed1e63e0cd204dcf9d2a144603ce342b1d?playFrom=3708000) -->
@@ -278,7 +100,7 @@ https://maglit.me/proyi
 <li><strong>Induction</strong> Can we diagnose an alien takeover?</li>
 <li><strong>Deduction</strong> <span class="math inline">\(H_0\)</span>: P: <span class="math inline">\(\theta = 0.5\)</span> → C: patient is human</li>
 <li><strong>Deduction</strong> <span class="math inline">\(H_A\)</span>: P: <span class="math inline">\(\theta &gt; 0.5\)</span> → C: patient is alien</li>
-<li><strong>Deduction</strong> <span class="math inline">\(H_A\)</span>: P: data <span class="math inline">\(\neq\)</span> EV → C: patient is alien</li>
+<li><strong>Deduction</strong> <span class="math inline">\(H_A\)</span>: P: data <span class="math inline">\(\neq\)</span> EV → C: is alien</li>
 <li><strong>Testing</strong> Choose <span class="math inline">\(\alpha\)</span> and Power</li>
 <li><strong>Evaluation</strong> Make a decision</li>
 </ul>
@@ -302,7 +124,7 @@ https://maglit.me/proyi
 <ul>
 <li>Population distribution</li>
 <li>Sample distribution</li>
-<li>Sampling distribution</li>
+<li>Samples distribution</li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("curl")</span></span>
@@ -327,16 +149,16 @@ https://maglit.me/proyi
 <h2 class="anchored" data-anchor-id="probabilities">Probabilities</h2>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="2.-reasoning_empirical_cycle_nhst_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+<p><img src="gibber_experiment_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
 <section id="testing" class="level2">
 <h2 class="anchored" data-anchor-id="testing">Testing</h2>
-<p>I had 7 items correct. Can we conclude I am no longer human?</p>
+<p>I landed 2 times head. Can we conclude PTSD?</p>
 <ul>
-<li>As you can see from the distribution of human scores, we cannot conclude that by definition.</li>
-<li>What we can do is indicate how rare 7 is in a human population.</li>
+<li>As you can see from the distribution of healthy coins, we cannot conclude that by definition.</li>
+<li>What we can do is indicate how rare 2 is in a healthy population.</li>
 </ul>
 </section>
 <section id="testing-1" class="level2 smaller">
@@ -344,24 +166,24 @@ https://maglit.me/proyi
 <p><small></small></p><small>
 <blockquote class="blockquote">
 <ul>
-<li>Based on the null distribution we can see that the expected value (EV) is 5</li>
-<li>We can now define the <span class="math inline">\(H_0\)</span> hypothesis: <span class="math inline">\(H_0: EV = 5\)</span></li>
+<li>Based on the null distribution we can see that the expected value (EV is 5.)</li>
+<li>We can now define the <span class="math inline">\(H_0\)</span> hypothesis: <span class="math inline">\(H_0 = 5\)</span></li>
 <li>What is the alternative hypothesis?</li>
-<li>The alternative hypothesis describes a situation where the patient is alien</li>
-<li>We could say that the alternative hypothesis is not 5
+<li>The alternative hypothesis describes a situation where PTSD is present.</li>
+<li>We could say that the alternative hypothesis is not 5.
 <ul>
-<li><span class="math inline">\(H_A: EV \ne 5\)</span></li>
+<li><span class="math inline">\(H_A \ne 5\)</span></li>
 </ul></li>
 <li>We could also formulate our <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_A\)</span> more abstract:
 <ul>
-<li><span class="math inline">\(H_0:\)</span> the patient is human</li>
-<li><span class="math inline">\(H_A:\)</span> the patient is alien</li>
+<li><span class="math inline">\(H_0:\)</span> the patient is balanced</li>
+<li><span class="math inline">\(H_A:\)</span> the patient is unbalanced</li>
 </ul></li>
-<li>What criterion should we use to conclude that one would be alien?</li>
+<li>What criterion should we use to conclude that one would be unbalanced?</li>
 <li>In the social sciences this <span class="math inline">\(\alpha\)</span> criteria is often 5%.</li>
-<li>I scored 7 items correct. That is more frequent than 5%.</li>
-<li>Therefore, we conclude that our patient is probably human but we can never be sure.</li>
-<li>I could still be part of the alien population.</li>
+<li>I tossed 2 times head. That is more frequent than 5%.</li>
+<li>Therefore, we conclude that our patient is probably healthy but we can never be sure.</li>
+<li>My coin could still be part of the unbalanced population.</li>
 </ul>
 </blockquote>
 </small><p><small></small></p>
@@ -371,17 +193,17 @@ https://maglit.me/proyi
 <p>Observations outside the dashed lines are significant for <span class="math inline">\(\alpha = 0.05\)</span></p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="2.-reasoning_empirical_cycle_nhst_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+<p><img src="gibber_experiment_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
 <section id="alternative-distribution" class="level2 smaller build subsection">
 <h2 class="smaller build subsection anchored" data-anchor-id="alternative-distribution">Alternative Distribution</h2>
-<p>But we have no clue what this distribution could look like.</p>
-<p>For now let’s assume the probability of answering an item correctly is .75</p>
+<p>But we have no clue of what this distribution could look like.</p>
+<p>For now let’s assume the probability of landing heads for my coin is .25</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="2.-reasoning_empirical_cycle_nhst_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+<p><img src="gibber_experiment_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
@@ -389,7 +211,7 @@ https://maglit.me/proyi
 <h2 class="anchored" data-anchor-id="h_0-and-h_a-distribution"><span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_A\)</span> Distribution</h2>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="2.-reasoning_empirical_cycle_nhst_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+<p><img src="gibber_experiment_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <!--
@@ -400,30 +222,8 @@ https://maglit.me/proyi
 
 :::
 
+
 -->
-</section>
-</section>
-<section id="end" class="level1">
-<h1>End</h1>
-<section id="contact" class="level2">
-<h2 class="anchored" data-anchor-id="contact">Contact</h2>
-<script src="https://use.fontawesome.com/23c1d38eea.js"></script>
-<ul class="fa-ul" style="color:black; list-style:none;">
-<li>
-<i class="fa-li fa fa-envelope-o"></i> <a style="unicode-bidi:bidi-override; direction: rtl; color:black" href="javascript:window.location.href = 'mailto:' + ['j.b.vandoorn','uva.nl'].join('@')">ln.AvU@nrooDnav.B.J</a>
-</li>
-<li>
-<i class="fa-li fa fa-github"></i> <a href="https://github.com/JohnnyDoorn" target="_blank" style="color:black; border-bottom:none;">JohnnyDoorn</a>
-</li>
-</ul>
-<p><small style="text-align:left;"></small></p><small style="text-align:left;">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png" class="img-fluid figure-img"></a></p>
-<figcaption class="figure-caption">CC BY-NC-SA 4.0</figcaption>
-</figure>
-</div>
-</small><p><small style="text-align:left;"></small></p>
 </section>
 </section>
 

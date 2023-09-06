@@ -261,14 +261,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">rnorm</span>(n, mu, sigma); x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1]  65.99339 104.17578  94.77551  87.43379  98.17124 108.51333 106.36508
- [8] 103.52295  85.61048 100.63505 110.19166  98.52102 124.53397 108.22101
-[15]  85.18161 113.06280 122.84220  95.20454  76.33865 115.68590  93.50777
-[22] 112.56103 117.09343  78.74099  86.33719  99.96498 101.35895  89.89906
-[29] 118.41208 104.91342  97.65671 103.30997 109.85631 107.85386  97.10943
-[36] 112.26486 105.89520 103.92462  86.79086  91.69839  94.75320  96.98791
-[43]  97.64360 101.49580  89.52553 118.68167 123.57238  89.79974 103.02951
-[50] 106.82689 103.80303  92.21855  99.08519  92.60427  83.66538  90.81636</code></pre>
+<pre><code> [1]  84.84633 110.76433 107.47691  78.58039 103.45147 112.32328  93.58873
+ [8]  95.50531  88.37528  89.18692  86.81171 110.82445  75.37223 113.56327
+[15]  99.98637 100.59986 102.61066 134.43180 125.63791  97.82750  99.63666
+[22]  86.05252  96.00631 124.49926  97.68039 102.88446  97.96582 101.39258
+[29]  91.89743  85.35650  85.28810 108.33544 111.21727 119.57705  80.77706
+[36]  70.34111 114.34071 104.61791  87.02568 105.83130  94.71812 102.39034
+[43]  77.77121  99.25710 105.65702 102.70751  71.24578  87.51885  77.31912
+[50] 132.02441 104.71005  99.79397 110.70709  82.62294 116.88637  78.20235</code></pre>
 </div>
 </div>
 <div class="cell" data-output-location="slide">
@@ -300,12 +300,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">cbind</span>(mean.x.values, se.x.values))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     mean.x.values se.x.values
-[1,]      99.54892    2.189303
-[2,]      98.03780    1.924630
-[3,]      99.04524    2.110499
-[4,]      96.57996    1.921905
-[5,]     100.70976    1.870034
-[6,]      98.65258    1.778660</code></pre>
+[1,]     100.91897    2.104436
+[2,]     100.57265    1.894303
+[3,]      99.77756    1.929312
+[4,]      98.52438    2.424568
+[5,]      96.41061    2.049552
+[6,]      99.20960    2.162641</code></pre>
 </div>
 </div>
 </section>
@@ -334,7 +334,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>t <span class="ot">=</span> (<span class="fu">mean</span>(x) <span class="sc">-</span> mu) <span class="sc">/</span> (<span class="fu">sd</span>(x) <span class="sc">/</span> <span class="fu">sqrt</span>(n))</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>t</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] -0.9842937</code></pre>
+<pre><code>[1] -0.7515995</code></pre>
 </div>
 </div>
 </section>
@@ -347,12 +347,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(<span class="fu">cbind</span>(mean.x.values, mu, se.x.values, t.values))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>        mean.x.values  mu se.x.values    t.values
- [995,]     101.18139 100    2.220328  0.53207902
- [996,]     101.48118 100    2.164137  0.68442014
- [997,]     102.16511 100    1.451630  1.49150048
- [998,]      99.01675 100    1.869895 -0.52583021
- [999,]      99.90976 100    1.632364 -0.05528178
-[1000,]      98.00776 100    2.024032 -0.98429365</code></pre>
+ [995,]     102.78343 100    2.040402  1.36415595
+ [996,]     100.79454 100    1.897312  0.41877207
+ [997,]      98.41614 100    2.002994 -0.79074795
+ [998,]      96.19978 100    1.982160 -1.91721259
+ [999,]     100.08554 100    2.239522  0.03819398
+[1000,]      98.65372 100    1.791220 -0.75159954</code></pre>
 </div>
 </div>
 </section>
@@ -434,12 +434,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(<span class="fu">cbind</span>(mean.x.values, mu, se.x.values, t.values, r))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>        mean.x.values  mu se.x.values    t.values           r
- [995,]     101.18139 100    2.220328  0.53207902 0.071561579
- [996,]     101.48118 100    2.164137  0.68442014 0.091896683
- [997,]     102.16511 100    1.451630  1.49150048 0.197166041
- [998,]      99.01675 100    1.869895 -0.52583021 0.070725378
- [999,]      99.90976 100    1.632364 -0.05528178 0.007453987
-[1000,]      98.00776 100    2.024032 -0.98429365 0.131568388</code></pre>
+ [995,]     102.78343 100    2.040402  1.36415595 0.180907709
+ [996,]     100.79454 100    1.897312  0.41877207 0.056377405
+ [997,]      98.41614 100    2.002994 -0.79074795 0.106023457
+ [998,]      96.19978 100    1.982160 -1.91721259 0.250288627
+ [999,]     100.08554 100    2.239522  0.03819398 0.005150006
+[1000,]      98.65372 100    1.791220 -0.75159954 0.100829178</code></pre>
 </div>
 </div>
 </section>
@@ -724,8 +724,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="cell-output-display">
 
-<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-ec36998e2c3b744ef1a3" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-ec36998e2c3b744ef1a3">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49"],[130,120,124,124,120,130,119,118,124,125,125,120,125,130,116,125,120,120,116,120,122,125,140,120,120,115,131,115,123,125,121,120,125,150,135,125,110,120,127,120,128,110,120,119,121,119,112,125,100],[125,120,125,134,115,130,110,118,116,125,125,115,121,134,115,125,136,125,121,120,115,125,135,110,115,115,118,115,118,129,128,120,120,128,130,115,115,120,118,120,128,108,120,110,109,118,100,121,120]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>IQ next to you<\/th>\n      <th>Own IQ<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"searching":false,"scrollY":415,"paging":false,"info":false,"columnDefs":[{"className":"dt-right","targets":[1,2]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-76f1e84426c59f3fa439" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-76f1e84426c59f3fa439">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49"],[130,120,124,124,120,130,119,118,124,125,125,120,125,130,116,125,120,120,116,120,122,125,140,120,120,115,131,115,123,125,121,120,125,150,135,125,110,120,127,120,128,110,120,119,121,119,112,125,100],[125,120,125,134,115,130,110,118,116,125,125,115,121,134,115,125,136,125,121,120,115,125,135,110,115,115,118,115,118,129,128,120,120,128,130,115,115,120,118,120,128,108,120,110,109,118,100,121,120]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>IQ next to you<\/th>\n      <th>Own IQ<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"searching":false,"scrollY":415,"paging":false,"info":false,"columnDefs":[{"className":"dt-right","targets":[1,2]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -737,8 +737,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="cell-output-display">
 
-<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-970df1bc67e772a8261e" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-970df1bc67e772a8261e">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49"],[130,120,124,124,120,130,119,118,124,125,125,120,125,130,116,125,120,120,116,120,122,125,140,120,120,115,131,115,123,125,121,120,125,150,135,125,110,120,127,120,128,110,120,119,121,119,112,125,100],[125,120,125,134,115,130,110,118,116,125,125,115,121,134,115,125,136,125,121,120,115,125,135,110,115,115,118,115,118,129,128,120,120,128,130,115,115,120,118,120,128,108,120,110,109,118,100,121,120],[5,0,-1,-10,5,0,9,0,8,0,0,5,4,-4,1,0,-16,-5,-5,0,7,0,5,10,5,0,13,0,5,-4,-7,0,5,22,5,10,-5,0,9,0,0,2,0,9,12,1,12,4,-20]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>IQ next to you<\/th>\n      <th>Own IQ<\/th>\n      <th>D<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"searching":false,"scrollY":315,"paging":false,"info":false,"columnDefs":[{"className":"dt-right","targets":[1,2,3]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-ede9ca7ea3f0f45d9455" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-ede9ca7ea3f0f45d9455">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49"],[130,120,124,124,120,130,119,118,124,125,125,120,125,130,116,125,120,120,116,120,122,125,140,120,120,115,131,115,123,125,121,120,125,150,135,125,110,120,127,120,128,110,120,119,121,119,112,125,100],[125,120,125,134,115,130,110,118,116,125,125,115,121,134,115,125,136,125,121,120,115,125,135,110,115,115,118,115,118,129,128,120,120,128,130,115,115,120,118,120,128,108,120,110,109,118,100,121,120],[5,0,-1,-10,5,0,9,0,8,0,0,5,4,-4,1,0,-16,-5,-5,0,7,0,5,10,5,0,13,0,5,-4,-7,0,5,22,5,10,-5,0,9,0,0,2,0,9,12,1,12,4,-20]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>IQ next to you<\/th>\n      <th>Own IQ<\/th>\n      <th>D<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"searching":false,"scrollY":315,"paging":false,"info":false,"columnDefs":[{"className":"dt-right","targets":[1,2,3]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -903,8 +903,8 @@ H_A &amp;: t &lt; 0 \\
 <div class="cell">
 <div class="cell-output-display">
 
-<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-989f44e682c259f300e0" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-989f44e682c259f300e0">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49"],["front","front","back","front","front","back","front","front","back","back","back","back","back","front","back","back","front","front","front","front","front","back","front","front","front","front","back","back","front","front","front","front","back","back","back","front","back","back","back","front","back","front","back","back","back","front","front","front","front"],[125,120,125,134,115,130,110,118,116,125,125,115,121,134,115,125,136,125,121,120,115,125,135,110,115,115,118,115,118,129,128,120,120,128,130,115,115,120,118,120,128,108,120,110,109,118,100,121,120]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>classPosition<\/th>\n      <th>IQ.you<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"searching":false,"scrollY":415,"paging":false,"info":false,"columnDefs":[{"className":"dt-right","targets":2},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-a0d5cb89bc1d7adf7dd7" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-a0d5cb89bc1d7adf7dd7">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49"],["front","back","front","front","front","back","back","back","front","back","back","back","front","front","back","front","front","back","front","back","front","back","back","back","front","back","front","back","back","back","back","back","back","back","back","back","back","back","back","front","back","front","back","back","back","front","front","back","back"],[125,120,125,134,115,130,110,118,116,125,125,115,121,134,115,125,136,125,121,120,115,125,135,110,115,115,118,115,118,129,128,120,120,128,130,115,115,120,118,120,128,108,120,110,109,118,100,121,120]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>classPosition<\/th>\n      <th>IQ.you<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"searching":false,"scrollY":415,"paging":false,"info":false,"columnDefs":[{"className":"dt-right","targets":2},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -920,8 +920,8 @@ H_A &amp;: t &lt; 0 \\
 <span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a><span class="fu">rbind</span>(IQ.you.front.mean, IQ.you.back.mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                      [,1]
-IQ.you.front.mean 120.1852
-IQ.you.back.mean  120.5909</code></pre>
+IQ.you.front.mean 120.3529
+IQ.you.back.mean  120.3750</code></pre>
 </div>
 </div>
 </section>
@@ -933,16 +933,16 @@ IQ.you.back.mean  120.5909</code></pre>
 <span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">rbind</span>(IQ.you.front.var, IQ.you.back.var))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                     [,1]
-IQ.you.front.var 75.00285
-IQ.you.back.var  37.68182</code></pre>
+IQ.you.front.var 85.36765
+IQ.you.back.var  44.43548</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>IQ.you.front.n   <span class="ot">&lt;-</span> <span class="fu">length</span>(IQ.you.front)   <span class="sc">-</span> <span class="dv">1</span></span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>IQ.you.back.n <span class="ot">&lt;-</span> <span class="fu">length</span>(IQ.you.back) <span class="sc">-</span> <span class="dv">1</span></span>
 <span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">rbind</span>(IQ.you.front.n, IQ.you.back.n))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>               [,1]
-IQ.you.front.n   26
-IQ.you.back.n    21</code></pre>
+IQ.you.front.n   16
+IQ.you.back.n    31</code></pre>
 </div>
 </div>
 </section>
@@ -968,7 +968,7 @@ IQ.you.back.n    21</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>s2.p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 58.41572</code></pre>
+<pre><code>[1] 58.07954</code></pre>
 </div>
 </div>
 </section>
@@ -979,7 +979,7 @@ IQ.you.back.n    21</code></pre>
 <div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>se.p <span class="ot">&lt;-</span> <span class="fu">sqrt</span>( ((s2.p<span class="sc">/</span>IQ.you.front.n) <span class="sc">+</span> (s2.p<span class="sc">/</span>IQ.you.back.n)) )</span>
 <span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>se.p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 2.242423</code></pre>
+<pre><code>[1] 2.345955</code></pre>
 </div>
 </div>
 </section>
@@ -991,7 +991,7 @@ IQ.you.back.n    21</code></pre>
 <span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>t</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] -0.1809311</code></pre>
+<pre><code>[1] -0.009402919</code></pre>
 </div>
 </div>
 </section>
@@ -1016,7 +1016,7 @@ IQ.you.back.n    21</code></pre>
 <span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>r</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.0269618</code></pre>
+<pre><code>[1] 0.001401703</code></pre>
 </div>
 </div>
 </section>

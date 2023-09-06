@@ -22,7 +22,7 @@ format:
 ```{r child="../../../../topics/empirical_cycle/empirical_cycle.qmd"}
 ```
 
-```{r child="../../../../topics/coin_expreiment/coin_experiment.qmd"}
+```{r child="../../../../topics/alien_experiment/alien_experiment.qmd"}
 ```
 
 
