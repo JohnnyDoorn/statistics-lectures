@@ -417,7 +417,7 @@ Sharon Klinkenberg &amp; Johnny van Doorn
 <section>
 <section id="reasoning-in-statistics" class="title-slide slide level1 section center">
 <h1>Reasoning in statistics</h1>
-<p>Source: <a href="https://apps3.cehd.umn.edu/artist/glossary.html">ARTIST</a></p>
+<p>Source: <a href="http://web.archive.org/web/20221018074534/http://apps3.cehd.umn.edu/artist/glossary.html">ARTIST</a></p>
 </section>
 <section id="statistical-literacy" class="slide level2 subsection">
 <h2>Statistical Literacy</h2>
@@ -427,7 +427,7 @@ Sharon Klinkenberg &amp; Johnny van Doorn
 <li>Identify</li>
 <li>Describe</li>
 </ul></li>
-<li>Skils (Ability to work with statistical tools)
+<li>Skills (Ability to work with statistical tools)
 <ul>
 <li>Translate</li>
 <li>Interpret</li>
@@ -447,7 +447,7 @@ Sharon Klinkenberg &amp; Johnny van Doorn
 </ul>
 </section>
 <section id="statistical-thinking" class="slide level2 subsection">
-<h2>Statistical thinking</h2>
+<h2>Statistical Thinking</h2>
 <ul>
 <li>Apply
 <ul>
@@ -515,35 +515,37 @@ Sharon Klinkenberg &amp; Johnny van Doorn
 <section>
 <section id="experiment" class="title-slide slide level1 section center">
 <h1>Experiment</h1>
-<p><a href="https://webcolleges.uva.nl/Mediasite/Play/ed1e63e0cd204dcf9d2a144603ce342b1d?playFrom=3708000">Video registration</a></p>
+<!-- [Video registration](https://webcolleges.uva.nl/Mediasite/Play/ed1e63e0cd204dcf9d2a144603ce342b1d?playFrom=3708000) -->
 </section>
-<section id="heads" class="slide level2">
-<h2>Heads</h2>
+<section id="test" class="slide level2">
+<h2>Test</h2>
 <div style="text-align:center;">
-<p><img src="https://shklinkenberg.github.io/statistics-lectures/topics/coin_expreiment/QR_heads.png" style="width:40%;"></p>
-<p>
-bit.ly/2j54A2U
+<p><img src="proyi.png" style="width:40%;"></p>
+<p style="font-size: 30px;">
+https://maglit.me/proyi
 </p>
 </div>
 </section>
 <section id="emperical-cycle" class="slide level2 section">
 <h2>Emperical Cycle</h2>
 <ul>
-<li><strong>Observation</strong> Patiënt is showing post traumatic symptoms</li>
-<li><strong>Induction</strong> Can we diagnose PTSD</li>
-<li><strong>Deduction</strong> <span class="math inline">\(H_0\)</span>: P: fair coin → C: patiënt is balanced</li>
-<li><strong>Deduction</strong> <span class="math inline">\(H_A\)</span>: P: Unfair coin → C: patiënt is unbalanced</li>
-<li><strong>Deduction</strong> <span class="math inline">\(H_A\)</span>: P: data <span class="math inline">\(\neq\)</span> EV → C: is unbalanced</li>
+<li><strong>Observation</strong> Patient is showing strange behavior</li>
+<li><strong>Induction</strong> Can we diagnose an alien takeover?</li>
+<li><strong>Deduction</strong> <span class="math inline">\(H_0\)</span>: P: <span class="math inline">\(\theta = 0.5\)</span> → C: patient is human</li>
+<li><strong>Deduction</strong> <span class="math inline">\(H_A\)</span>: P: <span class="math inline">\(\theta &gt; 0.5\)</span> → C: patient is alien</li>
+<li><strong>Deduction</strong> <span class="math inline">\(H_A\)</span>: P: data <span class="math inline">\(\neq\)</span> EV → C: patient is alien</li>
 <li><strong>Testing</strong> Choose <span class="math inline">\(\alpha\)</span> and Power</li>
 <li><strong>Evaluation</strong> Make a decision</li>
 </ul>
 </section>
 <section id="null-distribution" class="slide level2 subsection">
-<h2>Null distribution</h2>
+<h2>Null Distribution</h2>
 <p>Let’s analyse the null distribution of the results.</p>
-<iframe style="height:400px; width:100%;" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSsDN_T8O8wuk3R-QuQR2PpUfK9IeM979FzMSNZi1krq_T8ICAxE5N10di8vwHfJRHXrr-zwXtKsTWz/pubhtml?gid=1329884255&amp;single=true&amp;widget=true&amp;headers=false">
+<iframe style="height:400px; width:100%;" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRcL5O7fPYtEfvqIQcRIFErAejbp8QozEW0Rx7m4p0xqA2-QU8CrMq35kVCD6q3CZH-CPhlJgXLZONc/pubhtml?widget=true&amp;headers=false">
 </iframe>
-<p><a href="https://docs.google.com/spreadsheets/d/150iSLUXqZbsetzDMjYlY5CAcjIzTanTm2tOFfn_ConA/edit?usp=sharing">Google sheet</a></p>
+
+<!-- [Google sheet](https://docs.google.com/spreadsheets/d/150iSLUXqZbsetzDMjYlY5CAcjIzTanTm2tOFfn_ConA/edit?usp=sharing) -->
+<p><a href="https://docs.google.com/spreadsheets/d/1BXVnt8yRDvzzzAsP1RkaTgPrwWkBTAQE16U1nD2nuNg/edit?usp=sharing">Google sheet</a></p>
 <!--
 
 
@@ -555,18 +557,17 @@ bit.ly/2j54A2U
 <ul>
 <li>Population distribution</li>
 <li>Sample distribution</li>
-<li>Samples distribution</li>
+<li>Sampling distribution</li>
 </ul>
 </section>
 <section id="binomial-distribution" class="slide level2">
 <h2>Binomial distribution</h2>
-<p><span class="math display">\[ {n\choose k}p^k(1-p)^{n-k} \\
-{n\choose k} = \frac{n!}{k!(n-k)!} \]</span></p>
+<p><span class="math display">\[P(k \text{ success out of } n \text{ trials} \mid \text{probability } p) = {n\choose k}p^k(1-p)^{n-k}\]</span> where <span class="math display">\[ {n\choose k} = \frac{n!}{k!(n-k)!} \]</span></p>
 <p>With values:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>n <span class="ot">=</span> <span class="dv">10</span>   <span class="co"># Sample size</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a>k <span class="ot">=</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">10</span> <span class="co"># Discrete probability space</span></span>
-<span id="cb1-3"><a href="#cb1-3"></a>p <span class="ot">=</span> .<span class="dv">5</span>   <span class="co"># Probability of head</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10</span>   <span class="co"># Sample size</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a>k <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">10</span> <span class="co"># Discrete probability space (numbers 0, 1, ..., 9, 10)</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a>p <span class="ot">&lt;-</span> .<span class="dv">5</span>   <span class="co"># Probability of head</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="probabilities" class="slide level2">
@@ -575,49 +576,50 @@ bit.ly/2j54A2U
 <img data-src="2.-reasoning_empirical_cycle_nhst_files/figure-revealjs/unnamed-chunk-8-1.png" width="960" class="r-stretch"></section>
 <section id="testing" class="slide level2">
 <h2>Testing</h2>
-<p>I landed 2 times head. Can we conclude PTSD?</p>
+<p>I had 7 items correct. Can we conclude I am no longer human?</p>
 <ul>
-<li>As you can see from the distribution of healthy coins, we cannot conclude that by definition.</li>
-<li>What we can do is indicate how rare 2 is in a healthy population.</li>
+<li>As you can see from the distribution of human scores, we cannot conclude that by definition.</li>
+<li>What we can do is indicate how rare 7 is in a human population.</li>
 </ul>
 </section>
 <section id="testing-1" class="slide level2 smaller">
 <h2>Testing</h2>
 <p><small></small></p><small>
 <ul>
-<li class="fragment">Based on the null distribution we can see that the expected value (EV is 5.)</li>
-<li class="fragment">We can now define the <span class="math inline">\(H_0\)</span> hypothesis: <span class="math inline">\(H_0 = 5\)</span></li>
+<li class="fragment">Based on the null distribution we can see that the expected value (EV) is 5</li>
+<li class="fragment">We can now define the <span class="math inline">\(H_0\)</span> hypothesis: <span class="math inline">\(H_0: EV = 5\)</span></li>
 <li class="fragment">What is the alternative hypothesis?</li>
-<li class="fragment">The alternative hypothesis describes a situation where PTSD is pressent.</li>
-<li class="fragment">We could say that the alternative hypothesis is not 5.
+<li class="fragment">The alternative hypothesis describes a situation where the patient is alien</li>
+<li class="fragment">We could say that the alternative hypothesis is not 5
 <ul>
-<li class="fragment"><span class="math inline">\(H_A \ne 5\)</span></li>
+<li class="fragment"><span class="math inline">\(H_A: EV \ne 5\)</span></li>
 </ul></li>
 <li class="fragment">We could also formulate our <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_A\)</span> more abstract:
 <ul>
-<li class="fragment"><span class="math inline">\(H_0:\)</span> the patient is balenced</li>
-<li class="fragment"><span class="math inline">\(H_A:\)</span> the patient is unbalenced</li>
+<li class="fragment"><span class="math inline">\(H_0:\)</span> the patient is human</li>
+<li class="fragment"><span class="math inline">\(H_A:\)</span> the patient is alien</li>
 </ul></li>
-<li class="fragment">What criterium should we use to conclude that one would be unbalenced?</li>
+<li class="fragment">What criterion should we use to conclude that one would be alien?</li>
 <li class="fragment">In the social sciences this <span class="math inline">\(\alpha\)</span> criteria is often 5%.</li>
-<li class="fragment">I tossed 2 times head. That is more frequent than 5%.</li>
-<li class="fragment">Therefore, we conclude that our patient is probably healthy but we can never be sure.</li>
-<li class="fragment">My coin could still be part of the unbalenced population.</li>
+<li class="fragment">I scored 7 items correct. That is more frequent than 5%.</li>
+<li class="fragment">Therefore, we conclude that our patient is probably human but we can never be sure.</li>
+<li class="fragment">I could still be part of the alien population.</li>
 </ul>
 </small><p><small></small></p>
 </section>
 <section id="null-distribution-1" class="slide level2">
-<h2>Null distribution</h2>
+<h2>Null Distribution</h2>
+<p>Observations outside the dashed lines are significant for <span class="math inline">\(\alpha = 0.05\)</span></p>
 
 <img data-src="2.-reasoning_empirical_cycle_nhst_files/figure-revealjs/unnamed-chunk-9-1.png" width="960" class="r-stretch"></section>
 <section id="alternative-distribution" class="slide level2 smaller build subsection">
 <h2>Alternative Distribution</h2>
-<p>But we have no clue of what this distribution could look like.</p>
-<p>For now let’s assume the probability of landing heads for my coin is .25</p>
+<p>But we have no clue what this distribution could look like.</p>
+<p>For now let’s assume the probability of answering an item correctly is .75</p>
 
 <img data-src="2.-reasoning_empirical_cycle_nhst_files/figure-revealjs/unnamed-chunk-10-1.png" width="960" class="r-stretch"></section>
 <section id="h_0-and-h_a-distribution" class="slide level2">
-<h2><span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_A\)</span> distribution</h2>
+<h2><span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_A\)</span> Distribution</h2>
 
 <!--
 
