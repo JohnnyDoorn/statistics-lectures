@@ -8,7 +8,7 @@
 
 [Neyman](https://en.wikipedia.org/wiki/Jerzy_Neyman) - [Pearson](https://en.wikipedia.org/wiki/Egon_Pearson)
 
-## Two hypothesis
+## Two hypotheses
 
 ::: columns
 ::: column
@@ -102,32 +102,32 @@ mu_in_ci = array() # create empty array
 iterations = 100
 
 for(i in 1:iterations) {
-	
-	n      = round(runif(1,10,60)) # use variable sample sizes between 10 and 60
-	sample = rnorm(n,mu,sig)       # sample from normal distribution
-	
-	sample_mean = mean(sample)
-	sample_sd   = sd(sample)
-	sample_ci   = sample_sd/sqrt(n)
-
-	sample_ci_upperbound = sample_mean + sample_ci * 1.96
-	sample_ci_lowerbound = sample_mean - sample_ci * 1.96
-	
-	if(sample_ci_lowerbound < mu & sample_ci_upperbound > mu) {
-		
-		mu_in_ci[i] = 1	
-		col = "darkgrey"	
-		}
-	else {
-		mu_in_ci[i] = 0
-		col = "red"
-		}
+  
+  n      = round(runif(1,10,60)) # use variable sample sizes between 10 and 60
+  sample = rnorm(n,mu,sig)       # sample from normal distribution
+  
+  sample_mean = mean(sample)
+  sample_sd   = sd(sample)
+  sample_ci   = sample_sd/sqrt(n)
+  
+  sample_ci_upperbound = sample_mean + sample_ci * 1.96
+  sample_ci_lowerbound = sample_mean - sample_ci * 1.96
+  
+  if(sample_ci_lowerbound < mu & sample_ci_upperbound > mu) {
     
-    # plot CI lines
-    lines(c(sample_ci_lowerbound,sample_ci_upperbound),rep((.98/iterations)*i,2),col=col)
+    mu_in_ci[i] = 1	
+    col = "darkgrey"	
+  }
+  else {
+    mu_in_ci[i] = 0
+    col = "red"
+  }
+  
+  # plot CI lines
+  lines(c(sample_ci_lowerbound,sample_ci_upperbound),rep((.98/iterations)*i,2),col=col)
+  
+}
 
-	}
-	
 percentage = (1/iterations)*sum(mu_in_ci)
 ```
 
@@ -136,27 +136,27 @@ percentage = (1/iterations)*sum(mu_in_ci)
 ```{r, echo=TRUE}
 #| output-location: slide
 
-n = 10   # Sample size
-k = 0:n  # Discrete probability space
-p = .5   # Probability of head
+n <- 10   # Sample size
+k <- 0:n  # Discrete probability space
+p <- .5   # Probability of head
 
-munt = 0:1
+coin <- 0:1
 
-permutations = factorial(n) / ( factorial(k) * factorial(n-k) )
+permutations <- factorial(n) / ( factorial(k) * factorial(n-k) )
 # permutations
 
-p_k  = p^k * (1-p)^(n-k)  # Probability of single event
-p_kp = p_k * permutations # Probability of event times 
-                          # the occurrence of that event
+p_k  <- p^k * (1-p)^(n-k)  # Probability of single event
+p_kp <- p_k * permutations # Probability of event times 
+# the occurrence of that event
 
-title = "Binomial Null distribution"
+title <- "Binomial Null distribution"
 
 # col=c(rep("red",2),rep("beige",7),rep("red",2))
 
 barplot( p_kp, 
          main=title, 
          names.arg=0:n, 
-         xlab="number of head", 
+         xlab="number of heads", 
          ylab="P(%)", 
          col='beige',
          ylim=c(0,.3) )
@@ -172,34 +172,34 @@ text(.6:10.6*1.2,p_kp,round(p_kp,3),pos=3,cex=.5)
 
 # n = 10   # Sample size
 # k = 0:10 # Discrete probability space
-prob = c(.2, .4, .6, .8)  # Probability of head
+prob <- c(.2, .4, .6, .8)  # Probability of head
 
 layout(matrix(1:4, 2,2)) 
 
 for(p in prob) {
-permutations = factorial(n) / ( factorial(k) * factorial(n-k) )
-
-p_k2  = p^k  * (1-p)^(n-k)  # Probability of single event
-p_kp2 = p_k2 * permutations # Probability of event times 
-                            # the occurrence of that event
-
-title = "Binomial alternative distribution"
-
-col=c(rep("red",2),rep("beige",7),rep("red",2))
-
-barplot( p_kp2, 
-         main=title, 
-         names.arg=0:10, 
-         xlab="number of head", 
-         ylab="P(%)", 
-         beside=TRUE,
-         col="beige",
-         ylim=c(0,.3) 
-         )
-
-# abline(v = c(2.5,10.9), lty=2, col='red')
-
-text(.6:10.6*1.2,p_kp2,round(p_kp2,3),pos=3,cex=.5)
+  permutations <- factorial(n) / ( factorial(k) * factorial(n-k) )
+  
+  p_k2  <- p^k  * (1-p)^(n-k)  # Probability of single event
+  p_kp2 <- p_k2 * permutations # Probability of event times 
+  # the occurrence of that event
+  
+  title <- "Binomial alternative distribution"
+  
+  col <- c(rep("red",2),rep("beige",7),rep("red",2))
+  
+  barplot( p_kp2, 
+           main=title, 
+           names.arg=0:10, 
+           xlab="number of heads", 
+           ylab="P(%)", 
+           beside=TRUE,
+           col="beige",
+           ylim=c(0,.3) 
+  )
+  
+  # abline(v = c(2.5,10.9), lty=2, col='red')
+  
+  text(.6:10.6*1.2,p_kp2,round(p_kp2,3),pos=3,cex=.5)
 }
 ```
 
@@ -245,25 +245,25 @@ text(.6:10.6*1.2,p_kp2,round(p_kp2,3),pos=3,cex=.5)
 
 ```{r, echo=FALSE}
 
-n = 10   # Sample size
-k = 0:10 # Discrete probability space
-p = .5   # Probability of head
+n <- 10   # Sample size
+k <- 0:10 # Discrete probability space
+p <- .5   # Probability of head
 
-p_k  = p^k * (1-p)^(n-k)  # Probability of single event
-p_kp = p_k * permutations # Probability of event times 
-                          # the occurrence of that event
+p_k  <- p^k * (1-p)^(n-k)  # Probability of single event
+p_kp <- p_k * permutations # Probability of event times 
+# the occurrence of that event
 # sample = 90
 # freq_munt = round(p_kp*sample)
 # cbind(k,permutations,p_k,p_kp,freq_munt)
 
-title = "Binomial Null distribution"
+title <- "Binomial Null distribution"
 
-col=c(rep("red",2),rep("beige",7),rep("red",2))
+col <- c(rep("red",2),rep("beige",7),rep("red",2))
 
 barplot( p_kp, 
          main=title, 
          names.arg=0:10, 
-         xlab="number of head", 
+         xlab="number of heads", 
          ylab="P(%)", 
          col=col,
          ylim=c(0,.3) )
@@ -280,7 +280,7 @@ text(.6:10.6*1.2,p_kp,round(p_kp,3),pos=3,cex=.5)
 -   Correctly reject $H_0$
 -   True positive
 -   Power equal to: 1 - Beta
-    -   Beta is Type II error
+-   Beta is Type II error
 -   Criteria often 80%
 -   Depends on sample size
 :::
@@ -301,20 +301,20 @@ text(.6:10.6*1.2,p_kp,round(p_kp,3),pos=3,cex=.5)
 
 ```{r, echo=FALSE}
 
-n = 10   # Sample size
-k = 0:10 # Discrete probability space
-p = .25   # Probability of head
+n <- 10   # Sample size
+k <- 0:10 # Discrete probability space
+p <- .25   # Probability of head
 
-p_k  = p^k * (1-p)^(n-k)  # Probability of single event
-p_kp = p_k * permutations # Probability of event times 
-                          # the occurrence of that event
+p_k  <- p^k * (1-p)^(n-k)  # Probability of single event
+p_kp <- p_k * permutations # Probability of event times 
+# the occurrence of that event
 # sample = 90
 # freq_munt = round(p_kp*sample)
 # cbind(k,permutations,p_k,p_kp,freq_munt)
 
-title = "Binomial alternative distribution"
+title <- "Binomial alternative distribution"
 
-col=c(rep("red",2),rep("beige",7),rep("red",2))
+col <- c(rep("red",2),rep("beige",7),rep("red",2))
 
 barplot( p_kp, 
          main=title, 
@@ -348,7 +348,11 @@ Source: [WIKIPEDIA](https://en.wikipedia.org/wiki/Effect_size)
 
 ## Effect size {.flexbox .vcenter}
 
-![](../../../../topics/NHST/effec_size.png)
+![](../../../../topics/NHST/effect_size_base.png)
+
+## Effect size {.flexbox .vcenter}
+
+![](../../../../topics/NHST/effect_size.png)
 
 ## One minus alpha
 
@@ -374,25 +378,25 @@ Source: [WIKIPEDIA](https://en.wikipedia.org/wiki/Effect_size)
 
 ```{r, echo=FALSE}
 
-n = 10   # Sample size
-k = 0:10 # Discrete probability space
-p = .5   # Probability of head
+n <- 10   # Sample size
+k <- 0:10 # Discrete probability space
+p <- .5   # Probability of head
 
-p_k  = p^k * (1-p)^(n-k)  # Probability of single event
-p_kp = p_k * permutations # Probability of event times 
-                          # the occurrence of that event
+p_k  <- p^k * (1-p)^(n-k)  # Probability of single event
+p_kp <- p_k * permutations # Probability of event times 
+# the occurrence of that event
 # sample = 90
 # freq_munt = round(p_kp*sample)
 # cbind(k,permutations,p_k,p_kp,freq_munt)
 
-title = "Binomial Null distribution"
+title <- "Binomial Null distribution"
 
-col=c(rep("beige",2),rep("red",7),rep("beige",2))
+col <- c(rep("beige",2),rep("red",7),rep("beige",2))
 
 barplot( p_kp, 
          main=title, 
          names.arg=0:10, 
-         xlab="number of head", 
+         xlab="number of heads", 
          ylab="P(%)", 
          col=col,
          ylim=c(0,.3) )
@@ -429,20 +433,20 @@ text(.6:10.6*1.2,p_kp,round(p_kp,3),pos=3,cex=.5)
 
 ```{r, echo=FALSE}
 
-n = 10   # Sample size
-k = 0:10 # Discrete probability space
-p = .25   # Probability of head
+n <- 10   # Sample size
+k <- 0:10 # Discrete probability space
+p <- .25   # Probability of head
 
-p_k  = p^k * (1-p)^(n-k)  # Probability of single event
-p_kp = p_k * permutations # Probability of event times 
-                          # the occurrence of that event
+p_k  <- p^k * (1-p)^(n-k)  # Probability of single event
+p_kp <- p_k * permutations # Probability of event times 
+# the occurrence of that event
 # sample = 90
 # freq_munt = round(p_kp*sample)
 # cbind(k,permutations,p_k,p_kp,freq_munt)
 
-title = "Binomial alternative distribution"
+title <- "Binomial alternative distribution"
 
-col=c(rep("beige",2),rep("red",7),rep("beige",2))
+col <- c(rep("beige",2),rep("red",7),rep("beige",2))
 
 barplot( p_kp, 
          main=title, 
@@ -461,10 +465,10 @@ text(.6:10.6*1.2,p_kp,round(p_kp,3),pos=3,cex=.5)
 
 ```{r, echo=FALSE}
 
-title = "Both distributions"
+title <- "Both distributions"
 
-colh0 = 'darkgreen'
-colha = 'darkorange'
+colh0 <- 'darkgreen'
+colha <- 'darkorange'
 
 barplot( rbind(dbinom(0:10, 10, .5),
                dbinom(0:10, 10, .2)), 
@@ -475,7 +479,7 @@ barplot( rbind(dbinom(0:10, 10, .5),
          col = rbind(colh0,colha),
          beside=TRUE
          #legend.text = c("H0", "HA")
-         )
+)
 
 abline(v = c(6.5,27.5), lty=2, col='red')
 
@@ -495,20 +499,20 @@ Reject $H_0$ when:
 
 ```{r, echo=FALSE}
 
-n = 10   # Sample size
-k = 0:10 # Discrete probability space
-p = .5   # Probability of head
+n <- 10   # Sample size
+k <- 0:10 # Discrete probability space
+p <- .5   # Probability of head
 
-p_k  = p^k * (1-p)^(n-k)  # Probability of single event
-p_kp = p_k * permutations # Probability of event times 
-                          # the occurrence of that event
+p_k  <- p^k * (1-p)^(n-k)  # Probability of single event
+p_kp <- p_k * permutations # Probability of event times 
+# the occurrence of that event
 # sample = 90
 # freq_munt = round(p_kp*sample)
 # cbind(k,permutations,p_k,p_kp,freq_munt)
 
-title = "Binomial Null distribution"
+title <- "Binomial Null distribution"
 
-col=c(rep("blue",3),rep("beige",5),rep("blue",2))
+col <- c(rep("blue",3),rep("beige",5),rep("blue",2))
 
 barplot( p_kp, 
          main=title, 
@@ -540,10 +544,10 @@ Some common test statistics
 ```{r, echo=TRUE}
 #| output-location: slide
 
-N     = 10  # Sample size
-H0    = .5  # Probability of head under H0 50/50
-HA    = .2  # Aternative expected value
-alpha = .05 # Selected type I error
+N     <- 10  # Sample size
+H0    <- .5  # Probability of head under H0 50/50
+HA    <- .2  # Aternative expected value
+alpha <- .05 # Selected type I error
 
 # Color areas red for selected alpha
 area <- dbinom(0:N, N, H0) < alpha/2

@@ -278,27 +278,27 @@ ctx.fillText("1.96se₂-x̄₂", bar_x_pos+bar_width+bar_gutter+(bar_width/4*3),
 <section id="binomial-h_0-distribution" class="level2">
 <h2 class="anchored" data-anchor-id="binomial-h_0-distribution">Binomial <span class="math inline">\(H_0\)</span> distribution</h2>
 <div class="cell" data-output-location="slide">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">=</span> <span class="dv">10</span>   <span class="co"># Sample size</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>k <span class="ot">=</span> <span class="dv">0</span><span class="sc">:</span>n  <span class="co"># Discrete probability space</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>p <span class="ot">=</span> .<span class="dv">5</span>   <span class="co"># Probability of head</span></span>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10</span>   <span class="co"># Sample size</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">:</span>n  <span class="co"># Discrete probability space</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> .<span class="dv">5</span>   <span class="co"># Probability of head</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>munt <span class="ot">=</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">1</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>coin <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">1</span></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>permutations <span class="ot">=</span> <span class="fu">factorial</span>(n) <span class="sc">/</span> ( <span class="fu">factorial</span>(k) <span class="sc">*</span> <span class="fu">factorial</span>(n<span class="sc">-</span>k) )</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>permutations <span class="ot">&lt;-</span> <span class="fu">factorial</span>(n) <span class="sc">/</span> ( <span class="fu">factorial</span>(k) <span class="sc">*</span> <span class="fu">factorial</span>(n<span class="sc">-</span>k) )</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># permutations</span></span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>p_k  <span class="ot">=</span> p<span class="sc">^</span>k <span class="sc">*</span> (<span class="dv">1</span><span class="sc">-</span>p)<span class="sc">^</span>(n<span class="sc">-</span>k)  <span class="co"># Probability of single event</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>p_kp <span class="ot">=</span> p_k <span class="sc">*</span> permutations <span class="co"># Probability of event times </span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>                          <span class="co"># the occurrence of that event</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>p_k  <span class="ot">&lt;-</span> p<span class="sc">^</span>k <span class="sc">*</span> (<span class="dv">1</span><span class="sc">-</span>p)<span class="sc">^</span>(n<span class="sc">-</span>k)  <span class="co"># Probability of single event</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>p_kp <span class="ot">&lt;-</span> p_k <span class="sc">*</span> permutations <span class="co"># Probability of event times </span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># the occurrence of that event</span></span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>title <span class="ot">=</span> <span class="st">"Binomial Null distribution"</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>title <span class="ot">&lt;-</span> <span class="st">"Binomial Null distribution"</span></span>
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co"># col=c(rep("red",2),rep("beige",7),rep("red",2))</span></span>
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>( p_kp, </span>
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>         <span class="at">main=</span>title, </span>
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>         <span class="at">names.arg=</span><span class="dv">0</span><span class="sc">:</span>n, </span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>         <span class="at">xlab=</span><span class="st">"number of head"</span>, </span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>         <span class="at">xlab=</span><span class="st">"number of heads"</span>, </span>
 <span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>         <span class="at">ylab=</span><span class="st">"P(%)"</span>, </span>
 <span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>         <span class="at">col=</span><span class="st">'beige'</span>,</span>
 <span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>         <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,.<span class="dv">3</span>) )</span>
@@ -364,10 +364,8 @@ ctx.fillText("1.96se₂-x̄₂", bar_x_pos+bar_width+bar_gutter+(bar_width/4*3),
 <ul>
 <li>Correctly reject <span class="math inline">\(H_0\)</span></li>
 <li>True positive</li>
-<li>Power equal to: 1 - Beta
-<ul>
+<li>Power equal to: 1 - Beta</li>
 <li>Beta is Type II error</li>
-</ul></li>
 <li>Criteria often 80%</li>
 <li>Depends on sample size</li>
 </ul>
@@ -409,7 +407,11 @@ ctx.fillText("1.96se₂-x̄₂", bar_x_pos+bar_width+bar_gutter+(bar_width/4*3),
 </section>
 <section id="effect-size-1" class="level2 flexbox vcenter">
 <h2 class="flexbox vcenter anchored" data-anchor-id="effect-size-1">Effect size</h2>
-<p><img src="../../../../topics/NHST/effec_size.png" class="img-fluid"></p>
+<p><img src="../../../../topics/NHST/effect_size_base.png" class="img-fluid"></p>
+</section>
+<section id="effect-size-2" class="level2 flexbox vcenter">
+<h2 class="flexbox vcenter anchored" data-anchor-id="effect-size-2">Effect size</h2>
+<p><img src="../../../../topics/NHST/effect_size.png" class="img-fluid"></p>
 </section>
 <section id="one-minus-alpha" class="level2">
 <h2 class="anchored" data-anchor-id="one-minus-alpha">One minus alpha</h2>
@@ -510,10 +512,10 @@ ctx.fillText("1.96se₂-x̄₂", bar_x_pos+bar_width+bar_gutter+(bar_width/4*3),
 <section id="decision-table-1" class="level2 flexbox vcenter smaller">
 <h2 class="flexbox vcenter smaller anchored" data-anchor-id="decision-table-1">Decision Table</h2>
 <div class="cell" data-output-location="slide">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>N     <span class="ot">=</span> <span class="dv">10</span>  <span class="co"># Sample size</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>H0    <span class="ot">=</span> .<span class="dv">5</span>  <span class="co"># Probability of head under H0 50/50</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>HA    <span class="ot">=</span> .<span class="dv">2</span>  <span class="co"># Aternative expected value</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">=</span> .<span class="dv">05</span> <span class="co"># Selected type I error</span></span>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>N     <span class="ot">&lt;-</span> <span class="dv">10</span>  <span class="co"># Sample size</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>H0    <span class="ot">&lt;-</span> .<span class="dv">5</span>  <span class="co"># Probability of head under H0 50/50</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>HA    <span class="ot">&lt;-</span> .<span class="dv">2</span>  <span class="co"># Aternative expected value</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> .<span class="dv">05</span> <span class="co"># Selected type I error</span></span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Color areas red for selected alpha</span></span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>area <span class="ot">&lt;-</span> <span class="fu">dbinom</span>(<span class="dv">0</span><span class="sc">:</span>N, N, H0) <span class="sc">&lt;</span> alpha<span class="sc">/</span><span class="dv">2</span></span>

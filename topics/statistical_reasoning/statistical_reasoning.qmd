@@ -3,15 +3,16 @@
 Source: [ARTIST](http://web.archive.org/web/20221018074534/http://apps3.cehd.umn.edu/artist/glossary.html)
 
 ## Statistical Literacy {.subsection}
+<div class="incremental">
 
-* Knowledge (Basic understanding of concepts)
-    * Identify
-    * Describe
-* Skills (Ability to work with statistical tools)
-    * Translate
-    * Interpret
-    * Read
-    * Compute
+- Knowledge (Basic understanding of concepts)
+    - Identify
+    - Describe
+- Skills (Ability to work with statistical tools)
+    - Translate
+    - Interpret
+    - Read
+    - Compute
 
 ## Statistical Reasoning {.subsection}
 
