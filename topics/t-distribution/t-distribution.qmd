@@ -50,7 +50,7 @@ for(i in 1:n.samples) {
 Let's take one sample from our normal populatiion and calculate the t-value.
 
 ```{r, echo=TRUE}
-x = rnorm(n, mu, sigma); x
+x <- rnorm(n, mu, sigma); x
 ```
 
 ```{r, echo=TRUE}
@@ -64,14 +64,14 @@ text(80, 10, round(mean(x),2))
 let's take more samples.
 
 ```{r, echo=TRUE}
-n.samples     = 1000
-mean.x.values = vector()
-se.x.values   = vector()
+n.samples     <- 1000
+mean.x.values <- vector()
+se.x.values   <- vector()
 
 for(i in 1:n.samples) {
-  x = rnorm(n, mu, sigma)
-  mean.x.values[i] = mean(x)
-  se.x.values[i]   = (sd(x) / sqrt(n))
+  x <- rnorm(n, mu, sigma)
+  mean.x.values[i] <- mean(x)
+  se.x.values[i]   <- (sd(x) / sqrt(n))
 }
 ```
 
@@ -105,8 +105,8 @@ So the t-statistic represents the deviation of the sample mean $\bar{x}$ from th
 $$T_{n-1} = \frac{\bar{x}-\mu}{SE_x} = \frac{\bar{x}-\mu}{s_x / \sqrt{n}}$$
 
 ```{r, echo=TRUE}
-t = (mean(x) - mu) / (sd(x) / sqrt(n))
-t
+tStat <- (mean(x) - mu) / (sd(x) / sqrt(n))
+tStat
 ```
 
 ## Calculate t-values
@@ -114,7 +114,7 @@ t
 $$T_{n-1} = \frac{\bar{x}-\mu}{SE_x} = \frac{\bar{x}-\mu}{s_x / \sqrt{n}}$$
 
 ```{r, echo=TRUE}
-t.values = (mean.x.values - mu) / se.x.values
+t.values <- (mean.x.values - mu) / se.x.values
 
 tail(cbind(mean.x.values, mu, se.x.values, t.values))
 ```
@@ -127,13 +127,13 @@ What is the distribution of all these t-values?
 #| output-location: slide
 
 hist(t.values, 
-     freq = F, 
+     freq = FALSE, 
      main = "Sampled T-values", 
      xlab = "T-values",
      col  = "beige",
      ylim = c(0, .4))
-T = seq(-4, 4, .01)
-lines(T, dt(T,df), col = "red")
+myTs = seq(-4, 4, .01)
+lines(myTs, dt(myTs,df), col = "red")
 legend("topright", lty = 1, col="red", legend = "T-distribution")
 ```
 
@@ -156,18 +156,17 @@ Source: [wikipedia](https://en.wikipedia.org/wiki/Student%27s_t-distribution)
 ## 
 
 ```{r, echo=FALSE}
-multiple.n  = c(5, 15, 30, 75, 100)
-multiple.df = multiple.n - 1
-col         = rainbow(length(multiple.df))
+multiple.n  <- c(5, 15, 30, 75, 100)
+multiple.df <- multiple.n - 1
+col         <- rainbow(length(multiple.df))
 
-plot(T,  dt(T, multiple.df[1]), type = "l", 
+plot(myTs,  dt(myTs, multiple.df[1]), type = "l", 
      xlim = c(-4,4), ylim = c(0,.45), 
      xlab = "T", ylab="density", 
      col = col[1], main="T-distributions" )
 
 for(i in 2:length(multiple.df)) { 
-  
-  lines(T, dt(T, multiple.df[i]), type="l", col=col[i])
+  lines(myTs, dt(myTs, multiple.df[i]), type="l", col=col[i])
   } 
 legend("topright", legend = paste("n =",multiple.n), lty=1, col = col)
 ```
@@ -197,11 +196,11 @@ plot(function(x) dt(x, df = 10), -4, 4,
      bty="n",
      lwd=1.5)
      
-t = 2
+tStat <- 2
 
-p = pt(1,10)
+pVal <- pt(1,10)
 
-alpha_r = 1-p
+alpha_r = 1 - pVal
 
 
 # add p-value
@@ -275,7 +274,7 @@ text( 3,dt(tp95 , df = 10),expression(paste(    alpha[right]," = 5%"  ,sep="")),
 
 #polygon(c(0,1,1,0),c(0,0,.3,.3))
 
-pol_left = seq(-4,-t,length=20)
+pol_left = seq(-4,-tStat,length=20)
 
 xbracket = seq(tp95,4,length=39)
 ybracket = dt(tp95 , df = 10)*c(c(1,1.02),rep(1.03,16),c(1.04,1.05,1.04),rep(1.03,16),c(1.02,1))
@@ -289,7 +288,7 @@ The effect-size is the standardised difference between the mean and the expected
 $$r = \sqrt{\frac{t^2}{t^2 + \text{df}}}$$
 
 ```{r, echo=TRUE}
-r = sqrt(t^2/(t^2 + df))
+r <- sqrt(tStat^2 / (tStat^2 + df))
 
 r
 ```
@@ -299,7 +298,7 @@ r
 We can also calculate effect-sizes for all our calculated t-values. Under the assumption of $H_0$ the effect-size distribution looks like this.
 
 ```{r}
-r = sqrt(t.values^2/(t.values^2 + df))
+r <- sqrt(t.values^2/(t.values^2 + df))
 
 tail(cbind(mean.x.values, mu, se.x.values, t.values, r))
 ```
@@ -325,7 +324,7 @@ Cohen (1988)
 -   Strive for 80%
 -   Based on know effect size
 -   Calculate number of subjects needed
--   Use [G\*Power](http://www.gpower.hhu.de) to calculate
+-   Use [G\*Power](http://www.gpower.hhu.de), [JASP](www.jasp-stats.org), or SPSS to calculate
 
 ![](https://www.psychologie.hhu.de/fileadmin/_processed_/f/d/csm_GPowerIcon_b6bfb17f0c.png)
 
@@ -334,9 +333,9 @@ Cohen (1988)
 ```{r, echo=TRUE, fig.align='center'}
 #| output-location: slide
 
-T = seq(-3,6,.01)
-N = 45
-E = 2
+tValues <- seq(-3,6,.01)
+N <- 45
+E <- 2
 
 # Set plot
 plot(0,0,
@@ -367,8 +366,8 @@ polygon(c(range_x,rev(range_x)),
         angle   = 45,
         lwd     = 2)
 
-lines(T,dt(T,N-1,ncp=0),col="red", lwd=2) # H0 line
-lines(T,dt(T,N-1,ncp=E),col="blue",lwd=2) # HA line
+lines(tValues,dt(tValues,N-1,ncp=0),col="red", lwd=2) # H0 line
+lines(tValues,dt(tValues,N-1,ncp=E),col="blue",lwd=2) # HA line
 
 # Critical value
 lines(rep(critical_t,2),c(0,dt(critical_t,N-1,ncp=E)),lwd=2,col="black")

@@ -4,9 +4,9 @@
 
 ::: {.r-stack}
 
-![http://goo.gl/T6Lo2s](../../../../topics/t-test_one-sample/QR_iq.png)
+![https://forms.gle/M7yJn59aWsevWrf67](../../../../topics/t-test_one-sample/nomaphochs.png)
 <br>
-http://goo.gl/T6Lo2s
+https://maglit.me/nomaphochs
 
 :::
 
@@ -27,20 +27,21 @@ Let's take a different sample and calculate the mean of this sample.
 ```{r, message=FALSE, eval=TRUE, echo=FALSE}
 if(!'gsheet' %in% installed.packages()) { install.packages('gsheet') }
 library("gsheet")
-data <- gsheet2tbl('docs.google.com/spreadsheets/d/13oLFjy5e923weH8bzBipZSvWYS_dpw7B77g5yW_myLg/edit?usp=sharing')
+data <- gsheet2tbl('https://docs.google.com/spreadsheets/d/1LN8j2MgTk1Su-hZCbFjexiUKQx-LmbgGqlpN6YzF2jQ/edit?usp=sharing')
 
-IQ.next.to.you = data[grep("2017|2020", as.character(data$Timestamp)),"IQ next to you"]
-IQ.next.to.you <- as.numeric(IQ.next.to.you$"IQ next to you")
+# IQ.next.to.you = data[grep("2017|2020", as.character(data$Timestamp)),"IQ next to you"]
+IQ.next.to.you = data[,"nextIQ"]
+IQ.next.to.you <- as.numeric(IQ.next.to.you$nextIQ)
 ```
 
 
 
 ```{r, message=FALSE, warning=FALSE, echo=TRUE}
-mu     = 120
-n      = length(IQ.next.to.you)
-x      = IQ.next.to.you
-mean_x = mean(x, na.rm = TRUE)
-sd_x   = sd(x, na.rm = TRUE)
+mu     <- 120
+n      <- length(IQ.next.to.you)
+x      <- IQ.next.to.you
+mean_x <- mean(x, na.rm = TRUE)
+sd_x   <- sd(x, na.rm = TRUE)
 cbind(n, mean_x, sd_x)
 ```
 
@@ -75,7 +76,7 @@ $$T_{n-1} = \frac{\bar{x}-\mu}{SE_x} = \frac{\bar{x}-\mu}{s_x / \sqrt{n}} = \fra
 So the t-statistic represents the deviation of the sample mean $\bar{x}$ from the population mean $\mu$, considering the sample size.
 
 ```{r, echo=TRUE}
-t = (mean_x - mu) / (sd_x / sqrt(n)); t
+tStat <- (mean_x - mu) / (sd_x / sqrt(n)); tStat
 ```
 
 ## Type I error {.subsection}
@@ -89,7 +90,7 @@ To determine if this t-value significantly differs from the population mean we h
 Finally we have to calculate our _p_-value for which we need the degrees of freedom $df = n - 1$ to determine the shape of the t-distribution.
 
 ```{r, echo=TRUE}
-df = n - 1; df
+df <- n - 1; df
 ```
 
 ```{r, echo=TRUE}
@@ -98,13 +99,13 @@ df = n - 1; df
 if(!"visualize" %in% installed.packages()) { install.packages("visualize") }
 library("visualize")
 
-visualize.t(t, df, section = "upper")
+visualize.t(-tStat, 10, section = "upper")
 ```
 
 ## P-value two sided {.subsection}
 
 ```{r, echo=TRUE}
-visualize.t(c(-t, t), df, section = "tails")
+visualize.t(c(-tStat, tStat), 10, section = "tails")
 ```
 
 ## Effect-size
@@ -112,7 +113,7 @@ visualize.t(c(-t, t), df, section = "tails")
 $$r = \sqrt{\frac{t^2}{t^2 + \text{df}}}$$
 
 ```{r, echo=TRUE}
-r = sqrt(t^2/(t^2 + df))
+r <- sqrt(tStat^2/(tStat^2 + df))
 
 r
 ```
