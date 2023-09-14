@@ -818,90 +818,9 @@ ctx.fillText("1.96se₂-x̄₂", bar_x_pos+bar_width+bar_gutter+(bar_width/4*3),
 </section>
 <section id="decision-table-1" class="slide level2 flexbox vcenter smaller">
 <h2>Decision Table</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>N     <span class="ot">&lt;-</span> <span class="dv">10</span>  <span class="co"># Sample size</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a>H0    <span class="ot">&lt;-</span> .<span class="dv">5</span>  <span class="co"># Probability of head under H0 50/50</span></span>
-<span id="cb2-3"><a href="#cb2-3"></a>HA    <span class="ot">&lt;-</span> .<span class="dv">2</span>  <span class="co"># Aternative expected value</span></span>
-<span id="cb2-4"><a href="#cb2-4"></a>alpha <span class="ot">&lt;-</span> .<span class="dv">05</span> <span class="co"># Selected type I error</span></span>
-<span id="cb2-5"><a href="#cb2-5"></a></span>
-<span id="cb2-6"><a href="#cb2-6"></a><span class="co"># Color areas red for selected alpha</span></span>
-<span id="cb2-7"><a href="#cb2-7"></a>area <span class="ot">&lt;-</span> <span class="fu">dbinom</span>(<span class="dv">0</span><span class="sc">:</span>N, N, H0) <span class="sc">&lt;</span> alpha<span class="sc">/</span><span class="dv">2</span></span>
-<span id="cb2-8"><a href="#cb2-8"></a></span>
-<span id="cb2-9"><a href="#cb2-9"></a><span class="co"># barplot(dbinom(0:N,N, HA)) -&gt; x.values</span></span>
-<span id="cb2-10"><a href="#cb2-10"></a></span>
-<span id="cb2-11"><a href="#cb2-11"></a><span class="co"># x.values</span></span>
-<span id="cb2-12"><a href="#cb2-12"></a><span class="co"># lb &lt;- x.values[c(qbinom(alpha/2, N+1, H0), qbinom(alpha/2, N+1, H0)+1 )]</span></span>
-<span id="cb2-13"><a href="#cb2-13"></a><span class="co"># ub &lt;- x.values[c(qbinom(1-(alpha/2), N+1, H0), qbinom(1-(alpha/2), N+1, H0)+1 )]</span></span>
-<span id="cb2-14"><a href="#cb2-14"></a><span class="co"># </span></span>
-<span id="cb2-15"><a href="#cb2-15"></a><span class="co"># mlb &lt;- mean(lb)</span></span>
-<span id="cb2-16"><a href="#cb2-16"></a><span class="co"># mub &lt;- mean(ub)</span></span>
-<span id="cb2-17"><a href="#cb2-17"></a></span>
-<span id="cb2-18"><a href="#cb2-18"></a>col <span class="ot">=</span> <span class="fu">rep</span>(<span class="st">"beige"</span>, N<span class="sc">+</span><span class="dv">1</span>)</span>
-<span id="cb2-19"><a href="#cb2-19"></a>col[area] <span class="ot">=</span> <span class="st">"red"</span></span>
-<span id="cb2-20"><a href="#cb2-20"></a></span>
-<span id="cb2-21"><a href="#cb2-21"></a>col2 <span class="ot">=</span> <span class="fu">rep</span>(<span class="st">"red"</span>, N<span class="sc">+</span><span class="dv">1</span>)</span>
-<span id="cb2-22"><a href="#cb2-22"></a>col2[area] <span class="ot">=</span> <span class="st">"beige"</span></span>
-<span id="cb2-23"><a href="#cb2-23"></a></span>
-<span id="cb2-24"><a href="#cb2-24"></a><span class="co"># Delete # to not color the plots</span></span>
-<span id="cb2-25"><a href="#cb2-25"></a><span class="co"># col = col2  = "beige"</span></span>
-<span id="cb2-26"><a href="#cb2-26"></a></span>
-<span id="cb2-27"><a href="#cb2-27"></a><span class="fu">layout</span>(<span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>,<span class="dv">3</span>,<span class="dv">3</span>, <span class="at">byrow=</span>T))</span>
-<span id="cb2-28"><a href="#cb2-28"></a></span>
-<span id="cb2-29"><a href="#cb2-29"></a><span class="fu">plot.new</span>()</span>
-<span id="cb2-30"><a href="#cb2-30"></a><span class="fu">text</span>(<span class="fl">0.5</span>,<span class="fl">0.5</span>,<span class="st">"Binomial Distribution"</span>,<span class="at">cex=</span><span class="fl">1.5</span>)</span>
-<span id="cb2-31"><a href="#cb2-31"></a><span class="co"># text(0.5,0.1,paste("N:",N),cex=1.5)</span></span>
-<span id="cb2-32"><a href="#cb2-32"></a></span>
-<span id="cb2-33"><a href="#cb2-33"></a><span class="fu">plot.new</span>()</span>
-<span id="cb2-34"><a href="#cb2-34"></a><span class="fu">text</span>(<span class="fl">0.5</span>,<span class="fl">0.5</span>,<span class="st">"H0 True"</span>,<span class="at">cex=</span><span class="dv">2</span>)</span>
-<span id="cb2-35"><a href="#cb2-35"></a></span>
-<span id="cb2-36"><a href="#cb2-36"></a><span class="fu">plot.new</span>()</span>
-<span id="cb2-37"><a href="#cb2-37"></a><span class="fu">text</span>(<span class="fl">0.5</span>,<span class="fl">0.5</span>,<span class="st">"H0 False"</span>,<span class="at">cex=</span><span class="dv">2</span>)</span>
-<span id="cb2-38"><a href="#cb2-38"></a></span>
-<span id="cb2-39"><a href="#cb2-39"></a><span class="fu">plot.new</span>()</span>
-<span id="cb2-40"><a href="#cb2-40"></a><span class="fu">text</span>(<span class="fl">0.5</span>,<span class="fl">0.5</span>,<span class="st">"Reject H0"</span>,<span class="at">cex=</span><span class="dv">2</span>)</span>
-<span id="cb2-41"><a href="#cb2-41"></a></span>
-<span id="cb2-42"><a href="#cb2-42"></a><span class="fu">barplot</span>(<span class="fu">dbinom</span>(<span class="dv">0</span><span class="sc">:</span>N,N, H0), </span>
-<span id="cb2-43"><a href="#cb2-43"></a>        <span class="at">col  =</span> col, </span>
-<span id="cb2-44"><a href="#cb2-44"></a>        <span class="co"># yaxt = 'n', </span></span>
-<span id="cb2-45"><a href="#cb2-45"></a>        <span class="at">main =</span> <span class="st">'Alpha / Type I error'</span>, </span>
-<span id="cb2-46"><a href="#cb2-46"></a>        <span class="at">names.arg =</span> <span class="dv">0</span><span class="sc">:</span>N, </span>
-<span id="cb2-47"><a href="#cb2-47"></a>        <span class="at">cex.names =</span> <span class="fl">0.7</span>)</span>
-<span id="cb2-48"><a href="#cb2-48"></a></span>
-<span id="cb2-49"><a href="#cb2-49"></a></span>
-<span id="cb2-50"><a href="#cb2-50"></a><span class="co"># abline(v = mlb, col="red", lwd=3, lty=2)</span></span>
-<span id="cb2-51"><a href="#cb2-51"></a><span class="co"># abline(v = mub, col="red", lwd=3, lty=2)</span></span>
-<span id="cb2-52"><a href="#cb2-52"></a></span>
-<span id="cb2-53"><a href="#cb2-53"></a><span class="fu">barplot</span>(<span class="fu">dbinom</span>(<span class="dv">0</span><span class="sc">:</span>N,N, HA), </span>
-<span id="cb2-54"><a href="#cb2-54"></a>        <span class="at">col  =</span> col, </span>
-<span id="cb2-55"><a href="#cb2-55"></a>        <span class="at">yaxt =</span> <span class="st">'n'</span>, </span>
-<span id="cb2-56"><a href="#cb2-56"></a>        <span class="at">main =</span> <span class="st">'Power'</span>, </span>
-<span id="cb2-57"><a href="#cb2-57"></a>        <span class="at">names.arg =</span> <span class="dv">0</span><span class="sc">:</span>N, </span>
-<span id="cb2-58"><a href="#cb2-58"></a>        <span class="at">cex.names =</span> <span class="fl">0.7</span>)</span>
-<span id="cb2-59"><a href="#cb2-59"></a></span>
-<span id="cb2-60"><a href="#cb2-60"></a><span class="fu">plot.new</span>()</span>
-<span id="cb2-61"><a href="#cb2-61"></a><span class="fu">text</span>(<span class="fl">0.5</span>,<span class="fl">0.5</span>,<span class="st">"Accept H0"</span>,<span class="at">cex=</span><span class="dv">2</span>)</span>
-<span id="cb2-62"><a href="#cb2-62"></a></span>
-<span id="cb2-63"><a href="#cb2-63"></a><span class="fu">barplot</span>(<span class="fu">dbinom</span>(<span class="dv">0</span><span class="sc">:</span>N,N, H0), </span>
-<span id="cb2-64"><a href="#cb2-64"></a>        <span class="at">col  =</span> col2, </span>
-<span id="cb2-65"><a href="#cb2-65"></a>        <span class="co"># yaxt = 'n', </span></span>
-<span id="cb2-66"><a href="#cb2-66"></a>        <span class="at">main =</span> <span class="st">'1 - alpha'</span>, </span>
-<span id="cb2-67"><a href="#cb2-67"></a>        <span class="at">names.arg =</span> <span class="dv">0</span><span class="sc">:</span>N, </span>
-<span id="cb2-68"><a href="#cb2-68"></a>        <span class="at">cex.names =</span> <span class="fl">0.7</span>)</span>
-<span id="cb2-69"><a href="#cb2-69"></a></span>
-<span id="cb2-70"><a href="#cb2-70"></a><span class="fu">barplot</span>(<span class="fu">dbinom</span>(<span class="dv">0</span><span class="sc">:</span>N,N, HA), </span>
-<span id="cb2-71"><a href="#cb2-71"></a>        <span class="at">col  =</span> col2, </span>
-<span id="cb2-72"><a href="#cb2-72"></a>        <span class="at">yaxt =</span> <span class="st">'n'</span>, </span>
-<span id="cb2-73"><a href="#cb2-73"></a>        <span class="at">main =</span> <span class="st">'Beta / Type II error'</span>, </span>
-<span id="cb2-74"><a href="#cb2-74"></a>        <span class="at">names.arg =</span> <span class="dv">0</span><span class="sc">:</span>N, </span>
-<span id="cb2-75"><a href="#cb2-75"></a>        <span class="at">cex.names =</span> <span class="fl">0.7</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-
+<p><a href="https://statisticalreasoning-uva.shinyapps.io/NHST_Binomial/">Play around with this app to get an idea of the probabilities</a></p>
 </section>
-<section id="decision-table-1-output" class="slide level2 flexbox vcenter smaller output-location-slide"><h2>Decision Table</h2><div class="cell output-location-slide">
-<div class="cell-output-display">
-<p><img data-src="6.-nhst_files/figure-revealjs/unnamed-chunk-18-1.png" width="960"></p>
-</div>
-</div></section><section id="reasoning-scheme" class="slide level2 subsection flexbox vcenter">
+<section id="reasoning-scheme" class="slide level2 subsection flexbox vcenter">
 <h2>Reasoning Scheme</h2>
 
 <img data-src="../../../../topics/NHST/NHST_descision_scheme.png" class="r-stretch"></section>
