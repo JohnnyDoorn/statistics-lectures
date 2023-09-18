@@ -23,16 +23,16 @@ $$\LARGE{
 
 index | k1 | k2
 ------|----|--
-1     | d  | d
-2     | d  | d
-3     | d  | d
-4     | d  | d
+1     | x  | x
+2     | x  | x
+3     | x  | x
+4     | x  | x
 
-Where $k$ is the level of the categorical predictor variabla and $d$ is the value of the outcome/dependent variable.
+Where $k$ is the level of the categorical predictor variable and $x$ is the value of the outcome/dependent variable.
 
 ## Data example
 
-We are going to use the IQ estimates we collected last week. You had to gues the IQ of the one sitting next to you and your own IQ.
+We are going to use the IQ estimates we collected. You had to guess your neighbor's IQ and your own IQ.
 
 Let's take a look at the data.
 
@@ -41,12 +41,12 @@ Let's take a look at the data.
 ```{r, echo=FALSE, warning=FALSE, message=FALSE, eval=TRUE}
 if(!'gsheet' %in% installed.packages()) { install.packages('gsheet') }
 library("gsheet")
-data <- gsheet2tbl('docs.google.com/spreadsheets/d/13oLFjy5e923weH8bzBipZSvWYS_dpw7B77g5yW_myLg/edit?usp=sharing')
+data <- gsheet2tbl('https://docs.google.com/spreadsheets/d/1LN8j2MgTk1Su-hZCbFjexiUKQx-LmbgGqlpN6YzF2jQ/edit?usp=sharing')[, -1]
 
-data = data[grep("2017", as.character(data$Timestamp)),c("IQ next to you", "Own IQ")]
+# data = data[grep("2017", as.character(data$Timestamp)),c("IQ next to you", "Own IQ")]
 
-IQ.next.to.you = data$"IQ next to you"
-IQ.you         = data$"Own IQ"
+IQ.next.to.you <- data$nextIQ
+IQ.you         <- data$ownIQ
 
 if(!"DT" %in% installed.packages()) { install.packages("DT") }
 library("DT")
@@ -55,34 +55,34 @@ library("DT")
 
 
 ```{r, echo=FALSE}
-datatable(data, options = list(searching = FALSE, scrollY = 415, paging = F, info = F))
+datatable(data, options = list(searching = FALSE, scrollY = 415, paging = FALSE, info = FALSE))
 ```
 
 ## Calculate $D$ {.smaller .subsection}
 
 ```{r, echo=TRUE}
-D = IQ.next.to.you - IQ.you
+diffScores <- IQ.next.to.you - IQ.you
 ```
 
 
 ```{r, echo=FALSE}
-data$D = D
+data$diffScores <- diffScores
 
-datatable(data, options = list(searching = FALSE, scrollY = 315, paging = F, info = F))
+datatable(data, options = list(searching = FALSE, scrollY = 315, paging = FALSE, info = FALSE))
 ```
 
 ## Calculate $\bar{D}$
 
 ```{r, echo=TRUE}
-D      = na.omit(D) # get rid of all missing values
-D.mean = mean(D)
-D.mean
+diffScores      <- na.omit(diffScores) # get rid of all missing values
+diffMean        <- mean(diffScores)
+diffMean
 ```
 
 And we also need n.
 
 ```{r, echo=TRUE}
-n = length(D)
+n <- length(diffScores)
 n
 ```
 
@@ -91,16 +91,16 @@ n
 $$t_{n-1} = \frac{\bar{D} - \mu}{ {SE}_D }$$
 
 ```{r, echo=TRUE}
-mu = 0                # Define mu
+mu <- 0                # Define mu
 
-D.sd = sd(D)          # Calculate standard deviation
-D.se = D.sd / sqrt(n) # Calculate standard error
+diffSD <- sd(diffScores)          # Calculate standard deviation
+diffSE <- diffSD / sqrt(n) # Calculate standard error
 
-df   = n - 1          # Calculate degrees of freedom
+df   <- n - 1          # Calculate degrees of freedom
 
 # Calculate t
-t = ( D.mean - mu ) / D.se
-t
+tStat <- ( diffMean - mu ) / diffSE
+tStat
 ```
 
 ## Test for significance {.subsection}
@@ -113,7 +113,7 @@ Two tailed
 if(!"visualize" %in% installed.packages()) { install.packages("visualize") }
 library("visualize")
 
-visualize.t(c(-t,t), df, section="tails")
+visualize.t(c(-tStat,tStat), df, section="tails")
 ```
 
 ## Effect-size {.subsection}
@@ -121,18 +121,18 @@ visualize.t(c(-t,t), df, section="tails")
 $$r = \sqrt{\frac{t^2}{t^2 + \text{df}}}$$
 
 ```{r, echo=TRUE}
-r = sqrt(t^2/(t^2 + df))
+r = sqrt(tStat^2/(tStat^2 + df))
 r
 ```
 
-## Confidence interval
+## Confidence interval (bonus)
 
-To display correct conficance intervals in SPSS we need to correct the original scores for whithin subject variation.
+To display correct confidence intervals in SPSS we need to correct the original scores for whithin subject variation.
 
 <code><pre>
 ** SPSS SYNTAX
 
-COMPUTE personal_mean = MEAN(IQ.next.to.you, IQ.you).
+COMPUTE personal_mean = MEAN(nextIQ, ownIQ).
 EXECUTE.
 
 AGGREGATE
@@ -143,7 +143,7 @@ AGGREGATE
 COMPUTE adjustment = total_mean - personal_mean.
 EXECUTE.
 
-COMPUTE IQ.next.to.you.adj = IQ.next.to.you + adjustment.
-COMPUTE IQ.you             = IQ.you         + adjustment.
+COMPUTE nextIQ.adj = nextIQ + adjustment.
+COMPUTE ownIQ.adj  = ownIQ + adjustment.
 EXECUTE.
 </pre></code>

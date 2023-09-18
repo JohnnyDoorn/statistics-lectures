@@ -3,10 +3,10 @@
 ## IQ next to you
 
 ::: {.r-stack}
+<img src="nomaphochs.png" style="width:40%;"/>
 
-![https://forms.gle/M7yJn59aWsevWrf67](../../../../topics/t-test_one-sample/nomaphochs.png)
-<br>
-https://maglit.me/nomaphochs
+<p style="font-size: 30px;">https://maglit.me/nomaphochs</p>
+
 
 :::
 
@@ -46,7 +46,7 @@ cbind(n, mean_x, sd_x)
 ```
 
 <small>
-Does this mean, differ significantly from the population mean $\mu = `r mu`$?
+Does this mean differ significantly from the population mean $\mu = `r mu`$?
 </small>
 
 ## Hypothesis {.subsection}
@@ -64,7 +64,7 @@ Does this mean, differ significantly from the population mean $\mu = `r mu`$?
 ## Assumptions
 
 * Normal samples distribution
-* Random sample
+* Random samples
 * Measurement level
     * Interval
     * Ratio
@@ -99,7 +99,7 @@ df <- n - 1; df
 if(!"visualize" %in% installed.packages()) { install.packages("visualize") }
 library("visualize")
 
-visualize.t(-tStat, 10, section = "upper")
+visualize::visualize.t(-tStat, df, section = "upper")
 ```
 
 ## P-value two sided {.subsection}

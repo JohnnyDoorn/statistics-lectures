@@ -135,14 +135,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, mu, sigma); x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] 136.40925  92.58271  94.02381  86.04295  94.37683  88.01253  87.03386
- [8]  95.05670 125.62024 118.87314  93.51232 103.50919 104.20671  90.42311
-[15]  79.87710  74.53246 115.25834  93.44709 125.27357  77.75149 127.19262
-[22] 127.29328  83.66894  75.27860  96.13572 125.76797  65.43312 100.75126
-[29] 118.64074 105.44657  78.23801 104.19648  71.00239 116.86044 110.62467
-[36] 105.78606 110.46262  94.88199  88.11168 110.14155 132.65840 120.06002
-[43] 116.16084  91.78814  91.37618  98.57358 108.97663  89.72086 109.87276
-[50]  77.97265 102.58007  92.50440 117.67618 102.84688  84.36686  79.31842</code></pre>
+<pre><code> [1] 107.09180  97.25481 100.08244  74.02554 113.79253 101.93258 117.12756
+ [8] 103.31973 107.03028  64.28057 107.44072  96.40775 104.36085  98.21513
+[15]  98.84927  87.45974 114.19622  78.82977 103.72061 108.55073  94.06904
+[22]  94.64199 119.95092  99.98130  98.57316 122.29340 125.20188 103.19777
+[29] 100.65556  91.51249  91.37565 102.96458 115.63488 111.47756  97.86305
+[36] 118.50794  87.15078  68.84459 106.13391  63.13558 106.19265 101.46863
+[43] 111.49339  91.43165  87.14183 124.67344 116.59090 102.43376 121.13077
+[50]  85.52442  84.06578  83.75917 109.12030  83.52501 103.75458  89.34376</code></pre>
 </div>
 </div>
 <div class="cell" data-output-location="slide">
@@ -174,12 +174,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">cbind</span>(mean.x.values, se.x.values))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     mean.x.values se.x.values
-[1,]      98.72576    2.464370
-[2,]      99.73290    2.024475
-[3,]      97.86587    1.942352
-[4,]     103.21118    2.000823
-[5,]     101.59868    1.965106
-[6,]      98.20240    1.817506</code></pre>
+[1,]     102.33399    1.760393
+[2,]      98.15819    1.659842
+[3,]     100.55090    1.983535
+[4,]     102.89419    1.983144
+[5,]      98.63609    2.251872
+[6,]      97.93184    2.046164</code></pre>
 </div>
 </div>
 </section>
@@ -208,7 +208,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>tStat <span class="ot">&lt;-</span> (<span class="fu">mean</span>(x) <span class="sc">-</span> mu) <span class="sc">/</span> (<span class="fu">sd</span>(x) <span class="sc">/</span> <span class="fu">sqrt</span>(n))</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>tStat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] -0.4830392</code></pre>
+<pre><code>[1] -2.681349</code></pre>
 </div>
 </div>
 </section>
@@ -220,13 +220,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(<span class="fu">cbind</span>(mean.x.values, mu, se.x.values, t.values))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>        mean.x.values  mu se.x.values   t.values
- [995,]     102.66231 100    2.094760  1.2709395
- [996,]      99.05497 100    1.934352 -0.4885525
- [997,]     100.88193 100    2.063917  0.4273109
- [998,]      98.95009 100    2.279287 -0.4606311
- [999,]     100.29347 100    2.115568  0.1387199
-[1000,]      99.08798 100    1.888093 -0.4830392</code></pre>
+<pre><code>        mean.x.values  mu se.x.values    t.values
+ [995,]      99.69852 100    1.891910 -0.15935238
+ [996,]     100.94775 100    2.041001  0.46435596
+ [997,]     100.75973 100    1.772873  0.42853209
+ [998,]      99.79289 100    2.273755 -0.09108605
+ [999,]      97.00431 100    1.932138 -1.55045598
+[1000,]      94.97935 100    1.872436 -2.68134884</code></pre>
 </div>
 </div>
 </section>
@@ -288,8 +288,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="effect-size" class="level2 subsection">
 <h2 class="subsection anchored" data-anchor-id="effect-size">Effect-size</h2>
-<p>The effect-size is the standardised difference between the mean and the expected <span class="math inline">\(\mu\)</span>. In the t-test effect-size is expressed as <span class="math inline">\(r\)</span>.</p>
+<p>The effect-size is the standardized difference between the mean and the expected <span class="math inline">\(\mu\)</span>. In the t-test effect-size is expressed as <span class="math inline">\(r\)</span>.</p>
 <p><span class="math display">\[r = \sqrt{\frac{t^2}{t^2 + \text{df}}}\]</span></p>
+<p>Tukey (1969):</p>
+<blockquote class="blockquote">
+<p>being so disinterested in our variables that we do not care about their units can hardly be desirable.</p>
+</blockquote>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(tStat<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> (tStat<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> df))</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -307,13 +311,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(<span class="fu">cbind</span>(mean.x.values, mu, se.x.values, t.values, r))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>        mean.x.values  mu se.x.values   t.values          r
- [995,]     102.66231 100    2.094760  1.2709395 0.16891103
- [996,]      99.05497 100    1.934352 -0.4885525 0.06573393
- [997,]     100.88193 100    2.063917  0.4273109 0.05752318
- [998,]      98.95009 100    2.279287 -0.4606311 0.06199202
- [999,]     100.29347 100    2.115568  0.1387199 0.01870172
-[1000,]      99.08798 100    1.888093 -0.4830392 0.06499528</code></pre>
+<pre><code>        mean.x.values  mu se.x.values    t.values          r
+ [995,]      99.69852 100    1.891910 -0.15935238 0.02148211
+ [996,]     100.94775 100    2.041001  0.46435596 0.06249137
+ [997,]     100.75973 100    1.772873  0.42853209 0.05768703
+ [998,]      99.79289 100    2.273755 -0.09108605 0.01228111
+ [999,]      97.00431 100    1.932138 -1.55045598 0.20463913
+[1000,]      94.97935 100    1.872436 -2.68134884 0.34001206</code></pre>
 </div>
 </div>
 </section>

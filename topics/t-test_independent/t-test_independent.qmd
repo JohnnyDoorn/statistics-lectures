@@ -22,12 +22,12 @@ H_A &: t < 0 \\
 
 index | k | outcome
 ------|----|--
-1     | 1 | d
-2     | 1 | d
-3     | 2 | d
-4     | 2 | d
+1     | 1 | x
+2     | 1 | x
+3     | 2 | x
+4     | 2 | x
 
-Where $k$ is the level of the categorical predictor variable and $d$ is the value of the outcome/dependent variable.
+Where $k$ is the level of the categorical predictor variable and $x$ is the value of the outcome/dependent variable.
 
 ## Additional assumption
 
@@ -44,51 +44,53 @@ We are going to use the IQ estimates we collected last week again. You had to gu
 ```{r, warning=FALSE, echo=FALSE, message=FALSE}
 if(!'gsheet' %in% installed.packages()) { install.packages('gsheet') }
 library("gsheet")
-data <- gsheet2tbl('docs.google.com/spreadsheets/d/13oLFjy5e923weH8bzBipZSvWYS_dpw7B77g5yW_myLg/edit?usp=sharing')
+data <- gsheet2tbl('https://docs.google.com/spreadsheets/d/1LN8j2MgTk1Su-hZCbFjexiUKQx-LmbgGqlpN6YzF2jQ/edit?usp=sharing')[, -1]
 
-data = data[grep("2017", as.character(data$Timestamp)),c("IQ next to you", "Own IQ")]
+# data = data[grep("2017", as.character(data$Timestamp)),c("IQ next to you", "Own IQ")]
 
-names(data) <- c('IQ.next.to.you', 'IQ.you')
+nextIQ <- data$nextIQ
+ownIQ  <- data$ownIQ
 ```
 
 
 ```{r, echo=TRUE}
-classPosition = sample(c("front", "back"), dim(data)[1], replace = TRUE)
+set.seed(23)
+classPosition <- sample(c("front", "back"), dim(data)[1], replace = TRUE)
 ```
 
 ## The data
 
 ```{r, echo=FALSE}
-data$classPosition = classPosition
+data$classPosition <- classPosition
 
 # Write data for use in SPSS
 write.table(data, "IQ.csv", row.names=FALSE, col.names=TRUE, dec=',')
 
-DT::datatable(data[,c('classPosition', 'IQ.you')], options = list(searching = FALSE, scrollY = 415, paging = F, info = F))
+DT::datatable(data[, c('classPosition', 'ownIQ')], options = list(searching = FALSE, scrollY = 415, paging = F, info = F))
 ```
 
 ## Calculate means {.subsection}
 
 ```{r, echo=TRUE}
-IQ.you.front  <- subset(data, classPosition == "front",   select = IQ.you)$IQ.you
-IQ.you.back <- subset(data, classPosition == "back", select = IQ.you)$IQ.you
+ownIQfront  <- subset(data, classPosition == "front",   select = ownIQ)$ownIQ
+ownIQback <- subset(data, classPosition == "back", select = ownIQ)$ownIQ
 
-IQ.you.front.mean <- mean(IQ.you.front,   na.rm = TRUE)
-IQ.you.back.mean <- mean(IQ.you.back, na.rm = TRUE)
+ownIQfront.mean <- mean(ownIQfront, na.rm = TRUE)
+ownIQback.mean <- mean(ownIQback, na.rm = TRUE)
 
-rbind(IQ.you.front.mean, IQ.you.back.mean)
+rbind(ownIQfront.mean, ownIQback.mean)
 ```
 
 ## Calculate variance {.smaller .subsection}
 
 ```{r, echo=TRUE}
-IQ.you.front.var   <- var(IQ.you.front,   na.rm = TRUE)
-IQ.you.back.var <- var(IQ.you.back, na.rm = TRUE)
-print(rbind(IQ.you.front.var, IQ.you.back.var))
+ownIQfront.var   <- var(ownIQfront,   na.rm = TRUE)
+ownIQback.var <- var(ownIQback, na.rm = TRUE)
+print(rbind(ownIQfront.var, ownIQback.var))
 
-IQ.you.front.n   <- length(IQ.you.front)   - 1
-IQ.you.back.n <- length(IQ.you.back) - 1
-print(rbind(IQ.you.front.n, IQ.you.back.n))
+ownIQfront.n   <- length(ownIQfront)   - 1
+ownIQback.n <- length(ownIQback) - 1
+print(rbind(ownIQfront.n, ownIQback.n))
 ```
 
 
@@ -111,11 +113,11 @@ Where $s^2$ is the variance and $n$ the sample size.
 $$S^2_p = \frac{(n_1-1)s^2_1+(n_2-1)s^2_2}{n_1+n_2-2}$$
 
 ```{r, echo=TRUE}
-df <- IQ.you.front.n + IQ.you.back.n - 2
-s2.p <- ( (IQ.you.front.n-1)*IQ.you.front.var + (IQ.you.back.n-1)*IQ.you.back.var ) / df
+df <- ownIQfront.n + ownIQback.n - 2
+pooledVar <- ( (ownIQfront.n-1)*ownIQfront.var + (ownIQback.n-1)*ownIQback.var ) / df
 
 df
-s2.p
+pooledVar
 ```
 
 ## Calculate pooled SE {.subsection}
@@ -123,8 +125,8 @@ s2.p
 $$ {SE}_p = \sqrt{\frac{S^2_p}{n_1}+\frac{S^2_p}{n_2}} $$
 
 ```{r, echo=TRUE}
-se.p <- sqrt( ((s2.p/IQ.you.front.n) + (s2.p/IQ.you.back.n)) )
-se.p
+sePooled <- sqrt( ((pooledVar/ownIQfront.n) + (pooledVar/ownIQback.n)) )
+sePooled
 ```
 
 ## Calculate t-value {.subsection}
@@ -132,9 +134,9 @@ se.p
 $$t_{n_1 + n_2 -2} = \frac{(\bar{X}_1 - \bar{X}_2) - \mu}{{SE}_p}$$
 
 ```{r, echo=TRUE}
-t <- ( IQ.you.front.mean - IQ.you.back.mean ) / se.p
+tStat <- ( ownIQfront.mean - ownIQback.mean ) / sePooled
 
-t
+tStat
 ```
 
 ## Test for significance
@@ -146,7 +148,8 @@ Two tailed
 if(!"visualize" %in% installed.packages()) { install.packages("visualize") }
 library("visualize")
 
-visualize.t(c(-round(t, 2), round(t, 2)), df, section="tails")
+if (df == 2) df <- df + 1 # cheat to be able to build slides.. 
+visualize.t(c(-round(tStat, 2), round(tStat, 2)), df+1, section="tails")
 ```
 
 ## Effect-size
@@ -154,7 +157,48 @@ visualize.t(c(-round(t, 2), round(t, 2)), df, section="tails")
 $$r = \sqrt{\frac{t^2}{t^2 + \text{df}}}$$
 
 ```{r, echo=TRUE}
-r <- sqrt(t^2/(t^2 + df))
+r <- sqrt(tStat^2/(tStat^2 + df))
 
 r
+
+d <- 2*tStat / sqrt(df+1)
+d
+effsize::cohen.d(ownIQ, classPosition)
+
+```
+
+
+## But what about equal variances?!
+
+There exist different hypothesis tests for this - the most used is Levene's test:
+```{r, echo=TRUE, warning=FALSE,message=FALSE}
+if(!"car" %in% installed.packages()) { install.packages("car") }
+library("car")
+
+leveneTest(y = ownIQ, group = classPosition)
+```
+
+## The difference only matters when $n_A \neq n_B$!
+
+
+```{r}
+meanA <- 50
+meanB <- 55
+
+sdA <- 5
+sdB <- 10
+
+nA <- 20
+nB <- 20
+
+seA <- sdA / sqrt(nA)    
+seB <- sdB / sqrt(nB)  
+tStatWelch <- (meanA - meanB) / sqrt((sdA^2 / nA) + (sdB^2 / nB))
+
+
+pooledS <- sqrt(((nA - 1) * sdA^2 + (nA - 1) * sdB^2) / (nA + nB - 2))
+tStatStudent <- (meanA - meanB) / (pooledS *  sqrt(1/nA + 1/nA))
+
+tStatStudent
+tStatWelch
 ```
