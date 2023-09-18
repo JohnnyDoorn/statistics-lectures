@@ -171,7 +171,8 @@ effsize::cohen.d(ownIQ, classPosition)
 ## But what about equal variances?!
 
 There exist different hypothesis tests for this - the most used is Levene's test:
-```{r, echo=TRUE, warning=FALSE,message=FALSE}
+```{r, echo=TRUE, warning=FALSE, message=FALSE}
+
 if(!"car" %in% installed.packages()) { install.packages("car") }
 library("car")
 
