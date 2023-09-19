@@ -182,7 +182,7 @@ leveneTest(y = ownIQ, group = classPosition)
 ## The difference only matters when $n_A \neq n_B$!
 
 
-```{r}
+```{r, echo=TRUE, warning=FALSE, message=FALSE}
 meanA <- 50
 meanB <- 55
 

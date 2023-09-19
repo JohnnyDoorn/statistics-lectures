@@ -476,14 +476,14 @@ Sharon Kinkenberg &amp; Johnny van Doorn
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, mu, sigma); x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1]  59.27960  99.24255  96.79289  93.03482  93.94872  94.09566  87.58202
- [8]  99.40563 104.82163  86.50496  78.90956 117.45615 103.10262 114.20939
-[15]  70.49708  98.28711  77.44410 109.05044 114.94502 122.12592  99.22094
-[22]  94.55495  93.75925 115.61154  88.23337 125.67492 102.40671 124.47937
-[29]  72.54703  65.03750  99.28812 110.60269  94.38953 102.12732 108.53464
-[36]  92.94886 100.97826  94.28002 101.80575 121.51801  96.62201 107.43024
-[43] 109.94268 114.72829  68.61922 105.83294 120.83244 110.66787 109.40741
-[50]  94.96010  78.28139 114.15849 108.66325 103.96079  90.11146 105.19180</code></pre>
+<pre><code> [1] 100.97005 125.17443  87.68361 115.62755  90.40944  56.03480 126.91833
+ [8] 117.56323  94.83196  89.43322 121.98989  94.24758 106.97101 101.36105
+[15]  98.07188  98.51507 104.69717  82.20628  78.80417  94.24427 129.50736
+[22] 117.96377 104.02067  91.79327 134.61687  91.88108 101.33102 100.24210
+[29] 106.09348 112.56414 108.93761  77.63284  88.17673 118.11035  89.55079
+[36] 104.76861  97.61335  69.21079  84.55443 104.73619 109.39141 107.74050
+[43] 112.38200  98.47436 112.83601  98.29976 111.80582 105.75345  98.21146
+[50] 106.59683 106.76012 114.85950 102.86219 113.47482 101.43557 103.55233</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -517,12 +517,12 @@ Sharon Kinkenberg &amp; Johnny van Doorn
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">head</span>(<span class="fu">cbind</span>(mean.x.values, se.x.values))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     mean.x.values se.x.values
-[1,]      99.22830    2.118250
-[2,]     100.27266    2.118628
-[3,]     105.93935    1.947528
-[4,]     103.50759    2.154585
-[5,]      98.02277    1.947788
-[6,]      99.08665    2.037494</code></pre>
+[1,]     102.67784    1.939872
+[2,]      98.94156    2.011832
+[3,]      99.67055    1.957575
+[4,]     101.27150    1.941140
+[5,]      99.15270    1.763142
+[6,]     100.51821    1.813276</code></pre>
 </div>
 </div>
 </section>
@@ -553,7 +553,7 @@ Sharon Kinkenberg &amp; Johnny van Doorn
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>tStat <span class="ot">&lt;-</span> (<span class="fu">mean</span>(x) <span class="sc">-</span> mu) <span class="sc">/</span> (<span class="fu">sd</span>(x) <span class="sc">/</span> <span class="fu">sqrt</span>(n))</span>
 <span id="cb9-2"><a href="#cb9-2"></a>tStat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 1.164435</code></pre>
+<pre><code>[1] 0.5965407</code></pre>
 </div>
 </div>
 </section>
@@ -565,13 +565,13 @@ Sharon Kinkenberg &amp; Johnny van Doorn
 <span id="cb11-2"><a href="#cb11-2"></a></span>
 <span id="cb11-3"><a href="#cb11-3"></a><span class="fu">tail</span>(<span class="fu">cbind</span>(mean.x.values, mu, se.x.values, t.values))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>        mean.x.values  mu se.x.values    t.values
- [995,]      98.76888 100    2.158704 -0.57030503
- [996,]     100.74173 100    2.043826  0.36291258
- [997,]      99.88741 100    1.812337 -0.06212325
- [998,]      97.77723 100    2.025803 -1.09722937
- [999,]     102.69401 100    2.302863  1.16985131
-[1000,]     102.52260 100    2.166374  1.16443507</code></pre>
+<pre><code>        mean.x.values  mu se.x.values   t.values
+ [995,]      95.84344 100    2.249932 -1.8474152
+ [996,]      96.90759 100    1.626343 -1.9014469
+ [997,]     105.30089 100    2.111462  2.5105301
+ [998,]      97.16155 100    1.666629 -1.7031087
+ [999,]      99.72544 100    1.737595 -0.1580138
+[1000,]     101.21715 100    2.040345  0.5965407</code></pre>
 </div>
 </div>
 </section>
@@ -658,13 +658,13 @@ Sharon Kinkenberg &amp; Johnny van Doorn
 <p>We can also calculate effect-sizes <span class="math inline">\(r\)</span> for all our calculated t-values. Under the assumption of <span class="math inline">\(H_0\)</span> the effect-size distribution looks like this.</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>        mean.x.values  mu se.x.values    t.values           r
- [995,]      98.76888 100    2.158704 -0.57030503 0.076673540
- [996,]     100.74173 100    2.043826  0.36291258 0.048876637
- [997,]      99.88741 100    1.812337 -0.06212325 0.008376403
- [998,]      97.77723 100    2.025803 -1.09722937 0.146357219
- [999,]     102.69401 100    2.302863  1.16985131 0.155816063
-[1000,]     102.52260 100    2.166374  1.16443507 0.155112053</code></pre>
+<pre><code>        mean.x.values  mu se.x.values   t.values          r
+ [995,]      95.84344 100    2.249932 -1.8474152 0.24171854
+ [996,]      96.90759 100    1.626343 -1.9014469 0.24835789
+ [997,]     105.30089 100    2.111462  2.5105301 0.32064570
+ [998,]      97.16155 100    1.666629 -1.7031087 0.22382104
+ [999,]      99.72544 100    1.737595 -0.1580138 0.02130174
+[1000,]     101.21715 100    2.040345  0.5965407 0.08017856</code></pre>
 </div>
 </div>
 </section>
@@ -725,8 +725,8 @@ https://maglit.me/nomaphochs
 <span id="cb19-5"><a href="#cb19-5"></a>sd_x   <span class="ot">&lt;-</span> <span class="fu">sd</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb19-6"><a href="#cb19-6"></a><span class="fu">cbind</span>(n, mean_x, sd_x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>     n mean_x     sd_x
-[1,] 6    123 19.74842</code></pre>
+<pre><code>      n   mean_x     sd_x
+[1,] 53 112.7358 11.94885</code></pre>
 </div>
 </div>
 <p><small> Does this mean differ significantly from the population mean <span class="math inline">\(\mu = 120\)</span>? </small></p>
@@ -758,12 +758,12 @@ https://maglit.me/nomaphochs
 </section>
 <section id="t-statistic-1" class="slide level2">
 <h2>T-statistic</h2>
-<p><span class="math display">\[T_{n-1} = \frac{\bar{x}-\mu}{SE_x} = \frac{\bar{x}-\mu}{s_x / \sqrt{n}} = \frac{123 - 120 }{19.75 / \sqrt{6}}\]</span></p>
+<p><span class="math display">\[T_{n-1} = \frac{\bar{x}-\mu}{SE_x} = \frac{\bar{x}-\mu}{s_x / \sqrt{n}} = \frac{112.74 - 120 }{11.95 / \sqrt{53}}\]</span></p>
 <p>So the t-statistic represents the deviation of the sample mean <span class="math inline">\(\bar{x}\)</span> from the population mean <span class="math inline">\(\mu\)</span>, considering the sample size.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>tStat <span class="ot">&lt;-</span> (mean_x <span class="sc">-</span> mu) <span class="sc">/</span> (sd_x <span class="sc">/</span> <span class="fu">sqrt</span>(n)); tStat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.3721042</code></pre>
+<pre><code>[1] -4.42585</code></pre>
 </div>
 </div>
 </section>
@@ -780,7 +780,7 @@ https://maglit.me/nomaphochs
 <div class="cell">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>df <span class="ot">&lt;-</span> n <span class="sc">-</span> <span class="dv">1</span>; df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 5</code></pre>
+<pre><code>[1] 52</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -810,7 +810,7 @@ https://maglit.me/nomaphochs
 <span id="cb27-2"><a href="#cb27-2"></a></span>
 <span id="cb27-3"><a href="#cb27-3"></a>r</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.1641527</code></pre>
+<pre><code>[1] 0.5230896</code></pre>
 </div>
 </div>
 </section></section>
@@ -879,8 +879,8 @@ https://maglit.me/nomaphochs
 <div class="cell">
 <div class="cell-output-display">
 
-<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-cde9845857cc0554bf8c" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-cde9845857cc0554bf8c">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6"],[105,95,130,140,120,123],[110,93,150,135,125,125]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>ownIQ<\/th>\n      <th>nextIQ<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"searching":false,"scrollY":415,"paging":false,"info":false,"columnDefs":[{"className":"dt-right","targets":[1,2]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-d89bc4e290698cacd44d" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-d89bc4e290698cacd44d">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53"],[105,95,130,140,120,123,110,110,105,135,104,100,115,100,120,100,100,110,110,108,90,120,99,120,105,110,105,100,100,115,63,138,100,100,118,130,130,151,100,120,105,100,110,120,100,120,112,108,115,108,125,130,122],[110,93,150,135,125,125,120,110,105,120,100,100,125,100,115,100,100,120,115,110,120,120,110,120,106,80,110,120,118,110,108,105,105,120,100,120,120,135,105,120,110,100,120,110,100,100,110,112,130,110,120,100,123]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>ownIQ<\/th>\n      <th>nextIQ<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"searching":false,"scrollY":415,"paging":false,"info":false,"columnDefs":[{"className":"dt-right","targets":[1,2]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -892,8 +892,8 @@ https://maglit.me/nomaphochs
 <div class="cell">
 <div class="cell-output-display">
 
-<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-00a486f27897c8bf23de" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-00a486f27897c8bf23de">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6"],[105,95,130,140,120,123],[110,93,150,135,125,125],[5,-2,20,-5,5,2]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>ownIQ<\/th>\n      <th>nextIQ<\/th>\n      <th>diffScores<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"searching":false,"scrollY":315,"paging":false,"info":false,"columnDefs":[{"className":"dt-right","targets":[1,2,3]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-358005b215e86b0f49e9" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-358005b215e86b0f49e9">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53"],[105,95,130,140,120,123,110,110,105,135,104,100,115,100,120,100,100,110,110,108,90,120,99,120,105,110,105,100,100,115,63,138,100,100,118,130,130,151,100,120,105,100,110,120,100,120,112,108,115,108,125,130,122],[110,93,150,135,125,125,120,110,105,120,100,100,125,100,115,100,100,120,115,110,120,120,110,120,106,80,110,120,118,110,108,105,105,120,100,120,120,135,105,120,110,100,120,110,100,100,110,112,130,110,120,100,123],[5,-2,20,-5,5,2,10,0,0,-15,-4,0,10,0,-5,0,0,10,5,2,30,0,11,0,1,-30,5,20,18,-5,45,-33,5,20,-18,-10,-10,-16,5,0,5,0,10,-10,0,-20,-2,4,15,2,-5,-30,1]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>ownIQ<\/th>\n      <th>nextIQ<\/th>\n      <th>diffScores<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"searching":false,"scrollY":315,"paging":false,"info":false,"columnDefs":[{"className":"dt-right","targets":[1,2,3]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -904,7 +904,7 @@ https://maglit.me/nomaphochs
 <span id="cb30-2"><a href="#cb30-2"></a>diffMean        <span class="ot">&lt;-</span> <span class="fu">mean</span>(diffScores)</span>
 <span id="cb30-3"><a href="#cb30-3"></a>diffMean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 4.166667</code></pre>
+<pre><code>[1] 0.8679245</code></pre>
 </div>
 </div>
 <p>And we also need n.</p>
@@ -912,7 +912,7 @@ https://maglit.me/nomaphochs
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a>n <span class="ot">&lt;-</span> <span class="fu">length</span>(diffScores)</span>
 <span id="cb32-2"><a href="#cb32-2"></a>n</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 6</code></pre>
+<pre><code>[1] 53</code></pre>
 </div>
 </div>
 </section>
@@ -931,7 +931,7 @@ https://maglit.me/nomaphochs
 <span id="cb34-9"><a href="#cb34-9"></a>tStat <span class="ot">&lt;-</span> ( diffMean <span class="sc">-</span> mu ) <span class="sc">/</span> diffSE</span>
 <span id="cb34-10"><a href="#cb34-10"></a>tStat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 1.172534</code></pre>
+<pre><code>[1] 0.4584431</code></pre>
 </div>
 </div>
 </section>
@@ -957,7 +957,7 @@ https://maglit.me/nomaphochs
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a>r <span class="ot">=</span> <span class="fu">sqrt</span>(tStat<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span>(tStat<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> df))</span>
 <span id="cb37-2"><a href="#cb37-2"></a>r</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.4643985</code></pre>
+<pre><code>[1] 0.06344653</code></pre>
 </div>
 </div>
 </section>
@@ -1062,8 +1062,8 @@ H_A &amp;: t &lt; 0 \\
 <div class="cell">
 <div class="cell-output-display">
 
-<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-79dfadb9e4c0760002e5" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-79dfadb9e4c0760002e5">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6"],["front","back","back","front","back","front"],[105,95,130,140,120,123]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>classPosition<\/th>\n      <th>ownIQ<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"searching":false,"scrollY":415,"paging":false,"info":false,"columnDefs":[{"className":"dt-right","targets":2},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-bf1a361ef8352f3f96d0" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-bf1a361ef8352f3f96d0">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53"],["front","back","back","front","back","front","front","front","front","back","back","front","front","front","front","back","back","front","back","back","front","back","front","back","back","back","front","back","front","back","front","front","back","front","back","back","front","front","front","back","front","front","back","front","front","back","back","front","front","back","front","back","back"],[105,95,130,140,120,123,110,110,105,135,104,100,115,100,120,100,100,110,110,108,90,120,99,120,105,110,105,100,100,115,63,138,100,100,118,130,130,151,100,120,105,100,110,120,100,120,112,108,115,108,125,130,122]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>classPosition<\/th>\n      <th>ownIQ<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"searching":false,"scrollY":415,"paging":false,"info":false,"columnDefs":[{"className":"dt-right","targets":2},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -1078,9 +1078,9 @@ H_A &amp;: t &lt; 0 \\
 <span id="cb40-6"><a href="#cb40-6"></a></span>
 <span id="cb40-7"><a href="#cb40-7"></a><span class="fu">rbind</span>(ownIQfront.mean, ownIQback.mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>                    [,1]
-ownIQfront.mean 122.6667
-ownIQback.mean  115.0000</code></pre>
+<pre><code>                  [,1]
+ownIQfront.mean 110.25
+ownIQback.mean  113.68</code></pre>
 </div>
 </div>
 </section>
@@ -1092,16 +1092,16 @@ ownIQback.mean  115.0000</code></pre>
 <span id="cb42-3"><a href="#cb42-3"></a><span class="fu">print</span>(<span class="fu">rbind</span>(ownIQfront.var, ownIQback.var))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                   [,1]
-ownIQfront.var 306.3333
-ownIQback.var  325.0000</code></pre>
+ownIQfront.var 294.1204
+ownIQback.var  121.5600</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1"></a>ownIQfront.n   <span class="ot">&lt;-</span> <span class="fu">length</span>(ownIQfront)   <span class="sc">-</span> <span class="dv">1</span></span>
 <span id="cb44-2"><a href="#cb44-2"></a>ownIQback.n <span class="ot">&lt;-</span> <span class="fu">length</span>(ownIQback) <span class="sc">-</span> <span class="dv">1</span></span>
 <span id="cb44-3"><a href="#cb44-3"></a><span class="fu">print</span>(<span class="fu">rbind</span>(ownIQfront.n, ownIQback.n))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>             [,1]
-ownIQfront.n    2
-ownIQback.n     2</code></pre>
+ownIQfront.n   27
+ownIQback.n    24</code></pre>
 </div>
 </div>
 </section>
@@ -1123,11 +1123,11 @@ ownIQback.n     2</code></pre>
 <span id="cb46-3"><a href="#cb46-3"></a></span>
 <span id="cb46-4"><a href="#cb46-4"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 2</code></pre>
+<pre><code>[1] 49</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1"></a>pooledVar</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 315.6667</code></pre>
+<pre><code>[1] 213.1226</code></pre>
 </div>
 </div>
 </section>
@@ -1138,7 +1138,7 @@ ownIQback.n     2</code></pre>
 <div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1"></a>sePooled <span class="ot">&lt;-</span> <span class="fu">sqrt</span>( ((pooledVar<span class="sc">/</span>ownIQfront.n) <span class="sc">+</span> (pooledVar<span class="sc">/</span>ownIQback.n)) )</span>
 <span id="cb50-2"><a href="#cb50-2"></a>sePooled</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 17.76701</code></pre>
+<pre><code>[1] 4.095551</code></pre>
 </div>
 </div>
 </section>
@@ -1150,7 +1150,7 @@ ownIQback.n     2</code></pre>
 <span id="cb52-2"><a href="#cb52-2"></a></span>
 <span id="cb52-3"><a href="#cb52-3"></a>tStat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.4315113</code></pre>
+<pre><code>[1] -0.8374941</code></pre>
 </div>
 </div>
 </section>
@@ -1178,22 +1178,22 @@ ownIQback.n     2</code></pre>
 <span id="cb55-2"><a href="#cb55-2"></a></span>
 <span id="cb55-3"><a href="#cb55-3"></a>r</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.2417439</code></pre>
+<pre><code>[1] 0.1187948</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1"></a>d <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">*</span>tStat <span class="sc">/</span> <span class="fu">sqrt</span>(df<span class="sc">+</span><span class="dv">1</span>)</span>
 <span id="cb57-2"><a href="#cb57-2"></a>d</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.4315113</code></pre>
+<pre><code>[1] -0.2368791</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb59"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1"></a>effsize<span class="sc">::</span><span class="fu">cohen.d</span>(ownIQ, classPosition)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Cohen's d
 
-d estimate: -0.4315113 (small)
+d estimate: 0.2350664 (small)
 95 percent confidence interval:
-    lower     upper 
--2.724700  1.861677 </code></pre>
+     lower      upper 
+-0.3192434  0.7893761 </code></pre>
 </div>
 </div>
 </section>
@@ -1207,17 +1207,36 @@ d estimate: -0.4315113 (small)
 <div class="cell-output cell-output-stdout">
 <pre><code>Levene's Test for Homogeneity of Variance (center = median)
       Df F value Pr(&gt;F)
-group  1       0      1
-       4               </code></pre>
+group  1  1.2519 0.2684
+      51               </code></pre>
 </div>
 <p>:::</p>
 </section>
 <section id="the-difference-only-matters-when-n_a-neq-n_b" class="slide level2">
 <h2>The difference only matters when <span class="math inline">\(n_A \neq n_B\)</span>!</h2>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1"></a>meanA <span class="ot">&lt;-</span> <span class="dv">50</span></span>
+<span id="cb63-2"><a href="#cb63-2"></a>meanB <span class="ot">&lt;-</span> <span class="dv">55</span></span>
+<span id="cb63-3"><a href="#cb63-3"></a></span>
+<span id="cb63-4"><a href="#cb63-4"></a>sdA <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb63-5"><a href="#cb63-5"></a>sdB <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb63-6"><a href="#cb63-6"></a></span>
+<span id="cb63-7"><a href="#cb63-7"></a>nA <span class="ot">&lt;-</span> <span class="dv">20</span></span>
+<span id="cb63-8"><a href="#cb63-8"></a>nB <span class="ot">&lt;-</span> <span class="dv">20</span></span>
+<span id="cb63-9"><a href="#cb63-9"></a></span>
+<span id="cb63-10"><a href="#cb63-10"></a>seA <span class="ot">&lt;-</span> sdA <span class="sc">/</span> <span class="fu">sqrt</span>(nA)    </span>
+<span id="cb63-11"><a href="#cb63-11"></a>seB <span class="ot">&lt;-</span> sdB <span class="sc">/</span> <span class="fu">sqrt</span>(nB)  </span>
+<span id="cb63-12"><a href="#cb63-12"></a>tStatWelch <span class="ot">&lt;-</span> (meanA <span class="sc">-</span> meanB) <span class="sc">/</span> <span class="fu">sqrt</span>((sdA<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> nA) <span class="sc">+</span> (sdB<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> nB))</span>
+<span id="cb63-13"><a href="#cb63-13"></a></span>
+<span id="cb63-14"><a href="#cb63-14"></a></span>
+<span id="cb63-15"><a href="#cb63-15"></a>pooledS <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(((nA <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> sdA<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> (nA <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> sdB<span class="sc">^</span><span class="dv">2</span>) <span class="sc">/</span> (nA <span class="sc">+</span> nB <span class="sc">-</span> <span class="dv">2</span>))</span>
+<span id="cb63-16"><a href="#cb63-16"></a>tStatStudent <span class="ot">&lt;-</span> (meanA <span class="sc">-</span> meanB) <span class="sc">/</span> (pooledS <span class="sc">*</span>  <span class="fu">sqrt</span>(<span class="dv">1</span><span class="sc">/</span>nA <span class="sc">+</span> <span class="dv">1</span><span class="sc">/</span>nA))</span>
+<span id="cb63-17"><a href="#cb63-17"></a></span>
+<span id="cb63-18"><a href="#cb63-18"></a>tStatStudent</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] -2</code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1"></a>tStatWelch</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] -2</code></pre>
 </div>
