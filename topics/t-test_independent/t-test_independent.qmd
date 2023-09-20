@@ -161,10 +161,8 @@ r <- sqrt(tStat^2/(tStat^2 + df))
 
 r
 
-d <- 2*tStat / sqrt(df+1)
+d <- 2*tStat / sqrt(df)
 d
-effsize::cohen.d(ownIQ, classPosition)
-
 ```
 
 
