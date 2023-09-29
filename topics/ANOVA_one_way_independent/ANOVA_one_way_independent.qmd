@@ -9,9 +9,9 @@ Assuming th $H_0$ hypothesis to be true, the following should hold:
 * Continuous variable
 * Random sample
 * Normaly distributed
-    * Shapiro-Wilk test
+* Shapiro-Wilk test
 * Equal variance within groups
-    * Levene's test
+* Levene's test
 
 ## Jet lag {.smaller}
 
@@ -50,15 +50,15 @@ axis(1,at=1:3,labels=lab)
 lines(c(1,1.2,1.1,1.1,1,1.2),
       c(rep((mean(x.c)-((sd(x.c)/sqrt(length(x.c))))),3),
         rep((mean(x.c)+((sd(x.c)/sqrt(length(x.c))))),3))
-     )
+)
 lines(c(2,2.2,2.1,2.1,2,2.2),
       c(rep((mean(x.k)-((sd(x.k)/sqrt(length(x.k))))),3),
         rep((mean(x.k)+((sd(x.k)/sqrt(length(x.k))))),3))
-     )
+)
 lines(c(3,3.2,3.1,3.1,3,3.2),
       c(rep((mean(x.e)-((sd(x.e)/sqrt(length(x.e))))),3),
         rep((mean(x.e)+((sd(x.e)/sqrt(length(x.e))))),3))
-     )
+)
 points(c(1,2,3)+.1,c(mean(x.c),mean(x.k),mean(x.e)),bg="red",pch=21)
 ```
 
@@ -336,8 +336,8 @@ lines(data$n,data$meanx,col='grey',lty=2)
 # De hoeveelheid variatie van alle datapunten x ten opzichte van het gemiddelde van x kan worden aangegeven met de afstand tussen de datapunten en het gemiddelde
 
 for(r in 1:9) {
-row = data[r,]
-lines(rep(row$n,2),c(row$x,row$meanx), col='blue')
+  row = data[r,]
+  lines(rep(row$n,2),c(row$x,row$meanx), col='blue')
 }
 
 # De blauwe lijnen
@@ -362,9 +362,9 @@ lines(7:9, rep(mean_f3,3), col='grey', lwd=2)
 # De totale variantie wordt dus voor een deel door het groepslidmaatschap (de groene lijn) veklaard. Het overige onverklaarde deel zijn de afstanden van x tot de groepsgemiddelden.
 
 for(r in 1:9) {
-row = data[r,]
-lines(rep(row$n,2)+.05,c(row$groupmean,row$x),     col='red' )
-lines(rep(row$n,2)-.05,c(row$groupmean,row$meanx), col='green')
+  row = data[r,]
+  lines(rep(row$n,2)+.05,c(row$groupmean,row$x),     col='red' )
+  lines(rep(row$n,2)-.05,c(row$groupmean,row$meanx), col='green')
 }
 
 # De totale variantie van de blauwe lijnen bestaat dus uit de afstand van het totale gemiddelde tot de groepsgemiddelden plus de afstand van de groepsgemiddelden tot de afzonderlijke x-en.
@@ -401,8 +401,8 @@ plot(data[,c('n','x')],main='Contranst 1+2 with 3')
 lines(data$n,data$meanx,col='grey',lty=2)
 # totale variantie
 for(r in 1:9) {
-row = data[r,]
-lines(rep(row$n,2),c(row$x,row$meanx), col='blue')
+  row = data[r,]
+  lines(rep(row$n,2),c(row$x,row$meanx), col='blue')
 }
 # groep gemiddelden
 lines(7:9, rep(mean_f3,3), col='grey', lwd=2)
@@ -415,16 +415,16 @@ lines(1:6, rep(mean_f12,6), col='grey', lwd=2)
 
 # variantie componenten
 for(r in 1:6) {
-row = data[r,]
-# lines(rep(row$n,2)+.05,c(row$groupmean,row$x),    col='red'  )
-lines(rep(row$n,2)+.05,c(row$x,    mean_f12), col='red')
-lines(rep(row$n,2)-.05,c(row$meanx,mean_f12), col='green')
+  row = data[r,]
+  # lines(rep(row$n,2)+.05,c(row$groupmean,row$x),    col='red'  )
+  lines(rep(row$n,2)+.05,c(row$x,    mean_f12), col='red')
+  lines(rep(row$n,2)-.05,c(row$meanx,mean_f12), col='green')
 }
 # variantie componenten
 for(r in 7:9) {
-row = data[r,]
-lines(rep(row$n,2)+.05,c(row$groupmean,row$x),     col='red' )
-lines(rep(row$n,2)-.05,c(row$groupmean,row$meanx), col='green')
+  row = data[r,]
+  lines(rep(row$n,2)+.05,c(row$groupmean,row$x),     col='red' )
+  lines(rep(row$n,2)-.05,c(row$groupmean,row$meanx), col='green')
 }
 
 ## Contrast 2
@@ -444,8 +444,8 @@ mean_f12 = colMeans(subset(data, f <= 2 , select = 'x'));
 
 # totale variantie
 for(r in 1:6) {
-row = data[r,]
-lines(rep(row$n,2),c(row$x,row$meanx), col='blue')
+  row = data[r,]
+  lines(rep(row$n,2),c(row$x,row$meanx), col='blue')
 }
 
 # toevoegen aan grafiek
@@ -453,9 +453,9 @@ lines(1:6, rep(mean_f12,6), col='grey', lwd=2)
 
 # variantie componenten
 for(r in 1:6) {
-row = data[r,]
-lines(rep(row$n,2)+.05,c(row$groupmean,row$x),    col='red'  )
-lines(rep(row$n,2)-.05,c(row$groupmean,mean_f12), col='green')
+  row = data[r,]
+  lines(rep(row$n,2)+.05,c(row$groupmean,row$x),    col='red'  )
+  lines(rep(row$n,2)-.05,c(row$groupmean,mean_f12), col='green')
 }
 ```
 
