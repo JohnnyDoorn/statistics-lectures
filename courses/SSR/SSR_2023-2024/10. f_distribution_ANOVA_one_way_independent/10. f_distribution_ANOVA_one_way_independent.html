@@ -238,7 +238,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>fStat <span class="ot">&lt;-</span> <span class="fu">summary</span>(<span class="fu">aov</span>(<span class="fu">lm</span>(score <span class="sc">~</span> group, data)))[[<span class="dv">1</span>]]<span class="sc">$</span>F[<span class="dv">1</span>]</span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>fStat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.06716922</code></pre>
+<pre><code>[1] 0.0425739</code></pre>
 </div>
 </div>
 </section>
@@ -662,38 +662,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Unplanned comparisons</p>
 <ul>
 <li>Exploring all possible differences</li>
-<li>Adjust T value for inflated type 1 error</li>
+<li>Adjust T value for inflated type 1 error
+<ul>
+<li><a href="https://xkcd.com/882/">Why?</a></li>
+<li>Different procedures exist (e.g., Tukey, Bonferroni)</li>
+</ul></li>
+<li>Same procedure as contrasts, but: <strong>exploratory vs.&nbsp;exploratory research</strong></li>
 </ul>
-<table class="table">
-<thead>
-<tr class="header">
-<th></th>
-<th>C</th>
-<th>K</th>
-<th>E</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>C</td>
-<td></td>
-<td>2</td>
-<td>3</td>
-</tr>
-<tr class="even">
-<td>K</td>
-<td>4</td>
-<td></td>
-<td>6</td>
-</tr>
-<tr class="odd">
-<td>E</td>
-<td>7</td>
-<td>8</td>
-<td></td>
-</tr>
-</tbody>
-</table>
 </section>
 <section id="effect-size-eta2" class="level2">
 <h2 class="anchored" data-anchor-id="effect-size-eta2">Effect size <span class="math inline">\(\eta^2\)</span></h2>

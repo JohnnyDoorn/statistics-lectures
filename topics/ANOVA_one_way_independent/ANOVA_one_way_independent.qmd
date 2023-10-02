@@ -464,12 +464,10 @@ Unplanned comparisons
 
 * Exploring all possible differences
 * Adjust T value for inflated type 1 error
+    * [Why?](https://xkcd.com/882/)
+    * Different procedures exist (e.g., Tukey, Bonferroni)
+* Same procedure as contrasts, but: **exploratory vs. exploratory research**
 
-| |C|K|E
-|-|-|-|-
-|C| |2|3 
-|K|4| |6 
-|E|7|8| 
 
 ## Effect size $\eta^2$
 
