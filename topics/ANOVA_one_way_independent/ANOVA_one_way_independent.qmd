@@ -8,10 +8,10 @@ Assuming th $H_0$ hypothesis to be true, the following should hold:
 
 * Continuous variable
 * Random sample
-* Normaly distributed
-* Shapiro-Wilk test
+* Normally distributed
+    * Shapiro-Wilk test or Q-Q plots
 * Equal variance within groups
-* Levene's test
+    * Levene's test
 
 ## Jet lag {.smaller}
 
@@ -23,21 +23,21 @@ Wright and Czeisler (2002) performed an experiment where they measured the circa
 
 ```{r, echo=TRUE}
 rm(list=ls())
-x.c = c( .53, .36,  .2,  -.37, -.6,  -.64, -.68,-1.27) # Control 
-x.k = c( .73, .31,  .03, -.29, -.56, -.96,-1.61      ) # Knees
-x.e = c(-.78,-.86,-1.35,-1.48,-1.52,-2.04,-2.83      ) # Eyes
-x   = c( x.c, x.k, x.e )                               # Conditions combined
+x.c <- c( .53, .36,  .2,  -.37, -.6,  -.64, -.68,-1.27) # Control 
+x.k <- c( .73, .31,  .03, -.29, -.56, -.96, -1.61      ) # Knees
+x.e <- c(-.78,-.86,-1.35,-1.48,-1.52,-2.04, -2.83      ) # Eyes
+x   <- c( x.c, x.k, x.e )                               # Conditions combined
 ```
 
 ##
 
 ```{r, echo=FALSE}
-lab = c("Control", "Knee", "Eyes") 
+lab <- c("Control", "Knee", "Eyes") 
 
-k_v  = c(rep(1,length(x.c)), 
+k_v  <- c(rep(1,length(x.c)), 
          rep(2,length(x.k)), 
          rep(3,length(x.e)))       # vector met 1, 2 en 3 corresponderend met de scores.
-
+write.csv(data.frame(CircadianShift = x, Condition = factor(rep(lab, each = length(x.c))[-c(23:24)])), file = "circadianDat.csv", row.names = FALSE)
 plot(k_v,x, 
      col="red",
      main='Response to light treatment',
@@ -77,7 +77,7 @@ Where $N$ is the total sample size, $n_k$ is the sample size per category and $k
 $${MS}_{total} = s_x^2$$
 
 ```{r, echo=TRUE}
-ms.t = var(x); ms.t
+ms.t <- var(x); ms.t
 
 sum( (x - mean(x))^2 ) / (length(x) - 1)
 ```
@@ -87,9 +87,9 @@ sum( (x - mean(x))^2 ) / (length(x) - 1)
 $${SS}_{total} = s_x^2 (N-1)$$
 
 ```{r, echo=TRUE}
-N = length(x)
+N <- length(x)
 
-ss.t = var(x) * (N-1); ss.t
+ss.t <- var(x) * (N-1); ss.t
 
 sum( (x - mean(x))^2 )
 ```
@@ -100,7 +100,7 @@ sum( (x - mean(x))^2 )
 #| output-location: slide
 
 # Assign labels
-lab = c("Control", "Knee", "Eyes") 
+lab <- c("Control", "Knee", "Eyes") 
 
 # Plot all data points
 plot(1:N,x, 
@@ -127,22 +127,22 @@ Where $k$ is the number of independent groups and
 $${SS}_{model} = \sum_{k} n_k (\bar{X}_k - \bar{X})^2$$
 
 ```{r, echo=TRUE}
-k      = 3
-n.c = length(x.c)
-n.k = length(x.k)
-n.e = length(x.e)
+k   <- 3
+n.c <- length(x.c)
+n.k <- length(x.k)
+n.e <- length(x.e)
 ```
 
 --------
 
 ```{r, echo=TRUE}
-ss.m.c = n.c * (mean(x.c) - mean(x))^2
-ss.m.k = n.k * (mean(x.k) - mean(x))^2
-ss.m.e = n.e * (mean(x.e) - mean(x))^2
+ss.m.c <- n.c * (mean(x.c) - mean(x))^2
+ss.m.k <- n.k * (mean(x.k) - mean(x))^2
+ss.m.e <- n.e * (mean(x.e) - mean(x))^2
 
-ss.m = sum(ss.m.c, ss.m.k, ss.m.e); ss.m
-df.m = (k - 1)
-ms.m = ss.m / df.m; ms.m
+ss.m <- sum(ss.m.c, ss.m.k, ss.m.e); ss.m
+df.m <- (k - 1)
+ms.m <- ss.m / df.m; ms.m
 ```
 
 ## Visual ${SS}_{model}$
@@ -186,10 +186,10 @@ where
 $${SS}_{error} = \sum_{k} s_k^2 (n_k - 1) = \sum_{k} \frac{\sum (x_{ik} - \bar{x}_k)^2}{(n_k - 1)} (n_k - 1)$$
 
 ```{r, echo=TRUE}
-ss.e.c = var(x.c) * (n.c - 1)
-ss.e.k = var(x.k) * (n.k - 1)
-ss.e.e = var(x.e) * (n.e - 1)
-ss.e   = sum(ss.e.c, ss.e.k, ss.e.e); ss.e
+ss.e.c <- var(x.c) * (n.c - 1)
+ss.e.k <- var(x.k) * (n.k - 1)
+ss.e.e <- var(x.e) * (n.e - 1)
+ss.e   <- sum(ss.e.c, ss.e.k, ss.e.e); ss.e
 ```
 
 -----
@@ -197,8 +197,8 @@ ss.e   = sum(ss.e.c, ss.e.k, ss.e.e); ss.e
 $${MS}_{error} = \frac{{SS}_{error}}{{df}_{error}} \\ {df}_{error} = N - k$$
 
 ```{r, echo=TRUE}
-df.e = (N - k)
-ms.e = ss.e / df.e; ms.e
+df.e <- (N - k)
+ms.e <- ss.e / df.e; ms.e
 ```
 
 ## Visual ${SS}_{error}$
@@ -252,7 +252,7 @@ $${MS}_{error} = \frac{{SS}_{error}}{{df}_{error}} = `r ms.e`$$
 $$F = \frac{{MS}_{model}}{{MS}_{error}} = \frac{{SIGNAL}}{{NOISE}}$$
 
 ```{r, echo=TRUE}
-F = ms.m / ms.e; F
+fStat <- ms.m / ms.e; fStat
 ```
 
 ## Reject $H_0$?
@@ -261,7 +261,7 @@ F = ms.m / ms.e; F
 if(!"visualize" %in% installed.packages()) { install.packages("visualize") }
 library("visualize")
 
-visualize.f(F, df.m,df.e,section="upper")
+visualize.f(fStat, df.m,df.e,section="upper")
 ```
 
 ## Contrasts
@@ -274,7 +274,6 @@ Planned comparisons
 
 ## Contrasts
 
-* Only use chunks once
 * Values add up to 0
 
 <img src="../../../../topics/ANOVA_one_way_independent/pie2.png" style="height:200px;" >
@@ -291,7 +290,7 @@ Planned comparisons
 
 ##
 
-Assign values that combine to one. Same values define chunk.
+Assign values that sum to 1. Same values define chunk.
 
 * AB-CDEF &rarr; A-B &rarr; CD-EF &rarr; C-D &rarr; E-F
 
