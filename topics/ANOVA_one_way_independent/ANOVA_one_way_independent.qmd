@@ -290,7 +290,7 @@ Planned comparisons
 
 ##
 
-Assign values that sum to 1. Same values define chunk.
+Assign values that sum to 0. Same values define chunk.
 
 * AB-CDEF &rarr; A-B &rarr; CD-EF &rarr; C-D &rarr; E-F
 
