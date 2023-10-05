@@ -348,6 +348,8 @@ b.2   <- fit$coefficients["factor(group)2"]; b.3   = fit$coefficients["factor(gr
 data$mean.adj <- with(data, b.int + b.cov * mean(covar) + b.2 * dummy.1 + b.3 * dummy.2)
 
 aggregate(mean.adj ~ group, data, mean)
+
+aggregate(outcome ~ group, data, mean)
 ```
 
 
