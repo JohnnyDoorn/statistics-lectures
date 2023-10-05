@@ -440,27 +440,31 @@ Sharon Kinkenberg &amp; Johnny van Doorn
 <li>1 or more independent variables</li>
 <li>1 or more covariates</li>
 </ul>
-<p>A covariate is a variable can be a confounding variable biasing your results. By adding a covariate we reduce error/residual in the model.</p>
+<p>A covariate is a variable that can be a confounding variable biasing your results. By adding a covariate, we reduce error/residual in the model.</p>
 </section>
 <section id="assumptions" class="slide level2">
 <h2>Assumptions</h2>
 <ul>
 <li>Same as ANOVA</li>
-<li>Independence of the covariate and treatment effect §12.3.1.
+<li>Independence of the covariate and treatment effect §13.4.1.
 <ul>
 <li>No difference on ANOVA with covar and independent variable</li>
 <li>Matching experimental groups on the covariate</li>
 </ul></li>
-<li>Homogeneity of regression slopes §12.3.2.
+<li>Homogeneity of regression slopes §13.4.2.
 <ul>
 <li>Visual: scatterplot dep var * covar per condition</li>
 <li>Testing: interaction indep. var * covar</li>
 </ul></li>
 </ul>
 </section>
+<section id="independence-of-the-covariate-and-treatment-effect" class="slide level2">
+<h2>Independence of the covariate and treatment effect</h2>
+
+<img src="FieldCovWarning.png" style="width:40%;" class="r-stretch"></section>
 <section id="data-example" class="slide level2">
 <h2>Data example</h2>
-<p>We want to test the difference in national extraversion but want to controll for openness to experience.</p>
+<p>We want to test the difference in national extraversion but want to also account for openness to experience.</p>
 <ul>
 <li>Dependent variable: Extraversion</li>
 <li>Independent variabele: Nationality
@@ -476,44 +480,45 @@ Sharon Kinkenberg &amp; Johnny van Doorn
 <h2>Simulate data</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># Simulate data</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a>n <span class="ot">=</span> <span class="dv">20</span></span>
-<span id="cb1-3"><a href="#cb1-3"></a>k <span class="ot">=</span> <span class="dv">3</span></span>
-<span id="cb1-4"><a href="#cb1-4"></a>group       <span class="ot">=</span> <span class="fu">round</span>(<span class="fu">runif</span>(n,<span class="dv">1</span>,k),<span class="dv">0</span>)</span>
-<span id="cb1-5"><a href="#cb1-5"></a>mu.covar    <span class="ot">=</span> <span class="dv">8</span></span>
-<span id="cb1-6"><a href="#cb1-6"></a>sigma.covar <span class="ot">=</span> <span class="dv">1</span></span>
-<span id="cb1-7"><a href="#cb1-7"></a>covar       <span class="ot">=</span> <span class="fu">round</span>(<span class="fu">rnorm</span>(n,mu.covar,sigma.covar),<span class="dv">2</span>)</span>
+<span id="cb1-2"><a href="#cb1-2"></a>n <span class="ot">&lt;-</span> <span class="dv">20</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a>k <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a>group       <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">runif</span>(n,<span class="dv">1</span>,k),<span class="dv">0</span>)</span>
+<span id="cb1-5"><a href="#cb1-5"></a>mu.covar    <span class="ot">&lt;-</span> <span class="dv">8</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a>sigma.covar <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a>covar       <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">rnorm</span>(n,mu.covar,sigma.covar),<span class="dv">2</span>)</span>
 <span id="cb1-8"><a href="#cb1-8"></a></span>
 <span id="cb1-9"><a href="#cb1-9"></a><span class="co"># Create dummy variables</span></span>
 <span id="cb1-10"><a href="#cb1-10"></a>dummy<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(group <span class="sc">==</span> <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
 <span id="cb1-11"><a href="#cb1-11"></a>dummy<span class="fl">.2</span> <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(group <span class="sc">==</span> <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
 <span id="cb1-12"><a href="#cb1-12"></a></span>
 <span id="cb1-13"><a href="#cb1-13"></a><span class="co"># Set parameters</span></span>
-<span id="cb1-14"><a href="#cb1-14"></a>b<span class="fl">.0</span> <span class="ot">=</span> <span class="dv">15</span> <span class="co"># initial value for group 1</span></span>
-<span id="cb1-15"><a href="#cb1-15"></a>b<span class="fl">.1</span> <span class="ot">=</span> <span class="dv">3</span>  <span class="co"># difference between group 1 and 2</span></span>
-<span id="cb1-16"><a href="#cb1-16"></a>b<span class="fl">.2</span> <span class="ot">=</span> <span class="dv">4</span>  <span class="co"># difference between group 1 and 3</span></span>
-<span id="cb1-17"><a href="#cb1-17"></a>b<span class="fl">.3</span> <span class="ot">=</span> <span class="dv">3</span>  <span class="co"># Weight for covariate</span></span>
+<span id="cb1-14"><a href="#cb1-14"></a>b<span class="fl">.0</span> <span class="ot">&lt;-</span> <span class="dv">15</span> <span class="co"># initial value for group 1</span></span>
+<span id="cb1-15"><a href="#cb1-15"></a>b<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="dv">3</span>  <span class="co"># difference between group 1 and 2</span></span>
+<span id="cb1-16"><a href="#cb1-16"></a>b<span class="fl">.2</span> <span class="ot">&lt;-</span> <span class="dv">4</span>  <span class="co"># difference between group 1 and 3</span></span>
+<span id="cb1-17"><a href="#cb1-17"></a>b<span class="fl">.3</span> <span class="ot">&lt;-</span> <span class="dv">3</span>  <span class="co"># Weight for covariate</span></span>
 <span id="cb1-18"><a href="#cb1-18"></a></span>
 <span id="cb1-19"><a href="#cb1-19"></a><span class="co"># Create error</span></span>
-<span id="cb1-20"><a href="#cb1-20"></a>error <span class="ot">=</span> <span class="fu">rnorm</span>(n,<span class="dv">0</span>,<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-20"><a href="#cb1-20"></a>error <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n,<span class="dv">0</span>,<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="define-the-model" class="slide level2 subsection">
 <h2>Define the model</h2>
-<p><span class="math inline">\({outcome} = {model} + {error}\)</span> <span class="math inline">\({model} = {indvar} + {covariate} = {nationality} + {openness}\)</span></p>
+<p><span class="math inline">\({outcome} = {model} + {error}\)</span></p>
+<p><span class="math inline">\({model} = {independent} + {covariate} = {nationality} + {openness}\)</span></p>
 <p>Formal model</p>
-<p><span class="math inline">\(b_0 + b_1 {dummy}_1 + b_2 {dummy}_2 + b_3 covar\)</span></p>
+<p><span class="math inline">\(y = b_0 + b_1 {dummy}_1 + b_2 {dummy}_2 + b_3 covar\)</span></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># Define model</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a>outcome <span class="ot">=</span> b<span class="fl">.0</span> <span class="sc">+</span> b<span class="fl">.1</span> <span class="sc">*</span> dummy<span class="fl">.1</span> <span class="sc">+</span> b<span class="fl">.2</span> <span class="sc">*</span> dummy<span class="fl">.2</span> <span class="sc">+</span> b<span class="fl">.3</span> <span class="sc">*</span> covar <span class="sc">+</span> error</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-2"><a href="#cb2-2"></a>outcome <span class="ot">&lt;-</span> b<span class="fl">.0</span> <span class="sc">+</span> b<span class="fl">.1</span> <span class="sc">*</span> dummy<span class="fl">.1</span> <span class="sc">+</span> b<span class="fl">.2</span> <span class="sc">*</span> dummy<span class="fl">.2</span> <span class="sc">+</span> b<span class="fl">.3</span> <span class="sc">*</span> covar <span class="sc">+</span> error</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="dummies" class="slide level2 smaller">
+<section id="dummies" class="slide level2 smallest">
 <h2>Dummies</h2>
 <div class="cell">
 <div class="cell-output-display">
 
 <div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-27a87ee55979aa7d5bc7" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-27a87ee55979aa7d5bc7">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20"],[3,2,1,3,1,3,2,1,2,2,2,1,1,2,2,3,1,2,3,1],[15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15],[3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3],[0,1,0,0,0,0,1,0,1,1,1,0,0,1,1,0,0,1,0,0],[4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4],[1,0,0,1,0,1,0,0,0,0,0,0,0,0,0,1,0,0,1,0],[3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3],[9,9.3,8.42,8.15,9.38,8.47,7.26,6.7,8.33,8.04,7.7,8.07,7.61,6.72,8.68,7.65,6.14,9.04,7.78,8.85],[0.89,-1.45,-0.45,1.9,0.71,-0.02,-0.67,1.75,-0.46,0.74,0.63,0.26,-2.17,-0.15,0.27,-1.83,0.36,-0.79,-0.1,-0.28],[46.89,44.45,39.81,45.35,43.85,44.39,39.11,36.85,42.53,42.86,41.73,39.47,35.66,38.01,44.31,40.12,33.78,44.33,42.24,41.27]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>group<\/th>\n      <th>b.0<\/th>\n      <th>b.1<\/th>\n      <th>dummy.1<\/th>\n      <th>b.2<\/th>\n      <th>dummy.2<\/th>\n      <th>b.3<\/th>\n      <th>covar<\/th>\n      <th>error<\/th>\n      <th>outcome<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"searching":false,"scrollY":415,"paging":false,"info":false,"columnDefs":[{"className":"dt-right","targets":[1,2,3,4,5,6,7,8,9,10]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-27a87ee55979aa7d5bc7">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20"],[3,2,1,3,1,3,2,1,2,2,2,1,1,2,2,3,1,2,3,1],[15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15],[3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3],[0,1,0,0,0,0,1,0,1,1,1,0,0,1,1,0,0,1,0,0],[4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4],[1,0,0,1,0,1,0,0,0,0,0,0,0,0,0,1,0,0,1,0],[3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3],[9,9.3,8.42,8.15,9.38,8.47,7.26,6.7,8.33,8.04,7.7,8.07,7.61,6.72,8.68,7.65,6.14,9.04,7.78,8.85],[0.89,-1.45,-0.45,1.9,0.71,-0.02,-0.67,1.75,-0.46,0.74,0.63,0.26,-2.17,-0.15,0.27,-1.83,0.36,-0.79,-0.1,-0.28],[46.89,44.45,39.81,45.35,43.85,44.39,39.11,36.85,42.53,42.86,41.73,39.47,35.66,38.01,44.31,40.12,33.78,44.33,42.24,41.27]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>group<\/th>\n      <th>b.0<\/th>\n      <th>b.1<\/th>\n      <th>dummy.1<\/th>\n      <th>b.2<\/th>\n      <th>dummy.2<\/th>\n      <th>b.3<\/th>\n      <th>covar<\/th>\n      <th>error<\/th>\n      <th>outcome<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"searching":false,"scrollY":435,"paging":false,"info":false,"columnDefs":[{"className":"dt-right","targets":[1,2,3,4,5,6,7,8,9,10]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -527,8 +532,8 @@ Sharon Kinkenberg &amp; Johnny van Doorn
 </div>
 </div>
 </section>
-<section id="group-means" class="slide level2 subsection">
-<h2>Group means</h2>
+<section id="observed-group-means" class="slide level2 subsection">
+<h2>Observed group means</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">aggregate</span>(outcome <span class="sc">~</span> group, data, mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -539,9 +544,9 @@ Sharon Kinkenberg &amp; Johnny van Doorn
 </div>
 </div>
 </section>
-<section id="model-fit-no-covar" class="slide level2">
-<h2>Model fit no covar</h2>
-<p>What are the beta coëfficients based on the data without the covariate?</p>
+<section id="model-fit-without-covariate" class="slide level2">
+<h2>Model fit without covariate</h2>
+<p>What are the beta coefficients when we fit a model that only has “nationality” as a predictor variable?</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>fit.group <span class="ot">&lt;-</span> <span class="fu">lm</span>(outcome <span class="sc">~</span> <span class="fu">factor</span>(group), data); fit.group</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -561,9 +566,9 @@ Coefficients:
 </div>
 <p><span class="math inline">\({Dutch} = 38.67 \&gt; {German} = 42.16625 \&gt; {Belgian} = 43.798\)</span></p>
 </section>
-<section id="model-fit-only-covar" class="slide level2 subsection">
-<h2>Model fit only covar</h2>
-<p>What is the weight of only the covariate?</p>
+<section id="model-fit-with-only-covar" class="slide level2 subsection">
+<h2>Model fit with only covar</h2>
+<p>What are the beta coefficients when we fit a model that only has the covariate as predictor variable?</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>fit.covar <span class="ot">&lt;-</span> <span class="fu">lm</span>(outcome <span class="sc">~</span> covar, data)</span>
 <span id="cb9-2"><a href="#cb9-2"></a>fit.covar</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -578,8 +583,8 @@ Coefficients:
 </div>
 </div>
 </section>
-<section id="model-fit-with-covar" class="slide level2">
-<h2>Model fit with covar</h2>
+<section id="model-fit-with-all-predictor-variables-factor-covariate" class="slide level2">
+<h2>Model fit with all predictor variables (factor + covariate)</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(outcome <span class="sc">~</span> <span class="fu">factor</span>(group) <span class="sc">+</span> covar, data); fit</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -599,16 +604,33 @@ Coefficients:
 </div>
 <p><span class="math inline">\({Dutch} = 15.96 \&gt; {German} = 18.73 \&gt; {Belgian} = 20.14\)</span></p>
 </section>
+<section id="so-what-do-we-predict-for-each-participant" class="slide level2">
+<h2>So what do we predict for each participant??</h2>
+<p>For a German with a score of 8 on Openness:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(outcome <span class="sc">~</span> <span class="fu">factor</span>(group) <span class="sc">+</span> covar, data); fit<span class="sc">$</span>coefficients</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   (Intercept) factor(group)2 factor(group)3          covar 
+     15.964661       2.769346       4.181430       2.880866 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">unname</span>(fit<span class="sc">$</span>coefficients[<span class="dv">1</span>] <span class="sc">+</span> <span class="dv">1</span> <span class="sc">*</span> fit<span class="sc">$</span>coefficients[<span class="dv">2</span>] <span class="sc">+</span> <span class="dv">0</span> <span class="sc">*</span> fit<span class="sc">$</span>coefficients[<span class="dv">3</span>] <span class="sc">+</span> </span>
+<span id="cb17-2"><a href="#cb17-2"></a>  <span class="dv">8</span> <span class="sc">*</span> fit<span class="sc">$</span>coefficients[<span class="dv">4</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 41.78093</code></pre>
+</div>
+</div>
+<p>How about a Belgian with 6 Openness?</p>
+</section>
 <section id="total-variance" class="slide level2 subsection">
 <h2>Total variance</h2>
-<p>What is the total variance</p>
+<p>What is the total variance?</p>
 <p><span class="math inline">\({MS}_{total} = s^2_{outcome} = \frac{{SS}_{outcome}}{{df}_{outcome}}\)</span></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>ms.t <span class="ot">=</span> <span class="fu">var</span>(data<span class="sc">$</span>outcome); ms.t</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>ms.t <span class="ot">&lt;-</span> <span class="fu">var</span>(data<span class="sc">$</span>outcome); ms.t</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 11.97756</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>ss.t <span class="ot">=</span> <span class="fu">var</span>(data<span class="sc">$</span>outcome) <span class="sc">*</span> (<span class="fu">length</span>(data<span class="sc">$</span>outcome) <span class="sc">-</span> <span class="dv">1</span>); ss.t</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>ss.t <span class="ot">&lt;-</span> <span class="fu">var</span>(data<span class="sc">$</span>outcome) <span class="sc">*</span> (<span class="fu">length</span>(data<span class="sc">$</span>outcome) <span class="sc">-</span> <span class="dv">1</span>); ss.t</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 227.5737</code></pre>
 </div>
@@ -627,7 +649,7 @@ Coefficients:
 <section id="total-variance-visual" class="slide level2 subsection">
 <h2>Total variance visual</h2>
 
-<img data-src="12.-ANCOVA_files/figure-revealjs/unnamed-chunk-15-1.png" width="960" class="r-stretch"></section>
+<img data-src="12.-ANCOVA_files/figure-revealjs/unnamed-chunk-16-1.png" width="960" class="r-stretch"></section>
 <section id="model-variance-group" class="slide level2 smaller">
 <h2>Model variance group</h2>
 <p>The model variance consists of two parts. One for the independent variable and one for the covariate. Lets first look at the independent variable.</p>
@@ -642,11 +664,11 @@ Coefficients:
 <section id="model-variance-group-visual" class="slide level2 subsection">
 <h2>Model variance group visual</h2>
 
-<img data-src="12.-ANCOVA_files/figure-revealjs/unnamed-chunk-17-1.png" width="960" class="r-stretch"></section>
+<img data-src="12.-ANCOVA_files/figure-revealjs/unnamed-chunk-18-1.png" width="960" class="r-stretch"></section>
 <section id="model-variance-covariate-visual" class="slide level2 subsection">
 <h2>Model variance covariate visual</h2>
 
-<img data-src="12.-ANCOVA_files/figure-revealjs/unnamed-chunk-18-1.png" width="960" class="r-stretch"></section>
+<img data-src="12.-ANCOVA_files/figure-revealjs/unnamed-chunk-19-1.png" width="960" class="r-stretch"></section>
 <section id="model-variance-group-and-covariate" class="slide level2 smaller">
 <h2>Model variance group and covariate</h2>
 <div class="cell">
@@ -660,26 +682,26 @@ Coefficients:
 <section id="model-variance-group-and-covariate-visual" class="slide level2 subsection">
 <h2>Model variance group and covariate visual</h2>
 
-<img data-src="12.-ANCOVA_files/figure-revealjs/unnamed-chunk-20-1.png" width="960" class="r-stretch"></section>
+<img data-src="12.-ANCOVA_files/figure-revealjs/unnamed-chunk-21-1.png" width="960" class="r-stretch"></section>
 <section id="error-variance-with-covariate" class="slide level2 subsection">
 <h2>Error variance with covariate</h2>
 
-<img data-src="12.-ANCOVA_files/figure-revealjs/unnamed-chunk-21-1.png" width="960" class="r-stretch"></section>
+<img data-src="12.-ANCOVA_files/figure-revealjs/unnamed-chunk-22-1.png" width="960" class="r-stretch"></section>
 <section id="sums-of-squares" class="slide level2 subsection">
 <h2>Sums of squares</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>SS.model <span class="ot">=</span> <span class="fu">with</span>(data, <span class="fu">sum</span>((model <span class="sc">-</span> grand.mean)<span class="sc">^</span><span class="dv">2</span>))</span>
-<span id="cb19-2"><a href="#cb19-2"></a>SS.error <span class="ot">=</span> <span class="fu">with</span>(data, <span class="fu">sum</span>((outcome <span class="sc">-</span> model)<span class="sc">^</span><span class="dv">2</span>))</span>
-<span id="cb19-3"><a href="#cb19-3"></a></span>
-<span id="cb19-4"><a href="#cb19-4"></a><span class="co"># Sums of squares for individual effects</span></span>
-<span id="cb19-5"><a href="#cb19-5"></a>SS.model.group <span class="ot">=</span> <span class="fu">with</span>(data, <span class="fu">sum</span>((model.group <span class="sc">-</span> grand.mean)<span class="sc">^</span><span class="dv">2</span>))</span>
-<span id="cb19-6"><a href="#cb19-6"></a>SS.model.covar <span class="ot">=</span> <span class="fu">with</span>(data, <span class="fu">sum</span>((model.covar <span class="sc">-</span> grand.mean)<span class="sc">^</span><span class="dv">2</span>))</span>
-<span id="cb19-7"><a href="#cb19-7"></a></span>
-<span id="cb19-8"><a href="#cb19-8"></a>SS.covar <span class="ot">=</span> SS.model <span class="sc">-</span> SS.model.group; SS.covar <span class="do">## SS.covar corrected for group</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>SS.model <span class="ot">&lt;-</span> <span class="fu">with</span>(data, <span class="fu">sum</span>((model <span class="sc">-</span> grand.mean)<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb23-2"><a href="#cb23-2"></a>SS.error <span class="ot">&lt;-</span> <span class="fu">with</span>(data, <span class="fu">sum</span>((outcome <span class="sc">-</span> model)<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb23-3"><a href="#cb23-3"></a></span>
+<span id="cb23-4"><a href="#cb23-4"></a><span class="co"># Sums of squares for individual effects</span></span>
+<span id="cb23-5"><a href="#cb23-5"></a>SS.model.group <span class="ot">&lt;-</span> <span class="fu">with</span>(data, <span class="fu">sum</span>((model.group <span class="sc">-</span> grand.mean)<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb23-6"><a href="#cb23-6"></a>SS.model.covar <span class="ot">&lt;-</span> <span class="fu">with</span>(data, <span class="fu">sum</span>((model.covar <span class="sc">-</span> grand.mean)<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb23-7"><a href="#cb23-7"></a></span>
+<span id="cb23-8"><a href="#cb23-8"></a>SS.covar <span class="ot">&lt;-</span> SS.model <span class="sc">-</span> SS.model.group; SS.covar <span class="do">## SS.covar corrected for group</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 121.8463</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>SS.group <span class="ot">=</span> SS.model <span class="sc">-</span> SS.model.covar; SS.group <span class="do">## SS.group corrected for covar</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a>SS.group <span class="ot">&lt;-</span> SS.model <span class="sc">-</span> SS.model.covar; SS.group <span class="do">## SS.group corrected for covar</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 54.65778</code></pre>
 </div>
@@ -689,16 +711,16 @@ Coefficients:
 <h2>F-ratio</h2>
 <p><span class="math inline">\(F = \frac{{MS}_{model}}{{MS}_{error}} = \frac{{SIGNAL}}{{NOISE}}\)</span></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>n <span class="ot">=</span> <span class="dv">20</span></span>
-<span id="cb23-2"><a href="#cb23-2"></a>k <span class="ot">=</span> <span class="dv">3</span></span>
-<span id="cb23-3"><a href="#cb23-3"></a>df.model <span class="ot">=</span> k <span class="sc">-</span> <span class="dv">1</span></span>
-<span id="cb23-4"><a href="#cb23-4"></a>df.error <span class="ot">=</span> n <span class="sc">-</span> k <span class="sc">-</span> <span class="dv">1</span></span>
-<span id="cb23-5"><a href="#cb23-5"></a></span>
-<span id="cb23-6"><a href="#cb23-6"></a>MS.model <span class="ot">=</span> SS.group <span class="sc">/</span> df.model</span>
-<span id="cb23-7"><a href="#cb23-7"></a>MS.error <span class="ot">=</span> SS.error <span class="sc">/</span> df.error</span>
-<span id="cb23-8"><a href="#cb23-8"></a>  </span>
-<span id="cb23-9"><a href="#cb23-9"></a>F <span class="ot">=</span> MS.model <span class="sc">/</span> MS.error</span>
-<span id="cb23-10"><a href="#cb23-10"></a>F</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a>n <span class="ot">&lt;-</span> <span class="dv">20</span></span>
+<span id="cb27-2"><a href="#cb27-2"></a>k <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb27-3"><a href="#cb27-3"></a>df.model <span class="ot">&lt;-</span> k <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb27-4"><a href="#cb27-4"></a>df.error <span class="ot">&lt;-</span> n <span class="sc">-</span> k <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb27-5"><a href="#cb27-5"></a></span>
+<span id="cb27-6"><a href="#cb27-6"></a>MS.model <span class="ot">&lt;-</span> SS.group <span class="sc">/</span> df.model</span>
+<span id="cb27-7"><a href="#cb27-7"></a>MS.error <span class="ot">&lt;-</span> SS.error <span class="sc">/</span> df.error</span>
+<span id="cb27-8"><a href="#cb27-8"></a></span>
+<span id="cb27-9"><a href="#cb27-9"></a>fStat <span class="ot">&lt;-</span> MS.model <span class="sc">/</span> MS.error</span>
+<span id="cb27-10"><a href="#cb27-10"></a>fStat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 21.74406</code></pre>
 </div>
@@ -707,54 +729,41 @@ Coefficients:
 <section id="p-value" class="slide level2">
 <h2><span class="math inline">\(P\)</span>-value</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="fu">library</span>(<span class="st">"visualize"</span>)</span>
-<span id="cb25-2"><a href="#cb25-2"></a><span class="fu">visualize.f</span>(F, df.model, df.error, <span class="at">section =</span> <span class="st">"upper"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="fu">library</span>(<span class="st">"visualize"</span>)</span>
+<span id="cb29-2"><a href="#cb29-2"></a><span class="fu">visualize.f</span>(fStat, df.model, df.error, <span class="at">section =</span> <span class="st">"upper"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="12.-ANCOVA_files/figure-revealjs/unnamed-chunk-24-1.png" width="960" class="r-stretch"></section>
+<img data-src="12.-ANCOVA_files/figure-revealjs/unnamed-chunk-25-1.png" width="960" class="r-stretch"></section>
 <section id="alpha-power" class="slide level2">
 <h2>Alpha &amp; Power</h2>
 
-<img data-src="12.-ANCOVA_files/figure-revealjs/unnamed-chunk-25-1.png" width="960" class="r-stretch"></section>
-<section id="adjusted-means" class="slide level2">
-<h2>Adjusted means</h2>
+<img data-src="12.-ANCOVA_files/figure-revealjs/unnamed-chunk-26-1.png" width="960" class="r-stretch"></section>
+<section id="adjustedmarginal-means" class="slide level2">
+<h2>Adjusted/marginal means</h2>
+<p>Marginal means are estimated group means, while keeping the covariate equal across the groups</p>
+<p>These are then the means that are used for follow-up tests, such as contrasts and post hoc tests</p>
+<p>See also <a href="https://jasp-stats.org/2020/04/14/the-wonderful-world-of-marginal-means/">this blogpost</a> I wrote a while ago</p>
+</section>
+<section id="adjustedmarginal-means-1" class="slide level2">
+<h2>Adjusted/marginal means</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="co"># Add dummy variables</span></span>
-<span id="cb26-2"><a href="#cb26-2"></a>data<span class="sc">$</span>dummy<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(data<span class="sc">$</span>group <span class="sc">==</span> <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
-<span id="cb26-3"><a href="#cb26-3"></a>data<span class="sc">$</span>dummy<span class="fl">.2</span> <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(data<span class="sc">$</span>group <span class="sc">==</span> <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
-<span id="cb26-4"><a href="#cb26-4"></a></span>
-<span id="cb26-5"><a href="#cb26-5"></a><span class="co"># b coefficients</span></span>
-<span id="cb26-6"><a href="#cb26-6"></a>b.cov <span class="ot">=</span> fit<span class="sc">$</span>coefficients[<span class="st">"covar"</span>];          b.int <span class="ot">=</span> fit<span class="sc">$</span>coefficients[<span class="st">"(Intercept)"</span>]</span>
-<span id="cb26-7"><a href="#cb26-7"></a>b<span class="fl">.2</span>   <span class="ot">=</span> fit<span class="sc">$</span>coefficients[<span class="st">"factor(group)2"</span>]; b<span class="fl">.3</span>   <span class="ot">=</span> fit<span class="sc">$</span>coefficients[<span class="st">"factor(group)3"</span>]</span>
-<span id="cb26-8"><a href="#cb26-8"></a></span>
-<span id="cb26-9"><a href="#cb26-9"></a><span class="co"># Adjustment factor for the means of the independent variable</span></span>
-<span id="cb26-10"><a href="#cb26-10"></a>data<span class="sc">$</span>mean.adj <span class="ot">&lt;-</span> <span class="fu">with</span>(data, b.int <span class="sc">+</span> b.cov <span class="sc">*</span> <span class="fu">mean</span>(covar) <span class="sc">+</span> b<span class="fl">.2</span> <span class="sc">*</span> dummy<span class="fl">.1</span> <span class="sc">+</span> b<span class="fl">.3</span> <span class="sc">*</span> dummy<span class="fl">.2</span>)</span>
-<span id="cb26-11"><a href="#cb26-11"></a></span>
-<span id="cb26-12"><a href="#cb26-12"></a><span class="fu">aggregate</span>(mean.adj <span class="sc">~</span> group, data, mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a><span class="co"># Add dummy variables</span></span>
+<span id="cb30-2"><a href="#cb30-2"></a>data<span class="sc">$</span>dummy<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(data<span class="sc">$</span>group <span class="sc">==</span> <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb30-3"><a href="#cb30-3"></a>data<span class="sc">$</span>dummy<span class="fl">.2</span> <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(data<span class="sc">$</span>group <span class="sc">==</span> <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb30-4"><a href="#cb30-4"></a></span>
+<span id="cb30-5"><a href="#cb30-5"></a><span class="co"># b coefficients</span></span>
+<span id="cb30-6"><a href="#cb30-6"></a>b.cov <span class="ot">&lt;-</span> fit<span class="sc">$</span>coefficients[<span class="st">"covar"</span>];          b.int <span class="ot">=</span> fit<span class="sc">$</span>coefficients[<span class="st">"(Intercept)"</span>]</span>
+<span id="cb30-7"><a href="#cb30-7"></a>b<span class="fl">.2</span>   <span class="ot">&lt;-</span> fit<span class="sc">$</span>coefficients[<span class="st">"factor(group)2"</span>]; b<span class="fl">.3</span>   <span class="ot">=</span> fit<span class="sc">$</span>coefficients[<span class="st">"factor(group)3"</span>]</span>
+<span id="cb30-8"><a href="#cb30-8"></a></span>
+<span id="cb30-9"><a href="#cb30-9"></a><span class="co"># Adjustment factor for the means of the independent variable</span></span>
+<span id="cb30-10"><a href="#cb30-10"></a>data<span class="sc">$</span>mean.adj <span class="ot">&lt;-</span> <span class="fu">with</span>(data, b.int <span class="sc">+</span> b.cov <span class="sc">*</span> <span class="fu">mean</span>(covar) <span class="sc">+</span> b<span class="fl">.2</span> <span class="sc">*</span> dummy<span class="fl">.1</span> <span class="sc">+</span> b<span class="fl">.3</span> <span class="sc">*</span> dummy<span class="fl">.2</span>)</span>
+<span id="cb30-11"><a href="#cb30-11"></a></span>
+<span id="cb30-12"><a href="#cb30-12"></a><span class="fu">aggregate</span>(mean.adj <span class="sc">~</span> group, data, mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  group mean.adj
-1     1 39.18576
-2     2 41.95576
-3     3 43.36576</code></pre>
-</div>
-</div>
-</section>
-<section id="real-betas" class="slide level2">
-<h2>Real <span class="math inline">\(\beta\)</span>’s</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a>b<span class="fl">.0</span> <span class="ot">=</span> <span class="dv">15</span> <span class="co"># initial value for group 1</span></span>
-<span id="cb28-2"><a href="#cb28-2"></a>b<span class="fl">.1</span> <span class="ot">=</span> <span class="dv">3</span>  <span class="co"># difference between group 1 and 2</span></span>
-<span id="cb28-3"><a href="#cb28-3"></a>b<span class="fl">.2</span> <span class="ot">=</span> <span class="dv">4</span>  <span class="co"># difference between group 1 and 3</span></span>
-<span id="cb28-4"><a href="#cb28-4"></a>b<span class="fl">.3</span> <span class="ot">=</span> <span class="dv">3</span>  <span class="co"># Weight for covariate</span></span>
-<span id="cb28-5"><a href="#cb28-5"></a></span>
-<span id="cb28-6"><a href="#cb28-6"></a><span class="fu">cbind</span>(<span class="at">m.covar =</span> mu.covar<span class="sc">*</span><span class="dv">3</span>, </span>
-<span id="cb28-7"><a href="#cb28-7"></a>      <span class="at">BETA    =</span> <span class="fu">c</span>(b<span class="fl">.0</span>, b<span class="fl">.0</span><span class="sc">+</span>b<span class="fl">.1</span>, b<span class="fl">.0</span><span class="sc">+</span>b<span class="fl">.2</span>), </span>
-<span id="cb28-8"><a href="#cb28-8"></a>      <span class="at">sum     =</span> mu.covar<span class="sc">*</span><span class="dv">3</span> <span class="sc">+</span> <span class="fu">c</span>(b<span class="fl">.0</span>, b<span class="fl">.0</span><span class="sc">+</span>b<span class="fl">.1</span>, b<span class="fl">.0</span><span class="sc">+</span>b<span class="fl">.2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>     m.covar BETA sum
-[1,]      24   15  39
-[2,]      24   18  42
-[3,]      24   19  43</code></pre>
+1     1 39.19740
+2     2 41.96675
+3     3 43.37883</code></pre>
 </div>
 </div>
 <!-- Footer insert below -->

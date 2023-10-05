@@ -27,70 +27,75 @@ Determine main effect while correcting for covariate
 * 1 or more independent variables
 * 1 or more covariates
 
-A covariate is a variable can be a confounding variable biasing your results. By adding a covariate we reduce error/residual in the model.
+A covariate is a variable that can be a confounding variable biasing your results. By adding a covariate, we reduce error/residual in the model.
 
 ## Assumptions
 
 * Same as ANOVA
-* Independence of the covariate and treatment effect §12.3.1.
+* Independence of the covariate and treatment effect §13.4.1.
     * No difference on ANOVA with covar and independent variable
     * Matching experimental groups on the covariate
-* Homogeneity of regression slopes §12.3.2.
+* Homogeneity of regression slopes §13.4.2.
     * Visual: scatterplot dep var * covar per condition
     * Testing: interaction indep. var * covar
 
+## Independence of the covariate and treatment effect
+
+<img src="FieldCovWarning.png" style="width:40%;"/>
+
 ## Data example
 
-We want to test the difference in national extraversion but want to controll for openness to experience.
+We want to test the difference in national extraversion but want to also account for openness to experience.
 
 * Dependent variable: Extraversion
 * Independent variabele: Nationality
-     + Dutch
-     + German
-     + Belgian
+    + Dutch
+    + German
+    + Belgian
 * Covariate: Openness to experience
 
 ## Simulate data
 
 ```{r, echo=TRUE}
 # Simulate data
-n = 20
-k = 3
-group       = round(runif(n,1,k),0)
-mu.covar    = 8
-sigma.covar = 1
-covar       = round(rnorm(n,mu.covar,sigma.covar),2)
+n <- 20
+k <- 3
+group       <- round(runif(n,1,k),0)
+mu.covar    <- 8
+sigma.covar <- 1
+covar       <- round(rnorm(n,mu.covar,sigma.covar),2)
 
 # Create dummy variables
 dummy.1 <- ifelse(group == 2, 1, 0)
 dummy.2 <- ifelse(group == 3, 1, 0)
 
 # Set parameters
-b.0 = 15 # initial value for group 1
-b.1 = 3  # difference between group 1 and 2
-b.2 = 4  # difference between group 1 and 3
-b.3 = 3  # Weight for covariate
+b.0 <- 15 # initial value for group 1
+b.1 <- 3  # difference between group 1 and 2
+b.2 <- 4  # difference between group 1 and 3
+b.3 <- 3  # Weight for covariate
 
 # Create error
-error = rnorm(n,0,1)
+error <- rnorm(n,0,1)
 ```
 
 ## Define the model {.subsection}
 
 ${outcome} = {model} + {error}$
-${model} = {indvar} + {covariate} = {nationality} + {openness}$
+
+${model} = {independent} + {covariate} = {nationality} + {openness}$
 
 Formal model
 
-$b_0 + b_1 {dummy}_1 + b_2 {dummy}_2 + b_3 covar$
+$y = b_0 + b_1 {dummy}_1 + b_2 {dummy}_2 + b_3 covar$
 
 
 ```{r, echo=TRUE}
 # Define model
-outcome = b.0 + b.1 * dummy.1 + b.2 * dummy.2 + b.3 * covar + error
+outcome <- b.0 + b.1 * dummy.1 + b.2 * dummy.2 + b.3 * covar + error
 ```
 
-## Dummies {.smaller}
+## Dummies {.smallest}
 
 ```{r, echo=FALSE}
 outcome <- round(outcome,2)
@@ -100,7 +105,7 @@ n <- 1:length(outcome)
 
 dummies <- data.frame(group, b.0, b.1, dummy.1, b.2, dummy.2, b.3, covar, error, outcome)
 
-datatable(dummies, options = list(searching = FALSE, scrollY = 415, paging = F, info = F))
+datatable(dummies, options = list(searching = FALSE, scrollY = 435, paging = FALSE, info = FALSE))
 ```
 
 ## The data {.smaller}
@@ -113,7 +118,7 @@ data <- data.frame(group, covar, outcome)
 data <- data[order(data$group),]
 data <- cbind(n, data)
 # Write data for use in SPSS
-write.csv(data, "ANCOVA.csv", row.names=FALSE)
+write.csv(data, "ANCOVA_Shar.csv", row.names=FALSE)
 
 datatable(data, 
           extensions = 'Buttons',
@@ -123,18 +128,18 @@ datatable(data,
                             info      = F,
                             dom       = 'Bfrtip',
                             buttons   = c('csv')),
-           )
+)
 ```
 
-## Group means {.subsection}
+## Observed group means {.subsection}
 
 ```{r, echo=TRUE}
 aggregate(outcome ~ group, data, mean)
 ```
 
-## Model fit no covar
+## Model fit without covariate
 
-What are the beta coëfficients based on the data without the covariate?
+What are the beta coefficients when we fit a model that only has "nationality" as a predictor variable?
 
 ```{r, echo=TRUE}
 fit.group <- lm(outcome ~ factor(group), data); fit.group
@@ -144,16 +149,16 @@ fit.group$coefficients[2:3] + fit.group$coefficients[1]
 ${Dutch} = `r  fit.group$coefficients[1]` \> {German} = `r fit.group$coefficients[2] + fit.group$coefficients[1]` \> {Belgian} = `r fit.group$coefficients[3] + fit.group$coefficients[1]`$
 
 
-## Model fit only covar {.subsection}
+## Model fit with only covar {.subsection}
 
-What is the weight of only the covariate?
+What are the beta coefficients when we fit a model that only has the covariate as predictor variable?
 
 ```{r, echo=TRUE}
 fit.covar <- lm(outcome ~ covar, data)
 fit.covar
 ```
 
-## Model fit with covar
+## Model fit with all predictor variables (factor + covariate)
 
 ```{r, echo=TRUE}
 fit <- lm(outcome ~ factor(group) + covar, data); fit
@@ -166,15 +171,27 @@ fit$coefficients <- round(fit$coefficients, 2)
 
 ${Dutch} = `r  fit$coefficients[1]` \> {German} = `r fit$coefficients[2] + fit$coefficients[1]` \> {Belgian} = `r fit$coefficients[3] + fit$coefficients[1]`$
 
+## So what do we predict for each participant??
+
+For a German with a score of 8 on Openness:
+
+```{r, echo=TRUE}
+fit <- lm(outcome ~ factor(group) + covar, data); fit$coefficients
+
+unname(fit$coefficients[1] + 1 * fit$coefficients[2] + 0 * fit$coefficients[3] + 
+  8 * fit$coefficients[4])
+```
+How about a Belgian with 6 Openness?
+
 ## Total variance {.subsection}
 
-What is the total variance
+What is the total variance?
 
 ${MS}_{total} = s^2_{outcome} = \frac{{SS}_{outcome}}{{df}_{outcome}}$
 
 ```{r, echo=TRUE}
-ms.t = var(data$outcome); ms.t
-ss.t = var(data$outcome) * (length(data$outcome) - 1); ss.t
+ms.t <- var(data$outcome); ms.t
+ss.t <- var(data$outcome) * (length(data$outcome) - 1); ss.t
 ```
 
 ## The data
@@ -190,9 +207,9 @@ datatable(data, options = list(searching = FALSE, scrollY = 415, paging = F, inf
 
 ```{r, echo=FALSE}
 plot <- ggplot(data, aes(x=n, y=outcome)) + geom_point(shape=1) +
-        geom_hline(yintercept=mean(outcome)) +
-        geom_segment(aes(x = n, y = grand.mean, xend = n, yend = outcome)) +
-        ggtitle("Total variance")
+  geom_hline(yintercept=mean(outcome)) +
+  geom_segment(aes(x = n, y = grand.mean, xend = n, yend = outcome)) +
+  ggtitle("Total variance")
 plot
 ```
 
@@ -210,7 +227,7 @@ datatable(data, options = list(searching = FALSE, scrollY = 315, paging = F, inf
 
 ```{r, echo=FALSE}
 plot + geom_segment(aes(x = n, y = grand.mean, xend = n, yend = data$model.group, colour = factor(group))) +
-       ggtitle("Only group variance")
+  ggtitle("Only group variance")
 ```
 
 ## Model variance covariate visual {.subsection}
@@ -218,7 +235,7 @@ plot + geom_segment(aes(x = n, y = grand.mean, xend = n, yend = data$model.group
 ```{r, echo=FALSE}
 data$model.covar <- round(fit.covar$fitted.values,2)
 plot + geom_segment(aes(x = n, y = grand.mean, xend = n, yend = data$model.covar, colour = factor(group))) +
-       ggtitle("Only covariate variance")
+  ggtitle("Only covariate variance")
 ```
 
 ## Model variance group and covariate {.smaller}
@@ -245,21 +262,21 @@ plot + geom_segment(aes(x      = n-.1,
                         xend   = n-.1, 
                         yend   = data$model, 
                         colour = "purple")) + 
-       ggtitle("Error variance")
+  ggtitle("Error variance")
 ```
 
 ## Sums of squares {.subsection}
 
 ```{r, echo=TRUE}
-SS.model = with(data, sum((model - grand.mean)^2))
-SS.error = with(data, sum((outcome - model)^2))
+SS.model <- with(data, sum((model - grand.mean)^2))
+SS.error <- with(data, sum((outcome - model)^2))
 
 # Sums of squares for individual effects
-SS.model.group = with(data, sum((model.group - grand.mean)^2))
-SS.model.covar = with(data, sum((model.covar - grand.mean)^2))
+SS.model.group <- with(data, sum((model.group - grand.mean)^2))
+SS.model.covar <- with(data, sum((model.covar - grand.mean)^2))
 
-SS.covar = SS.model - SS.model.group; SS.covar ## SS.covar corrected for group
-SS.group = SS.model - SS.model.covar; SS.group ## SS.group corrected for covar
+SS.covar <- SS.model - SS.model.group; SS.covar ## SS.covar corrected for group
+SS.group <- SS.model - SS.model.covar; SS.group ## SS.group corrected for covar
 ```
 
 ## F-ratio {.subsection}
@@ -267,31 +284,31 @@ SS.group = SS.model - SS.model.covar; SS.group ## SS.group corrected for covar
 $F = \frac{{MS}_{model}}{{MS}_{error}} = \frac{{SIGNAL}}{{NOISE}}$
 
 ```{r, echo=TRUE}
-n = 20
-k = 3
-df.model = k - 1
-df.error = n - k - 1
+n <- 20
+k <- 3
+df.model <- k - 1
+df.error <- n - k - 1
 
-MS.model = SS.group / df.model
-MS.error = SS.error / df.error
-  
-F = MS.model / MS.error
-F
+MS.model <- SS.group / df.model
+MS.error <- SS.error / df.error
+
+fStat <- MS.model / MS.error
+fStat
 ```
 
 ## $P$-value
 
 ```{r, echo=TRUE}
 library("visualize")
-visualize.f(F, df.model, df.error, section = "upper") 
+visualize.f(fStat, df.model, df.error, section = "upper") 
 ```
 
 ## Alpha & Power
 
 ```{r, echo=FALSE}
-F.values = seq(0, 30, .01)
+fValues <- seq(0, 30, .01)
 
-plot(F.values, df(F.values, df.model, df.error), type = "l", ylab="density", main = "H0 and HA F-distribution")
+plot(fValues, df(fValues, df.model, df.error), type = "l", ylab="density", main = "H0 and HA F-distribution")
 
 critical.value = qf(.95, df.model, df.error)
 
@@ -300,14 +317,23 @@ critical.range = seq(critical.value, 30, .01)
 polygon(c(critical.range,rev(critical.range)), 
         c(critical.range*0, rev(df(critical.range, df.model, df.error, ncp = 15))), col = "green")
 
-lines(F.values, df(F.values, df.model, df.error, ncp = 15))
+lines(fValues, df(fValues, df.model, df.error, ncp = 15))
 
 polygon(c(critical.range,rev(critical.range)), 
         c(critical.range*0, rev(df(critical.range, df.model, df.error))), col = "red")
 ```
 
 
-## Adjusted means
+## Adjusted/marginal means
+
+Marginal means are estimated group means, while keeping the covariate equal across the groups
+
+These are then the means that are used for follow-up tests, such as contrasts and post hoc tests
+
+See also [this blogpost](https://jasp-stats.org/2020/04/14/the-wonderful-world-of-marginal-means/) I wrote a while ago
+
+
+## Adjusted/marginal means
 
 ```{r, echo=TRUE}
 # Add dummy variables
@@ -315,8 +341,8 @@ data$dummy.1 <- ifelse(data$group == 2, 1, 0)
 data$dummy.2 <- ifelse(data$group == 3, 1, 0)
 
 # b coefficients
-b.cov = fit$coefficients["covar"];          b.int = fit$coefficients["(Intercept)"]
-b.2   = fit$coefficients["factor(group)2"]; b.3   = fit$coefficients["factor(group)3"]
+b.cov <- fit$coefficients["covar"];          b.int = fit$coefficients["(Intercept)"]
+b.2   <- fit$coefficients["factor(group)2"]; b.3   = fit$coefficients["factor(group)3"]
 
 # Adjustment factor for the means of the independent variable
 data$mean.adj <- with(data, b.int + b.cov * mean(covar) + b.2 * dummy.1 + b.3 * dummy.2)
@@ -324,18 +350,6 @@ data$mean.adj <- with(data, b.int + b.cov * mean(covar) + b.2 * dummy.1 + b.3 * 
 aggregate(mean.adj ~ group, data, mean)
 ```
 
-## Real $\beta$'s
-
-```{r, echo=TRUE}
-b.0 = 15 # initial value for group 1
-b.1 = 3  # difference between group 1 and 2
-b.2 = 4  # difference between group 1 and 3
-b.3 = 3  # Weight for covariate
-
-cbind(m.covar = mu.covar*3, 
-      BETA    = c(b.0, b.0+b.1, b.0+b.2), 
-      sum     = mu.covar*3 + c(b.0, b.0+b.1, b.0+b.2))
-```
 
 
 
