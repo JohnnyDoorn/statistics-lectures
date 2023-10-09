@@ -38,14 +38,14 @@ for (i in 1:n) {
   lectures[i ,'topic'] <- data.frame(topic = gsub(x = topicName, pattern = "_", replace = ""))
 }
 
-sorted_indices <- order(match(lectures$analysis, c("Getting-Started", "ANOVA", "ANCOVA", "ANOVA-Factorial")))
+sorted_indices <- order(match(lectures$analysis, c("Getting-Started", "Descriptives", "ANOVA", "ANCOVA", "ANOVA-Factorial")))
 lectures <- lectures[sorted_indices, ]
 
 baseURL <-  
   data.frame(Analysis = lectures$analysis,
              Topic = lectures$topic,
              # Comment = lectures$comment,
-             Link  = sprintf('<a href="https://johnnydoorn.github.io/statistics-lectures/courses/SSR/SSR_2023-2024/MiscFiles_J/Gifs_JASP/%s" target="_blank" class="external">link</a>', 
+             Link  = sprintf('<a href="https://johnnydoorn.github.io/statistics-lectures/courses/SSR/SSR_2023-2024/MiscFiles_J/JASP_Gifs/%s" target="_blank" class="external">link</a>', 
                              gsub("qmd", "slide.html", lectures$title)) 
   ) -> lecture.list
 
