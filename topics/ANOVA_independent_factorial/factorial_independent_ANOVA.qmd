@@ -4,9 +4,13 @@ Two or more independent variables with two or more categories. One dependent var
 
 ```{r, echo=FALSE}
 rm(list=ls())
+source("~/GitHubStuff/ShinyApps/ShinyApps/FacANOVA/plotSquaresFunction.R")
 
-data <- read.csv("anova_alcohol_speed_sekse.csv")
-
+data <- read.csv("anova_alcohol_speed_daytime.csv")
+data$speed <- factor(data$speed, levels = c("none", "some", "much"))
+levels(data$speed) <- c("none (S)", "some (S)", "much (S)")
+data$alcohol <- factor(data$alcohol, levels = c("none", "some", "much"))
+levels(data$alcohol) <- c("none (A)", "some (A)", "much (A)")
 if(!"ggplot2" %in% installed.packages()) { install.packages("ggplot2") }
 library("ggplot2")
 
@@ -26,14 +30,18 @@ Effects and interactions:
 * 2 or more independent/predictor variables
     * 2 or more cat./levels
     
-## Assumptions {.subsection}
+## Assumptions {.smaller}
 
 * Continuous variable
 * Random sample
-* Normaly distributed 
+* Normally distributed 
     * Shapiro-Wilk test
+    * Q-Q plot
 * Equal variance within groups
     * Levene's test
+    * Ratio of observed sd's
+    
+* **Exam Note** - On the exam we will only ask for assumption *hypothesis* tests. 
 
 ## Formulas {.smaller}
 
@@ -116,72 +124,41 @@ datatable(data.frame(data$speed,
           options = list(searching = FALSE, scrollY = 415, paging = FALSE, info = FALSE))
 ```
 
-##
+## Group means
 
-```{r, echo=TRUE}
-SS.model <- sum((exp.accidents - mean(data$accidents))^2); SS.model
+```{r, echo=FALSE}
+SS.model <- sum((exp.accidents - mean(data$accidents))^2)
 ```
 
 ```{r, echo=TRUE}
-m.k1 = mean(subset(data, speed == "none" & alcohol == "none", select = "accidents")$accidents)
-m.k2 = mean(subset(data, speed == "none" & alcohol == "some", select = "accidents")$accidents)
-m.k3 = mean(subset(data, speed == "none" & alcohol == "much", select = "accidents")$accidents)
-m.k4 = mean(subset(data, speed == "some" & alcohol == "none", select = "accidents")$accidents)
-m.k5 = mean(subset(data, speed == "some" & alcohol == "some", select = "accidents")$accidents)
-m.k6 = mean(subset(data, speed == "some" & alcohol == "much", select = "accidents")$accidents)
-m.k7 = mean(subset(data, speed == "much" & alcohol == "none", select = "accidents")$accidents)
-m.k8 = mean(subset(data, speed == "much" & alcohol == "some", select = "accidents")$accidents)
-m.k9 = mean(subset(data, speed == "much" & alcohol == "much", select = "accidents")$accidents)
+means <- tapply(data$accidents, list(data$speed, data$alcohol), mean)
+means
+ns <- table(list(data$speed, data$alcohol))
+ns
 
-n.k1 = n.k2 = n.k3 = n.k4 = n.k5 = n.k6 = n.k7 = n.k8 = n.k9 = 20
 ```
 
 ##
 
 ```{r, echo=TRUE}
-ss.m.k1 = n.k1 * (m.k1 - mean(accidents))^2
-ss.m.k2 = n.k2 * (m.k2 - mean(accidents))^2
-ss.m.k3 = n.k3 * (m.k3 - mean(accidents))^2
-ss.m.k4 = n.k4 * (m.k4 - mean(accidents))^2
-ss.m.k5 = n.k5 * (m.k5 - mean(accidents))^2
-ss.m.k6 = n.k6 * (m.k6 - mean(accidents))^2
-ss.m.k7 = n.k7 * (m.k7 - mean(accidents))^2
-ss.m.k8 = n.k8 * (m.k8 - mean(accidents))^2
-ss.m.k9 = n.k9 * (m.k9 - mean(accidents))^2
+squares <- (means - mean(accidents))^2
+squares 
 
-ss.model = sum(ss.m.k1,ss.m.k2,ss.m.k3,ss.m.k4,ss.m.k5,ss.m.k6,ss.m.k7,ss.m.k8,ss.m.k9)
+ss.model <- sum(squares * ns)
 ss.model
 ```
 
 ## SS model visual
 
 ```{r, echo=FALSE}
-#| output-location: slide
-
-# Plot all data points
-plot(accidents,
-     xlab = 'participants')
-
-# With the mean
-lines(1:n,rep(mean(accidents),n),col='black',lwd=2)
-
-# The black lines are the total variance, the deviation from the mean.
-segments(1:n, mean(accidents), 1:n, accidents)
-
-# The model predicts the accidents scores
-points(1:n,exp.accidents, col='red')
-
-p <- recordPlot()
-
-# The black lines are the total variance, the deviation from the mean.
-segments(1:n, exp.accidents, 1:n, mean(accidents), col = "red")
-
-# Add legend to plot
-legend("topleft",
-       pch    = c("o"),
-       col    = c("red"),
-       legend = c("Full model") )
+input <- list()
+input$whatPred <- "Alcohol + Speed + A:S"
+input$whatDisplay <- "Segments"
+    plotSumSquares(mydat, input = input, sumSq = "Model", myMain = "Full Model SS",
+                   alcColors = palette.colors(n = 3, palette = "Okabe-Ito"),
+                   speedSymbols = c(21, 22, 23)) 
 ```
+
 
 ## SS error
 
@@ -197,47 +174,26 @@ SS.error
 ```
 
 ```{r, echo=TRUE}
-v.k1 = var(subset(data, speed == "none" & alcohol == "none", select = "accidents")$accidents)
-v.k2 = var(subset(data, speed == "none" & alcohol == "some", select = "accidents")$accidents)
-v.k3 = var(subset(data, speed == "none" & alcohol == "much", select = "accidents")$accidents)
-v.k4 = var(subset(data, speed == "some" & alcohol == "none", select = "accidents")$accidents)
-v.k5 = var(subset(data, speed == "some" & alcohol == "some", select = "accidents")$accidents)
-v.k6 = var(subset(data, speed == "some" & alcohol == "much", select = "accidents")$accidents)
-v.k7 = var(subset(data, speed == "much" & alcohol == "none", select = "accidents")$accidents)
-v.k8 = var(subset(data, speed == "much" & alcohol == "some", select = "accidents")$accidents)
-v.k9 = var(subset(data, speed == "much" & alcohol == "much", select = "accidents")$accidents)
+vars <- tapply(data$accidents, list(data$speed, data$alcohol), var)
+vars
 ```
 
 ##
 
 ```{r, echo=TRUE}
-ss.e.k1 = v.k1 * (n.k1 - 1)
-ss.e.k2 = v.k2 * (n.k2 - 1)
-ss.e.k3 = v.k3 * (n.k3 - 1)
-ss.e.k4 = v.k4 * (n.k4 - 1)
-ss.e.k5 = v.k5 * (n.k5 - 1)
-ss.e.k6 = v.k6 * (n.k6 - 1)
-ss.e.k7 = v.k7 * (n.k7 - 1)
-ss.e.k8 = v.k8 * (n.k8 - 1)
-ss.e.k9 = v.k9 * (n.k9 - 1)
-
-ss.error = sum(ss.e.k1,ss.e.k2,ss.e.k3,ss.e.k4,ss.e.k5,ss.e.k6,ss.e.k7,ss.e.k8,ss.e.k9)
+ss.error <- sum(vars * (ns - 1))
 ss.error
 ```
 
 ## SS error visual
 
 ```{r, echo=FALSE}
-p
-
-# Now we can add the error of this model
-segments(1:n, accidents, 1:n, exp.accidents, col='purple')
-
-# Add legend to plot
-legend("topleft",
-       pch    = c("o", "-"),
-       col    = c("red", "purple"),
-       legend = c("Full model", "error") )
+input <- list()
+input$whatPred <- "Alcohol + Speed + A:S"
+input$whatDisplay <- "Segments"
+    plotSumSquares(mydat, input = input, sumSq = "Error", myMain = "Full Model SS Error",
+                   alcColors = palette.colors(n = 3, palette = "Okabe-Ito"),
+                   speedSymbols = c(21, 22, 23)) 
 ```
 
 ## SS A Speed {.subsection}
@@ -266,37 +222,35 @@ SS.speed <- sum(with(data, (means.speed - mean.total)^2))
 ```
 
 ```{r, echo=TRUE}
-m.s1 = mean(subset(data, speed == "none", select = "accidents")$accidents)
-m.s2 = mean(subset(data, speed == "some", select = "accidents")$accidents)
-m.s3 = mean(subset(data, speed == "much", select = "accidents")$accidents)
+# m.s1 = mean(subset(data, speed == "none", select = "accidents")$accidents)
+# m.s2 = mean(subset(data, speed == "some", select = "accidents")$accidents)
+# m.s3 = mean(subset(data, speed == "much", select = "accidents")$accidents)
 
-n.s1 = n.s2 = n.s3 = 60
+s.means <- tapply(data$accidents, data$speed, mean)
+s.ns <- 60
+
+s.means
 ```
 
 -------
 
 ```{r, echo=TRUE}
-ss.s1 = n.s1 * (m.s1 - mean(accidents))^2
-ss.s2 = n.s2 * (m.s2 - mean(accidents))^2
-ss.s3 = n.s3 * (m.s3 - mean(accidents))^2
+s.squares <- (s.means - mean(accidents))^2
+s.squares
 
-ss.speed = sum(ss.s1,ss.s2,ss.s3)
+ss.speed <- sum(60 * s.squares)
 ss.speed
 ```
 
 ## SS A Speed Visual
 
 ```{r, echo=FALSE}
-p
-# Deviation of speed
-points(1:n, data$means.speed,  col='green')
-segments(1:n, mean(accidents), 1:n, data$means.speed, col='green')
-
-# Add legend to plot
-legend("topleft",
-       pch    = c("o", "o"),
-       col    = c("green", "red"),
-       legend = c("speed", "Full model") )
+input <- list()
+input$whatPred <- "Speed"
+input$whatDisplay <- "Segments"
+    plotSumSquares(mydat, input = input, sumSq = "Model", myMain = "Speed Model SS",
+                   alcColors = palette.colors(n = 3, palette = "Okabe-Ito"),
+                   speedSymbols = c(21, 22, 23)) 
 ```
 
 ## SS B Alcohol {.subsection}
@@ -322,38 +276,31 @@ SS.alcohol <- sum(with(data, (means.alcohol - mean.total)^2))
 ```
 
 ```{r}
-m.a1 = mean(subset(data, alcohol == "none", select = "accidents")$accidents)
-m.a2 = mean(subset(data, alcohol == "some", select = "accidents")$accidents)
-m.a3 = mean(subset(data, alcohol == "much", select = "accidents")$accidents)
+a.means <- tapply(data$accidents, data$alcohol, mean)
+a.ns <- 60
 
-n.a1 = n.a2 = n.a3 = 60
+a.means
 ```
 
 ------
 
 ```{r, echo=TRUE}
-ss.a1 = n.a1 * (m.a1 - mean(accidents))^2 
-ss.a2 = n.a2 * (m.a2 - mean(accidents))^2 
-ss.a3 = n.a3 * (m.a3 - mean(accidents))^2 
+a.squares <- (a.means - mean(accidents))^2
+a.squares
 
-ss.alcohol = sum(ss.a1,ss.a2,ss.a3)
+ss.alcohol <- sum(60 * a.squares)
 ss.alcohol
 ```
 
 ## SS B Alcohol Visual
 
 ```{r, echo=FALSE}
-p
-
-# Deviation of alcohol
-points(1:n, data$means.alcohol,col='orange',type="p")
-segments(1:n, mean(accidents), 1:n, data$means.alcohol, col='orange')
-
-# Add legend to plot
-legend("topleft",
-       pch    = c("o", "o"),
-       col    = c("orange", "red"),
-       legend = c("alcohol", "Full model") )
+input <- list()
+input$whatPred <- "Alcohol"
+input$whatDisplay <- "Segments"
+    plotSumSquares(mydat, input = input, sumSq = "Model", myMain = "Alcohol Model SS",
+                   alcColors = palette.colors(n = 3, palette = "Okabe-Ito"),
+                   speedSymbols = c(21, 22, 23)) 
 ```
 
 ## SS AB Alcohol x Speed {.smaller}

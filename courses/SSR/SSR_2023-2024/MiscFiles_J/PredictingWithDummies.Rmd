@@ -113,9 +113,31 @@ In the same way, we can get the accuracy of the full model that we can attribute
 
 These are the same values we saw on the slides. To go from these sums of squares to the F-value, we first convert them to mean squares by dividing the sums of squares by the degrees of freedom of the effects. For nationality, this is equal to the number of groups - 1, so 2 in this case; for the covariate, this df equals 1. 
 
-To get the error mean square, we take the error sum of squares of the full model, divided by the error df ($N - k -1 = 26$):`r ssFullModelError` / 26 = `r  ssFullModelError / 26`.
+To get the error mean square, we take the error sum of squares of the full model, divided by the error df ($N - k -1 = 16$):`r ssFullModelError` / 16 = `r  ssFullModelError / 16`.
+
+Together, the error mean square and the mean square of each predictor can be used to obtain their F-ratio:
+```{r}
+errorDF <- 16
+msFullError <- ssFullModelError / errorDF
+
+# partitioning the sum of squares of the full model, into which parts are explained by which predictor:
+# we base this on the individual models: we look at the accuracy of the group only model, and of the covariate only model
+
+# to divide the accuracy of the full model, we subtract the individual model accuracy from it:
+ssGroup <- (ssFullModel - ssCovarModel) # what is left of the full SS when we subtract the covariate accuracy?
+ssCovar <- (ssFullModel - ssGroupModel) # what is left of the full SS when we subtract the group accuracy?
+
+# converting these sum of squares to mean squares:
+msGroup <- ssGroup / 2
+msCovar <- ssCovar / 1
+
+# Now we have F-ratio's:
+fGroup <- msGroup / msFullError
+fCovar <- msCovar / msFullError
+
+fGroup
+fCovar
+```
 
 
-
-
-
+Based on the F ratio's we could then get p-values for hypothesis testing (or do much more fun stuff, like Bayes factors!)

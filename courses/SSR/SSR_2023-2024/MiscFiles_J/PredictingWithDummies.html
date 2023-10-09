@@ -11,7 +11,7 @@
 
 <meta name="author" content="JvD" />
 
-<meta name="date" content="2023-10-06" />
+<meta name="date" content="2023-10-09" />
 
 <title>Predicting with Dummies</title>
 
@@ -352,7 +352,7 @@ display: none;
 
 <h1 class="title toc-ignore">Predicting with Dummies</h1>
 <h4 class="author">JvD</h4>
-<h4 class="date">2023-10-06</h4>
+<h4 class="date">2023-10-09</h4>
 
 </div>
 
@@ -491,7 +491,33 @@ For nationality, this is equal to the number of groups - 1, so 2 in this
 case; for the covariate, this df equals 1.</p>
 <p>To get the error mean square, we take the error sum of squares of the
 full model, divided by the error df (<span class="math inline">\(N - k
--1 = 26\)</span>):20.1095 / 26 = 0.7734423.</p>
+-1 = 16\)</span>):20.1095 / 16 = 1.2568438.</p>
+<p>Together, the error mean square and the mean square of each predictor
+can be used to obtain their F-ratio:</p>
+<pre class="r"><code>errorDF &lt;- 16
+msFullError &lt;- ssFullModelError / errorDF
+
+# partitioning the sum of squares of the full model, into which parts are explained by which predictor:
+# we base this on the individual models: we look at the accuracy of the group only model, and of the covariate only model
+
+# to divide the accuracy of the full model, we subtract the individual model accuracy from it:
+ssGroup &lt;- (ssFullModel - ssCovarModel) # what is left of the full SS when we subtract the covariate accuracy?
+ssCovar &lt;- (ssFullModel - ssGroupModel) # what is left of the full SS when we subtract the group accuracy?
+
+# converting these sum of squares to mean squares:
+msGroup &lt;- ssGroup / 2
+msCovar &lt;- ssCovar / 1
+
+# Now we have F-ratio&#39;s:
+fGroup &lt;- msGroup / msFullError
+fCovar &lt;- msCovar / msFullError
+
+fGroup</code></pre>
+<pre><code>## [1] 21.74406</code></pre>
+<pre class="r"><code>fCovar</code></pre>
+<pre><code>## [1] 96.94628</code></pre>
+<p>Based on the F ratio’s we could then get p-values for hypothesis
+testing (or do much more fun stuff, like Bayes factors!)</p>
 </div>
 
 
