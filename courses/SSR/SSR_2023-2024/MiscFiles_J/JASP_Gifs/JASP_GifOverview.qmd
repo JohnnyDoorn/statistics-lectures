@@ -7,7 +7,7 @@ date: today
 To accomodate the use of JASP in SSR, below are various instructional `.gifs`.
 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
-setwd("~/GitHubStuff/statistics-lectures/courses/SSR/SSR_2023-2024/MiscFiles_J/Gifs_JASP")
+setwd("~/GitHubStuff/statistics-lectures/courses/SSR/SSR_2023-2024/MiscFiles_J/JASP_Gifs")
 files <- list.files(full.names = FALSE, pattern = "\\gif", recursive = T)
 
 lectures <- data.frame()
@@ -34,7 +34,8 @@ for (i in 1:n) {
   myComment <- getComment(files[i])
   # lectures[i ,'comment'] <- data.frame(comment = myComment)
   
-  lectures[i ,'topic'] <- data.frame(topic = sub("^[^_]*_(.*)\\..*$", "\\1", files[i]))
+  topicName <- sub("^[^_]*_(.*)\\..*$", "\\1", files[i])
+  lectures[i ,'topic'] <- data.frame(topic = gsub(x = topicName, pattern = "_", replace = ""))
 }
 
 sorted_indices <- order(match(lectures$analysis, c("Getting-Started", "ANOVA", "ANCOVA", "ANOVA-Factorial")))
