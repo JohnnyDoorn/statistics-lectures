@@ -253,6 +253,18 @@ input$whatDisplay <- "Segments"
                    speedSymbols = c(21, 22, 23)) 
 ```
 
+## SS A Speed Error Visual
+
+```{r, echo=FALSE}
+input <- list()
+input$whatPred <- "Speed"
+input$whatDisplay <- "Segments"
+    plotSumSquares(mydat, input = input, sumSq = "Error", myMain = "Speed Model SS",
+                   alcColors = palette.colors(n = 3, palette = "Okabe-Ito"),
+                   speedSymbols = c(21, 22, 23), overlayFullPred = FALSE) 
+```
+
+
 ## SS B Alcohol {.subsection}
 
 | Variance | Sum of squares | df | Mean squares | F-ratio |
@@ -301,6 +313,17 @@ input$whatDisplay <- "Segments"
     plotSumSquares(mydat, input = input, sumSq = "Model", myMain = "Alcohol Model SS",
                    alcColors = palette.colors(n = 3, palette = "Okabe-Ito"),
                    speedSymbols = c(21, 22, 23)) 
+```
+
+## SS B Alcohol Error Visual
+
+```{r, echo=FALSE}
+input <- list()
+input$whatPred <- "Alcohol"
+input$whatDisplay <- "Segments"
+    plotSumSquares(mydat, input = input, sumSq = "Error", myMain = "Alcohol Model SS",
+                   alcColors = palette.colors(n = 3, palette = "Okabe-Ito"),
+                   speedSymbols = c(21, 22, 23), overlayFullPred = FALSE) 
 ```
 
 ## SS AB Alcohol x Speed {.smaller}

@@ -2,7 +2,7 @@
 title: "13. ANOVA"
 subtitle: "Independent factorial"
 author: "Sharon Kinkenberg & Johnny van Doorn"
-date: "10 oct 2022"
+date: "10 oct 2023"
 footer: "Scientific & Statistical Reasoning"
 format: 
   html: default
