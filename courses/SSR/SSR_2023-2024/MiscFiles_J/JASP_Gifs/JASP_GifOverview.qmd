@@ -4,7 +4,7 @@ author: "Johnny van Doorn"
 date: today
 ---
 
-To accomodate the use of JASP in SSR, below are various instructional `.gifs`.
+To accommodate the use of JASP in SSR, below are various instructional `.gifs`.
 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 setwd("~/GitHubStuff/statistics-lectures/courses/SSR/SSR_2023-2024/MiscFiles_J/JASP_Gifs")

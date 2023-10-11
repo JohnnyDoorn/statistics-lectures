@@ -12,7 +12,8 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Simulating a single data set
 
-We can investigate the effect of non-normality on our inference by running a small simulation study where we simulate 100,000 data sets under the null hypothesis. We can then check what the sampling distribution looks like: if it deviates from what we usually assume when conducting an ANOVA, we are at risk of increased or decreased type-1 errors. Let's start by simulating a single data set, with 3 groups. We can imagine we simulate reaction times, because this variable is often not normally distributed (due to time always being positive, and most people responding as close to 0 as possible). Note that the distribution we use to simulate below, is the Cauchy distribution, which is a distribution that produces extreme values fairly often. Especially in cases of ANOVA, more extreme values can have a big impact on our inference. So while the ANOVA is relatively robust to violations of normality, it is thrown off by extreme observations. These can still be detected by the usualy normality assumption checks (Q-Q plot, Shapiro), or by other means, such as boxplots (see the tutorial assignment for an example). 
+We can investigate the effect of non-normality on our inference by running a small simulation study where we simulate 100,000 data sets under the null hypothesis. We can then check what the sampling distribution looks like: if it deviates from what we usually assume when conducting an ANOVA, we are at risk of increased or decreased type-1 errors. Let's start by simulating a single data set, with 3 groups. We can imagine we simulate reaction times, because this variable is often not normally distributed (due to time always being positive, and most people responding as close to 0 as possible). 
+
 
 ```{r}
 set.seed(124) # for reproducability
@@ -26,6 +27,7 @@ dv <- abs(rt(nGroups*groupN, df = 1)) # we use a t distribution with 2 df
 
 hist(dv, col = rainbow(10), xlab = "Reaction time (s)", main = "Histogram for 1 data set")
 ```
+Note that the distribution we used to simulate, is the Cauchy distribution, which is a distribution that produces extreme values fairly often. Especially in cases of ANOVA, more extreme values can have a big impact on our inference. So while the ANOVA is relatively robust to violations of normality, it is pretty vulnerable to extreme observations because of their impact on the variance. These can still be detected by the usual normality assumption checks (Q-Q plot, Shapiro), or by other means, such as boxplots (see the tutorial assignment for an example). 
 
 Based on our 1 data set, we can fit the ANOVA model and compute the F-statistic:
 
