@@ -41,7 +41,7 @@ Same as repeated measures ANOVA and same as factorial ANOVA.
 
 <small>
 
-person | gender  | 1_1 | 1_2 | 1_3 | 2_1 | 2_2 | 2_3 | 3_1 | 3_2 | 3_3
+person | time    | 1_1 | 1_2 | 1_3 | 2_1 | 2_2 | 2_3 | 3_1 | 3_2 | 3_3
 -------|---------|-----|-----|-----|-----|-----|-----|-----|-----|----
 1      | males   | 1   |     |     |     |     |     |     |     |
 2      | males   |     | 2   |     |     |     |     |     |     |
@@ -67,9 +67,9 @@ person | gender  | 1_1 | 1_2 | 1_3 | 2_1 | 2_2 | 2_3 | 3_1 | 3_2 | 3_3
 ## Data {.smaller}
 
 ```{r, echo=FALSE}
-data <- read.csv(file = "ANOVA_mixed.csv", header = T)
+data <- read.csv(file = "RM_ANOVA_AlcoholSpeedTime.csv", header = TRUE)
 
-data[,-1] <- round(data[,-1],2)
+# data[,-1] <- round(data[,-1],2)
 
 datatable(data, 
           rownames = FALSE, 

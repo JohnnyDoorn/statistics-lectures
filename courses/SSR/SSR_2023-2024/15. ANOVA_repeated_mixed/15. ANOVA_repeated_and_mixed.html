@@ -102,10 +102,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#one-way-repeated-measures-anova" id="toc-one-way-repeated-measures-anova" class="nav-link" data-scroll-target="#one-way-repeated-measures-anova">One-way repeated measures ANOVA</a></li>
   <li><a href="#assumptions" id="toc-assumptions" class="nav-link" data-scroll-target="#assumptions">Assumptions</a></li>
-  <li><a href="#uni--or-multi--descision-tree" id="toc-uni--or-multi--descision-tree" class="nav-link" data-scroll-target="#uni--or-multi--descision-tree">Uni- or Multi- descision tree</a></li>
   <li><a href="#formulas" id="toc-formulas" class="nav-link" data-scroll-target="#formulas">Formulas</a></li>
   <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example">Example</a></li>
   <li><a href="#the-data" id="toc-the-data" class="nav-link" data-scroll-target="#the-data">The data</a></li>
+  <li><a href="#data-format-in-rm-anova-wide" id="toc-data-format-in-rm-anova-wide" class="nav-link" data-scroll-target="#data-format-in-rm-anova-wide">Data format in RM ANOVA: wide</a></li>
   <li><a href="#ms-total" id="toc-ms-total" class="nav-link" data-scroll-target="#ms-total">MS total</a></li>
   <li><a href="#ss-total" id="toc-ss-total" class="nav-link" data-scroll-target="#ss-total">SS total</a></li>
   <li><a href="#ss-total-visual" id="toc-ss-total-visual" class="nav-link" data-scroll-target="#ss-total-visual">SS total visual</a></li>
@@ -122,7 +122,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#ss-error" id="toc-ss-error" class="nav-link" data-scroll-target="#ss-error">SS error</a></li>
   <li><a href="#f-ratio" id="toc-f-ratio" class="nav-link" data-scroll-target="#f-ratio">F ratio</a></li>
   <li><a href="#visualize" id="toc-visualize" class="nav-link" data-scroll-target="#visualize">Visualize</a></li>
-  <li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1"></a></li>
   <li><a href="#contrast" id="toc-contrast" class="nav-link" data-scroll-target="#contrast">Contrast</a></li>
   <li><a href="#post-hoc" id="toc-post-hoc" class="nav-link" data-scroll-target="#post-hoc">Post-Hoc</a></li>
   <li><a href="#effect-size" id="toc-effect-size" class="nav-link" data-scroll-target="#effect-size">Effect size</a></li>
@@ -132,7 +131,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#factorial-repeated-measures-anova" id="toc-factorial-repeated-measures-anova" class="nav-link" data-scroll-target="#factorial-repeated-measures-anova">Factorial repeated measures ANOVA</a></li>
   <li><a href="#assumptions-1" id="toc-assumptions-1" class="nav-link" data-scroll-target="#assumptions-1">Assumptions</a></li>
   <li><a href="#example-1" id="toc-example-1" class="nav-link" data-scroll-target="#example-1">Example</a></li>
-  <li><a href="#section-2" id="toc-section-2" class="nav-link" data-scroll-target="#section-2"></a></li>
+  <li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1"></a></li>
   <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
   </ul></li>
   <li><a href="#mixed-design-anova" id="toc-mixed-design-anova" class="nav-link" data-scroll-target="#mixed-design-anova">Mixed design ANOVA</a>
@@ -140,7 +139,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#mixed-design" id="toc-mixed-design" class="nav-link" data-scroll-target="#mixed-design">Mixed design</a></li>
   <li><a href="#assumptions-2" id="toc-assumptions-2" class="nav-link" data-scroll-target="#assumptions-2">Assumptions</a></li>
   <li><a href="#example-2" id="toc-example-2" class="nav-link" data-scroll-target="#example-2">Example</a></li>
-  <li><a href="#section-3" id="toc-section-3" class="nav-link" data-scroll-target="#section-3"></a></li>
+  <li><a href="#section-2" id="toc-section-2" class="nav-link" data-scroll-target="#section-2"></a></li>
   <li><a href="#data-1" id="toc-data-1" class="nav-link" data-scroll-target="#data-1">Data</a></li>
   </ul></li>
   <li><a href="#end" id="toc-end" class="nav-link" data-scroll-target="#end">End</a>
@@ -210,38 +209,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>Uni- or Multivariate</li>
 <li>Continuous dependent variable</li>
-<li>Normaly distributed
+<li>Normally distributed
 <ul>
 <li>Shapiro-Wilk</li>
+<li>Q-Q plots</li>
 </ul></li>
-<li>Equality of variance within groups
+<li>Equality of variance of the within-group differences
 <ul>
 <li>Mauchly’s test of Sphericity</li>
+<li>See Field 15.5, table 15.2 (p845), Jane Superbrain boxes 15.3 (p865) and 15.4 (p866)</li>
+<li>Always met when having only 2 groups</li>
 </ul></li>
 </ul>
-</section>
-<section id="uni--or-multi--descision-tree" class="level2 smaller">
-<h2 class="smaller anchored" data-anchor-id="uni--or-multi--descision-tree">Uni- or Multi- descision tree</h2>
-<div class="columns">
-<div class="column">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../../../../topics/ANOVA_repeated_one-way/uni_multi_descicion.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Decision tree</figcaption>
-</figure>
-</div>
-</div><div class="column smaller">
-<ol type="1">
-<li>Field: 15.5.2, Output 15.2</li>
-<li>Field: Output 15.4</li>
-<li>Field: Jane Superbrain 15.2, Output 15.2 GG and HF.</li>
-<li>Field: Jane Superbrain 15.2, Sample size <span class="math inline">\(n\)</span> is larger than <span class="math inline">\(a\)</span> (number of levels) + 10</li>
-<li>Field: 15.5.4, Output 15.2</li>
-<li>Field: 15.5.4, Output 15.4</li>
-<li>Field: 15.5.4, Output 15.4</li>
-</ol>
-</div>
-</div>
 </section>
 <section id="formulas" class="level2 smaller subsection">
 <h2 class="smaller subsection anchored" data-anchor-id="formulas">Formulas</h2>
@@ -316,23 +295,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="cell-output-display">
 
-<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-2da9cbaa53600a950124" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-2da9cbaa53600a950124">{"x":{"filter":"none","vertical":false,"data":[[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],[4.426,4.227,5.278,4.632,5.288,5.025,4.496,5.359,4.492,3.587,5.548,4.759,5.359,4.421,4.229,5.53,4.289,3.43,5.017,5.228],[4.106,5.469,5.557,5.323,5.148,5.158,5.829,6.121,5.264,4.047,4.89,5.23,6.229,4.93,5.432,5.31,4.711,5.057,5.139,6.132],[7.043,5.901,7.045,6.208,6.853,6.492,6.972,6.38,6.12,6.84,6.334,6.624,5.849,6.564,6.382,7.14,6.527,7.101,7.137,7.155]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>pp<\/th>\n      <th>none_alc<\/th>\n      <th>some_alc<\/th>\n      <th>much_alc<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"searching":false,"scrollY":415,"paging":false,"info":false,"columnDefs":[{"className":"dt-right","targets":[0,1,2,3]}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-016bb6fa54a7d86ffee2" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-016bb6fa54a7d86ffee2">{"x":{"filter":"none","vertical":false,"data":[[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],[4.426,4.227,5.278,4.632,5.288,5.025,4.496,5.359,4.492,3.587,5.548,4.759,5.359,4.421,4.229,5.53,4.289,3.43,5.017,5.228],[4.106,5.469,5.557,5.323,5.148,5.158,5.829,6.121,5.264,4.047,4.89,5.23,6.229,4.93,5.432,5.31,4.711,5.057,5.139,6.132],[7.043,5.901,7.045,6.208,6.853,6.492,6.972,6.38,6.12,6.84,6.334,6.624,5.849,6.564,6.382,7.14,6.527,7.101,7.137,7.155]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>pp<\/th>\n      <th>none_alc<\/th>\n      <th>some_alc<\/th>\n      <th>much_alc<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"searching":false,"scrollY":415,"paging":false,"info":false,"columnDefs":[{"className":"dt-right","targets":[0,1,2,3]}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
+</section>
+<section id="data-format-in-rm-anova-wide" class="level2">
+<h2 class="anchored" data-anchor-id="data-format-in-rm-anova-wide">Data format in RM ANOVA: wide</h2>
+<p><img src="Screenshot_LongWide.png" style="width:40%;"></p>
 </section>
 <section id="ms-total" class="level2">
 <h2 class="anchored" data-anchor-id="ms-total">MS total</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Assign to individual variables</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>none_alc <span class="ot">=</span> data<span class="sc">$</span>none_alc</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>some_alc <span class="ot">=</span> data<span class="sc">$</span>some_alc</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>much_alc <span class="ot">=</span> data<span class="sc">$</span>much_alc</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>total    <span class="ot">=</span> <span class="fu">c</span>(none_alc,some_alc,much_alc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>none_alc <span class="ot">&lt;-</span> data<span class="sc">$</span>none_alc</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>some_alc <span class="ot">&lt;-</span> data<span class="sc">$</span>some_alc</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>much_alc <span class="ot">&lt;-</span> data<span class="sc">$</span>much_alc</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>total    <span class="ot">&lt;-</span> <span class="fu">c</span>(none_alc,some_alc,much_alc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><span class="math inline">\({MS}_{total} = \frac{{SS}_{{total}}}{{DF}_{{total}}} = s_{grand}^2\)</span></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>MS_total <span class="ot">=</span> <span class="fu">var</span>(total); MS_total</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>MS_total <span class="ot">&lt;-</span> <span class="fu">var</span>(total); MS_total</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.9410458</code></pre>
 </div>
@@ -343,9 +326,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><span class="math inline">\({DF_{total}} = N-1\)</span></p>
 <p><span class="math inline">\({SS}_{{total}} = s_{grand}^2(N-1)\)</span></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>N <span class="ot">=</span> <span class="fu">length</span>(total)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>DF_total <span class="ot">=</span> N <span class="sc">-</span> <span class="dv">1</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>SS_total <span class="ot">=</span> MS_total <span class="sc">*</span> DF_total; SS_total</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="fu">length</span>(total)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>DF_total <span class="ot">&lt;-</span> N <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>SS_total <span class="ot">&lt;-</span> MS_total <span class="sc">*</span> DF_total; SS_total</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 55.5217</code></pre>
 </div>
@@ -375,10 +358,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="ms-within">MS within</h2>
 <p><span class="math inline">\({MS}_{within} = \frac{{SS}_{{within}}}{{DF}_{{within}}} \\ {DF}_{within} = (n_i-1)n\)</span></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>n.i <span class="ot">=</span> <span class="dv">3</span>  <span class="co"># Number of mesurements per individual (none, some, much)</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>n   <span class="ot">=</span> <span class="dv">20</span> <span class="co"># Number of mesurements per group</span></span>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>n.i <span class="ot">&lt;-</span> <span class="dv">3</span>  <span class="co"># Number of mesurements per individual (none, some, much)</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>n   <span class="ot">&lt;-</span> <span class="dv">20</span> <span class="co"># Number of mesurements per group</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>DF_within <span class="ot">=</span> (n.i <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> n</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>DF_within <span class="ot">&lt;-</span> (n.i <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> n</span>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>DF_within</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 40</code></pre>
@@ -389,14 +372,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="ss-within">SS within</h2>
 <p><span class="math inline">\({SS}_{{within}} = \sum{s_i^2(n_i-1)}\)</span></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>var_pp <span class="ot">=</span> <span class="fu">apply</span>(<span class="fu">cbind</span>(none_alc, some_alc, much_alc),<span class="dv">1</span>,var)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>ss_pp  <span class="ot">=</span> var_pp <span class="sc">*</span> (n.i <span class="sc">-</span> <span class="dv">1</span>)</span>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>var_pp <span class="ot">&lt;-</span> <span class="fu">apply</span>(<span class="fu">cbind</span>(none_alc, some_alc, much_alc),<span class="dv">1</span>,var)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>ss_pp  <span class="ot">&lt;-</span> var_pp <span class="sc">*</span> (n.i <span class="sc">-</span> <span class="dv">1</span>)</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>SS_within <span class="ot">=</span> <span class="fu">sum</span>(ss_pp); SS_within</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>SS_within <span class="ot">&lt;-</span> <span class="fu">sum</span>(ss_pp); SS_within</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 48.45032</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>mean_pp <span class="ot">=</span> <span class="fu">apply</span>(<span class="fu">cbind</span>(none_alc, some_alc, much_alc),<span class="dv">1</span>,mean)</span>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>mean_pp <span class="ot">&lt;-</span> <span class="fu">apply</span>(<span class="fu">cbind</span>(none_alc, some_alc, much_alc),<span class="dv">1</span>,mean)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">c</span>((none_alc <span class="sc">-</span> mean_pp)<span class="sc">^</span><span class="dv">2</span>, </span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>      (some_alc <span class="sc">-</span> mean_pp)<span class="sc">^</span><span class="dv">2</span>,</span>
@@ -411,8 +394,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="cell-output-display">
 
-<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-4220a41ced875b240c86" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-4220a41ced875b240c86">{"x":{"filter":"none","vertical":false,"data":[[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],[4.426,4.227,5.278,4.632,5.288,5.025,4.496,5.359,4.492,3.587,5.548,4.759,5.359,4.421,4.229,5.53,4.289,3.43,5.017,5.228],[4.106,5.469,5.557,5.323,5.148,5.158,5.829,6.121,5.264,4.047,4.89,5.23,6.229,4.93,5.432,5.31,4.711,5.057,5.139,6.132],[7.043,5.901,7.045,6.208,6.853,6.492,6.972,6.38,6.12,6.84,6.334,6.624,5.849,6.564,6.382,7.14,6.527,7.101,7.137,7.155],[5.192,5.199,5.96,5.388,5.763,5.558,5.766,5.953,5.292,4.825,5.591,5.538,5.812,5.305,5.348,5.993,5.176,5.196,5.764,6.172],[5.192,1.51,1.805,1.248,1.792,1.316,3.071,0.563,1.326,6.198,1.045,1.881,0.38,2.507,2.328,1.996,2.828,6.767,2.834,1.859]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>pp<\/th>\n      <th>none_alc<\/th>\n      <th>some_alc<\/th>\n      <th>much_alc<\/th>\n      <th>mean_pp<\/th>\n      <th>ss_pp<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"searching":false,"scrollY":415,"paging":false,"info":false,"columnDefs":[{"className":"dt-right","targets":[0,1,2,3,4,5]}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-dc29660054ad887e36be" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-dc29660054ad887e36be">{"x":{"filter":"none","vertical":false,"data":[[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],[4.426,4.227,5.278,4.632,5.288,5.025,4.496,5.359,4.492,3.587,5.548,4.759,5.359,4.421,4.229,5.53,4.289,3.43,5.017,5.228],[4.106,5.469,5.557,5.323,5.148,5.158,5.829,6.121,5.264,4.047,4.89,5.23,6.229,4.93,5.432,5.31,4.711,5.057,5.139,6.132],[7.043,5.901,7.045,6.208,6.853,6.492,6.972,6.38,6.12,6.84,6.334,6.624,5.849,6.564,6.382,7.14,6.527,7.101,7.137,7.155],[5.192,5.199,5.96,5.388,5.763,5.558,5.766,5.953,5.292,4.825,5.591,5.538,5.812,5.305,5.348,5.993,5.176,5.196,5.764,6.172],[5.192,1.51,1.805,1.248,1.792,1.316,3.071,0.563,1.326,6.198,1.045,1.881,0.38,2.507,2.328,1.996,2.828,6.767,2.834,1.859]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>pp<\/th>\n      <th>none_alc<\/th>\n      <th>some_alc<\/th>\n      <th>much_alc<\/th>\n      <th>mean_pp<\/th>\n      <th>ss_pp<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"searching":false,"scrollY":415,"paging":false,"info":false,"columnDefs":[{"className":"dt-right","targets":[0,1,2,3,4,5]}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -429,12 +412,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><span class="math inline">\({MS}_{between} = \frac{{SS}_{{between}}}{{DF}_{{between}}}\)</span></p>
 <p><span class="math inline">\({DF}_{between}-{DF}_{{within}} \\ {SS}_{between} = {SS}_{total} - {SS}_{within}\)</span></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>SS_between <span class="ot">=</span> SS_total <span class="sc">-</span> SS_within</span>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>SS_between <span class="ot">&lt;-</span> SS_total <span class="sc">-</span> SS_within</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>SS_between</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 7.071382</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>DF_between <span class="ot">=</span> DF_total <span class="sc">-</span> DF_within</span>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>DF_between <span class="ot">&lt;-</span> DF_total <span class="sc">-</span> DF_within</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>DF_between</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 19</code></pre>
@@ -445,8 +428,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="ms-model">MS model</h2>
 <p><span class="math inline">\({MS}_{model} = \frac{{SS}_{{model}}}{{DF}_{{model}}} \\ {DF}_{model} = k-1\)</span></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>k <span class="ot">=</span> <span class="dv">3</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>DF_model <span class="ot">=</span> k <span class="sc">-</span> <span class="dv">1</span></span>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>DF_model <span class="ot">&lt;-</span> k <span class="sc">-</span> <span class="dv">1</span></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>DF_model</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2</code></pre>
@@ -458,16 +441,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><span class="math inline">\({SS}_{model} = \sum{n_k(\bar{X}_k-\bar{X})^2}\)</span></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># SS model</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>n_k1 <span class="ot">=</span> <span class="fu">length</span>(none_alc)</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>n_k2 <span class="ot">=</span> <span class="fu">length</span>(some_alc)</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>n_k3 <span class="ot">=</span> <span class="fu">length</span>(much_alc)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>n_k1 <span class="ot">&lt;-</span> <span class="fu">length</span>(none_alc)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>n_k2 <span class="ot">&lt;-</span> <span class="fu">length</span>(some_alc)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>n_k3 <span class="ot">&lt;-</span> <span class="fu">length</span>(much_alc)</span>
 <span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate sums of squares for the model</span></span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>SS_k1 <span class="ot">=</span> n_k1 <span class="sc">*</span> (<span class="fu">mean</span>(none_alc) <span class="sc">-</span> <span class="fu">mean</span>(total))<span class="sc">^</span><span class="dv">2</span></span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>SS_k2 <span class="ot">=</span> n_k2 <span class="sc">*</span> (<span class="fu">mean</span>(some_alc) <span class="sc">-</span> <span class="fu">mean</span>(total))<span class="sc">^</span><span class="dv">2</span></span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>SS_k3 <span class="ot">=</span> n_k3 <span class="sc">*</span> (<span class="fu">mean</span>(much_alc) <span class="sc">-</span> <span class="fu">mean</span>(total))<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>SS_k1 <span class="ot">&lt;-</span> n_k1 <span class="sc">*</span> (<span class="fu">mean</span>(none_alc) <span class="sc">-</span> <span class="fu">mean</span>(total))<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>SS_k2 <span class="ot">&lt;-</span> n_k2 <span class="sc">*</span> (<span class="fu">mean</span>(some_alc) <span class="sc">-</span> <span class="fu">mean</span>(total))<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>SS_k3 <span class="ot">&lt;-</span> n_k3 <span class="sc">*</span> (<span class="fu">mean</span>(much_alc) <span class="sc">-</span> <span class="fu">mean</span>(total))<span class="sc">^</span><span class="dv">2</span></span>
 <span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>SS_model <span class="ot">=</span> <span class="fu">sum</span>(SS_k1, SS_k2, SS_k3)</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>SS_model <span class="ot">&lt;-</span> <span class="fu">sum</span>(SS_k1, SS_k2, SS_k3)</span>
 <span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>SS_model</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 38.63266</code></pre>
@@ -477,27 +460,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="ss-model-visual" class="level2">
 <h2 class="anchored" data-anchor-id="ss-model-visual">SS model visual</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>p</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the no alcohol mean</span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">c</span>((<span class="dv">1</span>),(n)),<span class="fu">rep</span>(<span class="fu">mean</span>(none_alc),<span class="dv">2</span>),<span class="at">col=</span><span class="st">'green'</span>,<span class="at">lwd=</span><span class="dv">2</span>)</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(n<span class="sc">+</span>offset,<span class="fu">mean</span>(none_alc),<span class="fu">expression</span>(<span class="fu">bar</span>(X)[none]),<span class="at">pos=</span><span class="dv">4</span>)</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="co"># With the bit alcohol mean</span></span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">c</span>((<span class="dv">1</span><span class="sc">-</span>offset),(n<span class="sc">-</span>offset)),<span class="fu">rep</span>(<span class="fu">mean</span>(some_alc),<span class="dv">2</span>),<span class="at">col=</span><span class="st">'red'</span>,<span class="at">lwd=</span><span class="dv">2</span>)</span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(n<span class="sc">+</span>offset,<span class="fu">mean</span>(some_alc),<span class="fu">expression</span>(<span class="fu">bar</span>(X)[some]),<span class="at">pos=</span><span class="dv">4</span>)</span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="co"># With the much alcohol mean</span></span>
-<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">c</span>((<span class="dv">1</span><span class="sc">+</span>offset),(n<span class="sc">+</span>offset)),<span class="fu">rep</span>(<span class="fu">mean</span>(much_alc),<span class="dv">2</span>),<span class="at">col=</span><span class="st">'blue'</span>,<span class="at">lwd=</span><span class="dv">2</span>)</span>
-<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(n<span class="sc">+</span>offset,<span class="fu">mean</span>(much_alc),<span class="fu">expression</span>(<span class="fu">bar</span>(X)[much]),<span class="at">pos=</span><span class="dv">4</span>)</span>
-<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a><span class="co"># The lines show the model deviation from the total mean.</span></span>
-<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a><span class="fu">segments</span>(<span class="dv">1</span><span class="sc">:</span>n,        <span class="fu">mean</span>(total), <span class="dv">1</span><span class="sc">:</span>n,        <span class="fu">mean</span>(none_alc),   <span class="at">col=</span><span class="st">'green'</span>)</span>
-<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a><span class="fu">segments</span>(<span class="dv">1</span><span class="sc">:</span>n<span class="sc">-</span>offset, <span class="fu">mean</span>(total), <span class="dv">1</span><span class="sc">:</span>n<span class="sc">-</span>offset, <span class="fu">mean</span>(some_alc), <span class="at">col=</span><span class="st">'red'</span>)</span>
-<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a><span class="fu">segments</span>(<span class="dv">1</span><span class="sc">:</span>n<span class="sc">+</span>offset, <span class="fu">mean</span>(total), <span class="dv">1</span><span class="sc">:</span>n<span class="sc">+</span>offset, <span class="fu">mean</span>(much_alc),   <span class="at">col=</span><span class="st">'blue'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="15.-ANOVA_repeated_and_mixed_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="672"></p>
 </div>
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">recordPlot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="ms-error" class="level2">
@@ -505,8 +470,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><span class="math inline">\(\frac{{SS}_{error}}{{DF}_{error}}\)</span></p>
 <p><span class="math inline">\({DF}_{error} = (n-1)(k-1)\)</span></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>DF_error <span class="ot">=</span> DF_within <span class="sc">-</span> DF_model</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>DF_error</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>DF_error <span class="ot">&lt;-</span> DF_within <span class="sc">-</span> DF_model</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>DF_error</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 38</code></pre>
 </div>
@@ -516,8 +481,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="ss-error">SS error</h2>
 <p><span class="math inline">\({SS}_{error} = {SS}_{within} - {SS}_{model}\)</span></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>SS_error <span class="ot">=</span> SS_within <span class="sc">-</span> SS_model</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>SS_error</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>SS_error <span class="ot">&lt;-</span> SS_within <span class="sc">-</span> SS_model</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>SS_error</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 9.817655</code></pre>
 </div>
@@ -527,13 +492,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="f-ratio">F ratio</h2>
 <p><span class="math inline">\(F = \frac{{MS}_{{model}}}{{MS}_{{error}}}\)</span></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate mean squares</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>MS_model <span class="ot">=</span> SS_model <span class="sc">/</span> DF_model</span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>MS_error <span class="ot">=</span> SS_error <span class="sc">/</span> DF_error</span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate F statistic</span></span>
-<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>F <span class="ot">=</span> MS_model <span class="sc">/</span> MS_error</span>
-<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>F</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate mean squares</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>MS_model <span class="ot">&lt;-</span> SS_model <span class="sc">/</span> DF_model</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>MS_error <span class="ot">&lt;-</span> SS_error <span class="sc">/</span> DF_error</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate F statistic</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>fStat <span class="ot">&lt;-</span> MS_model <span class="sc">/</span> MS_error</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>fStat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 74.76537</code></pre>
 </div>
@@ -542,18 +507,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="visualize" class="level2">
 <h2 class="anchored" data-anchor-id="visualize">Visualize</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">'visualize'</span>)</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">visualize.f</span>(F, DF_model, DF_error, <span class="at">section=</span><span class="st">"upper"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">'visualize'</span>)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">visualize.f</span>(fStat, DF_model, DF_error, <span class="at">section=</span><span class="st">"upper"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="15.-ANOVA_repeated_and_mixed_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-</section>
-<section id="section-1" class="level2">
-<h2 class="anchored" data-anchor-id="section-1"></h2>
-<div class="cell">
-<div class="cell-output-display">
-<p><img src="15.-ANOVA_repeated_and_mixed_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
@@ -578,8 +535,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="smaller anchored" data-anchor-id="effect-size">Effect size</h2>
 <p>General effect size measures</p>
 <ul>
-<li>Amount of explained variance <span class="math inline">\(R^2\)</span> also called eta squared <span class="math inline">\(\eta^2\)</span>.</li>
+<li>Amount of explained variance <span class="math inline">\(R^2\)</span> also called eta squared <span class="math inline">\(\eta^2\)</span>.
+<ul>
+<li>When going for explained variance, partial eta squared (<span class="math inline">\(\eta_p^2\)</span>) is recommended instead of <span class="math inline">\(\eta^2\)</span></li>
+</ul></li>
 <li>Omega squared <span class="math inline">\(\omega^2\)</span></li>
+<li><a href="https://lbecker.uccs.edu/glm_effectsize">Great overview of <span class="math inline">\(\eta^2\)</span> vs <span class="math inline">\(\omega^2\)</span></a></li>
 </ul>
 <p>Effect sizes of contrasts or post-hoc comparisons</p>
 <ul>
@@ -636,8 +597,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 </small><p><small></small></p>
 </section>
-<section id="section-2" class="level2 smaller">
-<h2 class="smaller anchored" data-anchor-id="section-2"></h2>
+<section id="section-1" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="section-1"></h2>
 <table class="table">
 <thead>
 <tr class="header">
@@ -770,8 +731,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="cell-output-display">
 
-<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-61af10c536205122f8e6" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-61af10c536205122f8e6">{"x":{"filter":"none","vertical":false,"data":[[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],[4.43,4.23,5.28,4.63,5.29,5.02,4.5,5.36,4.49,3.59,5.55,4.76,5.36,4.42,4.23,5.53,4.29,3.43,5.02,5.23],[4.11,5.47,5.56,5.32,5.15,5.16,5.83,6.12,5.26,4.05,4.89,5.23,6.23,4.93,5.43,5.31,4.71,5.06,5.14,6.13],[7.04,5.9,7.04,6.21,6.85,6.49,6.97,6.38,6.12,6.84,6.33,6.62,5.85,6.56,6.38,7.14,6.53,7.1,7.14,7.15],[2.97,3.28,3.45,3.3,2.72,2.62,4.77,3.34,3.28,3.19,3.53,2.32,3.24,3.43,3.76,3.22,2.51,3.1,2.51,4.04],[5.21,4.39,6.45,5.62,5.81,5.94,5.08,6.41,5.37,4.59,5.34,6.38,5.52,5.35,5.04,6.13,4.68,5.05,5.89,6.74],[7.39,7.94,7.98,7.24,8.76,8.12,7.45,8.11,7.23,6.69,7.9,7.92,8.68,7.13,7.25,8.63,8.33,7.44,8.89,7.73]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>pp<\/th>\n      <th>geen_alc<\/th>\n      <th>beetje_alc<\/th>\n      <th>veel_alc<\/th>\n      <th>geen_spe<\/th>\n      <th>beetje_spe<\/th>\n      <th>veel_spe<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"searching":false,"scrollY":415,"paging":false,"info":false,"columnDefs":[{"className":"dt-right","targets":[0,1,2,3,4,5,6]}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-f6b8302a92e5b31b28f6" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-f6b8302a92e5b31b28f6">{"x":{"filter":"none","vertical":false,"data":[[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],[1.59,2.18,3.23,2.18,1.36,2.18,2.91,4.26,2.96,1.67,2.88,1.24,1.94,3.29,2.77,2.79,2.03,1.33,1.34,1.1],[4.96,4.66,5.58,5.7,6.15,5.83,4.03,5.48,4.92,4.14,6.68,6.74,6.45,4.52,5.53,5.41,3.5,3.73,5.76,6.4],[6.72,5.84,7.01,6.02,8.36,7.07,6.55,6.34,5.6,4.96,7.08,6.3,7.68,5.46,4.38,8.4,7.34,5.23,7.95,8.18],[2.64,4.43,2.12,3,1.78,3.06,5.35,2.89,3.87,2.52,3.74,1.72,3.02,2.53,2.64,1.84,-0.06,2.23,1.54,5.05],[3.74,4.73,7.12,6.66,5.57,5.91,4.93,6.74,5.12,3.64,4.27,6.03,6.44,5.82,5.84,6.16,6.01,5.09,6.28,6.16],[5.93,7.25,7.43,6.32,8.1,6.51,7.22,8.74,6.8,5.98,6.66,7.94,9.22,6.44,7.82,7.93,8.19,7.84,7.6,7.19],[4.68,3.21,4.98,4.72,5.03,2.61,6.06,2.87,3.01,5.37,3.97,3.99,4.76,4.48,5.87,5.04,5.57,5.73,4.65,5.97],[6.93,3.78,6.66,4.52,5.71,6.09,6.27,7.01,6.06,6.01,5.07,6.36,3.67,5.73,3.74,6.82,4.54,6.33,5.64,7.66],[9.51,10.71,9.49,9.38,9.83,10.78,8.59,9.26,9.29,9.14,9.96,9.52,9.12,9.48,9.54,9.56,9.48,9.24,11.12,7.83]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>pp<\/th>\n      <th>none_alc_none_speed<\/th>\n      <th>none_alc_some_speed<\/th>\n      <th>none_alc_much_speed<\/th>\n      <th>some_alc_none_speed<\/th>\n      <th>some_alc_some_speed<\/th>\n      <th>some_alc_much_speed<\/th>\n      <th>much_alc_none_speed<\/th>\n      <th>much_alc_some_speed<\/th>\n      <th>much_alc_much_speed<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"searching":false,"scrollY":415,"paging":false,"info":false,"columnDefs":[{"className":"dt-right","targets":[0,1,2,3,4,5,6,7,8,9]}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -826,14 +787,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 </ul>
 </section>
-<section id="section-3" class="level2 smaller">
-<h2 class="smaller anchored" data-anchor-id="section-3"></h2>
+<section id="section-2" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="section-2"></h2>
 <p><small></small></p><small>
 <table class="table">
 <thead>
 <tr class="header">
 <th>person</th>
-<th>gender</th>
+<th>time</th>
 <th>1_1</th>
 <th>1_2</th>
 <th>1_3</th>
@@ -1089,8 +1050,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="cell-output-display">
 
-<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-4f88d5fa5d94bb5de552" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-4f88d5fa5d94bb5de552">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"data":[[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],[1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2],[1.59,2.18,3.24,2.18,1.36,2.18,2.91,4.26,2.96,1.67,2.88,1.24,1.94,3.29,2.77,2.79,2.03,1.33,1.34,1.1],[4.96,4.66,5.58,5.7,6.15,5.83,4.03,5.48,4.92,4.13,6.68,6.74,6.45,4.52,5.53,5.41,3.5,3.73,5.76,6.4],[6.72,5.84,7.01,6.02,8.35,7.07,6.55,6.34,5.6,4.96,7.08,6.3,7.68,5.46,4.38,8.4,7.33,5.23,7.95,8.18],[2.64,4.43,2.12,3,1.78,3.06,5.35,2.89,3.87,2.52,3.74,1.72,3.02,2.53,2.64,1.84,-0.06,2.23,1.54,5.05],[3.74,4.73,7.12,6.66,5.57,5.91,4.93,6.74,5.12,3.64,4.27,6.03,6.44,5.82,5.84,6.16,6.01,5.09,6.28,6.16],[5.93,7.25,7.43,6.32,8.1,6.51,7.21,8.74,6.8,5.98,6.66,7.94,9.22,6.44,7.82,7.93,8.19,7.84,7.6,7.19],[4.68,3.21,4.99,4.72,5.03,2.61,6.06,2.87,3.01,5.37,3.97,3.99,4.76,4.48,5.87,5.04,5.57,5.73,4.65,5.97],[6.93,3.78,6.66,4.52,5.71,6.09,6.27,7.01,6.06,6.01,5.07,6.36,3.67,5.73,3.74,6.82,4.53,6.33,5.64,7.66],[9.51,10.71,9.49,9.39,9.83,10.78,8.59,9.26,9.29,9.14,9.96,9.52,9.12,9.48,9.54,9.56,9.48,9.24,11.12,7.83]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>pp<\/th>\n      <th>sekse<\/th>\n      <th>v1_1<\/th>\n      <th>v1_2<\/th>\n      <th>v1_3<\/th>\n      <th>v2_1<\/th>\n      <th>v2_2<\/th>\n      <th>v2_3<\/th>\n      <th>v3_1<\/th>\n      <th>v3_2<\/th>\n      <th>v3_3<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"searching":false,"scrollY":415,"paging":false,"info":false,"dom":"Bfrtip","buttons":["csv"],"columnDefs":[{"className":"dt-right","targets":[0,1,2,3,4,5,6,7,8,9,10]}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-0cb1a0a34e0f0cb9da9d" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-0cb1a0a34e0f0cb9da9d">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"data":[[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],[1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2],[1.59,2.18,3.23,2.18,1.36,2.18,2.91,4.26,2.96,1.67,2.88,1.24,1.94,3.29,2.77,2.79,2.03,1.33,1.34,1.1],[4.96,4.66,5.58,5.7,6.15,5.83,4.03,5.48,4.92,4.14,6.68,6.74,6.45,4.52,5.53,5.41,3.5,3.73,5.76,6.4],[6.72,5.84,7.01,6.02,8.36,7.07,6.55,6.34,5.6,4.96,7.08,6.3,7.68,5.46,4.38,8.4,7.34,5.23,7.95,8.18],[2.64,4.43,2.12,3,1.78,3.06,5.35,2.89,3.87,2.52,3.74,1.72,3.02,2.53,2.64,1.84,-0.06,2.23,1.54,5.05],[3.74,4.73,7.12,6.66,5.57,5.91,4.93,6.74,5.12,3.64,4.27,6.03,6.44,5.82,5.84,6.16,6.01,5.09,6.28,6.16],[5.93,7.25,7.43,6.32,8.1,6.51,7.22,8.74,6.8,5.98,6.66,7.94,9.22,6.44,7.82,7.93,8.19,7.84,7.6,7.19],[4.68,3.21,4.98,4.72,5.03,2.61,6.06,2.87,3.01,5.37,3.97,3.99,4.76,4.48,5.87,5.04,5.57,5.73,4.65,5.97],[6.93,3.78,6.66,4.52,5.71,6.09,6.27,7.01,6.06,6.01,5.07,6.36,3.67,5.73,3.74,6.82,4.54,6.33,5.64,7.66],[9.51,10.71,9.49,9.38,9.83,10.78,8.59,9.26,9.29,9.14,9.96,9.52,9.12,9.48,9.54,9.56,9.48,9.24,11.12,7.83]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>pp<\/th>\n      <th>Daytime<\/th>\n      <th>none_alc_none_speed<\/th>\n      <th>none_alc_some_speed<\/th>\n      <th>none_alc_much_speed<\/th>\n      <th>some_alc_none_speed<\/th>\n      <th>some_alc_some_speed<\/th>\n      <th>some_alc_much_speed<\/th>\n      <th>much_alc_none_speed<\/th>\n      <th>much_alc_some_speed<\/th>\n      <th>much_alc_much_speed<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"searching":false,"scrollY":415,"paging":false,"info":false,"dom":"Bfrtip","buttons":["csv"],"columnDefs":[{"className":"dt-right","targets":[0,1,2,3,4,5,6,7,8,9,10]}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <!-- Footer insert below -->
