@@ -211,8 +211,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="cell-output-display">
 
-<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-b8704615aa567911a232" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-b8704615aa567911a232">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16"],["Even","Even","Even","Even","Odd","Odd","Odd","Odd","Even","Even","Even","Even","Odd","Odd","Odd","Odd"],["Feminine","Masculine","Feminine","Masculine","Masculine","Feminine","Feminine","Feminine","Masculine","Feminine","Masculine","Masculine","Feminine","Masculine","Masculine","Masculine"],[4,4,4,4,6,6,6,6,3,3,3,3,5,5,5,5]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Type<\/th>\n      <th>Association<\/th>\n      <th>NumberTested<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":3},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-ee32cb56988d207f9822" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-ee32cb56988d207f9822">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16"],["Even","Even","Even","Even","Odd","Odd","Odd","Odd","Even","Even","Even","Even","Odd","Odd","Odd","Odd"],["Feminine","Masculine","Feminine","Masculine","Masculine","Feminine","Feminine","Feminine","Masculine","Feminine","Masculine","Masculine","Feminine","Masculine","Masculine","Masculine"],[4,4,4,4,6,6,6,6,3,3,3,3,5,5,5,5]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Type<\/th>\n      <th>Association<\/th>\n      <th>NumberTested<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":3},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </small><p><small></small></p>
@@ -237,8 +237,8 @@ Association Even Odd
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>n   <span class="ot">&lt;-</span> <span class="fu">sum</span>(observed)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>totEven <span class="ot">&lt;-</span> <span class="fu">colSums</span>(observed)[<span class="dv">1</span>]</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>totOdd <span class="ot">&lt;-</span> <span class="fu">colSums</span>(observed)[<span class="dv">2</span>]</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>totFem <span class="ot">&lt;-</span> <span class="fu">rowSums</span>(observed)[<span class="dv">1</span>]</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>totOdd  <span class="ot">&lt;-</span> <span class="fu">colSums</span>(observed)[<span class="dv">2</span>]</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>totFem  <span class="ot">&lt;-</span> <span class="fu">rowSums</span>(observed)[<span class="dv">1</span>]</span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>totMasc <span class="ot">&lt;-</span> <span class="fu">rowSums</span>(observed)[<span class="dv">2</span>]</span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">addmargins</span>(observed)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -255,10 +255,10 @@ Association Even Odd Sum
 <h2 class="anchored" data-anchor-id="calculating-the-model-1">Calculating the model</h2>
 <p><span class="math inline">\(\text{model}_{ij} = E_{ij} = \frac{\text{row total}_i \times \text{column total}_j}{n }\)</span></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>modelPredictions <span class="ot">&lt;-</span> <span class="fu">matrix</span>( <span class="fu">c</span>((totFem <span class="sc">*</span> totEven) <span class="sc">/</span>n,</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>                              (totMasc <span class="sc">*</span> totEven) <span class="sc">/</span>n,</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>                              (totFem  <span class="sc">*</span> totOdd)  <span class="sc">/</span>n,</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>                              (totMasc <span class="sc">*</span> totOdd)  <span class="sc">/</span>n), <span class="dv">2</span>, <span class="dv">2</span>, <span class="at">byrow=</span>T</span>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>modelPredictions <span class="ot">&lt;-</span> <span class="fu">matrix</span>( <span class="fu">c</span>((totFem  <span class="sc">*</span> totEven) <span class="sc">/</span> n,</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>                              (totMasc <span class="sc">*</span> totEven) <span class="sc">/</span> n,</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>                              (totFem  <span class="sc">*</span> totOdd)  <span class="sc">/</span> n,</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>                              (totMasc <span class="sc">*</span> totOdd)  <span class="sc">/</span> n), <span class="dv">2</span>, <span class="dv">2</span>, <span class="at">byrow=</span>T</span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>modelPredictions</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -308,7 +308,8 @@ Association Even  Odd
 </section>
 <section id="fishers-exact-test" class="level2 subsection">
 <h2 class="subsection anchored" data-anchor-id="fishers-exact-test">Fisher’s exact test</h2>
-<p>Calculates exact <span class="math inline">\(\chi^2\)</span> for small samples.</p>
+<p>Calculates exact <span class="math inline">\(\chi^2\)</span> for small samples, when the <span class="math inline">\(\chi^2\)</span>-distribution does not yet suffice.</p>
+<p>Calculate all possible permutations.</p>
 <ul>
 <li>Cell size &lt; 5</li>
 </ul>
