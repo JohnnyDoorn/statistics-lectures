@@ -4,7 +4,7 @@ Relation between categorical variables
 
 ## $\chi^2$ test {.smaller}
 
-A '''chi-squared test''', also written as $\chi^2$ test, is any statistical hypothesis test wherein the sampling distribution of the test statistic is a chi-squared distribution when the null hypothesis is true. Without other qualification, 'chi-squared test' often is used as short for Pearson's chi-squared test.
+A "chi-squared test", also written as $\chi^2$ test, is any statistical hypothesis test wherein the sampling distribution of the test statistic is a chi-squared distribution when the null hypothesis is true. Without other qualification, 'chi-squared test' often is used as short for Pearson's chi-squared test.
 
 Chi-squared tests are often constructed from a Lack-of-fit sum of squared errors. A chi-squared test can be used to attempt rejection of the null hypothesis that the data are independent.
 
