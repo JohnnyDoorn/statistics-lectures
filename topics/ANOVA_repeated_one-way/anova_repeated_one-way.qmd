@@ -15,7 +15,7 @@ The one-way repeated measures ANOVA analyses the variance of the model while red
     * 2 or more levels
 * All with same subjects
 
-## Assumptions {.subsection}
+## Assumptions {.smaller}
 
 * Uni- or Multivariate
 * Continuous dependent variable

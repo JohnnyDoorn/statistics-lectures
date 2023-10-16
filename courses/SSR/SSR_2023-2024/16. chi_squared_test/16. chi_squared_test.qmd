@@ -1,7 +1,7 @@
 ---
 title: "18. Chi squared test"
 author: "Sharon Kinkenberg & Johnny van Doorn"
-date: "20 oct 2023"
+date: "17 oct 2023"
 footer: "Scientific & Statistical Reasoning"
 format: 
   html: default
