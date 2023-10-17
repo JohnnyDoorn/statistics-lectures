@@ -1,8 +1,8 @@
 ---
-title: "16. Bayesian ANOVA"
+title: "18. Bayesian ANOVA"
 subtitle: "Parameter estimation & hypothesis testing"
 author: "Johnny van Doorn"
-date: "17 oct 2023"
+date: "20 oct 2023"
 footer: "Scientific & Statistical Reasoning"
 format: 
   html: default
