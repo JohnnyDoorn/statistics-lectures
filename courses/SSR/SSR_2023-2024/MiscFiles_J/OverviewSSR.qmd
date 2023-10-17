@@ -66,7 +66,10 @@ htmlLinks <- sprintf('<a href="https://johnnydoorn.github.io/statistics-lectures
 jaspLinks <- sprintf('<a href="https://johnnydoorn.github.io/statistics-lectures/courses/SSR/SSR_2023-2024/MiscFiles_J/JASP_Files/%s" target="_blank" class="external">link</a>',files) 
 titles <- gsub(htmlFiles, pattern = ".html", replacement = "")
 
-linkList <- data.frame(Topic = titles, Html = htmlLinks, JASP = jaspLinks)
+csvFiles <- gsub(x =files, pattern = ".jasp", replacement = ".csv")
+csvLinks <- sprintf('<a href="https://johnnydoorn.github.io/statistics-lectures/courses/SSR/SSR_2023-2024/MiscFiles_J/JASP_Files/%s" target="_blank" class="external">link</a>',files) 
+
+linkList <- data.frame(Topic = titles, Html = htmlLinks, JASP = jaspLinks, Csv = csvLinks)
 
 knitr::kable(dplyr::arrange(linkList), escape = F ) %>%
   kable_styling(full_width = T)
