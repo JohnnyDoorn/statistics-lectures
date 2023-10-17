@@ -92,7 +92,7 @@ if(!'gsheet' %in% installed.packages()) { install.packages('gsheet') }
 library("gsheet")
 gResults <- gsheet2tbl('https://docs.google.com/spreadsheets/d/1sQMH4ZMN_zJ5FW_gOdVZtppZ3EQAs3ab4xn3PiLjTc4/edit?usp=sharing')
 
-gResults <- as.data.frame(gResults)[, -1]
+gResults <- as.data.frame(gResults)[-(1:4) , -1]
 
 # results <- results[grep("2017|2022", results$Timestamp),]
 for (i in 1:ncol(gResults)) {
@@ -106,9 +106,9 @@ for (i in 1:ncol(gResults)) {
 # }
 
 # results <- cbind(results, oddEvenResults)
-results <- data.frame(Type = rep(c("Even", "Odd"), each = ncol(gResults)),
-                      Association = c(c(gResults[["4"]], gResults[["6"]]), c(gResults[["3"]], gResults[["5"]])),
-                      NumberTested= rep(c(4,6,3,5), each = ncol(gResults) ))
+results <- data.frame(Type = rep(c("Even", "Odd")[(c(3:6, 1, 2) %% 2) +1], each = nrow(gResults)),
+                      Association = unlist(gResults),
+                      NumberTested= rep(c(3:6, 1, 2), each = nrow(gResults) ))
 
 
 # install.packages("DT")

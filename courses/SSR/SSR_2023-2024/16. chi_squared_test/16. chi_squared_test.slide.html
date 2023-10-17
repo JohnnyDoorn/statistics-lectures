@@ -462,8 +462,8 @@ Sharon Kinkenberg &amp; Johnny van Doorn
 <div class="cell">
 <div class="cell-output-display">
 
-<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-000222e2f76f33c9efaa" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-000222e2f76f33c9efaa">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16"],["Even","Even","Even","Even","Odd","Odd","Odd","Odd","Even","Even","Even","Even","Odd","Odd","Odd","Odd"],["Feminine","Masculine","Feminine","Masculine","Masculine","Feminine","Feminine","Feminine","Masculine","Feminine","Masculine","Masculine","Feminine","Masculine","Masculine","Masculine"],[4,4,4,4,6,6,6,6,3,3,3,3,5,5,5,5]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Type<\/th>\n      <th>Association<\/th>\n      <th>NumberTested<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":3},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-4f20a8005d686d12a631" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-4f20a8005d686d12a631">{"x":{"filter":"none","vertical":false,"data":[["3","4","5","6","1","2"],["Odd","Even","Odd","Even","Odd","Even"],["Feminine","Feminine","Masculine","Masculine","Masculine","Feminine"],[3,4,5,6,1,2]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Type<\/th>\n      <th>Association<\/th>\n      <th>NumberTested<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":3},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </small><p><small></small></p>
@@ -476,11 +476,11 @@ Sharon Kinkenberg &amp; Johnny van Doorn
 <div class="cell-output cell-output-stdout">
 <pre><code>           Type
 Association Even Odd
-  Feminine     3   4
-  Masculine    5   4</code></pre>
+  Feminine     2   1
+  Masculine    1   2</code></pre>
 </div>
 </div>
-<p><span class="math inline">\(\text{observed}_{ij} = \begin{pmatrix} 3 &amp; 4 \\ 5 &amp; 4 \\ \end{pmatrix}\)</span></p>
+<p><span class="math inline">\(\text{observed}_{ij} = \begin{pmatrix} 2 &amp; 1 \\ 1 &amp; 2 \\ \end{pmatrix}\)</span></p>
 </section>
 <section id="calculating-the-model" class="slide level2 subsection">
 <h2>Calculating the model</h2>
@@ -496,9 +496,9 @@ Association Even Odd
 <div class="cell-output cell-output-stdout">
 <pre><code>           Type
 Association Even Odd Sum
-  Feminine     3   4   7
-  Masculine    5   4   9
-  Sum          8   8  16</code></pre>
+  Feminine     2   1   3
+  Masculine    1   2   3
+  Sum          3   3   6</code></pre>
 </div>
 </div>
 </section>
@@ -514,11 +514,11 @@ Association Even Odd Sum
 <span id="cb5-6"><a href="#cb5-6"></a>modelPredictions</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     [,1] [,2]
-[1,]  3.5  4.5
-[2,]  3.5  4.5</code></pre>
+[1,]  1.5  1.5
+[2,]  1.5  1.5</code></pre>
 </div>
 </div>
-<p><span class="math inline">\(\text{model}_{ij} = \begin{pmatrix} 3.5 &amp; 4.5 \\ 3.5 &amp; 4.5 \\ \end{pmatrix}\)</span></p>
+<p><span class="math inline">\(\text{model}_{ij} = \begin{pmatrix} 1.5 &amp; 1.5 \\ 1.5 &amp; 1.5 \\ \end{pmatrix}\)</span></p>
 </section>
 <section id="observed---model" class="slide level2 subsection">
 <h2>observed - model</h2>
@@ -527,8 +527,8 @@ Association Even Odd Sum
 <div class="cell-output cell-output-stdout">
 <pre><code>           Type
 Association Even  Odd
-  Feminine  -0.5 -0.5
-  Masculine  1.5 -0.5</code></pre>
+  Feminine   0.5 -0.5
+  Masculine -0.5  0.5</code></pre>
 </div>
 </div>
 </section>
@@ -540,7 +540,7 @@ Association Even  Odd
 <span id="cb9-2"><a href="#cb9-2"></a>chi.squared <span class="ot">&lt;-</span> <span class="fu">sum</span>((observed <span class="sc">-</span> modelPredictions)<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> modelPredictions)</span>
 <span id="cb9-3"><a href="#cb9-3"></a>chi.squared</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.8253968</code></pre>
+<pre><code>[1] 0.6666667</code></pre>
 </div>
 </div>
 </section>
@@ -580,7 +580,7 @@ Association Even  Odd
 </section>
 <section id="yatess-correction-output" class="slide level2 subsection output-location-slide"><h2>Yates’s correction</h2><div class="cell output-location-slide">
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.2857143</code></pre>
+<pre><code>[1] 0</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">visualize.chisq</span>(chi.squared.yates, df, <span class="at">section=</span><span class="st">'upper'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -598,7 +598,7 @@ Association Even  Odd
 </section>
 <section id="likelihood-ratio-output" class="slide level2 subsection output-location-slide"><h2>Likelihood ratio</h2><div class="cell output-location-slide">
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.7573168</code></pre>
+<pre><code>[1] 0.6795961</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">visualize.chisq</span>(ll.ratio, df, <span class="at">section=</span><span class="st">'upper'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -612,8 +612,8 @@ Association Even  Odd
 <div class="cell-output cell-output-stdout">
 <pre><code>           Type
 Association       Even        Odd
-  Feminine  -0.2672612 -0.2357023
-  Masculine  0.8017837 -0.2357023</code></pre>
+  Feminine   0.4082483 -0.4082483
+  Masculine -0.4082483  0.4082483</code></pre>
 </div>
 </div>
 </section>
@@ -625,12 +625,12 @@ Association       Even        Odd
 <div class="cell-output cell-output-stdout">
 <pre><code>           Type
 Association Even Odd
-  Feminine     3   4
-  Masculine    5   4</code></pre>
+  Feminine     2   1
+  Masculine    1   2</code></pre>
 </div>
 </div>
 <p><span class="math inline">\(\begin{pmatrix} a &amp; b \\ c &amp; d \\ \end{pmatrix}\)</span></p>
-<p><span class="math inline">\(OR = \frac{a \times d}{b \times c} = \frac{3 \times 4}{4 \times 5} = 0.6\)</span></p>
+<p><span class="math inline">\(OR = \frac{a \times d}{b \times c} = \frac{2 \times 2}{1 \times 1} = 4\)</span></p>
 </section>
 <section id="odds" class="slide level2">
 <h2>Odds</h2>
@@ -638,20 +638,20 @@ Association Even Odd
 <div class="cell-output cell-output-stdout">
 <pre><code>           Type
 Association Even Odd
-  Feminine     3   4
-  Masculine    5   4</code></pre>
+  Feminine     2   1
+  Masculine    1   2</code></pre>
 </div>
 </div>
 <p>The odd and even ratio of masculinity and the ratio of femininity</p>
 <ul>
-<li>Feminine <span class="math inline">\(\text{Odds}_{EO} = \frac{ 3 }{ 4 }\)</span> = 0.75</li>
-<li>Masculine <span class="math inline">\(\text{Odds}_{EO} = \frac{ 5 }{ 4 }\)</span> = 1.25</li>
+<li>Feminine <span class="math inline">\(\text{Odds}_{EO} = \frac{ 2 }{ 1 }\)</span> = 2</li>
+<li>Masculine <span class="math inline">\(\text{Odds}_{EO} = \frac{ 1 }{ 2 }\)</span> = 0.5</li>
 </ul>
 </section>
 <section id="odds-ratio" class="slide level2">
 <h2>Odds ratio</h2>
 <p>Is the ratio of these odds.</p>
-<p><span class="math inline">\(OR = \frac{\text{feminine}}{\text{masculine}} = \frac{0.75}{1.25} = 0.6\)</span></p>
+<p><span class="math inline">\(OR = \frac{\text{feminine}}{\text{masculine}} = \frac{2}{0.5} = 4\)</span></p>
 <!-- Footer insert below -->
 </section></section>
 <section>
