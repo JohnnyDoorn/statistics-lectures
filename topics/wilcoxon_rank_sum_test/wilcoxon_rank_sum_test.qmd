@@ -11,27 +11,24 @@ Independent 2 samples
 
 <img src="http://upload.wikimedia.org/wikipedia/en/9/9a/FrankWilcoxon.png" style="float: left; margin: 0 20px 0 0; width: 300px;">
   
-Developed by [Frank Wilcoxon](http://en.wikipedia.org/wiki/Frank_Wilcoxon) the rank-sum test is a [nonparametric](http://en.wikipedia.org/wiki/Nonparametric_statistics) alternative to the independent samples t-test.
+Developed by [Frank Wilcoxon](http://en.wikipedia.org/wiki/Frank_Wilcoxon) the rank-sum test is an [nonparametric](http://en.wikipedia.org/wiki/Nonparametric_statistics) alternative to the independent samples t-test.
 
-By first ranking $x$ and then sum these ranks per group one would expect, under the null hypothesis, equal values for both groups.
+By ranking all values and then summing the ranks per group, one would expect under the null hypothesis, that the sum of ranks is approximately equal.
 
-After standardising this difference one can test using a standard normal distribution.
-
-## Sum the ranks
-
-[Sum the ranks example for height for males and females.](https://webcolleges.uva.nl/Mediasite/Play/b40cac063f17441ea073977924ff07eb1d?playFrom=1435000)
+After standardizing the test statistic (summed ranks for one group), we can use the standard normal distribution as the sampling distribution.
 
 ## Simulate data
 
 ```{r, echo=TRUE}
-n      = 20
-factor = rep(c("Ecstasy","Alcohol"),each=n/2)
-dummy  = ifelse(factor == "Ecstacy", 0, 1)
-b.0    = 23
-b.1    = 5
-error  = rnorm(n, 0, 1.7)
-depres = b.0 + b.1*dummy + error
-depres = round(depres)
+set.seed(123)
+n      <- 20
+factor <- rep(c("Ecstasy","Alcohol"),each=n/2)
+dummy  <- ifelse(factor == "Ecstacy", 0, 1)
+b.0    <- 23
+b.1    <- 5
+error  <- rnorm(n, 0, 1.7)
+depres <- b.0 + b.1*dummy + error
+depres <- round(depres)
 
 data <- data.frame(factor, depres)
 
@@ -64,28 +61,42 @@ W <- min(R$R)
 W
 ```
 
+## Subtracting the minimum score
+
+Most software (except SPSS) reports the value of W, with its minimum value subtracted:
+
+```{r, echo=TRUE}
+W.min <- sum(1:10); W.min
+
+W # same result as SPSS
+W - W.min # same result as JASP
+```
+
 ## Standardise W
 
-To calculate the Z score we need to standardise the W. To do so we need the mean W and the standard error of W.
+To calculate the Z-score we need to standardize the W. To do so we need the mean W and the standard error of W.
 
 For this we need the sample sizes for each group.
 
 ```{r, echo=TRUE}
 n <- aggregate(R ~ factor, data, length)
 
-n.1 = n$R[1]
-n.2 = n$R[2]
+n.1 <- n$R[1]
+n.2 <- n$R[2]
 
 cbind(n.1, n.2)
 ```
 
-## Mean W
+## Mean W under $H_0$
 
 $$\bar{W}_s=\frac{n_1(n_1+n_2+1)}{2}$$
   
 ```{r, echo=TRUE}
-W.mean = (n.1*(n.1+n.2+1))/2
-W.mean
+W.mean <- (n.1 * (n.1 + n.2 + 1)) / 2
+W.mean # this is the middle point between the min and max value of W
+
+W.max <- sum(11:20); W.max
+W.min <- sum(1:10); W.min
 ```
 
 ## SE W
@@ -93,7 +104,7 @@ W.mean
 $${SE}_{\bar{W}_s}=\sqrt{ \frac{n_1 n_2 (n_1+n_2+1)}{12} }$$
   
 ```{r, echo=TRUE}
-W.se = sqrt((n.1*n.2*(n.1+n.2+1))/12)
+W.se <- sqrt((n.1 * n.2 * (n.1 + n.2 + 1)) / 12)
 W.se
 ```
 
@@ -101,12 +112,12 @@ W.se
 
 $$z = \frac{W - \bar{W}}{{SE}_W}$$
   
-  Which looks a lot like
+Which looks a lot like
 
 $$\frac{X - \bar{X}}{{SE}_X} \text{or} \frac{b - \mu_{b}}{{SE}_b} $$
   
 ```{r, echo=TRUE}
-z = (W - W.mean) / W.se
+z <- (W - W.mean) / W.se
 z
 ```
 
@@ -125,35 +136,24 @@ visualize.norm(z, section="lower")
 visualize.norm(c(z,-z), section="tails")
 ```
 
-## Effect size
+## Effect size $r$
 
 $$r = \frac{z}{\sqrt{N}}$$
   
 ```{r, echo=TRUE}
-N = sum(n$R)
-r = z / sqrt(N)
+N <- sum(n$R)
+r <- z / sqrt(N)
 r
 ```
 
-## Mann–Whitney test {.section}
+## Effect size rank-biserial correlation
 
-$$U = n_1 n_2 + \frac{n_1 (n_1 + 1)}{2} - R_1$$
+$$r_{bs} = 1 - \frac{2*W}{n_1*n_2}$$
   
 ```{r, echo=TRUE}
-U = (n.1*n.2)+(n.1*(n.1+1))/2-R$R[1]
-U
+W <- W - W.min # use modern W
+biserialCor <- 1 - (2*(W)) / (n.1*n.2);
+biserialCor
 ```
 
-## $\bar{U}$ and ${SE}_U$ for non tied ranks {.subsection}
 
-$$\bar{U} = \frac{n_1 n_2}{2}$$
-  
-```{r, echo=TRUE}
-(n.1*n.2)/2
-```
-
-$${SE}_U = \sqrt{\frac{n_1 n_2 (n_1 + n_2 + 1)}{12}}$$
-  
-```{r, echo=TRUE}
-sqrt((n.1*n.2*(n.1+n.2+1))/12)
-```

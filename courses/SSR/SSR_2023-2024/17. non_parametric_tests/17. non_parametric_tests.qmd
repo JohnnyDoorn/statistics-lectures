@@ -24,6 +24,9 @@ format:
 ```{r child="../../../../topics/friedman_anova/friedman_anova.qmd", eval=TRUE}
 ```
 
+<!-- # ```{r child="../../../../topics/rank_correlation/rank_correlation.qmd", eval=TRUE} -->
+<!-- # ``` -->
+
 <!-- Footer insert below -->
 
 ```{r child="../../../../footer.qmd"}

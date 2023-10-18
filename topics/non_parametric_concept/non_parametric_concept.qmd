@@ -5,6 +5,14 @@
 library("knitr")
 ```
 
+- When assumptions are violated
+    - e.g., strong non-normality
+- When the variable is ordinal
+    - e.g., when playing Mario Kart
+- When unsure about outliers
+    - e.g., some observations with z $\approx$ 3
+
++ [Topic of my dissertation!](https://dare.uva.nl/search?identifier=fca7cec7-5ded-4e99-8c79-a0d0ee6a3f4c)
 
 ## Parametric vs Nonparametric {#mytable}
 
@@ -22,7 +30,7 @@ background: linear-gradient(top, #FFA500 40%, #FFA500 80%) no-repeat !important;
 
 Attribute    | Parametric            | Nonparametric
 -------------|-----------------------|--------------------------
-distribution | normaly distributed   | any distribution
+distribution | normally distributed  | any distribution
 sampling     | random sample         | random sample
 sensitivity to outliers | yes        | no
 works with   | large data sets       | small and large data sets
@@ -31,8 +39,8 @@ speed        | fast                  | slow
 ## Ranking {.subsection}
 
 ```{r, fig.height=3, fig.align='center'}
-x = c(1, 4, 6, 7, 8, 9)
-y = c(1, 4, 6, 7, 8, 39)
+x <- c(1, 4, 6, 7, 8, 9)
+y <- c(1, 4, 6, 7, 8, 39)
 
 layout(matrix(1:2, 1, 2))
 boxplot(x, horizontal=T, col='red')
@@ -44,27 +52,23 @@ kable(rbind(rx = rank(x), ry = rank(y)))
 ```
 
 ## Ties {.smaller}
-
 ```{r, echo=TRUE}
 # Scores
-x = c(11, 42, 62, 73, 84, 84, 42, 73, 90)
+x <- c(11, 42, 62, 73, 84, 84, 42, 73, 84)
 
-# sort
-order = sort(x)
+# Sort x
+x <- sort(x)
 
-# assign ranks
-ranks = 1:length(x)
-
-# solve for ties
-ties = rank(sort(x))
+# Assign ranks
+ranks <- rank(x)
 ```
 
 ```{r, echo=FALSE}
-kable(rbind(x, order, ranks, ties))
+kable(rbind(index = 1:length(x), x, ranks))
 ```
 
 
-$$\frac{2 + 3}{2} = 2.5,  \frac{5 + 6}{2} = 5.5,  \frac{7 + 8}{2} = 7.5$$
+$$\frac{2 + 3}{2} = 2.5,  \frac{5 + 6}{2} = 5.5,  \frac{7 + 8 + 9}{3} = 8$$
 
 ## Procedure {.smaller}
 
@@ -74,6 +78,6 @@ $$\frac{2 + 3}{2} = 2.5,  \frac{5 + 6}{2} = 5.5,  \frac{7 + 8}{2} = 7.5$$
 <br>$H_A$ : unequal mean ranking (two sided) 
 <br>$H_A$ : higher mean ranking for one group.
 3. Test statistic is difference between mean or sum of ranking.
-4. Standardise test statistic
+4. Standardize test statistic to normal sampling distribution.
 5. Calculate *P*-value one or two sided.
 5. Conclude to reject $H_0$ if $p < \alpha$.
