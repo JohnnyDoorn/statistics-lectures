@@ -276,11 +276,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="effect-size-rank-biserial-correlation">Effect size rank-biserial correlation</h2>
 <p><span class="math display">\[r_{bs} = 1 - \frac{2*W}{n_1*n_2}\]</span></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>W <span class="ot">&lt;-</span> W <span class="sc">-</span> W.min</span>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>W <span class="ot">&lt;-</span> W <span class="sc">-</span> W.min <span class="co"># use modern W</span></span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>biserialCor <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> (<span class="dv">2</span><span class="sc">*</span>(W)) <span class="sc">/</span> (n<span class="fl">.1</span><span class="sc">*</span>n<span class="fl">.2</span>);</span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>biserialCor</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.15</code></pre>
+</div>
+</div>
+</section>
+<section id="robustness-under-transformations" class="level2">
+<h2 class="anchored" data-anchor-id="robustness-under-transformations">Robustness under transformations</h2>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="wilcoxon_rank_sum_test_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>

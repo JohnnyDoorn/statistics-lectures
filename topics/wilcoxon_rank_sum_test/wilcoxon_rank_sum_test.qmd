@@ -157,3 +157,58 @@ biserialCor
 ```
 
 
+## Robustness under monotonic transformations
+
+```{r, echo = FALSE, message=FALSE }
+set.seed(123)
+n <- 20
+y <- runif(n, 0, 0.5)
+gr <- factor(rep(letters[1:2], each = n /2))
+y[gr == "a"] <- y[gr == "a"] + 0.18
+y <- 1-y
+
+
+
+y1 <- y^2
+y1Stats <- c(t.test(y1 ~ gr)$statistic, wilcox.test(y1 ~ gr)$statistic)
+
+
+y2 <- qnorm(y)
+y2Stats <- c(t.test(y2 ~ gr)$statistic, wilcox.test(y2 ~ gr)$statistic)
+
+
+
+y3 <- log(y, base = 20)
+y3Stats <- c(t.test(y3 ~ gr)$statistic, wilcox.test(y3 ~ gr)$statistic)
+
+
+
+y4 <- qt(y, 1)
+y4Stats <- c(t.test(y4 ~ gr)$statistic, wilcox.test(y4 ~ gr)$statistic)
+
+
+yList <- list(y1, y2, y3, y4)
+```
+```{r, echo= FALSE}
+par(mfrow = c(2, 2), cex = 1)
+plotCex<- 1
+boxplot(y2 ~ gr, xlab = "Condition", ylab = "DV", col = c("darkgreen", "darkorange"),
+        main= "Normal", cex = plotCex)
+mtext(side = 3, paste0("t = ", (round(y2Stats[1], 2)), 
+                       "\nW = ", (round(y2Stats[2], 2))), adj = 1)
+boxplot(y1 ~ gr, xlab = "Condition", ylab = "DV", col = c("darkgreen", "darkorange"),
+        main= "y^2", cex =plotCex )
+mtext(side = 3, paste0("t = ", (round(y1Stats[1], 2)), 
+                       "\nW = ", (round(y1Stats[2], 2))), adj = 1)
+boxplot(y3 ~ gr, xlab = "Condition", ylab = "DV", col = c("darkgreen", "darkorange"),
+        main= "log(y)", cex = plotCex)
+mtext(side = 3, paste0("t = ", (round(y3Stats[1], 2)), 
+                       "\nW = ", (round(y3Stats[2], 2))), adj = 1)
+boxplot(y4 ~ gr, xlab = "Condition", ylab = "DV", col = c("darkgreen", "darkorange"),
+        main= "Cauchy", cex = plotCex)
+mtext(side = 3, paste0("t = ", (round(y4Stats[1], 2)), 
+                       "\nW = ", (round(y4Stats[2], 2))), adj = 1)
+
+
+```
+
