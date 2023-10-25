@@ -2,8 +2,8 @@
 
 ## Bayesion Hypothesis
 
-* $H_0$, the null hypothesis. This is an invariance or “general law”. For instance $\theta = 1$ (all swans are white) or $\theta = .5$ (people cannot look into the future – performance is at chance).
-* $H_A$ is the hypothesis that relaxes the restriction imposed by $H_0$.
+* $H_0$, the null hypothesis.  For instance $$\theta = .5$ (people cannot taste the difference between alcoholic and non-alcoholic beer).
+* $H_A$ is the hypothesis that relaxes the restriction imposed by $H_0$, and instead considers multiple values for $\theta$.
 
 ## Prior Belief
 
@@ -12,17 +12,10 @@ $$\large \underbrace{\frac{P(H_A \mid data)}{P(H_0 \mid data)}}_\textrm{Posterio
 ## Bayes Factor {.subsection}
 
 $$\underbrace{\frac{P(data \mid H_A)}{P(data \mid H_0)}}_\textrm{Bayes Factor}$$
-A ratio of the likelihood of the data under the alternative and the null.
+A ratio of the marginal likelihood of the data under the alternative and the null.
 
-A Bayes factor of ${BF}_{10} = 3$, means that the data are 3 times more likely under the alternative than under the null.
+A Bayes factor of ${BF}_{10} = 3$, means that the data are 3 times more likely under the alternative model than under the null model.
 
-## Simple BF explanation
-
-The special case of the Bayes Factor for null hypotheses testing can be visualised as the difference between the likelihood of the data at $H_A$ / $H_1$ and $H_0$ at the parameter value that represents the null.
-
-### interactive BF
-
-[A First Lesson in Bayesian Inference - Shiny App by EJ](https://tellmi.psy.lmu.de/felix/BayesLessons/BayesianLesson1.Rmd#section-do-the-test)
 
 ## Heuristics for BF {.subsection}
 

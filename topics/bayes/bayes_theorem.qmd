@@ -81,7 +81,7 @@ Frequentists
 
 > State of the world → Data
 
-Bayesions
+Bayesians
 
 > Data → State of the world
 
