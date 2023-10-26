@@ -92,7 +92,7 @@ if(!'gsheet' %in% installed.packages()) { install.packages('gsheet') }
 library("gsheet")
 gResults <- gsheet2tbl('https://docs.google.com/spreadsheets/d/1sQMH4ZMN_zJ5FW_gOdVZtppZ3EQAs3ab4xn3PiLjTc4/edit?usp=sharing')
 
-gResults <- as.data.frame(gResults)[-(1:4) , -1]
+gResults <- as.data.frame(gResults)[-c(1, 49:57) , -c(1, 8:9) ]
 
 # results <- results[grep("2017|2022", results$Timestamp),]
 for (i in 1:ncol(gResults)) {
@@ -106,7 +106,7 @@ for (i in 1:ncol(gResults)) {
 # }
 
 # results <- cbind(results, oddEvenResults)
-results <- data.frame(Type = rep(c("Even", "Odd")[(c(3:6, 1, 2) %% 2) +1], each = nrow(gResults)),
+results <- data.frame(Type = rep(c("Even", "Odd")[(c(1:6) %% 2) +1], each = nrow(gResults)),
                       Association = unlist(gResults),
                       NumberTested= rep(c(3:6, 1, 2), each = nrow(gResults) ))
 
@@ -297,4 +297,4 @@ Is the ratio of these odds.
 
 $OR = \frac{\text{feminine}}{\text{masculine}} = \frac{`r odds[1,1] / odds[1,2]`}{`r odds[2,1] / odds[2,2]`} = \frac{\text{even}}{\text{odd}}  =  \frac{`r odds[1,1] / odds[2,1]`}{`r odds[1,2] / odds[2,2]`} = `r (odds[1,1] / odds[1,2]) / (odds[2,1] / odds[2,2])`$
 
-For this data, odd numbers received the feminine association +- 5.25 times more often than even numbers received the feminine association. The odds ratio also accounts for the scores in the other condition: we do not only take into account the femininity of the odd numbers, but also the femininity of the even numbers.   
+For this data, even numbers received the feminine association +- 5.25 times more often than odd numbers received the feminine association. The odds ratio also accounts for the scores in the other condition: we do not only take into account the femininity of the odd numbers, but also the femininity of the even numbers.   
