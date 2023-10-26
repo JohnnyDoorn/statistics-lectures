@@ -274,8 +274,8 @@ The odd and even ratio of masculinity and the ratio of femininity
 * Feminine $\text{Odds}_{EO} = \frac{ `r odds[1,1]` }{ `r odds[1,2]` }$ = `r odds[1,1] / odds[1,2]`
 * Masculine $\text{Odds}_{EO} = \frac{ `r odds[2,1]` }{ `r odds[2,2]` }$ = `r odds[2,1] / odds[2,2]`
 
-In the feminine responses, there are +- 2.09 times as many even numbers than odd numbers.
-In the masculine responses, there  are +- 0.4 times as many even numbers than odd numbers.
+In the feminine responses, there are +- `r round(odds[1,1] / odds[1,2], 2)` times as many even numbers than odd numbers.
+In the masculine responses, there  are +- `r round(odds[2,1] / odds[2,2], 2)` times as many even numbers than odd numbers.
 
 ## Odds
 
@@ -288,8 +288,8 @@ Alternatively, we can look at the ratio's of masculine vs feminine for even and 
 * Even $\text{Odds}_{FM} = \frac{ `r odds[1,1]` }{ `r odds[2,1]` }$ = `r odds[1,1] / odds[2,1]`
 * Odd $\text{Odds}_{FM} = \frac{ `r odds[1,2]` }{ `r odds[2,2]` }$ = `r odds[1,2] / odds[2,2]`
 
-For the even numbers, there are +- 2.9 times as many feminine associations than masculine associations.
-For the odd numbers, there are +- 0.55 times as many feminine associations than masculine associations.
+For the even numbers, there are +- `r round(odds[1,1] / odds[2,1], 2)` times as many feminine associations than masculine associations.
+For the odd numbers, there are +- `r round(odds[1,2] / odds[2,2], 2)` times as many feminine associations than masculine associations.
 
 ## Odds ratio
 
@@ -297,4 +297,4 @@ Is the ratio of these odds.
 
 $OR = \frac{\text{feminine}}{\text{masculine}} = \frac{`r odds[1,1] / odds[1,2]`}{`r odds[2,1] / odds[2,2]`} = \frac{\text{even}}{\text{odd}}  =  \frac{`r odds[1,1] / odds[2,1]`}{`r odds[1,2] / odds[2,2]`} = `r (odds[1,1] / odds[1,2]) / (odds[2,1] / odds[2,2])`$
 
-For this data, even numbers received the feminine association +- 5.25 times more often than odd numbers received the feminine association. The odds ratio also accounts for the scores in the other condition: we do not only take into account the femininity of the odd numbers, but also the femininity of the even numbers.   
+For this data, even numbers received the feminine association +- `r round((odds[1,1] / odds[1,2]) / (odds[2,1] / odds[2,2]), 2)` times more often than odd numbers received the feminine association. The odds ratio also accounts for the scores in the other condition: we do not only take into account the femininity of the odd numbers, but also the femininity of the even numbers.   
