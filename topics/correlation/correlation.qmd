@@ -44,59 +44,98 @@ $${COV}_{xy} = \frac{\sum_{i=1}^N (x_i - \bar{x})(y_i - \bar{y})}{N-1}$$
 
 ## Plot correlation
 
-```{r, fig.width=5, fig.height=5, fig.align='center'}
+```{r,echo=FALSE, fig.width=5, fig.height=5, fig.align='center'}
 set.seed(565433)
-
-x = rnorm(10, 5)
-y = rnorm(10, 5)
-
+corners <- par("usr")
+x <- rnorm(5, 5)
+y <- rnorm(5, 5)
 plot(x, y, las = 1)
 
-m.x = mean(x)
-m.y = mean(y)
+m.x <- mean(x)
+m.y <- mean(y)
 
-polygon(c(m.x,8,8,m.x),c(m.y,m.y,8,8), col = rgb(0,.64,0,.5))
-polygon(c(m.x,0,0,m.x),c(m.y,m.y,0,0), col = rgb(0,.64,0,.5))
 
-polygon(c(m.x,0,0,m.x),c(m.y,m.y,8,8), col = rgb(1,.55,0,.5))
-polygon(c(m.x,8,8,m.x),c(m.y,m.y,0,0), col = rgb(1,.55,0,.5))
+points(x,y, pch = 21, bg = "turquoise", col = "black", lwd = 2, cex = 1.5)
 
-points(x,y)
+
+```
+## Plot correlation
+
+```{r,echo=FALSE, fig.width=5, fig.height=5, fig.align='center'}
+set.seed(565433)
+x <- rnorm(5, 5)
+y <- rnorm(5, 5)
+plot(x, y, las = 1)
+
+m.x <- mean(x)
+m.y <- mean(y)
+
+polygon(c(m.x,8,8,m.x),c(m.y,m.y,8,8), col = rgb(0,0.8,0,.2))
+polygon(c(m.x,0,0,m.x),c(m.y,m.y,0,0), col = rgb(0,0.8,0,.2))
+
+polygon(c(m.x,0,0,m.x),c(m.y,m.y,8,8), col = rgb(0.8,0,0,alpha = 0.2))
+polygon(c(m.x,8,8,m.x),c(m.y,m.y,0,0), col = rgb(0.8,0,0,alpha= 0.2))
+
+points(x,y, pch = 21, bg = "turquoise", col = "black", lwd = 2, cex = 1.5)
 
 abline(h = m.y, lwd = 3)
 abline(v = m.x, lwd = 3)
 
-segments(x, m.y, x, y, col = "orange",    lwd = 2)
-segments(x, y, m.x, y, col = "darkgreen", lwd = 2)
+# segments(x, m.y, x, y, col = "darkorange",    lwd = 2)
+# segments(x, y, m.x, y, col = "purple", lwd = 2)
 
-text(m.x+.7, m.y+.7, "+ x +", cex = 2)
-text(m.x-.7, m.y-.7, "- x -", cex = 2)
-text(m.x+.7, m.y-.7, "+ x -", cex = 2)
-text(m.x-.7, m.y+.7, "- x +", cex = 2)
+mtext(side = 3, bquote(bar(x) ~ "= 5.11"), cex = 1.5)
+mtext(side = 4, bquote(bar(y) ~ "= 4.92"), cex = 1.5, padj = 0.5, srt=180)
+# mtext("Text to the Right", side = 4, line = 1, las = 3)
+
 ```
+
+## Plot correlation
+
+```{r,echo=FALSE, fig.width=5, fig.height=5, fig.align='center'}
+plot(x, y, las = 1)
+
+m.x <- mean(x)
+m.y <- mean(y)
+
+polygon(c(m.x,8,8,m.x),c(m.y,m.y,8,8), col = rgb(0,0.8,0,.2))
+polygon(c(m.x,0,0,m.x),c(m.y,m.y,0,0), col = rgb(0,0.8,0,.2))
+
+polygon(c(m.x,0,0,m.x),c(m.y,m.y,8,8), col = rgb(0.8,0,0,alpha = 0.2))
+polygon(c(m.x,8,8,m.x),c(m.y,m.y,0,0), col = rgb(0.8,0,0,alpha= 0.2))
+
+points(x,y, pch = 21, bg = "turquoise", col = "black", lwd = 2, cex = 1.5)
+
+abline(h = m.y, lwd = 3)
+abline(v = m.x, lwd = 3)
+mtext(side = 3, bquote(bar(x) ~ "= 5.11"), cex = 1.5)
+mtext(side = 4, bquote(bar(y) ~ "= 4.92"), cex = 1.5, padj = 0.5, srt=180)
+segments(x, m.y, x, y, col = "darkorange",    lwd = 2)
+segments(x, y, m.x, y, col = "purple", lwd = 2)
+```
+
 $$(x_i - \bar{x})(y_i - \bar{y})$$
 
 ## Guess the correlation
 
-![[Guess the correlation](http://guessthecorrelation.com
-)](../../../../topics/correlation/qrcodeqtc.png)
+[Guess the correlation](http://guessthecorrelation.com)
 
-<img src="topics/correlation/qrcodeqtc.png">
+<img src="qrcodeqtc.png">
 
 ## Simulate data
 
 ```{r, eval=TRUE, echo=TRUE}
-n     = 50
-grade = rnorm(n, 6, 1.6)
-b.0   = 100
-b.1   = .3
-error = rnorm(n, 0, 0.7)
+n     <- 50
+IQ <- rnorm(n, 100, 15)
+b.0   <- 55
+b.1   <- .3
+error <- rnorm(n, 0, 0.7)
 
-IQ = b.0 + b.1 * grade + error
-#IQ = group(IQ)
-
-error = rnorm(n, 0, 0.7)
-motivation = 3.2 + .2 * IQ + error
+grade <- b.0 + b.1 * IQ + error
+grade <- grade / 10 # scale to 0-10
+  
+error <- rnorm(n, 0, 0.7)
+motivation <- 3.2 + .2 * grade + error
 ```
 
 ```{r, echo=FALSE}
@@ -106,43 +145,39 @@ data <- round(data, 2)
 write.table(data, "grade.csv", row.names=FALSE, col.names=TRUE, dec='.')
 ```
 
-## Explaining vairance {.subsection}
+## Explaining variance {.subsection}
 
 ```{r}
-grade      = data$grade
-IQ         = data$IQ
-mean.grade = mean(grade)
-mean.IQ    = mean(IQ)
-N          = length(grade)
+grade      <- data$grade
+IQ         <- data$IQ
+mean.grade <- mean(grade)
+mean.IQ    <- mean(IQ)
+N          <- length(grade)
 
 plot(data$grade, ylim=summary(c(data$grade, data$IQ))[c('Min.','Max.')], 
-     col='orange', 
-     ylab="variables",
-     xlab="People")
-points(data$IQ, col='blue')
+     bg='orange', pch = 21, 
+     ylab="Variables",
+     xlab="Participant")
+points(data$IQ, bg='blue', pch = 21)
 ```
 
-## Standarize {.smaller}
+## Standardize {.smaller}
 
 $$z = \frac{x_i - \bar{x}}{{sd}_x}$$
 
 ```{r, echo=TRUE}
 #| output-location: slide
+z.grade   <- (data$grade - mean(data$grade)) / sd(data$grade)
+z.IQ      <- (data$IQ - mean(data$IQ)) / sd(data$IQ)
 
-data[, c('z.grade', 'z.IQ')] = scale(data[, c('grade', 'IQ')])
-
-z.grade      = data$z.grade
-z.IQ         = data$z.IQ
-
-mean.z.grade = mean(z.grade, na.rm=TRUE)
-mean.z.IQ    = mean(z.IQ,      na.rm=TRUE)
+mean.z.grade <- mean(z.grade)
+mean.z.IQ    <- mean(z.IQ)
 
 plot(z.grade, 
-     ylim = summary(c(z.grade, z.IQ))[c('Min.','Max.')], 
-     col  = 'orange', 
-     ylab = "", xlab="participants")
+     bg  = 'orange', pch = 21, bty = "n",
+     ylab = "z-scores", xlab="Participants")
 
-points(z.IQ, col='blue')
+points(z.IQ,  pch = 21, bg='blue')
 
 # Add mean lines
 lines(rep(mean.z.grade, N), col='orange')
