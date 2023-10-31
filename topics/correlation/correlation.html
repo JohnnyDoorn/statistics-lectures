@@ -68,6 +68,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="correlation_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="correlation_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 
+<script src="correlation_files/libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
+<link href="correlation_files/libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+<script src="correlation_files/libs/datatables-binding-0.27/datatables.js"></script>
+<script src="correlation_files/libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<link href="correlation_files/libs/dt-core-1.12.1/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="correlation_files/libs/dt-core-1.12.1/css/jquery.dataTables.extra.css" rel="stylesheet">
+<script src="correlation_files/libs/dt-core-1.12.1/js/jquery.dataTables.min.js"></script>
+<link href="correlation_files/libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
+<script src="correlation_files/libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
@@ -139,33 +149,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="simulate-data" class="level2">
 <h2 class="anchored" data-anchor-id="simulate-data">Simulate data</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>n     <span class="ot">&lt;-</span> <span class="dv">50</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>IQ <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="dv">100</span>, <span class="dv">15</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>b<span class="fl">.0</span>   <span class="ot">&lt;-</span> <span class="dv">55</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>b<span class="fl">.1</span>   <span class="ot">&lt;-</span> .<span class="dv">3</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>error <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="dv">0</span>, <span class="fl">0.7</span>)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>grade <span class="ot">&lt;-</span> b<span class="fl">.0</span> <span class="sc">+</span> b<span class="fl">.1</span> <span class="sc">*</span> IQ <span class="sc">+</span> error</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>grade <span class="ot">&lt;-</span> grade <span class="sc">/</span> <span class="dv">10</span> <span class="co"># scale to 0-10</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>error <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="dv">0</span>, <span class="fl">0.7</span>)</span>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>n     <span class="ot">&lt;-</span> <span class="dv">50</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>studyHours <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">abs</span>(<span class="fu">rnorm</span>(n, <span class="dv">20</span>, <span class="dv">7</span>)))</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>b<span class="fl">.0</span>   <span class="ot">&lt;-</span> <span class="dv">60</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>b<span class="fl">.1</span>   <span class="ot">&lt;-</span> .<span class="dv">5</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>error <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="dv">0</span>, <span class="dv">3</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>grade <span class="ot">&lt;-</span> b<span class="fl">.0</span> <span class="sc">+</span> b<span class="fl">.1</span> <span class="sc">*</span> studyHours <span class="sc">+</span> error</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>error <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="dv">0</span>, <span class="fl">0.3</span>)</span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>motivation <span class="ot">&lt;-</span> <span class="fl">3.2</span> <span class="sc">+</span> .<span class="dv">2</span> <span class="sc">*</span> grade <span class="sc">+</span> error</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="explaining-variance" class="level2 subsection">
 <h2 class="subsection anchored" data-anchor-id="explaining-variance">Explaining variance</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>grade      <span class="ot">&lt;-</span> data<span class="sc">$</span>grade</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>IQ         <span class="ot">&lt;-</span> data<span class="sc">$</span>IQ</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>mean.grade <span class="ot">&lt;-</span> <span class="fu">mean</span>(grade)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>mean.IQ    <span class="ot">&lt;-</span> <span class="fu">mean</span>(IQ)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>N          <span class="ot">&lt;-</span> <span class="fu">length</span>(grade)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(data<span class="sc">$</span>grade, <span class="at">ylim=</span><span class="fu">summary</span>(<span class="fu">c</span>(data<span class="sc">$</span>grade, data<span class="sc">$</span>IQ))[<span class="fu">c</span>(<span class="st">'Min.'</span>,<span class="st">'Max.'</span>)], </span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>     <span class="at">bg=</span><span class="st">'orange'</span>, <span class="at">pch =</span> <span class="dv">21</span>, </span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab=</span><span class="st">"Variables"</span>,</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">"Participant"</span>)</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(data<span class="sc">$</span>IQ, <span class="at">bg=</span><span class="st">'blue'</span>, <span class="at">pch =</span> <span class="dv">21</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="correlation_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -175,27 +174,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="smaller anchored" data-anchor-id="standardize">Standardize</h2>
 <p><span class="math display">\[z = \frac{x_i - \bar{x}}{{sd}_x}\]</span></p>
 <div class="cell" data-output-location="slide">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>z.grade   <span class="ot">&lt;-</span> (data<span class="sc">$</span>grade <span class="sc">-</span> <span class="fu">mean</span>(data<span class="sc">$</span>grade)) <span class="sc">/</span> <span class="fu">sd</span>(data<span class="sc">$</span>grade)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>z.IQ      <span class="ot">&lt;-</span> (data<span class="sc">$</span>IQ <span class="sc">-</span> <span class="fu">mean</span>(data<span class="sc">$</span>IQ)) <span class="sc">/</span> <span class="fu">sd</span>(data<span class="sc">$</span>IQ)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>mean.z.grade <span class="ot">&lt;-</span> <span class="fu">mean</span>(z.grade)</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>mean.z.IQ    <span class="ot">&lt;-</span> <span class="fu">mean</span>(z.IQ)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(z.grade, </span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>     <span class="at">bg  =</span> <span class="st">'orange'</span>, <span class="at">pch =</span> <span class="dv">21</span>, </span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">""</span>, <span class="at">xlab=</span><span class="st">"Participants"</span>)</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(z.IQ,  <span class="at">pch =</span> <span class="dv">21</span>, <span class="at">bg=</span><span class="st">'blue'</span>)</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Add mean lines</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">rep</span>(mean.z.grade, N), <span class="at">col=</span><span class="st">'orange'</span>)</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">rep</span>(mean.z.IQ,    N), <span class="at">col=</span><span class="st">'blue'</span>, <span class="at">lt=</span><span class="dv">2</span>)</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Add vertical variance lines</span></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="fu">segments</span>(<span class="dv">1</span><span class="sc">:</span>N, mean.z.grade, <span class="dv">1</span><span class="sc">:</span>N, z.grade, <span class="at">col=</span><span class="st">'orange'</span>)</span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="fu">segments</span>(<span class="dv">1</span><span class="sc">:</span>N, mean.z.IQ, <span class="dv">1</span><span class="sc">:</span>N, z.IQ, <span class="at">col=</span><span class="st">'blue'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>z.grade      <span class="ot">&lt;-</span> (data<span class="sc">$</span>grade <span class="sc">-</span> <span class="fu">mean</span>(data<span class="sc">$</span>grade)) <span class="sc">/</span> <span class="fu">sd</span>(data<span class="sc">$</span>grade)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>z.studyHours <span class="ot">&lt;-</span> (data<span class="sc">$</span>studyHours <span class="sc">-</span> <span class="fu">mean</span>(data<span class="sc">$</span>studyHours)) <span class="sc">/</span> <span class="fu">sd</span>(data<span class="sc">$</span>studyHours)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
 <div class="cell-output-display">
-<p><img src="correlation_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+<p><img src="correlation_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
@@ -203,51 +187,63 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="subsection anchored" data-anchor-id="covariance">Covariance</h2>
 <p><span class="math display">\[{COV}_{xy} = \frac{\sum_{i=1}^N (x_i - \bar{x})(y_i - \bar{y})}{N-1}\]</span></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>mean.grade <span class="ot">=</span> <span class="fu">mean</span>(grade, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>mean.IQ    <span class="ot">=</span> <span class="fu">mean</span>(IQ, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>delta.grade <span class="ot">=</span> grade <span class="sc">-</span> mean.grade</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>delta.IQ    <span class="ot">=</span> IQ      <span class="sc">-</span> mean.IQ</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>prod <span class="ot">=</span> (grade <span class="sc">-</span> mean.grade) <span class="sc">*</span> (IQ <span class="sc">-</span> mean.IQ)</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>covariance <span class="ot">=</span> <span class="fu">sum</span>(prod) <span class="sc">/</span> (N <span class="sc">-</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>mean.grade         <span class="ot">&lt;-</span> <span class="fu">mean</span>(grade, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>mean.studyHours    <span class="ot">&lt;-</span> <span class="fu">mean</span>(studyHours, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>delta.grade         <span class="ot">&lt;-</span> grade <span class="sc">-</span> mean.grade</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>delta.studyHours    <span class="ot">&lt;-</span> studyHours <span class="sc">-</span> mean.studyHours</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>prod <span class="ot">&lt;-</span> (grade <span class="sc">-</span> mean.grade) <span class="sc">*</span> (studyHours <span class="sc">-</span> mean.studyHours)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>covariance <span class="ot">&lt;-</span> <span class="fu">sum</span>(prod) <span class="sc">/</span> (N <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>covariance</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 20.62015</code></pre>
+</div>
+</div>
+</section>
+<section id="covariance-1" class="level2">
+<h2 class="anchored" data-anchor-id="covariance-1">Covariance</h2>
+<div class="cell">
+<div class="cell-output-display">
+
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-d96970b9501c191ad406" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-d96970b9501c191ad406">{"x":{"filter":"none","vertical":false,"data":[[68.76,68.91,75.37,74.11,69.82,80.55,66.85,67.25,67.87,69.15,75.64,69.99,70.5,67.44,64.78,77.41,72.84,63.16,75.27,74.65,65.03,62.07,69.52,65.37,65.94,67.08,72.15,66.84,66.54,74.08,71.52,70.16,71.89,74.93,72.34,73.5,75.29,71.31,68.02,71.95,70.48,71.15,66.22,75.62,78.08,64.2,75.06,73.1,71.79,66.42],[70.56,70.56,70.56,70.56,70.56,70.56,70.56,70.56,70.56,70.56,70.56,70.56,70.56,70.56,70.56,70.56,70.56,70.56,70.56,70.56,70.56,70.56,70.56,70.56,70.56,70.56,70.56,70.56,70.56,70.56,70.56,70.56,70.56,70.56,70.56,70.56,70.56,70.56,70.56,70.56,70.56,70.56,70.56,70.56,70.56,70.56,70.56,70.56,70.56,70.56],[-1.8,-1.65,4.81,3.55,-0.74,9.99,-3.71,-3.31,-2.69,-1.41,5.08,-0.57,-0.06,-3.12,-5.78,6.85,2.28,-7.4,4.71,4.09,-5.53,-8.49,-1.04,-5.19,-4.62,-3.48,1.59,-3.72,-4.02,3.52,0.96,-0.4,1.33,4.37,1.78,2.94,4.73,0.75,-2.54,1.39,-0.08,0.59,-4.34,5.06,7.52,-6.36,4.5,2.54,1.23,-4.14],[16,18,31,20,21,32,23,11,15,17,29,23,23,21,16,33,23,6,25,17,13,18,13,15,16,8,26,21,12,29,23,18,26,26,26,25,24,20,18,17,15,19,11,35,28,12,17,17,25,19],[20.24,20.24,20.24,20.24,20.24,20.24,20.24,20.24,20.24,20.24,20.24,20.24,20.24,20.24,20.24,20.24,20.24,20.24,20.24,20.24,20.24,20.24,20.24,20.24,20.24,20.24,20.24,20.24,20.24,20.24,20.24,20.24,20.24,20.24,20.24,20.24,20.24,20.24,20.24,20.24,20.24,20.24,20.24,20.24,20.24,20.24,20.24,20.24,20.24,20.24],[-4.24,-2.24,10.76,-0.24,0.76,11.76,2.76,-9.24,-5.24,-3.24,8.76,2.76,2.76,0.76,-4.24,12.76,2.76,-14.24,4.76,-3.24,-7.24,-2.24,-7.24,-5.24,-4.24,-12.24,5.76,0.76,-8.24,8.76,2.76,-2.24,5.76,5.76,5.76,4.76,3.76,-0.24,-2.24,-3.24,-5.24,-1.24,-9.24,14.76,7.76,-8.24,-3.24,-3.24,4.76,-1.24],[7.63,3.69,51.76,-0.85,-0.56,117.49,-10.24,30.58,14.09,4.57,44.51,-1.57,-0.16,-2.37,24.5,87.41,6.29,105.37,22.42,-13.25,40.03,19.02,7.53,27.19,19.59,42.59,9.16,-2.83,33.12,30.84,2.65,0.89,7.66,25.17,10.26,14,17.79,-0.18,5.69,-4.51,0.42,-0.73,40.1,74.69,58.36,52.4,-14.58,-8.23,5.86,5.13]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>grade<\/th>\n      <th>meanGr<\/th>\n      <th>deltaGr<\/th>\n      <th>Hrs<\/th>\n      <th>meanHrs<\/th>\n      <th>deltaHrs<\/th>\n      <th>prod<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"searching":false,"scrollY":415,"paging":false,"info":false,"columnDefs":[{"className":"dt-right","targets":[0,1,2,3,4,5,6]}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
 </div>
 </section>
 <section id="correlation-1" class="level2">
 <h2 class="anchored" data-anchor-id="correlation-1">Correlation</h2>
 <p><span class="math display">\[r_{xy} = \frac{{COV}_{xy}}{S_xS_y}\]</span></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>correlation <span class="ot">=</span> covariance <span class="sc">/</span> ( <span class="fu">sd</span>(grade) <span class="sc">*</span> <span class="fu">sd</span>(IQ) ); correlation</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>correlation <span class="ot">&lt;-</span> covariance <span class="sc">/</span> ( <span class="fu">sd</span>(grade) <span class="sc">*</span> <span class="fu">sd</span>(studyHours) ); correlation</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.9928415</code></pre>
+<pre><code>[1] 0.7589993</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(z.grade, z.IQ)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>correlation</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.9928415</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(  grade,   IQ)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.9928415</code></pre>
+<pre><code>[1] 0.7589993</code></pre>
 </div>
 </div>
-<hr>
+</section>
+<section id="correlation-2" class="level2">
+<h2 class="anchored" data-anchor-id="correlation-2">Correlation</h2>
+<p><span class="math display">\[r_{xy} = \frac{{COV}_{xy}}{S_xS_y}\]</span> <span class="math display">\[{COV}_{xy} = \frac{\sum_{i=1}^N (x_i - \bar{x})(y_i - \bar{y})}{N-1}\]</span></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>( z.grade <span class="sc">*</span> z.IQ ) <span class="sc">/</span> (N <span class="sc">-</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(  grade,   studyHours) <span class="co"># correlation</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.9928415</code></pre>
+<pre><code>[1] 0.7589993</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="sc">-</span><span class="dv">1</span>,<span class="sc">-</span><span class="dv">1</span>, <span class="dv">0</span>,.<span class="dv">5</span>,<span class="sc">-</span>.<span class="dv">5</span>)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>)</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(x,y,x<span class="sc">*</span>y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(z.grade, z.studyHours) <span class="co"># correlation of z-scores</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>        x  y     
-[1,]  1.0  1  1.0
-[2,] -1.0 -1  1.0
-[3,] -1.0  1 -1.0
-[4,]  0.0  1  0.0
-[5,]  0.5  1  0.5
-[6,] -0.5  1 -0.5</code></pre>
+<pre><code>[1] 0.7589993</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># covariance of z-scores</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(z.grade <span class="sc">*</span> z.studyHours ) <span class="sc">/</span> (N <span class="sc">-</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.7589993</code></pre>
 </div>
 </div>
 </section>
@@ -255,7 +251,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="plot-correlation-3">Plot correlation</h2>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="correlation_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
+<p><img src="correlation_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
@@ -264,12 +260,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><span class="math display">\[t_r = \frac{r \sqrt{N-2}}{\sqrt{1 - r^2}} \\
 {df} = N - 2\]</span></p>
 <p><span class="math display">\[
-  \begin{aligned}
-  H_0 &amp;: t_r = 0 \\
-  H_A &amp;: t_r \neq 0 \\
-  H_A &amp;: t_r &gt; 0 \\
-  H_A &amp;: t_r &lt; 0 \\
-  \end{aligned}
+\begin{aligned}
+H_0 &amp;: t_r = 0 \\
+H_A &amp;: t_r \neq 0 \\
+H_A &amp;: t_r &gt; 0 \\
+H_A &amp;: t_r &lt; 0 \\
+\end{aligned}
 \]</span></p>
 </section>
 <section id="r-to-t" class="level2">
@@ -280,7 +276,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(t.r, df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          t.r df
-[1,] 57.59081 48</code></pre>
+[1,] 8.076439 48</code></pre>
 </div>
 </div>
 </section>
@@ -293,7 +289,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="fu">visualize.t</span>(<span class="fu">c</span>(<span class="sc">-</span>t.r, t.r),df,<span class="at">section=</span><span class="st">'tails'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="correlation_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
+<p><img src="correlation_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
@@ -304,7 +300,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="venn-diagram">Venn diagram</h2>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="correlation_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
+<p><img src="correlation_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
@@ -314,31 +310,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>motivation <span class="ot">=</span> data<span class="sc">$</span>motivation</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>cor.grade.IQ         <span class="ot">=</span> <span class="fu">cor</span>(grade,IQ)</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>cor.grade.motivation <span class="ot">=</span> <span class="fu">cor</span>(grade,motivation)</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>cor.IQ.motivation    <span class="ot">=</span> <span class="fu">cor</span>(IQ,motivation)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>cor.grade.studyHours       <span class="ot">=</span> <span class="fu">cor</span>(grade,studyHours)</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>cor.grade.motivation       <span class="ot">=</span> <span class="fu">cor</span>(grade,motivation)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>cor.studyHours.motivation  <span class="ot">=</span> <span class="fu">cor</span>(studyHours,motivation)</span>
 <span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(cor.grade.IQ, cor.grade.motivation, cor.IQ.motivation)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(cor.grade.studyHours, cor.grade.motivation, cor.studyHours.motivation)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>  cor.grade.IQ cor.grade.motivation cor.IQ.motivation
-1    0.9928415           0.01005204       -0.01099228</code></pre>
+<pre><code>  cor.grade.studyHours cor.grade.motivation cor.studyHours.motivation
+1            0.7589993            0.9395244                 0.7450336</code></pre>
 </div>
 </div>
 <hr>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>numerator   <span class="ot">=</span> cor.grade.IQ <span class="sc">-</span> (cor.grade.motivation <span class="sc">*</span> cor.IQ.motivation)</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>denominator <span class="ot">=</span> <span class="fu">sqrt</span>( (<span class="dv">1</span><span class="sc">-</span>cor.grade.motivation<span class="sc">^</span><span class="dv">2</span>)<span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>cor.IQ.motivation<span class="sc">^</span><span class="dv">2</span>) )</span>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>numerator   <span class="ot">=</span> cor.grade.studyHours <span class="sc">-</span> (cor.grade.motivation <span class="sc">*</span> cor.studyHours.motivation)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>denominator <span class="ot">=</span> <span class="fu">sqrt</span>( (<span class="dv">1</span><span class="sc">-</span>cor.grade.motivation<span class="sc">^</span><span class="dv">2</span>)<span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>cor.studyHours.motivation<span class="sc">^</span><span class="dv">2</span>) )</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>partial.correlation <span class="ot">=</span> numerator <span class="sc">/</span> denominator</span>
 <span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>partial.correlation</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.9930622</code></pre>
+<pre><code>[1] 0.2583645</code></pre>
 </div>
 </div>
 </section>
-<section id="significance-of-parial-correlation" class="level2 subsection">
-<h2 class="subsection anchored" data-anchor-id="significance-of-parial-correlation">Significance of parial correlation</h2>
+<section id="significance-of-partial-correlation" class="level2 subsection">
+<h2 class="subsection anchored" data-anchor-id="significance-of-partial-correlation">Significance of partial correlation</h2>
 <p>One-sample t-test</p>
 <div class="cell" data-output-location="slide">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">=</span> N <span class="sc">-</span> <span class="dv">3</span></span>
@@ -346,11 +342,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>t.pr <span class="ot">=</span> ( partial.correlation<span class="sc">*</span><span class="fu">sqrt</span>(df) ) <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="dv">1</span><span class="sc">-</span>partial.correlation<span class="sc">^</span><span class="dv">2</span>)</span>
 <span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>t.pr</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 57.89658</code></pre>
+<pre><code>[1] 1.83351</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">visualize.t</span>(<span class="fu">c</span>(<span class="sc">-</span>t.pr,t.pr),df,<span class="at">section=</span><span class="st">'tails'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="correlation_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="672"></p>
+<p><img src="correlation_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
