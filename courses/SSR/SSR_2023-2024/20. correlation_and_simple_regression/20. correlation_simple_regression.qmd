@@ -9,7 +9,11 @@ format:
     output-ext: slide.html
 ---
 
-```{r child="../../../../topics/correlation/correlation.qmd"}
+```{r child="../../../../topics/block3_opening/block3_opening.qmd"}
+```
+
+
+```{r child="../../../../topics/correlation/correlation_albumsales.qmd"}
 ```
 
 ```{r child="../../../../topics/regression_one_predictor/regression_one_predictor.qmd", eval=TRUE}
