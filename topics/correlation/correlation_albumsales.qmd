@@ -26,9 +26,9 @@ $${COV}_{xy} = \frac{\sum_{i=1}^N (x_i - \bar{x})(y_i - \bar{y})}{N-1}$$
 set.seed(565433)
 data <- read.csv("Album Sales.csv")[, -4]
 tinydat <- data[1:5, ]
-x <- tinydat$adverts
+x <- tinydat$airplay
 y <- tinydat$sales
-plot(x, y, las = 1, xlab = "Adverts", ylab = "Album Sales")
+plot(x, y, las = 1, xlab = "Airplay", ylab = "Album Sales")
 
 m.x <- mean(x)
 m.y <- mean(y)
@@ -42,7 +42,7 @@ corners <- par("usr")
 ## Plot correlation
 
 ```{r,echo=FALSE, fig.width=5, fig.height=5, fig.align='center'}
-plot(x, y, las = 1, xlab = "Adverts", ylab = "Album Sales")
+plot(x, y, las = 1, xlab = "Airplay", ylab = "Album Sales")
 
 m.x <- mean(x)
 m.y <- mean(y)
@@ -74,7 +74,7 @@ mtext(side = 4, bquote(bar(y) ~ "= 260"), cex = 1.5, padj = 0.5, srt=180)
 ## Plot correlation
 
 ```{r,echo=FALSE, fig.width=5, fig.height=5, fig.align='center'}
-plot(x, y, las = 1, xlab = "Adverts", ylab = "Album Sales")
+plot(x, y, las = 1, xlab = "Airplay", ylab = "Album Sales")
 
 m.x <- mean(x)
 m.y <- mean(y)
@@ -243,7 +243,7 @@ sum(z.sales * z.airplay ) / (N - 1)
 ## Plot correlation
 
 ```{r, echo=FALSE}
-plot(airplay, sales, las = 1, pch = 21, bg = "turquoise", ylab = "Album Sales", xlab ="Adverts")
+plot(airplay, sales, las = 1, pch = 21, bg = "turquoise", ylab = "Album Sales", xlab ="Airplay")
 abline(h = mean.sales,   col = "black", lwd = 2)
 abline(v = mean.airplay, col = "black", lwd = 2)
 corners <- par("usr")
