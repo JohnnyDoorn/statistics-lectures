@@ -417,11 +417,39 @@ Sharon Kinkenberg &amp; Johnny van Doorn
 
   <p class="date">2023-11-02</p>
 </section>
-<section class="slide level2">
+<section>
+<section id="some-opening-mantras" class="title-slide slide level1 center">
+<h1>Some Opening Mantra’s</h1>
 
-<!-- ```{r child="../../../../topics/block3_opening/block3_opening.qmd"} -->
-<!-- ``` -->
 </section>
+<section id="always-plot-your-data" class="slide level2">
+<h2>Always plot your data</h2>
+<p><img data-src="raincloud.png" width="800"> ## Always plot your data <img data-src="trex.png" width="800"></p>
+</section>
+<section id="predicting-the-dv" class="slide level2 smaller">
+<h2>Predicting the DV</h2>
+<div>
+<ul>
+<li class="fragment">The dependent variable (DV) varies</li>
+<li class="fragment">We try to recreate/predict the observed DV values by looking at predictor variables
+<ul>
+<li class="fragment"><a href="https://johnnydoorn.github.io/statistics-lectures/courses/SSR/SSR_2023-2024/MiscFiles_J/PredictingWithDummies.html">Predicting with dummies (one-way)</a></li>
+<li class="fragment"><a href="https://johnnydoorn.github.io/statistics-lectures/courses/SSR/SSR_2023-2024/MiscFiles_J/PredictingWithDummies_Interaction.html">Predicting with dummies (factorial)</a></li>
+<li class="fragment"><a href="https://statisticalreasoning-uva-2.shinyapps.io/RM_ANOVA/">Visual prediction in RM ANOVA</a></li>
+</ul></li>
+<li class="fragment">Accurate approximation/prediction of the DV? -&gt; high explained variance</li>
+<li class="fragment">Total variability of DV = explained variance + unexplained variance
+<ul>
+<li class="fragment"><span class="math inline">\(\text{DV} = \text{model prediction} + \text{error}\)</span></li>
+</ul></li>
+<li class="fragment">More explained variance than unexplained variance (e.g., <span class="math inline">\(F &gt;&gt; 1\)</span>) -&gt; success!</li>
+</ul>
+</div>
+</section>
+<section id="keep-your-models-simpleinterpretable" class="slide level2">
+<h2>Keep your models simple/interpretable</h2>
+
+<img data-src="manyvars.png" width="800" class="r-stretch"></section></section>
 <section>
 <section id="correlation" class="title-slide slide level1 section center">
 <h1>Correlation</h1>
@@ -441,15 +469,15 @@ Sharon Kinkenberg &amp; Johnny van Doorn
 <section id="plot-correlation" class="slide level2">
 <h2>Plot correlation</h2>
 
-<img data-src="20.-correlation_simple_regression_files/figure-revealjs/unnamed-chunk-5-1.png" width="480" class="r-stretch quarto-figure-center"></section>
+<img data-src="20.-correlation_simple_regression_files/figure-revealjs/unnamed-chunk-6-1.png" width="480" class="r-stretch quarto-figure-center"></section>
 <section id="plot-correlation-1" class="slide level2">
 <h2>Plot correlation</h2>
 
-<img data-src="20.-correlation_simple_regression_files/figure-revealjs/unnamed-chunk-6-1.png" width="480" class="r-stretch quarto-figure-center"></section>
+<img data-src="20.-correlation_simple_regression_files/figure-revealjs/unnamed-chunk-7-1.png" width="480" class="r-stretch quarto-figure-center"></section>
 <section id="plot-correlation-2" class="slide level2">
 <h2>Plot correlation</h2>
 
-<img data-src="20.-correlation_simple_regression_files/figure-revealjs/unnamed-chunk-7-1.png" width="480" class="r-stretch quarto-figure-center"><p><span class="math display">\[(x_i - \bar{x})(y_i - \bar{y})\]</span></p>
+<img data-src="20.-correlation_simple_regression_files/figure-revealjs/unnamed-chunk-8-1.png" width="480" class="r-stretch quarto-figure-center"><p><span class="math display">\[(x_i - \bar{x})(y_i - \bar{y})\]</span></p>
 </section>
 <section id="guess-the-correlation" class="slide level2">
 <h2>Guess the correlation</h2>
@@ -473,7 +501,7 @@ Sharon Kinkenberg &amp; Johnny van Doorn
 <section id="explaining-variance" class="slide level2 subsection">
 <h2>Explaining variance</h2>
 
-<img data-src="20.-correlation_simple_regression_files/figure-revealjs/unnamed-chunk-9-1.png" width="960" class="r-stretch"></section>
+<img data-src="20.-correlation_simple_regression_files/figure-revealjs/unnamed-chunk-10-1.png" width="960" class="r-stretch"></section>
 <section id="standardize" class="slide level2 smaller">
 <h2>Standardize</h2>
 <p><span class="math display">\[z = \frac{x_i - \bar{x}}{{sd}_x}\]</span></p>
@@ -488,11 +516,11 @@ Sharon Kinkenberg &amp; Johnny van Doorn
 </div></section><section id="standardize-1" class="slide level2 smaller">
 <h2>Standardize</h2>
 
-<img data-src="20.-correlation_simple_regression_files/figure-revealjs/unnamed-chunk-11-1.png" width="960" class="r-stretch"></section>
+<img data-src="20.-correlation_simple_regression_files/figure-revealjs/unnamed-chunk-12-1.png" width="960" class="r-stretch"></section>
 <section id="standardize-2" class="slide level2 smaller">
 <h2>Standardize</h2>
 
-<img data-src="20.-correlation_simple_regression_files/figure-revealjs/unnamed-chunk-12-1.png" width="960" class="r-stretch"></section>
+<img data-src="20.-correlation_simple_regression_files/figure-revealjs/unnamed-chunk-13-1.png" width="960" class="r-stretch"></section>
 <section id="covariance" class="slide level2 subsection">
 <h2>Covariance</h2>
 <p><span class="math display">\[{COV}_{xy} = \frac{\sum_{i=1}^N (x_i - \bar{x})(y_i - \bar{y})}{N-1}\]</span></p>
@@ -560,7 +588,7 @@ Sharon Kinkenberg &amp; Johnny van Doorn
 <section id="plot-correlation-3" class="slide level2">
 <h2>Plot correlation</h2>
 
-<img data-src="20.-correlation_simple_regression_files/figure-revealjs/unnamed-chunk-18-1.png" width="960" class="r-stretch"></section>
+<img data-src="20.-correlation_simple_regression_files/figure-revealjs/unnamed-chunk-19-1.png" width="960" class="r-stretch"></section>
 <section id="significance-of-a-correlation" class="slide level2 subsection">
 <h2>Significance of a correlation</h2>
 <p><span class="math display">\[t_r = \frac{r \sqrt{N-2}}{\sqrt{1 - r^2}} \\
@@ -598,7 +626,7 @@ H_A &amp;: t_r &lt; 0 \\
 
 </section><section id="visualize-output" class="slide level2 output-location-slide"><h2>Visualize</h2><div class="cell output-location-slide">
 <div class="cell-output-display">
-<p><img data-src="20.-correlation_simple_regression_files/figure-revealjs/unnamed-chunk-20-1.png" width="960"></p>
+<p><img data-src="20.-correlation_simple_regression_files/figure-revealjs/unnamed-chunk-21-1.png" width="960"></p>
 </div>
 </div></section></section>
 <section>
@@ -609,7 +637,7 @@ H_A &amp;: t_r &lt; 0 \\
 <section id="venn-diagram" class="slide level2">
 <h2>Venn diagram</h2>
 
-<img data-src="20.-correlation_simple_regression_files/figure-revealjs/unnamed-chunk-22-1.png" width="960" class="r-stretch"></section>
+<img data-src="20.-correlation_simple_regression_files/figure-revealjs/unnamed-chunk-23-1.png" width="960" class="r-stretch"></section>
 <section id="partial-correlation-1" class="slide level2 smaller">
 <h2>Partial correlation</h2>
 <p><span class="math display">\[\LARGE{r_{xy \cdot z} = \frac{r_{xy} - r_{xz} r_{yz}}{\sqrt{(1 - r_{xz}^2)(1 - r_{yz}^2)}}}\]</span></p>
@@ -657,7 +685,7 @@ H_A &amp;: t_r &lt; 0 \\
 </div>
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="fu">visualize.t</span>(<span class="fu">c</span>(<span class="sc">-</span>t.pr,t.pr),df,<span class="at">section=</span><span class="st">'tails'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img data-src="20.-correlation_simple_regression_files/figure-revealjs/unnamed-chunk-25-1.png" width="960"></p>
+<p><img data-src="20.-correlation_simple_regression_files/figure-revealjs/unnamed-chunk-26-1.png" width="960"></p>
 </div>
 </div></section></section>
 <section>
@@ -710,7 +738,7 @@ H_A &amp;: t_r &lt; 0 \\
 <section id="sensitivity-1" class="slide level2">
 <h2>Sensitivity</h2>
 
-<img data-src="20.-correlation_simple_regression_files/figure-revealjs/unnamed-chunk-27-1.png" width="960" class="r-stretch quarto-figure-center"></section>
+<img data-src="20.-correlation_simple_regression_files/figure-revealjs/unnamed-chunk-28-1.png" width="960" class="r-stretch quarto-figure-center"></section>
 <section id="homoscedasticity" class="slide level2">
 <h2>Homoscedasticity</h2>
 <div class="columns">
@@ -725,7 +753,7 @@ H_A &amp;: t_r &lt; 0 \\
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="20.-correlation_simple_regression_files/figure-revealjs/unnamed-chunk-28-1.png" width="480"></p>
+<p><img data-src="20.-correlation_simple_regression_files/figure-revealjs/unnamed-chunk-29-1.png" width="480"></p>
 </figure>
 </div>
 </div>
@@ -746,7 +774,7 @@ H_A &amp;: t_r &lt; 0 \\
 <section id="the-data-1" class="slide level2 smaller">
 <h2>The data</h2>
 
-<img data-src="20.-correlation_simple_regression_files/figure-revealjs/unnamed-chunk-30-1.png" width="768" class="r-stretch quarto-figure-center"></section>
+<img data-src="20.-correlation_simple_regression_files/figure-revealjs/unnamed-chunk-31-1.png" width="768" class="r-stretch quarto-figure-center"></section>
 <section id="calculate-regression-parameters" class="slide level2 subsection">
 <h2>Calculate regression parameters</h2>
 <p><span class="math display">\[{sales}_i = b_0 + b_1 {airplay}_i + \epsilon_i\]</span></p>
@@ -785,15 +813,15 @@ H_A &amp;: t_r &lt; 0 \\
 <section id="the-slope" class="slide level2">
 <h2>The slope</h2>
 
-<img data-src="20.-correlation_simple_regression_files/figure-revealjs/unnamed-chunk-34-1.png" width="768" class="r-stretch quarto-figure-center"></section>
+<img data-src="20.-correlation_simple_regression_files/figure-revealjs/unnamed-chunk-35-1.png" width="768" class="r-stretch quarto-figure-center"></section>
 <section id="the-slope-1" class="slide level2">
 <h2>The slope</h2>
 
-<img data-src="20.-correlation_simple_regression_files/figure-revealjs/unnamed-chunk-35-1.png" width="768" class="r-stretch quarto-figure-center"></section>
+<img data-src="20.-correlation_simple_regression_files/figure-revealjs/unnamed-chunk-36-1.png" width="768" class="r-stretch quarto-figure-center"></section>
 <section id="the-slope---zoomed-in" class="slide level2">
 <h2>The slope - zoomed in</h2>
 
-<img data-src="20.-correlation_simple_regression_files/figure-revealjs/unnamed-chunk-36-1.png" width="768" class="r-stretch quarto-figure-center"></section>
+<img data-src="20.-correlation_simple_regression_files/figure-revealjs/unnamed-chunk-37-1.png" width="768" class="r-stretch quarto-figure-center"></section>
 <section id="define-regression-equation" class="slide level2">
 <h2>Define regression equation</h2>
 <p><span class="math display">\[\widehat{sales} = {\text{model prediction}} = b_0 + b_1 {airplay}\]</span></p>
@@ -818,7 +846,7 @@ H_A &amp;: t_r &lt; 0 \\
 <h2><span class="math inline">\(y\)</span> vs <span class="math inline">\(\hat{y}\)</span></h2>
 <p>And lets have a look at this relation between model prediction and observed</p>
 
-<img data-src="20.-correlation_simple_regression_files/figure-revealjs/unnamed-chunk-39-1.png" width="480" class="r-stretch quarto-figure-center"></section>
+<img data-src="20.-correlation_simple_regression_files/figure-revealjs/unnamed-chunk-40-1.png" width="480" class="r-stretch quarto-figure-center"></section>
 <section id="error" class="slide level2 smaller">
 <h2>Error</h2>
 <p>The error / residual is the difference between the model predictions and observed values</p>
@@ -861,7 +889,7 @@ H_A &amp;: t_r &lt; 0 \\
 <section id="explained-variance-visually-n-10" class="slide level2 smaller">
 <h2>Explained variance visually (<span class="math inline">\(n = 10\)</span>)</h2>
 
-<img data-src="20.-correlation_simple_regression_files/figure-revealjs/unnamed-chunk-44-1.png" width="1440" class="r-stretch quarto-figure-center"><p><span class="math inline">\(r^2\)</span> is the proportion of <span style="color: blue;">blue</span> to <span style="color: orange;">orange</span>, while <span class="math inline">\(1 - r^2\)</span> is the proportion of <span style="color: red;">red</span> to <span style="color: orange;">orange</span></p>
+<img data-src="20.-correlation_simple_regression_files/figure-revealjs/unnamed-chunk-45-1.png" width="1440" class="r-stretch quarto-figure-center"><p><span class="math inline">\(r^2\)</span> is the proportion of <span style="color: blue;">blue</span> to <span style="color: orange;">orange</span>, while <span class="math inline">\(1 - r^2\)</span> is the proportion of <span style="color: red;">red</span> to <span style="color: orange;">orange</span></p>
 </section>
 <section id="test-model-fit" class="slide level2">
 <h2>Test model fit</h2>
@@ -933,7 +961,7 @@ df &amp;= n - p - 1 \\
 <span id="cb44-3"><a href="#cb44-3"></a><span class="fu">visualize.t</span>(<span class="fu">c</span>(<span class="sc">-</span>t.b1,t.b1),df.b1,<span class="at">section=</span><span class="st">'tails'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="20.-correlation_simple_regression_files/figure-revealjs/unnamed-chunk-49-1.png" width="960" class="r-stretch"></section>
+<img data-src="20.-correlation_simple_regression_files/figure-revealjs/unnamed-chunk-50-1.png" width="960" class="r-stretch"></section>
 <section id="visualize-1" class="slide level2">
 <h2>Visualize</h2>
 <p>Instead of obtaining the p-value by locating the t in the t-distribution, we can locate the F in the F-distribution</p>
@@ -941,7 +969,7 @@ df &amp;= n - p - 1 \\
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1"></a><span class="fu">visualize.f</span>(fStat, df.model, df.error, <span class="at">section=</span><span class="st">'upper'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="20.-correlation_simple_regression_files/figure-revealjs/unnamed-chunk-50-1.png" width="960" class="r-stretch"></section>
+<img data-src="20.-correlation_simple_regression_files/figure-revealjs/unnamed-chunk-51-1.png" width="960" class="r-stretch"></section>
 <section id="its-all-the-same-thing" class="slide level2">
 <h2>It’s all the same thing…</h2>
 <div class="cell">
