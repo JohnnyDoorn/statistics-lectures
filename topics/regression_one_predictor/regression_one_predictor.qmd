@@ -251,7 +251,7 @@ text(3  , (b0 + b1 * 2.5),
 
 ## Define regression equation
 
-$$\widehat{sales} = {model} = b_0 + b_1 {airplay}$$
+$$\widehat{sales} = {\text{model prediction}} = b_0 + b_1 {airplay}$$
 
 So now we can add the expected sales based on this model
 
