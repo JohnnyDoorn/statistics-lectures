@@ -9,8 +9,8 @@ format:
     output-ext: slide.html
 ---
 
-```{r child="../../../../topics/block3_opening/block3_opening.qmd"}
-```
+<!-- ```{r child="../../../../topics/block3_opening/block3_opening.qmd"} -->
+<!-- ``` -->
 
 
 ```{r child="../../../../topics/correlation/correlation_albumsales.qmd"}
