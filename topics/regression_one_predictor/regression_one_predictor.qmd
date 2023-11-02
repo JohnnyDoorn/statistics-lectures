@@ -249,7 +249,7 @@ text(3  , (b0 + b1 * 2.5),
 ```
 
 
-## Define regression equation
+## Define regression equationxf
 
 $$\widehat{sales} = {\text{model prediction}} = b_0 + b_1 {airplay}$$
 
@@ -317,7 +317,7 @@ r^2
 par(mfrow = c(1, 3), cex = 1.5)
 plotN <- 10
 # This is all the sales data
-plot(sales[1:plotN],xlab='Participants', ylab = "Sales", las = 1,
+plot(sales[1:plotN],xlab='Albums', ylab = "Sales", las = 1,
      bty = "n", pch = 21, bg = "turquoise", main = "Total Variance")
 # With the mean
 abline(h = mean(sales[1:plotN]), lwd = 2, col = "purple")
@@ -330,7 +330,7 @@ legend("topright", c("Observed", "Predicted"),
        bty = "n", fill = c("turquoise", "darkred"))
 
 # This is all the sales data
-plot(sales[1:plotN],xlab='Participants', ylab = "Sales", las = 1,
+plot(sales[1:plotN],xlab='Albums', ylab = "Sales", las = 1,
      bty = "n", pch = 21, bg = "turquoise", main = "Explained Variance")
 # With the mean
 abline(h = mean(sales[1:plotN]), lwd = 2, col = "purple")
@@ -343,7 +343,7 @@ legend("topright", c("Observed", "Predicted"),
        bty = "n", fill = c("turquoise", "darkred"))
 
 # This is all the sales data
-plot(sales[1:plotN],xlab='Participants', ylab = "Sales", las = 1,
+plot(sales[1:plotN],xlab='Albums', ylab = "Sales", las = 1,
      bty = "n", pch = 21, bg = "turquoise", main = "Unexplained Variance")
 # With the mean
 # abline(h = mean(sales[1:plotN]), lwd = 2, col = "purple")

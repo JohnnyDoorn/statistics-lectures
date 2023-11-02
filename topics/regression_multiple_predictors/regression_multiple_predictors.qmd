@@ -1,8 +1,6 @@
-# Multiple regression {.section}
-
 ## Multiple regression {.smaller}
 
-$\LARGE{\text{outcome} = \text{model} + \text{error}}$
+$\LARGE{\text{outcome} = \text{model prediction} + \text{error}}$
 
 In statistics, linear regression is a linear approach for modeling the relationship between a scalar dependent variable y and one or more explanatory variables denoted X.
 
@@ -12,7 +10,7 @@ In linear regression, the relationships are modeled using linear predictor funct
 
 Source: [wikipedia](https://en.wikipedia.org/wiki/Linear_regression)
 
-## Outcome vs Model
+## Outcome vs Model Prediction
 
 ```{r, fig.align='center', fig.asp=.5, echo=FALSE}
 error = c(2, 1, .5, .1)
@@ -27,9 +25,10 @@ for(e in error) {
   r   = round(cor(x,y), 2)
   r.2 = round(r^2, 2)
   
-  plot(x,y, las = 1, ylab = "outcome", xlab = "model", main = paste("r =", r," r2 = ", r.2), ylim=c(-2,2), xlim=c(-2,2))
+  plot(x,y, las = 1, ylab = "Outcome", xlab = "Model Prediction", main =  bquote("r ="~ .(r) ~ "," ~ r^2 ~ " = " ~ .(r.2)), 
+       ylim=c(-2,2), xlim=c(-2,2), pch = 21, bg = "turquoise", bty = "n")
   fit <- lm(y ~ x)
-  abline(fit, col = "red")
+  abline(fit, col = "purple", lwd = 2)
   
 }
 
@@ -43,13 +42,14 @@ For simple regression
 
 * Sensitivity
 * Homoscedasticity
-
-For multiple regressin
-
-* Multicollinearity
 * Linearity
 
-## Multicollinearity
+
+Additionally, for multiple regression
+
+* Multicollinearity
+
+## Multicollinearity {.smaller}
 
 ::: {.columns}
 ::: {.column width="60%"}
@@ -60,13 +60,14 @@ This can be assessed through:
 
 * Correlations
 * Matrix scatterplot 
-* VIF: max < 10, mean < 1
-* Tolerance \> 0.2
+* Collinearity diagnostics
+    * VIF: max < 10, mean < 1
+    * Tolerance \> 0.2 -> good
 
 :::
 
 ::: {.column  width="40%"}
-![](../../../../topics/regression_multiple_predictors/pinguins.jpg){width="350px"}
+![](pinguins.jpg){width="350px"}
 :::
 :::
 
@@ -81,118 +82,103 @@ This can be checked through:
 
 ## Example
 
-> Predict study outcome based on IQ and motivation.
+> Predict album sales (1,000 copies) based on airplay (no. plays) and adverts ($1,000).
 
 ## Read data {.smaller}
 
-```{r, echo=FALSE, eval=FALSE, warning=FALSE, message=FALSE}
+```{r, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
 set.seed(273645)
-n <- 89
+data <- read.csv("Album Sales.csv")
+n <- nrow(data)
+sales <- data$sales
+airplay <- data$airplay
+adverts <- data$adverts
+fit <- lm(sales ~ airplay + adverts, data)
 
-latent.variable <- rnorm(n, 0, 1) # Brain speed?
-
-IQ         <- 120 + ( latent.variable * 15 ) + rnorm(n)
-motivation <- 15  + ( latent.variable * 2  ) + rnorm(n)
-
-b_0 <- -100
-b_1 <- 1 # Beta for IQ̧
-b_2 <- 1 # Beta for Motivation
-
-error <- rnorm(n, 0, 5)
-
-study.outcome <- b_0 + b_1 * IQ + b_2 * motivation + error
-
-data <- data.frame(study.outcome, motivation, IQ)
-
-fit <- lm(study.outcome ~ motivation + IQ, data)
-summary(fit)
-
-head(data, 10)
+DT::datatable(data, rownames = FALSE, options = list(searching = FALSE, scrollY = 415, paging = F, info = F))
 ```
 
-
-```{r, warning=FALSE, message=FALSE}
-data <- read.csv('IQ.csv', header=T)
-
-head(data)
-
-IQ            <- data$IQ
-study.outcome <- data$Studieprestatie
-motivation    <- data$Motivatie
-```
 
 ## Regression model in R 
 
-Perdict study outcome based on IQ and motivation.
+Predict album sales based on airplay and adverts.
 
 ```{r, echo=TRUE}
-fit <- lm(study.outcome ~ IQ + motivation)
+fit <- lm(sales ~ airplay + adverts, data = data)
 ```
 
-## What is the model {.subsection .smaller}
+## What is the model? {.subsection .smaller}
 
 ```{r, echo=TRUE}
 fit$coefficients
 
 b.0 <- round(fit$coefficients[1], 2) ## Intercept
-b.1 <- round(fit$coefficients[2], 2) ## Beta coefficient for IQ
-b.2 <- round(fit$coefficients[3], 2) ## Beta coefficient for motivation
+b.1 <- round(fit$coefficients[2], 2) ## Beta coefficient for airplay
+b.2 <- round(fit$coefficients[3], 2) ## Beta coefficient for adverts
 ```
 
-De beta coëfficients are: 
+The beta coefficients are: 
 
 * $b_0$ (intercept) = `r b.0`
 * $b_1$ = `r b.1`
 * $b_2$ = `r b.2`.
 
+## How to visualize??
+
+- When we plot 2 predictors + DV, we plot in 2 dimensions, and we summarize the relationship by a line
+- When we plot 3 predictors + DV, we plot in 3 dimensions, and we summarize the relationship by a plane
+- ... ???
+
+[Cool visualization app for 3 predictors](https://miabellaai.net/regression.html)
+
 ## Visual
 
 ```{r, echo=FALSE, warning=FALSE, class.source='rglChunk', webgl=TRUE}
-## 3d plot package rgl
-## install.packages('rgl')
-# if(!"rgl" %in% installed.packages()) { install.packages("rgl") };
-# library("rgl")
-# 
-# library(knitr)
-# knit_hooks$set(webgl = hook_webgl)
+# 3d plot package rgl
+# install.packages('rgl')
+if(!"rgl" %in% installed.packages()) { install.packages("rgl") };
+library("rgl")
 
-
+library(knitr)
+knit_hooks$set(webgl = hook_webgl)
 
 #1 #D scatter 
 
-# plot3d(IQ, motivation, study.outcome,
-#        col  = "red",
-#        size = 8)
+plot3d(airplay, adverts, sales,
+       col  = "red",
+       size = 8)
+
+# #2 Add airplay value planes 
 # 
-# #2 Add IQ value planes 
-# 
-# quantiles <- as.vector(quantile(IQ,seq(.1,.9,.1)))
-# sds       <- c(mean(motivation)+(sd(motivation)*c(-1,0,1)))  
-# sds       <- 1:4
-# 
-# planes3d(a = 0,
-#          b = 1,
-#          c = 0,
-#          #d = c(1,2,3,4),
-#          d = -sds,
-#          alpha=0.1,
-#          color = c("blue"))
+quantiles <- as.vector(quantile(airplay,seq(.1,.9,.1)))
+sds       <- c(mean(adverts)+(sd(adverts)*c(-1,0,1)))
+sds       <- 1:4
+
+planes3d(a = 0,
+         b = 1,
+         c = 0,
+         #d = c(1,2,3,4),
+         d = -sds,
+         alpha=0.1,
+         color = c("blue"))
 
 #3 Add regression model surface
 
 ## Fit model
-fit <- lm(study.outcome ~ IQ + motivation)
+fit <- lm(sales ~ airplay + adverts)
 
 ## Create xyz coordinates
-regeq <- function(IQ, motivation) { 
+regeq <- function(airplay, adverts) { 
     fit$coefficients[1] + 
-    fit$coefficients[2]*IQ + 
-    fit$coefficients[3]*motivation
+    fit$coefficients[2]*airplay + 
+    fit$coefficients[3]*adverts
 }
 
-
-x.pre <- seq(120, 135,length.out=30)
-y.mod <- seq( 0,   5 ,length.out=30)
+b.0 <- unname(b.0)
+b.1 <- unname(b.1)
+b.2 <- unname(b.2)
+x.pre <- seq(0, 100,length.out=30)
+y.mod <- seq( 0,   2000 ,length.out=30)
 
 z.pre <- outer(x.pre, y.mod, FUN='regeq')
 
@@ -201,90 +187,137 @@ z.pre <- outer(x.pre, y.mod, FUN='regeq')
 
 
 ## Add 3D regression plane to scatter plot 
-# surface3d(x.pre, y.mod, z.pre, color = c("green"))
+surface3d(x.pre, y.mod, z.pre, color = c("green"))
 
-# aspect3d(1,1,1)
-# view3d(theta = 5)
-# view3d(theta = -10, phi = -90)
-# play3d(spin3d(axis = c(0, 0, 1), rpm = 30), duration = 5)
-# rglwidget()
+aspect3d(1,1,1)
+view3d(theta = 5)
+view3d(theta = -10, phi = -90)
+play3d(spin3d(axis = c(0, 0, 1), rpm = 30), duration = 5)
+rglwidget()
 ```
 
-## What are the expected values based on this model
+## What are the predicted values based on this model
 
-$\widehat{\text{studie prestatie}} = b_0 + b_1 \text{IQ} + b_2 \text{motivation}$
+$\widehat{\text{album sales}} = b_0 + b_1 \text{airplay} + b_2 \text{adverts}$
 
 ```{r, echo=TRUE}
-exp.stu.prest <- b.0 + b.1 * IQ + b.2 * motivation
-
-model <- exp.stu.prest
+predicted.sales <- b.0 + b.1 * airplay + b.2 * adverts
 ```
 
-$\text{model} = \widehat{\text{studie prestatie}}$
+$\text{model prediction} = \widehat{\text{album sales}}$
 
 ## Apply regression model {.subsection}
 
-$\widehat{\text{studie prestatie}} = b_0 + b_1 \text{IQ} + b_2 \text{motivation}$
-$\widehat{\text{model}} = b_0 + b_1 \text{IQ} + b_2 \text{motivation}$
+$\widehat{\text{album sales}} = b_0 + b_1 \text{airplay} + b_2 \text{adverts}$
+
+$\widehat{\text{model prediction}} = b_0 + b_1 \text{airplay} + b_2 \text{adverts}$
 
 ```{r, echo=TRUE}
-cbind(model, b.0, b.1, IQ, b.2, motivation)[1:5,]
+cbind(predicted.sales, b.0, b.1, airplay, b.2, adverts)[1:5,]
 ```
 
-$\widehat{\text{model}} = `r b.0` + `r b.1` \times \text{IQ} + `r b.2` \times \text{motivation}$
+$\widehat{\text{model prediction}} = `r b.0` + `r b.1` \times \text{airplay} + `r b.2` \times \text{adverts}$
+
+```{r, echo=TRUE}
+b.0 + b.1 * 43 +  b.2 * 10.256 # for participant 1
+```
 
 ## How far are we off?
 
 ```{r, echo=TRUE}
-error <- study.outcome - model
+error <- sales - predicted.sales
 
-cbind(model, study.outcome, error)[1:5,]
+cbind(predicted.sales, sales, error)[1:5,]
 ```
 
-## Outcome = Model + Error {.subsection}
+## Outcome = Model Prediction + Error {.subsection}
 
 Is that true?
 
 ```{r, echo=TRUE}
-study.outcome == model + error
+sales == predicted.sales + error
 ```
 
 > - Yes!
 
-## Visual {.smaller .subsection}
+## Visual (subset of 10 albums) {.smaller .subsection}
 
-```{r, echo=FALSE}
-plot(study.outcome, xlab='personen', ylab='study.outcome')
+```{r, fig.align='center', fig.width=15, fig.height = 7, echo=FALSE}
+par(mfrow = c(1, 3), cex = 1.5)
+plotN <- 10
+# This is all the sales data
+plot(sales[1:plotN],xlab='Albums', ylab = "Sales", las = 1,
+     bty = "n", pch = 21, bg = "turquoise", main = "Total Variance")
+# With the mean
+abline(h = mean(sales[1:plotN]), lwd = 2, col = "purple")
+# The model predicts the sales scores
+points(1:plotN,predicted.sales[1:plotN], pch =23, bg='darkred')
+# The part of the variation that overlaps is the 'explained' variance. 
+segments(1:plotN, sales[1:plotN], 1:plotN, mean(sales[1:plotN]), col='orange', lwd= 2)
 
-n <- length(study.outcome)
-gemiddelde.study.outcome <- mean(study.outcome)
+legend("topright", c("Observed", "Predicted"),
+       bty = "n", fill = c("turquoise", "darkred"))
 
-## Voeg het gemiddelde toe
-lines(c(1, n), rep(gemiddelde.study.outcome, 2))
+# This is all the sales data
+plot(sales[1:plotN],xlab='Albums', ylab = "Sales", las = 1,
+     bty = "n", pch = 21, bg = "turquoise", main = "Explained Variance")
+# With the mean
+abline(h = mean(sales[1:plotN]), lwd = 2, col = "purple")
+# The blue lines are the total variance, the deviation from the mean.
+segments(1:plotN, predicted.sales[1:plotN], 1:plotN, mean(sales[1:plotN]), col='blue', lwd= 2)
+# The model predicts the sales scores
+points(1:plotN,predicted.sales[1:plotN], pch =23, bg='darkred')
+# The part of the variation that overlaps is the 'explained' variance. 
+legend("topright", c("Observed", "Predicted"),
+       bty = "n", fill = c("turquoise", "darkred"))
 
-## Wat is de totale variantie?
-segments(1:n, study.outcome, 1:n, gemiddelde.study.outcome, col='blue')
-
-## Wat zijn onze verwachte scores op basis van dit regressie model?
-points(model, col='orange')
-
-## Hoever zitten we ernaast, wat is de error?
-segments(1:n, study.outcome, 1:n, model, col='purple', lwd=3)
+# This is all the sales data
+plot(sales[1:plotN],xlab='Albums', ylab = "Sales", las = 1,
+     bty = "n", pch = 21, bg = "turquoise", main = "Unexplained Variance")
+# With the mean
+# abline(h = mean(sales[1:plotN]), lwd = 2, col = "purple")
+# The blue lines are the total variance, the deviation from the mean.
+segments(1:plotN, predicted.sales[1:plotN], 1:plotN, (sales[1:plotN]), col='red', lwd= 2)
+# The model predicts the sales scores
+points(1:plotN,predicted.sales[1:plotN], pch =23, bg='darkred')
+# The part of the variation that overlaps is the 'explained' variance. 
+legend("topright", c("Observed", "Predicted"),
+       bty = "n", fill = c("turquoise", "darkred"))
 ```
+$r^2$ is the proportion of <span style="color: blue;">blue</span> to <span style="color: orange;">orange</span>, while $1 - r^2$ is the proportion of <span style="color: red;">red</span> to <span style="color: orange;">orange</span> 
+
 
 ## Explained variance {.subsection .smaller}
 
-The explained variance is the deviation of the estimated model outcome compared to the total mean.
+The explained variance is the deviation of the estimated model outcome compared to the grand mean.
 
 To get a percentage of explained variance, it must be compared to the total variance. In terms of squares:
 
 $\frac{{SS}_{model}}{{SS}_{total}}$
 
-We also call this: $r^2$ of $R^2$.
+We also call this: $r^2$ or $R^2$.
 
 Why?
 
 ```{r, echo=TRUE}
-r <- cor(study.outcome, model)
+r <- cor(sales, predicted.sales)
 r^2
 ```
+
+
+## Explained variance {.subsection .smaller}
+
+```{r, fig.align='center', fig.asp=.5, echo=FALSE}
+r.2 <- round(r^2, 2)
+r <- round(r, 2)
+
+ plot(predicted.sales, sales, las = 1, ylab = "Outcome", xlab = "Model Prediction", main =  bquote("r ="~ .(r) ~ "," ~ r^2 ~ " = " ~ .(r.2)), 
+       ylim=c(0,400), xlim=c(0, 400), pch = 21, bg = "turquoise", bty = "n")
+ abline(lm(sales ~ predicted.sales), lwd = 3, col = "purple")
+
+```
+
+## Demonstration
+
+![](JASP_logo_green.svg){width="400px"}
+
