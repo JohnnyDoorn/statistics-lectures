@@ -93,7 +93,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul class="collapse">
-  <li><a href="#correlation" id="toc-correlation" class="nav-link active" data-scroll-target="#correlation">Correlation</a>
+  <li><a href="#some-opening-mantras" id="toc-some-opening-mantras" class="nav-link active" data-scroll-target="#some-opening-mantras">Some Opening Mantra’s</a>
+  <ul class="collapse">
+  <li><a href="#always-plot-your-data" id="toc-always-plot-your-data" class="nav-link" data-scroll-target="#always-plot-your-data">Always plot your data</a></li>
+  <li><a href="#predicting-the-dv" id="toc-predicting-the-dv" class="nav-link" data-scroll-target="#predicting-the-dv">Predicting the DV</a></li>
+  <li><a href="#keep-your-models-simpleinterpretable" id="toc-keep-your-models-simpleinterpretable" class="nav-link" data-scroll-target="#keep-your-models-simpleinterpretable">Keep your models simple/interpretable</a></li>
+  </ul></li>
+  <li><a href="#correlation" id="toc-correlation" class="nav-link" data-scroll-target="#correlation">Correlation</a>
   <ul class="collapse">
   <li><a href="#pearson-correlation" id="toc-pearson-correlation" class="nav-link" data-scroll-target="#pearson-correlation">Pearson Correlation</a></li>
   <li><a href="#pmcc" id="toc-pmcc" class="nav-link" data-scroll-target="#pmcc">PMCC</a></li>
@@ -199,8 +205,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<!-- ```{r child="../../../../topics/block3_opening/block3_opening.qmd"} -->
-<!-- ``` -->
+<section id="some-opening-mantras" class="level1">
+<h1>Some Opening Mantra’s</h1>
+<section id="always-plot-your-data" class="level2">
+<h2 class="anchored" data-anchor-id="always-plot-your-data">Always plot your data</h2>
+<p><img src="raincloud.png" class="img-fluid" width="800"> ## Always plot your data <img src="trex.png" class="img-fluid" width="800"></p>
+</section>
+<section id="predicting-the-dv" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="predicting-the-dv">Predicting the DV</h2>
+<div class="incremental">
+<ul class="incremental">
+<li>The dependent variable (DV) varies</li>
+<li>We try to recreate/predict the observed DV values by looking at predictor variables
+<ul class="incremental">
+<li><a href="https://johnnydoorn.github.io/statistics-lectures/courses/SSR/SSR_2023-2024/MiscFiles_J/PredictingWithDummies.html">Predicting with dummies (one-way)</a></li>
+<li><a href="https://johnnydoorn.github.io/statistics-lectures/courses/SSR/SSR_2023-2024/MiscFiles_J/PredictingWithDummies_Interaction.html">Predicting with dummies (factorial)</a></li>
+<li><a href="https://statisticalreasoning-uva-2.shinyapps.io/RM_ANOVA/">Visual prediction in RM ANOVA</a></li>
+</ul></li>
+<li>Accurate approximation/prediction of the DV? -&gt; high explained variance</li>
+<li>Total variability of DV = explained variance + unexplained variance
+<ul class="incremental">
+<li><span class="math inline">\(\text{DV} = \text{model prediction} + \text{error}\)</span></li>
+</ul></li>
+<li>More explained variance than unexplained variance (e.g., <span class="math inline">\(F &gt;&gt; 1\)</span>) -&gt; success!</li>
+</ul>
+</div>
+</section>
+<section id="keep-your-models-simpleinterpretable" class="level2">
+<h2 class="anchored" data-anchor-id="keep-your-models-simpleinterpretable">Keep your models simple/interpretable</h2>
+<p><img src="manyvars.png" class="img-fluid" width="800"></p>
+</section>
+</section>
 <section id="correlation" class="level1 section">
 <h1 class="section">Correlation</h1>
 <section id="pearson-correlation" class="level2">
@@ -220,7 +255,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="20.-correlation_simple_regression_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="480"></p>
+<p><img src="20.-correlation_simple_regression_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="480"></p>
 </figure>
 </div>
 </div>
@@ -232,7 +267,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="20.-correlation_simple_regression_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="480"></p>
+<p><img src="20.-correlation_simple_regression_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="480"></p>
 </figure>
 </div>
 </div>
@@ -244,7 +279,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="20.-correlation_simple_regression_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="480"></p>
+<p><img src="20.-correlation_simple_regression_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="480"></p>
 </figure>
 </div>
 </div>
@@ -274,7 +309,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="subsection anchored" data-anchor-id="explaining-variance">Explaining variance</h2>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="20.-correlation_simple_regression_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+<p><img src="20.-correlation_simple_regression_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
@@ -290,7 +325,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="smaller anchored" data-anchor-id="standardize-1">Standardize</h2>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="20.-correlation_simple_regression_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+<p><img src="20.-correlation_simple_regression_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
@@ -298,7 +333,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="smaller anchored" data-anchor-id="standardize-2">Standardize</h2>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="20.-correlation_simple_regression_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
+<p><img src="20.-correlation_simple_regression_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
@@ -370,7 +405,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="plot-correlation-3">Plot correlation</h2>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="20.-correlation_simple_regression_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>
+<p><img src="20.-correlation_simple_regression_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
@@ -408,7 +443,7 @@ H_A &amp;: t_r &lt; 0 \\
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="fu">visualize.t</span>(<span class="fu">c</span>(<span class="sc">-</span>t.r, t.r),df,<span class="at">section=</span><span class="st">'tails'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="20.-correlation_simple_regression_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="672"></p>
+<p><img src="20.-correlation_simple_regression_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
@@ -419,7 +454,7 @@ H_A &amp;: t_r &lt; 0 \\
 <h2 class="anchored" data-anchor-id="venn-diagram">Venn diagram</h2>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="20.-correlation_simple_regression_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid" width="672"></p>
+<p><img src="20.-correlation_simple_regression_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
@@ -465,7 +500,7 @@ H_A &amp;: t_r &lt; 0 \\
 </div>
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">visualize.t</span>(<span class="fu">c</span>(<span class="sc">-</span>t.pr,t.pr),df,<span class="at">section=</span><span class="st">'tails'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="20.-correlation_simple_regression_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid" width="672"></p>
+<p><img src="20.-correlation_simple_regression_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
@@ -520,7 +555,7 @@ H_A &amp;: t_r &lt; 0 \\
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="20.-correlation_simple_regression_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid figure-img" width="960"></p>
+<p><img src="20.-correlation_simple_regression_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
@@ -540,7 +575,7 @@ H_A &amp;: t_r &lt; 0 \\
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="20.-correlation_simple_regression_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid figure-img" width="480"></p>
+<p><img src="20.-correlation_simple_regression_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid figure-img" width="480"></p>
 </figure>
 </div>
 </div>
@@ -564,7 +599,7 @@ H_A &amp;: t_r &lt; 0 \\
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="20.-correlation_simple_regression_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid figure-img" width="768"></p>
+<p><img src="20.-correlation_simple_regression_files/figure-html/unnamed-chunk-31-1.png" class="img-fluid figure-img" width="768"></p>
 </figure>
 </div>
 </div>
@@ -615,7 +650,7 @@ H_A &amp;: t_r &lt; 0 \\
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="20.-correlation_simple_regression_files/figure-html/unnamed-chunk-34-1.png" class="img-fluid figure-img" width="768"></p>
+<p><img src="20.-correlation_simple_regression_files/figure-html/unnamed-chunk-35-1.png" class="img-fluid figure-img" width="768"></p>
 </figure>
 </div>
 </div>
@@ -627,7 +662,7 @@ H_A &amp;: t_r &lt; 0 \\
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="20.-correlation_simple_regression_files/figure-html/unnamed-chunk-35-1.png" class="img-fluid figure-img" width="768"></p>
+<p><img src="20.-correlation_simple_regression_files/figure-html/unnamed-chunk-36-1.png" class="img-fluid figure-img" width="768"></p>
 </figure>
 </div>
 </div>
@@ -639,7 +674,7 @@ H_A &amp;: t_r &lt; 0 \\
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="20.-correlation_simple_regression_files/figure-html/unnamed-chunk-36-1.png" class="img-fluid figure-img" width="768"></p>
+<p><img src="20.-correlation_simple_regression_files/figure-html/unnamed-chunk-37-1.png" class="img-fluid figure-img" width="768"></p>
 </figure>
 </div>
 </div>
@@ -672,7 +707,7 @@ H_A &amp;: t_r &lt; 0 \\
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="20.-correlation_simple_regression_files/figure-html/unnamed-chunk-39-1.png" class="img-fluid figure-img" width="480"></p>
+<p><img src="20.-correlation_simple_regression_files/figure-html/unnamed-chunk-40-1.png" class="img-fluid figure-img" width="480"></p>
 </figure>
 </div>
 </div>
@@ -723,7 +758,7 @@ H_A &amp;: t_r &lt; 0 \\
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="20.-correlation_simple_regression_files/figure-html/unnamed-chunk-44-1.png" class="img-fluid figure-img" width="1440"></p>
+<p><img src="20.-correlation_simple_regression_files/figure-html/unnamed-chunk-45-1.png" class="img-fluid figure-img" width="1440"></p>
 </figure>
 </div>
 </div>
@@ -799,7 +834,7 @@ df &amp;= n - p - 1 \\
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="co"># p-value for b1</span></span>
 <span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="fu">visualize.t</span>(<span class="fu">c</span>(<span class="sc">-</span>t.b1,t.b1),df.b1,<span class="at">section=</span><span class="st">'tails'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="20.-correlation_simple_regression_files/figure-html/unnamed-chunk-49-1.png" class="img-fluid" width="672"></p>
+<p><img src="20.-correlation_simple_regression_files/figure-html/unnamed-chunk-50-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
@@ -809,7 +844,7 @@ df &amp;= n - p - 1 \\
 <div class="cell">
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">visualize.f</span>(fStat, df.model, df.error, <span class="at">section=</span><span class="st">'upper'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="20.-correlation_simple_regression_files/figure-html/unnamed-chunk-50-1.png" class="img-fluid" width="672"></p>
+<p><img src="20.-correlation_simple_regression_files/figure-html/unnamed-chunk-51-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>

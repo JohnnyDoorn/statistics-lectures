@@ -92,7 +92,7 @@ abline(v = m.x, lwd = 3)
 segments(x, m.y, x, y, col = "darkorange",    lwd = 2)
 segments(x, y, m.x, y, col = "purple", lwd = 2)
 
-mtext(side = 3, bquote(bar(x) ~ "= 840"), cex = 1.5)
+mtext(side = 3, bquote(bar(x) ~ "= 36.6"), cex = 1.5)
 mtext(side = 4, bquote(bar(y) ~ "= 260"), cex = 1.5, padj = 0.5, srt=180)
 ```
 
