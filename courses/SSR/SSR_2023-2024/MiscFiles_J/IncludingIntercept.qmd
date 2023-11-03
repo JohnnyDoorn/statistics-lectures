@@ -1,5 +1,5 @@
 ---
-title: "Predicting with Dummies Part 2: Interaction"
+title: "Why include an intercept in linear regression?"
 author: "JvD"
 date: "`r Sys.Date()`"
 output: html_document
@@ -10,8 +10,6 @@ rm(list=ls())
 library(DT)
 data <- read.csv("JASP_Files/Album Sales.csv")
 ```
-
-## Why do we include the intercept?
 
 ```{r}
 data <- read.csv("JASP_Files/Album Sales.csv") # Load data 
@@ -125,7 +123,7 @@ abline(0, 1, lwd = 2, col = "darkred")
 ```
 
 
-In conclusion, while the model might still have favorable model metrics, the systematic error indicates that the model is **misspecified** and fails to capture important characteristics of the data (namely, its mean). Consequently, the various metrics ($b$'s, $t$, $F$) that are computed cannot be safely interpreted.
+In conclusion, while the model might still have favorable model metrics, the systematic error indicates that the model is **miss-specified** and fails to capture important characteristics of the data (namely, its mean). Consequently, the various metrics ($b$'s, $t$, $F$) that are computed cannot be safely interpreted.
 
 
 ### Why does the model without intercept still predict so well?
