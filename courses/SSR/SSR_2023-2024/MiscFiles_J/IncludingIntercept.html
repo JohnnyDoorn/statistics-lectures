@@ -9,7 +9,7 @@
 <meta name="author" content="JvD">
 <meta name="dcterms.date" content="2023-11-03">
 
-<title>Predicting with Dummies Part 2: Interaction</title>
+<title>Why include an intercept in linear regression?</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -83,8 +83,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul class="collapse">
-  <li><a href="#why-do-we-include-the-intercept" id="toc-why-do-we-include-the-intercept" class="nav-link active" data-scroll-target="#why-do-we-include-the-intercept">Why do we include the intercept?</a></li>
-  <li><a href="#take-aways" id="toc-take-aways" class="nav-link" data-scroll-target="#take-aways">Take-aways</a></li>
+  <li><a href="#take-aways" id="toc-take-aways" class="nav-link active" data-scroll-target="#take-aways">Take-aways</a></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="IncludingIntercept.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
 </div>
@@ -94,7 +93,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Predicting with Dummies Part 2: Interaction</h1>
+<h1 class="title">Why include an intercept in linear regression?</h1>
 </div>
 
 
@@ -128,8 +127,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<section id="why-do-we-include-the-intercept" class="level2">
-<h2 class="anchored" data-anchor-id="why-do-we-include-the-intercept">Why do we include the intercept?</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"JASP_Files/Album Sales.csv"</span>) <span class="co"># Load data </span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data) <span class="co"># inspect first 5 rows of the data</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -249,7 +246,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>We have retrieved the <span class="math inline">\(R^2\)</span> reported by JASP! It is much higher than the proportion of explained variance of the model with intercept, so why is that? Model comparison is inherently a relative endeavor: we compare one model’s predictions to another model’s predictions. When we compute an F-statistic or <span class="math inline">\(R^2\)</span> for a model, we compare it to another (e.g., null) model. When we omit the intercept, it is removed from both models. Without an intercept for the null model, the increase in predictive accuracy is much greater when adding the predictor variable, since it can explain some of the variance that is normally explained by the intercept.</p>
 <p>This case underscores why assumptions matter: we might have found an alternative model (no intercept) that outperforms its null-equivalent by a greater margin than another alternative model (intercept). However, this either indicates the alternative model does fairly well, or the null model does very poorly. In the case of no intercept, the null model is predicting so poorly, that by comparison, the alternative model is awesome. Luckily, we are now equipped with various assumption testing tools that allow us to assess whether the models are miss-specified.</p>
-</section>
 </section>
 <section id="take-aways" class="level2">
 <h2 class="anchored" data-anchor-id="take-aways">Take-aways</h2>
