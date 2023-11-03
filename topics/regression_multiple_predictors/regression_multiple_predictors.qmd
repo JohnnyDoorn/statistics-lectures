@@ -13,7 +13,7 @@ Source: [wikipedia](https://en.wikipedia.org/wiki/Linear_regression)
 ## Outcome vs Model Prediction
 
 ```{r, fig.align='center', fig.asp=.5, echo=FALSE}
-error = c(2, 1, .5, .1)
+error = c(2, 1, .5, .0001)
 n = 100
 
 layout(matrix(1:4,1,4))

@@ -63,7 +63,8 @@ htmlFiles <- gsub(x =files, pattern = ".jasp", replacement = ".html")
 htmlFiles <- gsub(x =files, pattern = ".jasp", replacement = ".html")
 htmlFound <- list.files(full.names = FALSE, pattern = "\\html", recursive = FALSE, 
                     path = paste0(getwd(),"/JASP_Files"))
-  
+csvFound  <- list.files(full.names = FALSE, pattern = "\\csv", recursive = FALSE, 
+                    path = paste0(getwd(),"/JASP_Files"))
   
 htmlLinks <- sprintf('<a href="https://johnnydoorn.github.io/statistics-lectures/courses/SSR/SSR_2023-2024/MiscFiles_J/JASP_Files/%s" target="_blank" class="external">link</a>',htmlFiles) 
 htmlLinks[!(htmlFiles %in% htmlFound)] <- "-"
@@ -72,7 +73,9 @@ jaspLinks <- sprintf('<a href="https://johnnydoorn.github.io/statistics-lectures
 titles <- gsub(htmlFiles, pattern = ".html", replacement = "")
 
 csvFiles <- gsub(x =files, pattern = ".jasp", replacement = ".csv")
-csvLinks <- sprintf('<a href="https://johnnydoorn.github.io/statistics-lectures/courses/SSR/SSR_2023-2024/MiscFiles_J/JASP_Files/%s" target="_blank" class="external">link</a>',files) 
+csvLinks <- sprintf('<a href="https://johnnydoorn.github.io/statistics-lectures/courses/SSR/SSR_2023-2024/MiscFiles_J/JASP_Files/%s" target="_blank" class="external">link</a>',csvFiles) 
+csvLinks[!(csvFiles %in% csvFound)] <- "-"
+
 
 linkList <- data.frame(Topic = titles, Html = htmlLinks, JASP = jaspLinks, Csv = csvLinks)
 

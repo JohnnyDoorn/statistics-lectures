@@ -152,73 +152,73 @@ fit.1 <- lm(speed.of.healing ~ use.homeopathic.remedies, data)
 abline(fit.1, col = 'green')
 ```
 
-<!-- ## 3D Visual -->
+## 3D Visual
 
-<!-- ```{r, echo=FALSE, warning=FALSE} -->
-<!-- ## 3d plot package rgl -->
-<!-- ## install.packages('rgl') -->
-<!-- library("rgl") -->
+```{r, echo=FALSE, warning=FALSE}
+## 3d plot package rgl
+## install.packages('rgl')
+library("rgl")
 
-<!-- library(knitr) -->
-<!-- knit_hooks$set(webgl = hook_webgl) -->
+library(knitr)
+knit_hooks$set(webgl = hook_webgl)
 
-<!-- min.var <- apply(data, 2, min) -->
-<!-- max.var <- apply(data, 2, max) -->
+min.var <- apply(data, 2, min)
+max.var <- apply(data, 2, max)
 
-<!-- #1 #D scatter  -->
+#1 #D scatter
 
-<!-- plot3d(data$use.homeopathic.remedies, data$healthy.lifestyle, data$speed.of.healing, -->
-<!--        col  = "red", -->
-<!--        xlab = "Homeopathic",  -->
-<!--        ylab = "Lifestyle", -->
-<!--        zlab = "Healing", -->
-<!--        size = 8) -->
+plot3d(data$use.homeopathic.remedies, data$healthy.lifestyle, data$speed.of.healing,
+       col  = "red",
+       xlab = "Homeopathic",
+       ylab = "Lifestyle",
+       zlab = "Healing",
+       size = 8)
 
-<!-- #2 Add use.homeopathic.remedies value planes  -->
+#2 Add use.homeopathic.remedies value planes
 
-<!-- quantiles <- as.vector(quantile(data$use.homeopathic.remedies, seq(.1,.9,.1))) -->
-<!-- sds       <- c(mean(data$healthy.lifestyle)+(sd(data$healthy.lifestyle)*c(-1,0,1))) -->
-<!-- # sds       <- 1:4 -->
+quantiles <- as.vector(quantile(data$use.homeopathic.remedies, seq(.1,.9,.1)))
+sds       <- c(mean(data$healthy.lifestyle)+(sd(data$healthy.lifestyle)*c(-1,0,1)))
+# sds       <- 1:4
 
-<!-- planes3d(a = 0, -->
-<!--          b = 1, -->
-<!--          c = 0, -->
-<!--          #d = c(1,2,3,4), -->
-<!--          d = -sds, -->
-<!--          alpha=0.1, -->
-<!--          color = c("blue")) -->
+planes3d(a = 0,
+         b = 1,
+         c = 0,
+         #d = c(1,2,3,4),
+         d = -sds,
+         alpha=0.1,
+         color = c("blue"))
 
-<!-- #3 Add regression model surface -->
+#3 Add regression model surface
 
-<!-- ## Fit model -->
-<!-- fit <- lm(speed.of.healing ~ use.homeopathic.remedies + healthy.lifestyle, data) -->
+## Fit model
+fit <- lm(speed.of.healing ~ use.homeopathic.remedies + healthy.lifestyle, data)
 
-<!-- ## Create xyz coordinates -->
-<!-- regeq <- function(predictor, mediator) {  -->
-<!--     fit$coefficients[1] +  -->
-<!--     fit$coefficients[2]*predictor +  -->
-<!--     fit$coefficients[3]*mediator -->
-<!-- } -->
-
-
-<!-- x.pre <- seq(min.var[1], max.var[1], length.out=30) -->
-<!-- y.med <- seq(min.var[2], max.var[2], length.out=30) -->
-
-<!-- z.pre <- outer(x.pre, y.med, FUN='regeq') -->
-
-<!-- # z.pre[z.pre > 4] = 4 -->
-<!-- # z.pre[z.pre < 1] = 1 -->
+## Create xyz coordinates
+regeq <- function(predictor, mediator) {
+    fit$coefficients[1] +
+    fit$coefficients[2]*predictor +
+    fit$coefficients[3]*mediator
+}
 
 
-<!-- ## Add 3D regression plane to scatter plot  -->
-<!-- surface3d(x.pre, y.med, z.pre, color = c("green")) -->
+x.pre <- seq(min.var[1], max.var[1], length.out=30)
+y.med <- seq(min.var[2], max.var[2], length.out=30)
 
-<!-- aspect3d(1,1,1) -->
-<!-- # view3d(theta = 5) -->
-<!-- # view3d(theta = -10, phi = -90) -->
-<!-- # play3d(spin3d(axis = c(0, 0, 1), rpm = 30), duration = 5) -->
-<!-- rglwidget() -->
-<!-- ``` -->
+z.pre <- outer(x.pre, y.med, FUN='regeq')
+
+# z.pre[z.pre > 4] = 4
+# z.pre[z.pre < 1] = 1
+
+
+## Add 3D regression plane to scatter plot
+surface3d(x.pre, y.med, z.pre, color = c("green"))
+
+aspect3d(1,1,1)
+# view3d(theta = 5)
+# view3d(theta = -10, phi = -90)
+# play3d(spin3d(axis = c(0, 0, 1), rpm = 30), duration = 5)
+rglwidget()
+```
 
 Interactive, give it a spin.
 

@@ -110,7 +110,7 @@ fullModel$coefficients
 ```
 
 As you can see, we now have used more parameters in our model! To be specific, we used 9 parameters: an intercept, two parameters for each main effect (i.e., $k - 1$, with $k$ the number of groups), and four parameters for the interaction effect ($(k_S-1) * (k_A-1)$).
-For each coefficient, we need a dummy variable to encode the group that someone belongs to. In the previous section, we needed 4 dummy variables to map the main effects, but now we need 8 dummy variables. I will omit the dummies in this case,[^1] because it will become a horrible mess of 1's and 0's. What I will end with, however is show that now we predict *exactly* the group means for each participant. For instance, if we predict for someone who is in the "much" alcohol + "some" speed group, we predict:
+For each coefficient, we need a dummy variable to encode the group that someone belongs to. In the previous section, we needed 4 dummy variables to map the main effects, but now we need 8 dummy variables. I will omit the dummies in this case, because it will become a horrible mess of 1's and 0's. What I will end with, however is show that now we predict *exactly* the group means for each participant. For instance, if we predict for someone who is in the "much" alcohol + "some" speed group, we predict:
 
 ```{r}
 
@@ -126,4 +126,3 @@ which is exactly equal to the group mean of that group.
 Now we know how a model predicts that only uses the main effects, and how a model predicts that uses the main effects and interaction effect (i.e., the full model). The difference between the two, is that the full model predicts exactly the group means, while the main effects model tries to approximate the group means by having them be a combination of the *univariate* means (i.e., the means for alcohol, and the means for speed, separately). 
 I will leave it for now, and am curious if anyone has reached this far (if you have, congrats on trying to face this huge dragon!), and how confusing this little journey has been. Please let me know if this needs more fleshing out to be more understandable. 
 
-[^1]: But let me know if that is very unsatisfactory ;-)
