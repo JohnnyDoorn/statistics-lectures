@@ -38,6 +38,7 @@ Does the speed of recovery after sickness improve with the use of alternative me
 3. $\widehat{\text{Outcome}} = b_0 + b_{c`} \text{Predictor}_i + b_b \text{Mediator}_i$
 
 ![Mediation Path](mediation.jpeg)
+
 ## Mediation paths {.flexbox .vcenter}
 
 ![Mediation Path](mediation_regressions_relation.png)
@@ -63,8 +64,8 @@ use.homeopathic.remedies <- rnorm(n, mu, sigma)
 Create mediator
 
 ```{r, echo=TRUE}
-b0    <- 2
-b1    <- 1.2
+b0    <- 2             # intercept of lifestyle
+b1    <- 1.2           # association homeopathy and lifestyle
 error <- rnorm(n,0,.7)
 healthy.lifestyle <- b0 + b1 * use.homeopathic.remedies + error
 ```
@@ -74,9 +75,9 @@ healthy.lifestyle <- b0 + b1 * use.homeopathic.remedies + error
 Create outcome variable
 
 ```{r, echo=TRUE}
-b0    <- 6
-b1    <- 0 
-b2    <- 3
+b0    <- 6 # intercept of healing
+b1    <- 0 # association homeopathy and healing
+b2    <- 3 # association lifestyle and healing
 error <- rnorm(n, 0, 1.4)
 speed.of.healing <- b0 + 
                     b1 * use.homeopathic.remedies + 
@@ -109,45 +110,74 @@ datatable(data, rownames = FALSE,
 )
 ```
 
-## Fit 3 models {.smaller}
+## Fit 3 models {.smaller .flexbox .vcenter}
 
 ```{r, echo=TRUE}
-model.outcome.predictor          <- lm(speed.of.healing  ~ use.homeopathic.remedies)
-model.mediator.predictor         <- lm(healthy.lifestyle ~ use.homeopathic.remedies)
-model.outcome.predictor.mediator <- lm(speed.of.healing  ~ use.homeopathic.remedies + healthy.lifestyle)
+model.outcome.predictor  <- lm(speed.of.healing  ~ use.homeopathic.remedies)
+model.mediator.predictor <- lm(healthy.lifestyle ~ use.homeopathic.remedies)
+model.full.regression    <- lm(speed.of.healing  ~ use.homeopathic.remedies + healthy.lifestyle)
 ```
+1. $\widehat{\text{Outcome}} = b_0 + b_c \text{Predictor}_i$
+2. $\widehat{\text{Mediator}} = b_0 + b_a \text{Predictor}_i$
+3. $\widehat{\text{Outcome}} = b_0 + b_{c`} \text{Predictor}_i + b_b \text{Mediator}_i$
 
-## Extract beta coëfficients
+![Mediation Path](mediation.jpeg)
+
+## Extract beta coëfficients {.smaller .flexbox .vcenter}
 
 ```{r, echo=TRUE}
-b.a        <- model.mediator.predictor$coefficients[2]
-b.b        <- model.outcome.predictor.mediator$coefficients[3]
-b.c        <- model.outcome.predictor$coefficients[2]
-b.c.accent <- model.outcome.predictor.mediator$coefficients[2]
+b.mediator.predictor  <- model.mediator.predictor$coefficients[2]  # b.a
+b.full.mediator       <- model.full.regression$coefficients[3]     # b.b
+b.outcome.predictor   <- model.outcome.predictor$coefficients[2]   # b.c
+b.full.predictor      <- model.full.regression$coefficients[2]     # b.c'
 ```
+1. $\widehat{\text{Outcome}} = b_0 + b_c \text{Predictor}_i$
+2. $\widehat{\text{Mediator}} = b_0 + b_a \text{Predictor}_i$
+3. $\widehat{\text{Outcome}} = b_0 + b_{c`} \text{Predictor}_i + b_b \text{Mediator}_i$
+
+![Mediation Path](mediation.jpeg)
 
 ## View beta coëfficients {.subsection}
-
-```{r, echo=TRUE}
-b.a
-b.b
+```{r, echo = FALSE}
+b.mediator.predictor  <- unname(b.mediator.predictor)
+b.full.mediator       <- unname(b.full.mediator)
+b.outcome.predictor   <- unname(b.outcome.predictor)
+b.full.predictor      <- unname(b.full.predictor)
 ```
 
-## View beta coëfficients
+```{r, echo=TRUE}
+b.mediator.predictor # b.a
+b.full.mediator      # b.b
+```
+
+## View beta coëfficients  {.smaller .flexbox .vcenter}
 
 ```{r, echo=TRUE}
-b.c
-b.c.accent
+b.mediator.predictor # a
+b.full.mediator      # b
+b.outcome.predictor  # c
+b.full.predictor     # c'
 ```
+
+<!-- 1. $\widehat{\text{Outcome}} = b_0 + b_c \text{Predictor}_i$ -->
+<!-- 2. $\widehat{\text{Mediator}} = b_0 + b_a \text{Predictor}_i$ -->
+<!-- 3. $\widehat{\text{Outcome}} = b_0 + b_{c`} \text{Predictor}_i + b_b \text{Mediator}_i$ -->
+
+![Mediation Path](mediation.jpeg)
 
 ## Visual {.subsection}
 
 ```{r, fig.asp=1, fig.width=5, fig.align='center'}
-plot(data$use.homeopathic.remedies, data$speed.of.healing, col = 'red', xlab="alter", ylab="rocov")
+mycor <- cor(data$use.homeopathic.remedies, data$speed.of.healing)
+plot(data$use.homeopathic.remedies, data$speed.of.healing, 
+     main = paste0("Correlation Homeopathy/Healing\ncor = ", round(mycor, 2)), 
+     bg = 'purple', pch = 21, bty = "n", las = 1,
+     xlab="Homeopathy",
+     ylab="Speed of Healing")
 
 fit.1 <- lm(speed.of.healing ~ use.homeopathic.remedies, data)
 
-abline(fit.1, col = 'green')
+abline(fit.1, col = 'darkgreen', lwd = 3)
 ```
 
 ## 3D Visual
@@ -220,29 +250,33 @@ rglwidget()
 
 Interactive, give it a spin.
 
-## Calculate indirect effect {.subsection}
+## Calculate indirect effect {.subsection .smaller .flexbox .vcenter}
 
 $a \times b = b_a \times b_b$
 
 ```{r, echo=TRUE}
-b.a*b.b
-b.c - b.c.accent
+b.mediator.predictor * b.full.mediator     # a * b
+b.outcome.predictor  - b.full.predictor    # c - c'
 ```
+
+![Mediation Path](mediation.jpeg)
 
 ## Calculate indirect effect (partially standardized) {.subsection}
 
 $\frac{ab}{s_{Outcome}} = \frac{b_a b_b}{s_{Outcome}}$
 
 ```{r, echo=TRUE}
-b.a*b.b/sd(speed.of.healing)
+b.mediator.predictor * b.full.mediator / sd(speed.of.healing)
 ```
+
+![Mediation Path](mediation.jpeg)
 
 ## Calculate indirect effect (standardized) {.subsection}
 
 $\frac{ab}{s_{Outcome}} \times s_{Predictor} = \frac{b_a b_b}{s_{Outcome}} \times s_{Predictor}$
 
 ```{r, echo=TRUE}
-b.a*b.b/sd(speed.of.healing)*sd(use.homeopathic.remedies)
+b.mediator.predictor*b.full.mediator / sd(speed.of.healing)*sd(use.homeopathic.remedies)
 ```
 
 ## Calculate $P_M$ {.subsection}
@@ -250,28 +284,46 @@ b.a*b.b/sd(speed.of.healing)*sd(use.homeopathic.remedies)
 $\frac{ab}{c} = \frac{b_a b_b}{b_c}$
 
 ```{r, echo=TRUE}
-b.a*b.b/b.c
+b.mediator.predictor*b.full.mediator / b.outcome.predictor
 ```
+
+![Mediation Path](mediation.jpeg)
+
+
+## Calculate $P_M$ {.subsection}
+
+$\frac{ab}{c} = \frac{b_a b_b}{b_c}$
+
+```{r, echo=TRUE}
+b.mediator.predictor*b.full.mediator / b.outcome.predictor
+```
+
+> The proportion* of the total effect that can be attributed to the mediator
+
+>* "although it is tempting to think of PM as a proportion (because it is the ratio of the indirect effect to the total effect) it is not: it can exceed 1 and even take negative values (Preacher & Kelley, 2011)."
+
 
 ## Calculate $R_M$ {.subsection}
 
 $\frac{ab}{c`} = \frac{b_a b_b}{b_{c`}}$
 
 ```{r, echo=TRUE}
-b.a*b.b/b.c.accent
+b.mediator.predictor*b.full.mediator / b.full.predictor
 ```
 
+![Mediation Path](mediation.jpeg)
+
+## Calculate $R_M$ {.subsection}
+
+$\frac{ab}{c`} = \frac{b_a b_b}{b_{c`}}$
+
+```{r, echo=TRUE}
+b.mediator.predictor*b.full.mediator / b.full.predictor
+```
+
+> The ratio of indirect effect to direct effect
 
 ## Calculate $R^2_M$ {.smaller .subsection}
 
 $R^2_{out,med} − (R^2_{out,pre \times med} − R^2_{out,pre})$
 
-```{r, echo=TRUE}
-m.4.out.med    <- lm(speed.of.healing ~ healthy.lifestyle)
-
-R2_out.med     <- cor(m.4.out.med$fitted.values, speed.of.healing)^2
-R2_out.pre.med <- cor(model.outcome.predictor.mediator$fitted.values, speed.of.healing)^2
-R2_out.pre     <- cor(model.outcome.predictor$fitted.values, speed.of.healing)^2
-
-R2_out.med - (R2_out.pre.med - R2_out.pre)
-```
