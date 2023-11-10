@@ -327,3 +327,9 @@ b.mediator.predictor*b.full.mediator / b.full.predictor
 
 $R^2_{out,med} − (R^2_{out,pre \times med} − R^2_{out,pre})$
 
+
+## Caution with PROCESS
+
+- [Rohrer et al (2022). That’s a Lot to Process! Pitfalls of Popular Path Models. Advances in Methods and Practices in Psychological Science. ](https://journals.sagepub.com/doi/full/10.1177/25152459221095827)
+
+> When we test such hypotheses with the help of path models applied to observational data, we are in the business of causal inference on the basis of observational data
