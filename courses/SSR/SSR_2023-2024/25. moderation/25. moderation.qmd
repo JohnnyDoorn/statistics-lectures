@@ -12,6 +12,8 @@ format:
 ```{r child="../../../../topics/moderation/moderation.qmd"}
 ```
 
+```{r child="../../../../topics/SR-recruit/SR-recruit.qmd"}
+```
 <!-- Footer insert below -->
 
 ```{r child="../../../../footer.qmd"}
