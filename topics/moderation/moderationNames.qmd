@@ -27,13 +27,13 @@ $\definecolor{red}{RGB}{255,0,0} \definecolor{black}{RGB}{0,0,0}
 
 ![](moderation.png)
 
-## Example {.smaller}
+<!-- ## Example {.smaller} -->
 
-Video games are among the favorite online activities for young people: two-thirds of 5–16-year-olds have their own video games console, and 88% of boys aged 8–15 own at least one games console. Although playing violent video games can enhance visuospatial acuity, visual memory, probabilistic inference, and mental rotation, compared to games such as Tetris, these games have also been linked to increased aggression in youths Another predictor of aggression and conduct problems is callous-unemotional traits such as lack of guilt, lack of empathy, and callous use of others for personal gain. 
+<!-- Video games are among the favorite online activities for young people: two-thirds of 5–16-year-olds have their own video games console, and 88% of boys aged 8–15 own at least one games console. Although playing violent video games can enhance visuospatial acuity, visual memory, probabilistic inference, and mental rotation, compared to games such as Tetris, these games have also been linked to increased aggression in youths Another predictor of aggression and conduct problems is callous-unemotional traits such as lack of guilt, lack of empathy, and callous use of others for personal gain.  -->
 
-Imagine a scientist wanted to look at the relationship between playing violent video games such as Grand Theft Auto, MadWorld and Manhunt and aggression. She gathered data from 442 youths. She measured their aggressive behavior, callous unemotional traits, and the number of hours per week they play video games.
+<!-- Imagine a scientist wanted to look at the relationship between playing violent video games such as Grand Theft Auto, MadWorld and Manhunt and aggression. She gathered data from 442 youths. She measured their aggressive behavior, callous unemotional traits, and the number of hours per week they play video games. -->
 
-Source: Field 11.3.1
+<!-- Source: Field 11.3.1 -->
 
 ## Simulate data
 
@@ -52,10 +52,10 @@ Source: Field 11.3.1
 set.seed(283) ## 
 n <- 100
 hours.awake <- round(runif(n, 1, 18))
-ml.coffee <- round(hours.awake + (rnorm(n, 250, 100))) ## multicollinearity
-error     <-             rnorm(n, 0, 20) ## error
-intercept <- 50
-wakefulness   <- intercept + -3 * hours.awake + 
+ml.coffee   <- round(hours.awake + (rnorm(n, 250, 100))) ## multicollinearity
+error       <- rnorm(n, 0, 20) ## error
+intercept   <- 50
+wakefulness <- intercept + -3 * hours.awake + 
                           0.5 * ml.coffee + 
                          0.5 * hours.awake * ml.coffee + 
                          error
